@@ -55,7 +55,18 @@ Game.Grid = {
     },
     clearGrid: function( params, except ) {
 	for( i in gridModels ) {
-	    if( typeof except === "undefined" || except != i ) Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
+	    if( typeof except === "undefined" || except != i ) {
+		var cords = gridModels[i].gridCords.split(':');
+		if( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] !== 0 ) {
+		    if( gameData.battle.selection.hero.monsters[cords[0]][cords[1]].speedRemain > 0 ) {
+			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.freeClear );
+		    } else {
+			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.noMoveClear );
+		    }
+		} else {
+		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
+		}
+	    }
 	}
     },
     showGrid: function( params, pos ) {
