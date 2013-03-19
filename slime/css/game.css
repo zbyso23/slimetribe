@@ -1,0 +1,329 @@
+body {
+    color: #000;
+    font-family:Monospace;
+    font-size:13px;
+    text-align:center;
+    font-weight: bold;
+
+    background-color: #fff;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#info {
+    color:#000;
+    position: relative;
+    margin: 0 auto -2.1em;
+    top: 0px;
+    padding: 5px;
+    z-index:100;
+}
+
+a { color: skyblue; }
+
+#stats { position: absolute; top:0; left: 0 }
+#stats #fps { background: transparent !important }
+#stats #fps #fpsText { color: #aaa !important }
+#stats #fps #fpsGraph { display: none }
+div#loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background: #3C0000 url("../images/title-bg2.jpg") repeat scroll;
+    z-index: 1000;
+}
+div#loading-image {
+    position: absolute;
+    z-index: 1001;
+    background-color: #3C0000;
+    opacity: 0;
+    display: block;
+    width: 1024px;
+    height: 768px;
+    background: transparent url("../images/title.png") no-repeat scroll;
+
+}
+div#loading-image h1 {
+    text-align: left;
+}
+#loading-bar-bg {
+    /*width: 30%;*/
+    width: 1px;
+    height: 2%;
+    left: 34.5%;
+    top: 73%;
+    opacity: 0.5;
+    display: block;
+    position: absolute;
+    background: #feccb1; /* Old browsers */
+    background: -moz-linear-gradient(top, #feccb1 0%, #f17432 50%, #ea5507 51%, #fb955e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(50%,#f17432), color-stop(51%,#ea5507), color-stop(100%,#fb955e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* IE6-9 */
+    -webkit-border-radius: 7px;
+    border-radius: 7px; 
+    z-index: 10000;
+}
+#loading-bar {
+    width: 1px;
+    height: 2%;
+    left: 34.5%;
+    top: 73%;
+    display: block;
+    opacity: 0.7;
+    position: absolute;
+    background: #7cd63b; /* Old browsers */
+    background: -moz-linear-gradient(top, #7cd63b 0%, #a1d54f 50%, #80c217 51%, #31ba0b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7cd63b), color-stop(50%,#a1d54f), color-stop(51%,#80c217), color-stop(100%,#31ba0b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #7cd63b 0%,#a1d54f 50%,#80c217 51%,#31ba0b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #7cd63b 0%,#a1d54f 50%,#80c217 51%,#31ba0b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #7cd63b 0%,#a1d54f 50%,#80c217 51%,#31ba0b 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #7cd63b 0%,#a1d54f 50%,#80c217 51%,#31ba0b 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7cd63b', endColorstr='#31ba0b',GradientType=0 ); /* IE6-9 */
+    -webkit-border-radius: 7px;
+    border-radius: 7px; 
+    z-index: 10001;
+}
+div#gui, div#gui-top {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 1%;
+    opacity: 0.6;
+    z-index: 900;
+    margin: 0 auto;
+}
+div#gui-top {
+    opacity: 0.49;
+    height: 10%;
+    top: 1%;
+}
+div#gui div, div#gui-top div {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+}
+div#gui div div.part, div#gui-top div div.part {
+    width: 50%;
+    float: left;
+}
+div#gui div.enemy div.part {
+    color: #F00;
+}
+div#gui div, div#gui-top div {
+    background-color: #FF0;
+}
+div#gui div.friendly div.part {
+    color: #55F;
+}
+div#gui div.neutral {
+    color: #7E9;
+}
+div#gui div.player {
+    font-weight: bold;
+}
+div#gui div.player.left {
+    color: #00E;
+}
+div#gui div.player.right {
+    color: #E33;
+}
+div#gui div.friendly.healer div.part {
+    color: #33F;
+}
+div#gui div.turn {
+    color: #000;
+}
+
+div#gui-top div.part span.spell {
+    color: #606;
+}
+
+div#gui-top div.part span.active {
+    color: #F0F;
+}
+
+
+div#left-damage div, div#right-damage div, div#damage div, div#right-player, div#left-player, div#center-turn div, div#gameover div {
+    font-family: arial, helvetica;
+    font-weight: bold;
+    font-size: 500%;
+    text-align: center;
+}
+div#right-player, div#left-player {
+    width: 5%;
+    height: 0.5%;
+    background-color: #FFF;
+    -webkit-border-radius: 17px;
+    border-radius: 17px;
+    opacity: 0.75;
+}
+div#left-damage div.damage, div#right-damage div.damage, div#damage div.damage, div#right-player div {
+    color: #F00;
+    text-shadow: 0px 0px 15px #F55;
+}
+div#left-damage div.heal, div#right-damage div.heal, div#damage div.heal {
+    color: #FF0;
+    text-shadow: 0px 0px 15px #FF5;
+}
+div#left-damage div.spell, div#right-damage div.spell, div#damage div.spell {
+    color: #F0F;
+    text-shadow: 0px 0px 15px #F5F;
+}
+div#left-player div {
+    color: #00F;
+    text-shadow: 0px 0px 15px #55F;
+}
+div#right-player div {
+    color: #3F3;
+    text-shadow: 0px 0px 15px #0A0;
+}
+
+div#center-turn div.left {
+    color: #00F;
+    text-shadow: 0px 0px 15px #55F;
+}
+div#center-turn div.right {
+    color: #3F3;
+    text-shadow: 0px 0px 15px #0A0;
+}
+div#left-damage, div#right-damage, div#damage, div#right-player, div#left-player, div#center-turn, div#gameover {
+    opacity: 0;
+    position: absolute;
+    height: 200px;
+    width: 150px;
+    top: -15px;
+}
+div#damage div {
+    font-size: 600%;
+}
+div#left-damage, div#left-player {
+    left: 10%;
+}
+div#left-damage, div#right-damage {
+    left: 1%;
+    width: 358px;
+    height: 621px;
+    padding-top: 105px;
+    display: block;
+    z-index: 50;
+    position: absolute;
+    color: #FFF;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+div#left-damage div, div#right-damage div {
+    color: #DEF;
+    text-align: left;
+    width: 328px;
+    padding-left: 110px;
+    height: 20px;
+    font-size: 14px;
+    text-shadow: 0px 0px 9px #F0F;
+}
+div#left-damage div span, div#right-damage div span {
+    color: #FFF;
+    text-shadow: 0px 0px 9px #FFF;
+}
+div#right-damage {
+    left: 77%;
+}
+div#left-damage.normal {
+    background: transparent url( '../images/gui/battle_blue.png' ) no-repeat left top;
+    opacity: 0.9;
+}
+div#right-damage.normal {
+    background: transparent url( '../images/gui/battle_green.png' ) no-repeat left top;
+    opacity: 0.9;
+}
+div#left-damage.active {
+    background: transparent url( '../images/gui/battle_blue_active.png' ) no-repeat left top;
+    opacity: 0.9;
+}
+div#right-damage.active {
+    background: transparent url( '../images/gui/battle_green_active.png' ) no-repeat left top;
+    opacity: 0.9;
+}
+div#left-damage div.spells, div#right-damage div.spells {
+    padding-top: 135px;
+}
+div#left-damage div.spells div.green, div#left-damage div.spells div.red, div#left-damage div.spells div.orange, div#left-damage div.spells div.purple, div#left-damage div.spells div.blue,
+div#right-damage div.spells div.green, div#right-damage div.spells div.red, div#right-damage div.spells div.orange, div#right-damage div.spells div.purple, div#right-damage div.spells div.blue {
+    text-align: center;
+    width: 161px;
+    height: 91px;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 0;
+    padding-top: 70px;
+    margin-top: -60px;
+    color: #DD0;
+    text-shadow: 0px 0px 13px #000;
+    opacity: .65;
+}
+div#left-damage div.spells div.green.active, div#left-damage div.spells div.red.active, div#left-damage div.spells div.orange.active, div#left-damage div.spells div.purple.active, div#left-damage div.spells div.blue.active,
+div#right-damage div.spells div.green.active, div#right-damage div.spells div.red.active, div#right-damage div.spells div.orange.active, div#right-damage div.spells div.purple.active, div#right-damage div.spells div.blue.active {
+    color: #FFF;
+    font-size: 26px;
+    text-shadow: 0px 0px 13px #FFF;
+    opacity: 1;
+}
+
+
+div#left-damage div.spells div.green, div#right-damage div.spells div.green { 
+    background: transparent url( '../images/gui/spell_green.png' ) no-repeat left top;
+}
+div#left-damage div.spells div.red, div#right-damage div.spells div.red { 
+    background: transparent url( '../images/gui/spell_red.png' ) no-repeat left top;
+}
+div#left-damage div.spells div.orange, div#right-damage div.spells div.orange { 
+    background: transparent url( '../images/gui/spell_orange.png' ) no-repeat left top;
+}
+div#left-damage div.spells div.purple, div#right-damage div.spells div.purple { 
+    background: transparent url( '../images/gui/spell_purple.png' ) no-repeat left top;
+}
+div#left-damage div.spells div.blue, div#right-damage div.spells div.blue { 
+    background: transparent url( '../images/gui/spell_blue.png' ) no-repeat left top;
+}
+
+
+div#right-player {
+    right: 10%;
+}
+div#center-turn, div#damage {
+    width: 100%;
+}
+div#center-turn div, div#damage div {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+div#gameover {
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    opacity: 0;
+}
+div#gameover div {
+    font-size: 550%;
+    padding-top: 5%;
+    color: #EEE;
+    text-transform: uppercase;
+}
+div#gameover div.turn {
+    font-size: 170%;
+    text-shadow: 0px 0px 10px #FFF;
+}
+
+div#gameover div.player-left {
+    color: #00F;
+    text-shadow: 0px 0px 15px #55F;
+}
+div#gameover div.player-right {
+    color: #0F0;
+    text-shadow: 0px 0px 15px #5F5;
+}
