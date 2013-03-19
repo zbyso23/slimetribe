@@ -112,6 +112,9 @@ Game.Events = {
 	try {
 	    mouse2D.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	    mouse2D.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	    
+	    //console.log( 'mouse', mouse2D );
+	    
 	    var cords = Game.Grid.casting();
 	    if( !cords ) throw "nogrid";
 	    gameData.battle.gui.cords = cords;
@@ -209,7 +212,7 @@ Game.Events = {
 	}
     },
     onDocumentMouseDown: function( event ) {
-	event.preventDefault();
+	//event.preventDefault();
 	if( Game.Events.mouseDown === true ) {
 	    Game.Events.mouseDown = ( gameData.animation.run === true ) ? false : true;
 	    return;

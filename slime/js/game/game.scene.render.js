@@ -5,6 +5,7 @@ Game.Scene.Render = {
 	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	renderer.setClearColor( 0xffeeff, 1 );
 	Game.Scene.Render.shadows();
+	canvas = renderer.domElement;
 	container.appendChild( renderer.domElement );
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;

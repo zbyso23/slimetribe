@@ -60,18 +60,18 @@ Game.Html = {
 		var barWidth = Game.Html.loadingBar.clientWidth;
 		var barHeight = Game.Html.loadingBar.clientHeight;
 		var fullWidth = Game.Html.loadingBarBg.clientWidth;
-		var barBg = gameData.loader.jsonCountAll * 20;
-		var bar = ( gameData.loader.jsonCount > 0 ) ? ( gameData.loader.jsonCountAll - gameData.loader.jsonCount ) * 20 : ( barBg - ( barBg / 50 ) );
+		var ratio = ( (window.innerWidth * 0.25) / gameData.loader.jsonCountAll );
+		var barBg = gameData.loader.jsonCountAll * ratio;
+		var bar = ( gameData.loader.jsonCount > 0 ) ? ( gameData.loader.jsonCountAll - gameData.loader.jsonCount ) * ratio : ( barBg - ( barBg / 50 ) ); //reserve for initialize bar
 		    
 		var left = ( ( window.innerWidth / 2 ) - ( fullWidth / 2 ) );
-		var top = ( window.innerHeight / 1.3 );
+		var top = ( window.innerHeight / 1.4 );
 		Game.Html.loadingBar.style.left = left + 'px';
 		Game.Html.loadingBarBg.style.left = left + 'px';
 		Game.Html.loadingBar.style.top = top + 'px';
 		Game.Html.loadingBarBg.style.top = top + 'px';
 		Game.Html.loadingBar.style.width = ( bar ) + 'px';
 		Game.Html.loadingBarBg.style.width = ( barBg ) + 'px';
-		console.log( 'jo jo', Game.Html.loadingBar.clientWidth );
 	    } catch( e ) {
 		Game.Html.loadingBarBg.style.opacity = 0;
 		Game.Html.loadingBar.style.opacity = 0;
@@ -80,19 +80,17 @@ Game.Html = {
 	},
 	updateLoadingScreen: function() {
 	    try {
-		var width = Game.Html.loadingImageSize.w;
-		var height = Game.Html.loadingImageSize.h;
-		width = ( ( window.innerWidth / 2 ) < Game.Html.loadingImageSize.w ) ? ( window.innerWidth / 1.5 ) : Game.Html.loadingImageSize.w;
-		height = ( ( window.innerHeight / 2 ) < Game.Html.loadingImageSize.h ) ? ( window.innerHeight / 1.125 ) : Game.Html.loadingImageSize.h;
-		Game.Html.loadingImage.style.width = width + 'px';
-		Game.Html.loadingImage.style.height = height + 'px';
-		Game.Html.loadingImage.style.backgroundSize = width + 'px ' + height + 'px';
-		var left = ( window.innerWidth / 2 ) - ( width / 2 );
-		var top = ( window.innerHeight / 2 ) - ( height / 2 );
+		size = Game.Html._getSize( { w: Game.Html.loadingImageSize.w, h: Game.Html.loadingImageSize.h, scale: 1 } );
+		if( size === false ) throw "no size get";
+		Game.Html.loadingImage.style.width = size.w + 'px';
+		Game.Html.loadingImage.style.height = size.h + 'px';
+		Game.Html.loadingImage.style.backgroundSize = size.w + 'px ' + size.h + 'px';
+		var left = ( window.innerWidth / 2 ) - ( size.w / 2 );
+		var top = ( window.innerHeight / 2 ) - ( size.h / 2 );
 		Game.Html.loadingImage.style.left = left + 'px';
 		Game.Html.loadingImage.style.top = top + 'px';
 	    } catch( e ) {
-
+		console.log('updateLoadingScreen',e);
 	    }
 	},
 	hideBattleLoadingScreen: function () {
@@ -158,12 +156,15 @@ Game.Html = {
 		    var statsHtml = Game.Html.makeStats( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y] )
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).innerHTML = statsHtml;
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = .9;
+		    Game.Html._setStats( { w: 358, h: 441, id: gameData.battle.selection.player + '-damage' } );
 		    if( cords.length === 2 && ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] !== 0 || gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) ) {
 			var enemy = ( gameData.battle.selection.player === "left" ) ? "right" : "left";
 			var player = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? enemy : gameData.battle.selection.player;
 			statsHtml = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? Game.Html.makeStats( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] ) : Game.Html.makeStats( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] );
 			document.getElementById( player + '-damage' ).innerHTML = statsHtml;
 			document.getElementById( player + '-damage' ).style.opacity = .9;
+			Game.Html._setStats( { w: 358, h: 441, id: player + '-damage' } );
+
 		    }
 		} else {
 		    if( cords.length === 2 && ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] !== 0 || gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) ) {
@@ -172,6 +173,7 @@ Game.Html = {
 			statsHtml = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? Game.Html.makeStats( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] ) : Game.Html.makeStats( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], false );
 			document.getElementById( player + '-damage' ).innerHTML = statsHtml;
 			document.getElementById( player + '-damage' ).style.opacity = .9;
+			Game.Html._setStats( { w: 358, h: 441, id: player + '-damage' } );
 		    } else {
 			document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = 0;
 			document.getElementById( 'right-damage' ).style.opacity = 0;
@@ -278,6 +280,53 @@ Game.Html = {
 		return false;
 	    }
 	    return true;
+	},
+	_getSize: function( params ) {
+	    try {
+		var ratioW = params.w / params.h;
+		var ratioH = params.h / params.w;
+		var size = ( Math.min( window.innerWidth, window.innerHeight ) ) * params.scale;
+		return { w: size * ratioW, h: size * ratioH };
+	    } catch( e ) {
+		return false;
+	    }
+	},
+	_setStats: function( params ) {
+	    try {
+		var size = Game.Html._getSize( { w: params.w, h: params.h, scale: Math.max( window.innerWidth, window.innerHeight ) * 0.0003 } );
+		document.getElementById( params.id ).style.width = size.w + 'px';
+		document.getElementById( params.id ).style.height = size.h + 'px';
+		document.getElementById( params.id ).style.backgroundSize = size.w + 'px ' + size.h + 'px';
+		document.getElementById( params.id ).style.paddingLeft = ( document.getElementById( params.id ).clientWidth * 0.23 ) + 'px';
+		document.getElementById( params.id ).style.paddingTop = ( document.getElementById( params.id ).clientHeight * 0.185 ) + 'px';
+		var nodes = document.getElementById( params.id ).childNodes;
+		var lastHeight = 0
+		for( i in nodes ) {
+		    
+		    //if( nodes[i].childNodes.length > 0 )
+		    var isSpell = false;
+		    nodes[i].style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0075 ) + 'px';
+		    nodes[i].style.height = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0095 ) + 'px';
+		    lastHeight += ( Math.max( window.innerWidth, window.innerHeight ) * 0.009 );
+		    for( j in nodes[i].childNodes ) {
+			if( nodes[i].childNodes[j].nodeName == 'DIV' ) {
+			    var sizeSpell = Game.Html._getSize( { w: 161, h: 161, scale: Math.max( window.innerWidth, window.innerHeight ) * 0.000089 } );
+			    nodes[i].childNodes[j].style.backgroundSize = sizeSpell.w + 'px ' + sizeSpell.h + 'px';
+			    nodes[i].childNodes[j].style.width = sizeSpell.w + 'px';
+			    nodes[i].childNodes[j].style.height = ( sizeSpell.h - ( sizeSpell.h * 0.35 ) ) + 'px';
+			    nodes[i].childNodes[j].style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.023 ) + 'px';
+			    nodes[i].childNodes[j].style.marginTop = '-' + ( sizeSpell.h * 0.25 ) + 'px';
+			    nodes[i].childNodes[j].style.paddingTop = ( sizeSpell.h * 0.25 ) + 'px';
+			    isSpell = true;
+			}
+			console.log( 'nodes[i].childNodes', nodes[i].childNodes[j] );
+		    }
+		    if( isSpell === true ) nodes[i].style.paddingTop = ( ( size.h - ( document.getElementById( params.id ).clientHeight * 0.205 ) ) - lastHeight ) + 'px';
+
+		}
+	    } catch( e ) {
+		
+	    }
 	}
 
 

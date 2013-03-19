@@ -25,10 +25,6 @@
 	"colorSpecular" : [0.5, 0.5, 0.5],
 	"depthTest" : true,
 	"depthWrite" : true,
-	"mapSpecular" : "slizak2.png",
-	"mapSpecularWrap" : ["repeat", "repeat"],
-	"shading" : "Lambert",
-	"specularCoef" : 50,
 	"transparency" : 1.0,
 	"transparent" : false,
 	"vertexColors" : false

@@ -335,7 +335,7 @@ var healing, healer;
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
 
-var container;
+var canvas, container;
 var camera, scene, renderer;
 var raycaster, projector;
 var mouse2D, mouse3D;
