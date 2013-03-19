@@ -294,17 +294,25 @@ div#center-turn div, div#damage div {
     text-align: center;
     text-transform: uppercase;
 }
-div#battle-end-turn {
+div#battle-end-turn, div#battle-change-spell, div#battle-change-attack {
     background: transparent url( '../images/gui/battle_endturn.png' ) no-repeat left top;
-    background-size: 100px 100px;
+    background-size: 125px 100px;
     position: absolute;
     top: 0%;
-    width: 100px;
+    width: 125px;
     height: 100px;
     left: 34.5%;
     opacity: 1;
-    cursor: wait;
-    zindex: 7000;
+}
+div#battle-change-spell {
+    background: transparent url( '../images/gui/battle_changespell.png' ) no-repeat left top;
+    background-size: 125px 100px;
+    left: 42.5%;
+}
+div#battle-change-attack {
+    background: transparent url( '../images/gui/battle_changeattack.png' ) no-repeat left top;
+    background-size: 125px 100px;
+    left: 50.5%;
 }
 div#gameover {
     width: 100%;

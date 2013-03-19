@@ -153,6 +153,7 @@ Game.Html = {
 		//Selected Player
 		if( gameData.battle.selection.selected === true ) {
 		    var characterStats = gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y];
+//console.log( 'characterStats', characterStats );
 		    var statsHtml = Game.Html.makeStats( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y] )
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).innerHTML = statsHtml;
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = .9;
@@ -302,8 +303,6 @@ Game.Html = {
 		var nodes = document.getElementById( params.id ).childNodes;
 		var lastHeight = 0
 		for( i in nodes ) {
-		    
-		    //if( nodes[i].childNodes.length > 0 )
 		    var isSpell = false;
 		    nodes[i].style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0075 ) + 'px';
 		    nodes[i].style.height = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0095 ) + 'px';
@@ -319,7 +318,6 @@ Game.Html = {
 			    nodes[i].childNodes[j].style.paddingTop = ( sizeSpell.h * 0.25 ) + 'px';
 			    isSpell = true;
 			}
-			console.log( 'nodes[i].childNodes', nodes[i].childNodes[j] );
 		    }
 		    if( isSpell === true ) nodes[i].style.paddingTop = ( ( size.h - ( document.getElementById( params.id ).clientHeight * 0.205 ) ) - lastHeight ) + 'px';
 
