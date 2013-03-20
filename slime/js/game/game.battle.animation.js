@@ -163,13 +163,13 @@ Game.Battle.Animation = {
 		    gameData.animation.object.controls.attack = false;
 		    gameData.animation.object.controls.move = false;
 		    gameData.animation.targetObject.controls.defense = false;
-		} else if( tick > animSpeed * 5.5 ) {
+		} else if( tick > animSpeed * 1.75 ) {
 		    gameData.animation.object.controls.move = false;
+		    Game.Html.showPoints( true, gameData.animation.damage );
 		} else {
 		    gameData.animation.object.controls.move = ( gameData.animation.nearAttack === false ) ? true : false;
 		    gameData.animation.object.controls.attack = true;
 		    gameData.animation.targetObject.controls.defense = true;
-		    Game.Html.showPoints( true, gameData.animation.damage );
 		}
 	    } else if( gameData.animation.healing === true ) {
 		Game.Html.showPoints( true, gameData.animation.heal );
