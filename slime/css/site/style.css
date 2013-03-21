@@ -78,11 +78,30 @@ div#content {
 }
 
 div#content div.article {
-    width: 540px;
-    margin-right: 10px;
+    width: 530px;
+    margin: 10px;
     background-color: #0D6;
     float: left;
 }
+
+div#content div.article p {
+    margin: 7px 0px;
+    font-size: 95%;
+    
+}
+
+div#content div.article p strong {
+    text-decoration: underline;
+}
+
+div#content div.article ul {
+    font-size: 85%;
+}
+
+div#content div.article ul li {
+    margin-left: 15px;
+}
+
 div#content div.bar {
     width: 150px;
     background-color: #4D0;
