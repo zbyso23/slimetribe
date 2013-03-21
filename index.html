@@ -1,80 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - game parody</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" href="slime/css/game.css" type="text/css" media="screen, projection" />
+            <title>Slime Tribe - turn based strategy based on WebGl and THREE.js</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="slime/css/site/style.css" type="text/css" media="screen, projection" />
 	</head>
 	<body>
-		<div id="loading">
-		    <img style="margin-top:5%;" src="slime/images/title.png" />
-		</div>
-	    
-		<div id="gameover"></div>
-		<div id="gui-top"></div>
-		<div id="gui"></div>
-		<div id="left-damage" class="active"></div>
-		<div id="right-damage" class="normal"></div>
-		<div id="damage"></div>
-		<div id="left-player"><div>Play</div></div>
-		<div id="right-player"><div>Play</div></div>
-		<div id="center-turn"></div>
-		<audio preload id="battle-sound">
-		 <source id="battle-sound-ogg" src="slime/sounds/battle/magican/spell.ogg" type="audio/ogg">
-		 <source id="battle-sound-mp3" src="slime/sounds/battle/magican/spell.mp3" type="audio/mpeg">
-	        </audio> 
-		<audio preload id="battle-ambient" autoplay loop>
-		 <source id="battle-ambient-ogg" src="slime/music/battle/ambient01.ogg" type="audio/ogg">
-	        </audio> 
-		<script src="slime/js/three.js"></script>
-
-		<script src='slime/js/MD2CharacterComplex.js'></script>
-		
-		<script src='slime/js/Detector.js'></script>
-		<script src='slime/js/debug.js'></script>
-		<script src='slime/js/stats.min.js'></script>
-		<script src='slime/js/astar.js'></script>
-
-		<script src='slime/js/game/game.js'></script>
-		<script src='slime/js/game/game.utils.js'></script>
-		<script src='slime/js/game/game.loader.js'></script>
-		<script src='slime/js/game/game.html.js'></script>
-		<script src='slime/js/game/game.stats.js'></script>
-		<script src='slime/js/game/game.grid.js'></script>
-		<script src='slime/js/game/game.controls.js'></script>
-		<script src='slime/js/game/game.init.variables.js'></script>
-		<script src='slime/js/game/game.scene.js'></script>
-		<script src='slime/js/game/game.scene.camera.js'></script>
-		<script src='slime/js/game/game.scene.graphics.js'></script>
-		<script src='slime/js/game/game.scene.lights.js'></script>
-		<script src='slime/js/game/game.scene.render.js'></script>
-		<script src='slime/js/game/game.scene.animate.js'></script>
-		<script src='slime/js/game/game.battle.js'></script>
-		<script src='slime/js/game/game.battle.ai.js'></script>
-		<script src='slime/js/game/game.battle.animation.js'></script>
-		<script src='slime/js/game/game.battle.sounds.js'></script>
-		<script src='slime/js/game/game.events.js'></script>
-		<script src='slime/js/game/game.init.js'></script>
-		<script src='slime/js/monsters.js'></script>
-		
-		
-		<script>
-			Game.initialize();
-			//Foceni
-			//position: {x: 652, y: 0, z: 479 }
-			//scale: {x: 3, y: 3, z: 3 }
-			function r2d (angle) {
-			    return angle * (180 / Math.PI);
-			}
-			function d2r (angle) {
-			    return angle * (Math.PI / 180);
-			}
-
-			function exponentialEaseOut( k ) { return k === 1 ? 1 : - Math.pow( 2, - 10 * k ) + 1; }
-
-			var t = 0;
-		</script>
-
+            <script src='slime/js/Detector.js'></script>
+            <script>
+                var webglFound = ( !Detector.canvas || !Detector.webgl ) ? false : true;
+            </script>
+            <div id="container">
+                <div id="header"><h1>Slime Tribe</h1><p><strong>WebGl Turn-based strategy</strong></p></div>
+                <div id="menu">
+                    <ul>
+                        <li><a href="#" class="active">Game</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div id="content">
+                    <div class="article">
+                        <h1>Article</h1>
+                    </div>
+                    <div class="bar">Bar</div>
+                </div>
+                <div id="footer"></div>
+            </div>
 	</body>
 </html>
