@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-            <title>Slime Tribe - turn based strategy based on WebGl and THREE.js</title>
+            <title>Slime Tribe - turn based strategy based on WebGL and THREE.js</title>
             <meta charset="utf-8">
             <link rel="stylesheet" href="slime/css/site/style.css" type="text/css" media="screen, projection" />
 	</head>
@@ -9,7 +9,7 @@
             <script src='slime/js/Detector.js'></script>
             <script>
                 var webglFound = ( !Detector.canvas || !Detector.webgl ) ? false : true;
-		var articles = [ 'demo', 'requiements' ];
+		var articles = [ 'demogame', 'requiements', 'faq', 'thanks', 'planed', 'about', 'underhand'];
 		function change( to ) {
 		    try {
 			var found = false;
@@ -21,7 +21,6 @@
 			}
 			if( found === false ) throw "unknown page";
 			
-			
 			for( i in articles ) {
 			    if( articles[i] === found ) {
 				document.getElementById( 'menu-' + articles[i] ).setAttribute( 'class', 'active' );
@@ -30,6 +29,20 @@
 				document.getElementById( 'menu-' + articles[i] ).setAttribute( 'class', 'unactive' );
 				document.getElementById( 'article-' + articles[i] ).style.display = 'none';
 			    }
+			}
+			var hash = '#' + found;
+			window.location.hash = hash;
+			if ("onhashchange" in window) { // event supported?
+			    window.onhashchange = function () {
+				window.location.hash = hash;
+			    }
+			} else { // event not supported:
+			    var storedHash = window.location.hash;
+			    window.setInterval(function () {
+				if (window.location.hash != storedHash) {
+				    window.location.hash = hash;
+				}
+			    }, 100);
 			}
 		    } catch( e ) {
 			
@@ -40,31 +53,34 @@
 		
             </script>
             <div id="container">
-                <div id="header"><h1 style="display:none;">Slime Tribe</h1><p style="display:none;"><strong>WebGl Turn-based strategy</strong></p></div>
+                <div id="header"><h1 style="display:none;">Slime Tribe</h1><p style="display:none;"><strong>WebGL Turn-based strategy</strong></p></div>
                 <div id="menu">
                     <ul>
-                        <li><a href="#" onclick="change('demo');" id="menu-demo" class="active">Demo</a></li>
+                        <li><a href="#" onclick="change('demogame');" id="menu-demogame" class="active">Demo</a></li>
                         <li><a href="#" onclick="change('requiements');" id="menu-requiements" >Requiements</a></li>
-                        <li><a href="#">Online Demo</a></li>
-                        <li><a href="#">Planed features</a></li>
+                        <li><a href="#" onclick="change('faq');" id="menu-faq">Faq</a></li>
+                        <li><a href="#" onclick="change('about');" id="menu-about">About Game</a></li>
+                        <li><a href="#" onclick="change('planed');" id="menu-planed">Planed features</a></li>
+			<li><a href="#" onclick="change('underhand');" id="menu-underhand">Underhand</a></li>
+			<li><a href="#" onclick="change('thanks');" id="menu-thanks">Special Thanks</a></li>
                     </ul>
                 </div>
                 <div id="content">
-                    <div class="article show" id="article-demo">
+                    <div class="article show" id="article-demogame">
                         <h2>Online Demo</h2>
-                        <p>Here is a playable demoversion from last "stable" relase:) If is WebGl not detected on Your computer link will be unavailable. In this case check Your system and browser configuration. More information in the FAQ section.</p>
-                        <p class="center" id="demo"><a href="demo.html" id="demo-button">DEMO</a></p>
+                        <p>Here is a playable demoversion from last "stable" relase:) If is WebGL not detected on Your computer link will be unavailable. In this case check Your system and browser configuration. More information in the FAQ section.</p>
+                        <p class="center" id="demo"><a href="demo.html" id="demo-button" target="_blank">DEMO</a></p>
                     </div>
                     <div class="article hide" id="article-requiements">
                         <h2>Requiements</h2>
-                        <p>This game have no special system requiements, but comsumption of WebGl in browser is bigger compare with eqivalent desktop application. Planed compatibility is all devices with WebGl compatible browser, like Safari, Chrome and Firefox.</p>
+                        <p>This game have no special system requiements, but comsumption of WebGL in browser is bigger compare with eqivalent desktop application. Planed compatibility is all devices with WebGL compatible browser, like Safari, Chrome and Firefox.</p>
                         <p><strong>Minimum configuration:</strong></p>
                         <ul>
                             <li><strong>CPU:</strong> 1GHz</li>
                             <li><strong>Memmory:</strong> 512MB RAM</li>
                             <li><strong>Graphics:</strong> Intel HD 2000 or better</li>
                             <li><strong>OS:</strong> Linux / Mac OS X / Windows XP</li>
-                            <li><strong>Web Browser:</strong> WebGl compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
+                            <li><strong>Web Browser:</strong> WebGL compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
                         </ul>
                         <br />
                         <p><strong>Recomended configuration:</strong></p>
@@ -73,20 +89,79 @@
                             <li><strong>Memmory:</strong> 1024MB RAM</li>
                             <li><strong>Graphics:</strong> Intel HD 3000 or better</li>
                             <li><strong>OS:</strong> Linux / Mac OS X / Windows 7</li>
-                            <li><strong>Web Browser:</strong> WebGl compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
+                            <li><strong>Web Browser:</strong> WebGL compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
                         </ul>
                     </div>
+                    <div class="article hide" id="article-faq">
+                        <h2>Faq</h2>
+			<h3>How enable WebGL?</h3>
+                        <p>In most modern browsers is WebGL default enabled. In other case find Your device bellow:</p>
+			<ul>
+			    <li><a href="http://thenextweb.com/google/2013/01/25/google-finally-makes-it-easy-to-enable-webgl-support-in-latest-chrome-for-android-beta/" title="Google Makes it Easy To Enable WebGL in Latest Chrome for Android Beta" target="_blank">Android Beta</a></li>
+			    <li><a href="https://discussions.apple.com/thread/3300585?start=0&tstart=0" title="How do I enable WebGL in Safari 5.1?: Apple Support Communities" target="_blank">Apple OS X</a></li>
+			</ul>
+			<h3>How speed-up game?</h3>
+			<p>In the planed version will be menu for customize graphics effects. If You play game on notebook try switch to "Game Mode" or similar power settings for speed-up cpu and graphics card.</p>
+                    </div>
+                    <div class="article hide" id="article-about">
+                        <h2>About Game</h2>
+                        <p>Slime Tribe is a turn based strategy game with RPG features. Now is completed battle part of the game, where playing two player on other sides. Battle plane is on the grid 10 x 10 cells. Every character on the battle grid is on the one cell and every turn have one possible action - move, attack, heal (only healers) and spells (only magican). Battle is over when any player defeat all monsters of enemy.</p>
+			<p><strong>Grid Colors</strong></p>
+			<ul>
+			    <li><strong>Green: </strong>Friendly character with move / move path from selected character</li>
+			    <li><strong>Red: </strong>Enemy character</li>
+			</ul>
+			<p><strong>Keyboard shortcuts</strong></p>
+			<ul>
+			    <li><strong>F2: </strong>End turn</li>
+			    <li><strong>ENTER: </strong>Change magic/melee attack (magican)</li>
+			    <li><strong>SHIFT: </strong>Change spell (magican)</li>
+			</ul>
+                    </div>
+                    <div class="article hide" id="article-planed">
+                        <h2>Planed features</h2>
+			<p><strong>Now will be preparing these new features:</strong></p>
+			<ul class="freatures">
+			    <li><strong>Quest Map: </strong>In the demo is possible to play only battle part of game, but now is preparing for second - mainly quest part with bigger map, locations, items and many other.</li>
+			    <li><strong>New characters: </strong>In next weeks will be prepared new characters for battle and for new quest part</li>
+			    <li><strong>Game settings: </strong>From beginning programming this game I think on various of machines and core is ready for many settings of graphics effects like anti-aliasing, textures and shadows. All these settings will be enabled soon.</li>
+			</ul>
+                    </div>
+                    <div class="article hide" id="article-thanks">
+                        <h2>Special Thanks</h2>
+                        <p>Thanks for my Familly, for all my good friends and for all good peole in the past, present and future :)
+			<strong>and especially thansks</strong> for these developers and web pages where very help me with develop these game:</strong></p>
+			<ul>
+			    <li><strong>mrdoob and all developers of <a href="http://mrdoob.github.com/three.js/" title="THREE.js" target="_blank">THREE.js</a></strong></li>
+			    <li><strong>many people with helping hands on <a href="http://stackoverflow.com/" title="http://stackoverflow.com/" target="_blank">stackoverflow.com</a></strong></li>
+			    <li><strong>all developers and designers with beginers hints of very good modeling software <a href="http://www.blender.org/" title="http://www.blender.org/" target="_blank">blender</a></strong></li>
+			</ul>
+
+                    </div>
+		    <div class="article hide" id="article-underhand">
+			<p><strong>This game using these technologies, specially thanks for all developers:</strong></p>
+			<ul class="freatures">
+			    <li><strong>HTML5: </strong>In game is GUI graphics like loading screen, players stats, spells etc. created with using HTML, CSS3 and Javascript. Game plane is created using by new feature of modern browsers named WebGL. This technology is based on OpenGl ES 2.0 and will be show accelerated 3D graphics on most present computes. More info about WebGL on <a href="http://en.wikipedia.org/wiki/WebGL" title="Wikipedia - WebGL">Wikipedia.</a></li>
+			</ul>
+		    </div>
                     
                     
                     <div class="bar">
 			<h3>Faq:</h3>
 			<ul>
-			    <li><a href="#">How enable WebGl?</a></li>
-			    <li><a href="#">How speed up game?</a></li>
+			    <li><a href="#" onclick="change('faq');">How enable WebGL?</a></li>
+			    <li><a href="#" onclick="change('faq');">How speed up game?</a></li>
 			</ul>
 		    </div>
                 </div>
                 <div id="footer"></div>
+		<script>
+		    var url = document.URL;
+		    var anchor = url.split('#');
+		    if( anchor.length > 1 ) {
+			change( anchor[1] );
+		    }
+		</script>
             </div>
 	</body>
 </html>

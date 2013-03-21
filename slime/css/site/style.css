@@ -4,6 +4,9 @@
     border: 0px;
     font-family: arial, helvetica, sans-serif;
 }
+a {
+    color: #000;
+}
 body {
     background: #3C0000 url("../../images/title-bg2.jpg") repeat scroll;
     padding: 23px 0px;
@@ -72,7 +75,6 @@ div#menu ul li a {
     -moz-transition: text-shadow 500ms ease-in-out, opacity 500ms ease-in-out, color 500ms ease-in-out;
     -webkit-transition: text-shadow 500ms ease-in-out, opacity 500ms ease-in-out, color 500ms ease-in-out;
     -o-transition: text-shadow 500ms ease-in-out, opacity 500ms ease-in-out, color 500ms ease-in-out;
-
 }
 div#menu ul li a.unactive {
     color: #600;
@@ -146,11 +148,16 @@ div#content div.article p a#demo-button {
     background: -ms-linear-gradient(top, #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* IE10+ */
     background: linear-gradient(to bottom, #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', endColorstr='#7cbc0a',GradientType=0 ); /* IE6-9 */
-    
-    -moz-transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
-    
+    -moz-transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);    
+    -ms-transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);    
+    -o-transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);    
+    transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);    
+    -webkit-transform: scale(0.75) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
     transition: 230ms ease-in-out;
     -moz-transition: 230ms ease-in-out;
+    -webkit-transition: 230ms ease-in-out;
+    -o-transition: 230ms ease-in-out;
+
 }
 div#content div.article p a#demo-button:hover {
     text-shadow: 0px 0px 15px #333;
@@ -158,6 +165,8 @@ div#content div.article p a#demo-button:hover {
     -moz-transform: scale(1.15) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
     transition: 230ms ease-in-out;
     -moz-transition: 230ms ease-in-out;
+    -webkit-transition: 230ms ease-in-out;
+    -o-transition: 230ms ease-in-out;
     opacity: 1;
 }
 div#content div.show {
@@ -174,12 +183,16 @@ div#content div h1, div#content div h2, div#content div h3 {
     text-shadow: 0px 0px 4px #FFF;
     transition: 430ms ease-in-out;
     -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
 div#content div h1:hover, div#content div h2:hover, div#content div h3:hover {
     text-shadow: 0px 0px 9px #FFF;
     color: #F33;
     transition: 430ms ease-in-out;
     -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
 div#content div p {
     padding: 7px 7px;
@@ -187,11 +200,15 @@ div#content div p {
     color: #000;
     transition: 430ms ease-in-out;
     -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
 div#content div p:hover {
     color: #900;
     transition: 430ms ease-in-out;
     -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
 
 
@@ -204,9 +221,26 @@ div#content div ul {
 }
 
 div#content div ul li {
+    color: #000;
     margin: -3px 0px 5px 22px;
-    
+    transition: 430ms ease-in-out;
+    -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
+
+div#content div ul li:hover {
+    color: #900;
+    transition: 430ms ease-in-out;
+    -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
+}
+div#content div ul.freatures li {
+    margin: 4px 0px 9px 22px;
+}
+
+
 div#content div.bar ul li {
     list-style: lower-greek;
     margin-left: 29px;
@@ -215,7 +249,19 @@ div#content div.bar ul li {
 div#content div.bar ul li a {
     color: #33F;
     text-decoration: none;
+    transition: 430ms ease-in-out;
+    -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
 }
+div#content div.bar ul li a:hover {
+    color: #900;
+    transition: 430ms ease-in-out;
+    -moz-transition: 430ms ease-in-out;
+    -webkit-transition: 430ms ease-in-out;
+    -o-transition: 430ms ease-in-out;
+}
+
 
 div#footer {
     float: left;
