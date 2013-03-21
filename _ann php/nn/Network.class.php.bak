@@ -1,0 +1,135 @@
+<?php
+Class Network {
+	private $vector = Array();
+	private $learning = Array();
+	private $output = Array();
+	private $training = Array();
+	private $learningRate;
+	private $learningCount;
+	private $errorLimit;
+	private $countTrain = 0;
+	private $countOutput = 0;
+
+	function __construct ($learningRate = 0.6) 
+	{ 
+		$this->learningRate = $learningRate;
+		$this->learningCount = 100;
+		$this->errorLimit = 0.01;
+		//nahodne nastaveni pocatecnich vah
+		for ( $i = 1; $i <= 3; $i++ )
+		{
+			for ( $j = 1; $j <= 3; $j++ )
+			{
+				$this->vector[$i][$j] = (float) (rand(0, 65535) / (65535 / 2) - 1);
+			}		
+		}
+	} 
+
+	// aktivacni funkce
+	function sigmoida ($value)
+	{
+		return 1 / (1 + exp(-(float) $value));	
+	} 
+
+	// odezva neuronove site
+	function run($value1, $value2)
+	{
+		$net1 = 1 * $this->vector[1][1] + $value1 * $this->vector[2][1] + $value2 * $this->vector[3][1];
+		$net2 = 1 * $this->vector[1][2] + $value1 * $this->vector[2][2] + $value2 * $this->vector[3][2];
+		
+		$i3 = $this->sigmoida($net1);
+		$i4 = $this->sigmoida($net2);
+		
+		$net1 = 1 * $this->vector[1][3] + $i3 * $this->vector[2][3] + $i4 * $this->vector[3][3];
+		
+		return $this->sigmoida($net1);
+	} 
+
+	// uceni neuronove site
+	function train ($value1, $value2, $out)
+	{
+		// vstup skryte vrstvy
+		$net1 = 1 * $this->vector[1][1] + $value1 * $this->vector[2][1] + $value2 * $this->vector[3][1];
+		$net2 = 1 * $this->vector[1][2] + $value1 * $this->vector[2][2] + $value2 * $this->vector[3][2];
+		
+		// vystup skryte vrstvy, respektive: vstup treti vrstvy
+		$i3 = $this->sigmoida($net1);
+		$i4 = $this->sigmoida($net2);
+		
+		// vystup treti vrstvy
+		$net3 = 1 * $this->vector[1][3] + $i3 * $this->vector[2][3] + $i4 * $this->vector[3][3];
+		$fout = $this->sigmoida($net3);
+	
+		$d = array();
+		$d[3] = $fout * ( 1 - $fout ) * ($out - $fout);
+		$d[2] = $i4 * ( 1 - $i4 ) * $this->vector[3][3] * $d[3];
+		$d[1] = $i3 * ( 1 - $i3 ) * $this->vector[2][3] * $d[3];
+		
+		for ( $i = 1; $i <= 3; $i++ ) // cykl pres vsechny vrstvy
+		{
+			if ( $i == 3 )
+			{
+				$v1 = $i3;
+				$v2 = $i4;
+			}
+			else
+			{
+				$v1 = $value1;
+				$v2 = $value2;			
+			}
+			
+			// zmena vah
+			$this->vector[1][$i] += $this->learningRate * 1 * $d[$i];
+			$this->vector[2][$i] += $this->learningRate * $v1 * $d[$i];
+			$this->vector[3][$i] += $this->learningRate * $v2 * $d[$i];
+		}
+	}
+	
+	function AddOutput ($data) {
+		$this->countOutput++;
+		$this->output[$this->countOutput] = $data;
+	}
+
+	function AddTrain ($data) {
+		$this->countTrain++;
+		foreach($data as $item) {
+			$this->training[$this->countTrain][] = $item;
+		}
+	}
+
+	function Reset () {
+		$this->countTrain = 0;
+		$this->countOutput = 0;
+	}
+
+
+
+	function Learn ($count = 0) {
+		if (empty($count) || $count < 2) {
+			$learningCount = $this->learningCount;
+		} else {
+			$learningCount = $count;
+		}
+		// cyklus uceni
+		for ($i = 0; $i < $learningCount; $i++) {
+			for($j = 0; $j < $this->countTrain; $j++) {
+				$this->train($this->training[$j+1][0], $this->training[$j+1][1], $this->output[$j+1]);
+				$this->learning[$j+1] = 0;
+			}
+
+			for($j = 0; $j < $this->countTrain; $j++) {
+				$this->learning[$j+1] = $this->run($this->training[$j+1][0], $this->training[$j+1][1]);
+			}
+
+			// vypocet chyby
+			$tmp = 0;
+			for($j = 0; $j < $this->countTrain; $j++) {
+				$tmp = $tmp + (($this->output[$j+1]-$this->learning[$j+1])*($this->output[$j+1]-$this->learning[$j+1]));
+			}
+			$this->error = 0.5 * $tmp;			
+			if ( $this->error <= $this->errorLimit )
+				break;
+		}
+	}
+}
+?>

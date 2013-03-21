@@ -9,19 +9,53 @@
             <script src='slime/js/Detector.js'></script>
             <script>
                 var webglFound = ( !Detector.canvas || !Detector.webgl ) ? false : true;
+		var articles = [ 'demo', 'requiements' ];
+		function change( to ) {
+		    try {
+			var found = false;
+			for( i in articles ) {
+			    if( articles[i] == to ) {
+				found = articles[i];
+				break;
+			    }
+			}
+			if( found === false ) throw "unknown page";
+			
+			
+			for( i in articles ) {
+			    if( articles[i] === found ) {
+				document.getElementById( 'menu-' + articles[i] ).setAttribute( 'class', 'active' );
+				document.getElementById( 'article-' + articles[i] ).style.display = 'block';
+			    } else {
+				document.getElementById( 'menu-' + articles[i] ).setAttribute( 'class', 'unactive' );
+				document.getElementById( 'article-' + articles[i] ).style.display = 'none';
+			    }
+			}
+		    } catch( e ) {
+			
+		    } finally {
+			return false;
+		    }
+		}
+		
             </script>
             <div id="container">
-                <div id="header"><h1>Slime Tribe</h1><p><strong>WebGl Turn-based strategy</strong></p></div>
+                <div id="header"><h1 style="display:none;">Slime Tribe</h1><p style="display:none;"><strong>WebGl Turn-based strategy</strong></p></div>
                 <div id="menu">
                     <ul>
-                        <li><a href="#" class="active">About</a></li>
-                        <li><a href="#">Requiements</a></li>
+                        <li><a href="#" onclick="change('demo');" id="menu-demo" class="active">Demo</a></li>
+                        <li><a href="#" onclick="change('requiements');" id="menu-requiements" >Requiements</a></li>
                         <li><a href="#">Online Demo</a></li>
                         <li><a href="#">Planed features</a></li>
                     </ul>
                 </div>
                 <div id="content">
-                    <div class="article" id="article-requiements">
+                    <div class="article show" id="article-demo">
+                        <h2>Online Demo</h2>
+                        <p>Here is a playable demoversion from last "stable" relase:) If is WebGl not detected on Your computer link will be unavailable. In this case check Your system and browser configuration. More information in the FAQ section.</p>
+                        <p class="center" id="demo"><a href="demo.html" id="demo-button">DEMO</a></p>
+                    </div>
+                    <div class="article hide" id="article-requiements">
                         <h2>Requiements</h2>
                         <p>This game have no special system requiements, but comsumption of WebGl in browser is bigger compare with eqivalent desktop application. Planed compatibility is all devices with WebGl compatible browser, like Safari, Chrome and Firefox.</p>
                         <p><strong>Minimum configuration:</strong></p>
@@ -30,27 +64,27 @@
                             <li><strong>Memmory:</strong> 512MB RAM</li>
                             <li><strong>Graphics:</strong> Intel HD 2000 or better</li>
                             <li><strong>OS:</strong> Linux / Mac OS X / Windows XP</li>
-                            <li><strong>Web Browser:</strong> Firefox 11+ / Chrome 20+</li>
+                            <li><strong>Web Browser:</strong> WebGl compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
                         </ul>
                         <br />
-                        <p><strong>Recomended requiements:</strong></p>
+                        <p><strong>Recomended configuration:</strong></p>
                         <ul>
                             <li><strong>CPU:</strong> 2GHz</li>
                             <li><strong>Memmory:</strong> 1024MB RAM</li>
                             <li><strong>Graphics:</strong> Intel HD 3000 or better</li>
                             <li><strong>OS:</strong> Linux / Mac OS X / Windows 7</li>
-                            <li><strong>Web Browser:</strong> Firefox 11+ / Chrome 20+</li>
+                            <li><strong>Web Browser:</strong> WebGl compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
                         </ul>
                     </div>
-                    <div class="article" id="article-online-demo">
-                        <h2>Online demo</h2>
-                        <p>Here is a playable demo from last "stable" relase. If is WebGl not detected on Your computer link will be unavailable. In this case check Your system and browser configuration. More information in the FAQ section.</p>
-                        <div id="demo-button"></div>
-                    </div>
-
                     
                     
-                    <div class="bar">Bar</div>
+                    <div class="bar">
+			<h3>Faq:</h3>
+			<ul>
+			    <li><a href="#">How enable WebGl?</a></li>
+			    <li><a href="#">How speed up game?</a></li>
+			</ul>
+		    </div>
                 </div>
                 <div id="footer"></div>
             </div>

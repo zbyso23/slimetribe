@@ -55,7 +55,7 @@ Game.Battle.Ai = {
 		//Friendly monsters
 		character = gameData.battle.selection.hero.monsters[x][y];
 		character['cords'] = [ x, y ];
-
+		//Friendly healer with mana
 		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === true && gameData.battle.selection.hero.monsters[x][y].manaRemain >= gameData.battle.selection.hero.monsters[x][y].stats.magic ) monsters.healers.push( character );
 		lowCostSpell = 0;
 		currentCost = 0;
@@ -66,8 +66,9 @@ Game.Battle.Ai = {
 		}
 		//Friendly magican with mana
 		if( gameData.battle.selection.hero.monsters[x][y].stats.spell === true && gameData.battle.selection.hero.monsters[x][y].manaRemain >= lowCostSpell ) monsters.spells.push( character )
-		//Friendly healer with mana
-		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === true ) monsters.healing.push( character );
+		//First Aid:D
+		if( gameData.battle.selection.hero.monsters[x][y].stats.health > gameData.battle.selection.hero.monsters[x][y].healthRemain ) monsters.healing.push( character );
+		//Attack!
 		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === false || gameData.battle.selection.turn > 1 ) monsters.attack.push( character );
 	    }
 	}
@@ -83,8 +84,7 @@ Game.Battle.Ai = {
 	    //Find best friend for him:)
 	    monsters['healing'].sort( function( a, b ){ return a['healthRemain'] - b['healthRemain'] } );
 	    var healing = Game.Battle.calcHealing( monsters['healers'][0], monsters['healing'][0] );
-console.log( 'healing', healing );
-console.log( 'monsters', monsters );
+	    if( healing.health === 0 ) throw "nobody to heal";
 	    var cords1 = monsters['healers'][0]['cords'];
 	    var cords2 = monsters['healing'][0]['cords'];
 	    var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.hero.grid, 'withAttack': false, 'withHealing': true, 'withDeath': false, 'damage': 0, 'heal': healing.health, 'nearAttack': false, 'withSpell': false };
