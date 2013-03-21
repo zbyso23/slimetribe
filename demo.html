@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - game parody</title>
+		<title>three.js webgl - Slime Tribe</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" href="slime/css/game.css" type="text/css" media="screen, projection" />
 	</head>
 	<body>
-		<div id="loading">
-		    <img style="margin-top:5%;" src="slime/images/title.png" />
-		</div>
-	    
+		<div id="loading"></div>
+		<div id="loading-image"></div>
+		<div id="loading-bar-bg" ></div>
+		<div id="loading-bar" ></div>	    
 		<div id="gameover"></div>
 		<div id="gui-top"></div>
 		<div id="gui"></div>
 		<div id="left-damage" class="active"></div>
 		<div id="right-damage" class="normal"></div>
 		<div id="damage"></div>
+		<div id="battle-end-turn"></div>
+		<div id="battle-change-spell"></div>
+		<div id="battle-change-attack"></div>
 		<div id="left-player"><div>Play</div></div>
 		<div id="right-player"><div>Play</div></div>
 		<div id="center-turn"></div>
@@ -27,7 +30,7 @@
 		<audio preload id="battle-ambient" autoplay loop>
 		 <source id="battle-ambient-ogg" src="slime/music/battle/ambient01.ogg" type="audio/ogg">
 	        </audio> 
-		<script src="slime/js/three.js"></script>
+		<script src="slime/js/three.min.js"></script>
 
 		<script src='slime/js/MD2CharacterComplex.js'></script>
 		
@@ -57,22 +60,11 @@
 		<script src='slime/js/game/game.events.js'></script>
 		<script src='slime/js/game/game.init.js'></script>
 		<script src='slime/js/monsters.js'></script>
-		
-		
 		<script>
 			Game.initialize();
-			//Foceni
-			//position: {x: 652, y: 0, z: 479 }
-			//scale: {x: 3, y: 3, z: 3 }
-			function r2d (angle) {
-			    return angle * (180 / Math.PI);
-			}
-			function d2r (angle) {
-			    return angle * (Math.PI / 180);
-			}
-
+			function r2d (angle) { return angle * (180 / Math.PI) };
+			function d2r (angle) { return angle * (Math.PI / 180) };
 			function exponentialEaseOut( k ) { return k === 1 ? 1 : - Math.pow( 2, - 10 * k ) + 1; }
-
 			var t = 0;
 		</script>
 
