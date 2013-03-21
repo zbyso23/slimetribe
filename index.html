@@ -10,17 +10,20 @@
             <script>
                 var webglFound = ( !Detector.canvas || !Detector.webgl ) ? false : true;
 		var articles = [ 'demogame', 'requiements', 'faq', 'thanks', 'planed', 'about', 'underhand'];
+		var changing = false;
 		function change( to ) {
 		    try {
+			if( changing === true ) throw "changing";
+			changing = true;
 			var found = false;
+			var last = false;
 			for( i in articles ) {
-			    if( articles[i] == to ) {
-				found = articles[i];
-				break;
+			    if( articles[i] == to ) found = articles[i];
+			    if( document.getElementById( 'menu-' + articles[i] ).getAttribute( 'style' ) === 'active' ) {
+				last = articles[i];
 			    }
 			}
 			if( found === false ) throw "unknown page";
-			
 			for( i in articles ) {
 			    if( articles[i] === found ) {
 				document.getElementById( 'menu-' + articles[i] ).setAttribute( 'class', 'active' );
@@ -44,9 +47,11 @@
 				}
 			    }, 100);
 			}
+			changing = false;
 		    } catch( e ) {
-			
+			if( e !== "changing" ) changing = false;
 		    } finally {
+			changing = false;
 			return false;
 		    }
 		}
