@@ -89,7 +89,7 @@ Game.Battle = {
 	try {
 	    var healerStats = healer.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( defenderStats.magicDefense / 2 ) * healerStats.magic + Math.random() * 0.25 ) * 1.25 );
+	    var a = Math.round( ( ( defenderStats.magicDefense / 2 ) * healerStats.magic + Math.random() * 0.125 ) );
 	    if( ( defender.healthRemain + a ) > defenderStats.health ) {
 		var health = defenderStats.health - defender.healthRemain;
 	    } else {
