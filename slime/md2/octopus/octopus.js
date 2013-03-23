@@ -25,7 +25,7 @@
 	"colorSpecular" : [0.5, 0.5, 0.5],
 	"depthTest" : true,
 	"depthWrite" : true,
-	"mapSpecular" : "octopus.jpg",
+	"mapSpecular" : "skins/octopus.jpg",
 	"mapSpecularWrap" : ["repeat", "repeat"],
 	"shading" : "Lambert",
 	"specularCoef" : 50,
