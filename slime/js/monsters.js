@@ -151,7 +151,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 12
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -191,7 +191,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 12
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -226,7 +226,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 12
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -271,7 +271,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 10
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -309,7 +309,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 10
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -347,7 +347,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 10
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -384,7 +384,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 9
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -422,7 +422,7 @@ var monstersList = {
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    
 	    invert: { x: true, z: true },
-	    fps: 9
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
@@ -459,7 +459,7 @@ var monstersList = {
 	    crouchSpeed: 25,
 	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
 	    invert: { x: true, z: true },
-	    fps: 9
+	    fps: 11
 	},
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",

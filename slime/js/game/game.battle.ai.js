@@ -208,22 +208,29 @@ Game.Battle.Ai = {
             Game.Grid.select( { x: cords1[0], y: cords1[1] } );
 	    Game.Grid.showGrid( BATTLE_GRID.enemy, { x: cords2[0], y: cords2[1] } );
 	    gameData.battle.selection.path = ( enemy.path === true ) ? [] : enemy.path;
-	    Game.Grid.showGridPath( BATTLE_GRID.enemy, gameData.battle.selection.path );
 	    var xFrom = parseInt( gameData.battle.selection.x );
 	    var yFrom = parseInt( gameData.battle.selection.y );
 	    var monsterTarget = ( gameData.battle.selection.path.length > 0 ) ? gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ] : monsterTarget;
 	    var attack = Game.Battle.calcAttack( attacker, enemy.monster );
 	    var nearAttack = false;
+	    if( Game.Battle.findInGrid( { x: cords2[0], y: cords2[1], x2: xFrom, y2: yFrom } ) === true ) {
+		nearAttack = true;
+		enemy.path = [];
+		gameData.battle.selection.path = [];
+	    } else {
+		Game.Grid.showGridPath( BATTLE_GRID.enemy, gameData.battle.selection.path );
+	    }
 	    if( enemy.path !== true && typeof monsterTarget !== "undefined" ) {
 		//Nothing
 	    } else {
-		if( enemy.path === true ) nearAttack = true;
+		//if( enemy.path === true ) nearAttack = true;
 	    }
-	    if( enemy.path === true || enemy.path.length > 0 ) {
-		var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'move': true, 'moveX': monsterTarget.x, 'moveY': monsterTarget.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': true, 'withHealing': false, 'withDeath': attack.death, 'damage': attack.damage, 'nearAttack': nearAttack, 'withSpell': false };
+	    if( nearAttack === true || enemy.path.length > 0 ) {
+		var move = ( nearAttack === true ) ? false : true;
+		var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'move': move, 'moveX': monsterTarget.x, 'moveY': monsterTarget.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': true, 'withHealing': false, 'withDeath': attack.death, 'damage': attack.damage, 'nearAttack': nearAttack, 'withSpell': false };
 		gameData.battle.gui.cords = cords2;
 		attacker.speedRemain = 0;
-		gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
+		if( nearAttack === false ) gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
 		Game.Battle.Animation.animate( settings );
 		return true;
 	    }

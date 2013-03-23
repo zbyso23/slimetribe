@@ -65,7 +65,7 @@ Game.Battle = {
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
 	    var a = Math.round( ( ( spellsList[ attacker.stats.activeSpell ].damage * ( ( Math.log( attacker.stats.magic ) ) + Math.random() * 0.5 ) ) ) );
-	    var d = Math.round( ( ( ( defenderStats.defense / 2 ) * defenderStats.magicDefense ) + ( Math.random() * 0.5 ) ) );
+	    var d = Math.round( ( ( defenderStats.magicDefense * 1.5 ) + ( Math.random() * 0.5 ) ) );
 	    if( a > d ) {
 		var damage = Math.round( ( a - d ) * 1.25 );
 	    } else {
@@ -145,13 +145,13 @@ Game.Battle = {
 	    from[1] = parseInt( from[1] );
 	    cords[0] = parseInt( cords[0] );
 	    cords[1] = parseInt( cords[1] );
-	    if( Game.Battle._findInGrid( { x: cords[0], y: cords[1], x2: from[0], y2: from[1] } ) === false ) throw "is so far";
+	    if( Game.Battle.findInGrid( { x: cords[0], y: cords[1], x2: from[0], y2: from[1] } ) === false ) throw "is so far";
 	} catch( e ) {
 	    return false;
 	}
 	return true;
     },
-    _findInGrid: function( params ) {
+    findInGrid: function( params ) {
 	try {
 	    if( params.y < 0 || params.x < 0 || params.x >= gameData.battle.plane.gridWidth || params.y >= gameData.battle.plane.gridHeight || params.y2 < 0 || params.x2 < 0 || params.x2 >= gameData.battle.plane.gridWidth || params.y2 >= gameData.battle.plane.gridHeight ) throw "out of grid";
 	    var diffX = ( params.x > params.x2 ) ? Math.abs( params.x - params.x2 ) : Math.abs( params.x2 - params.x );
@@ -161,43 +161,5 @@ Game.Battle = {
 	    return false;
 	}
 	return true;
-    },
-    
-    findNearAttackPathOld: function( from, cords ) {
-	
-	
-	
-	
-	from[0] = parseInt( from[0] );
-	from[1] = parseInt( from[1] );
-	cords[0] = parseInt( cords[0] );
-	cords[1] = parseInt( cords[1] );
-	var paths = [];
-	var nearAttack = false;
-	for( var x = cords[0] - 1; ( x <= cords[0] + 1  && paths.length === 0 ); x++ ) {
-	    for( var y = cords[0] - 1; ( y <= cords[0] + 1 && paths.length === 0 ); y++ ) {
-		if( from[0] === x && from[1] === y ) {
-		    nearAttack = true;
-		    break;break;
-		}
-		if( y < 0 || x < 0 || x >= gameData.battle.plane.gridWidth || y >= gameData.battle.plane.gridHeight ) continue;
-		var to = [x,y];
-		var path = aStar(from, to, gameData.battle.plane.grid, gameData.battle.plane.gridWidth, gameData.battle.plane.gridHeight, true );
-		if( path.length > 0 && gameData.battle.selection.hero.monsters[from[0]][from[1]].speedRemain >= ( path.length - 1 ) ) {
-		    paths.push( path );
-		}
-	    }
-	}
-	if( ( Math.abs( from[0] - cords[0] ) < 2  && Math.abs( from[1] - cords[1] ) === 0 ) || ( Math.abs( from[1] - cords[1] ) < 2 && Math.abs( from[0] - cords[0] ) === 0 ) ) {
-	    nearAttack = true;
-	}
-	if( paths.length > 0 || nearAttack ) {
-	    gameData.battle.selection.attackCords = cords;
-	    gameData.battle.selection.attack = true;
-	} else {
-	    gameData.battle.selection.attackCords = [];
-	    gameData.battle.selection.attack = false;
-	}
-	return paths;
     }
 };

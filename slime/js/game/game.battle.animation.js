@@ -170,6 +170,7 @@ Game.Battle.Animation = {
 		    gameData.animation.object.controls.move = ( gameData.animation.nearAttack === false ) ? true : false;
 		    gameData.animation.object.controls.attack = true;
 		    gameData.animation.targetObject.controls.defense = true;
+		    Game.Html.showPoints( true, gameData.animation.damage );
 		}
 	    } else if( gameData.animation.healing === true ) {
 		Game.Html.showPoints( true, gameData.animation.heal );
