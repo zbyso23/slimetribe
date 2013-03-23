@@ -288,17 +288,17 @@ var heroes = {
 	params: {
 	    scale: 2.4
 	},
-	ai: false,
-	level: 'medium',
+	ai: true,
+	level: 'hard',
 	army: [ 
 	    { name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
 	    { name: 'healer', pos: [ [0,7] ] },
 	    { name: 'magican-swamp', pos: [ [0,3] ] },
 	    { name: 'magican', pos: [ [0,6] ] },
-	    { name: 'slizak-swamp', pos: [ [1,1], [1,4], [1,6] ] },
-	    { name: 'octopus', pos: [ [1,3] ] },
-	    { name: 'octopus-swamp', pos: [ [1,8] ] },
-	    { name: 'slizak', pos: [ [1,5], [1,7] ] }
+	    { name: 'slizak-swamp', pos: [ [1,1], [1,6] ] },
+	    { name: 'octopus', pos: [ [1,3], [1,7] ] },
+	    { name: 'octopus-swamp', pos: [ [1,4], [1,8] ] },
+	    { name: 'slizak', pos: [ [1,5], [0,9] ] }
 	],/*
 	army: [ 
 	    { name: 'slizak', pos: [ [1,5] ] }
@@ -311,13 +311,13 @@ var heroes = {
 	params: {
 	    scale: 0.4
 	},
-	ai: true,
-	level: 'medium',
+	ai: false,
+	level: 'hard',
 	army: [
 	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] }, 
 	    { name: 'magican-necro', pos: [ [0,4], [0,8] ] },
-	    { name: 'octopus-necro', pos: [ [1,0], [1,8] ] },
-	    { name: 'slizak-necro', pos: [ [1,1], [1,2], [1,5], [0,6], [1,7], [1,9] ] }
+	    { name: 'octopus-necro', pos: [ [1,0], [1,2], [1,7], [1,8] ] },
+	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9], [1,9] ] }
 	],/*
 	army: [
 	    { name: 'slizak-necro', pos: [ [1,5] ] }

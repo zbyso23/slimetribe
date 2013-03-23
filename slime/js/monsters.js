@@ -360,7 +360,7 @@ var monstersList = {
 	}
     },
     'octopus': {
-	scale: 1.56,
+	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: { speed: 3, attack: 6, defense: 5, health: 85,
@@ -397,7 +397,7 @@ var monstersList = {
 	}
     },
     'octopus-necro': {
-	scale: 1.56,
+	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: { speed: 3, attack: 6, defense: 5, health: 83,
@@ -435,7 +435,7 @@ var monstersList = {
 	}
     },
     'octopus-swamp': {
-	scale: 1.56,
+	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: { speed: 4, attack: 6, defense: 5, health: 80,

@@ -38,10 +38,10 @@ Game.Battle = {
 	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( attackerStats.attack + Math.random() * 0.5 ) * 5 );
-	    var d = Math.round( ( defenderStats.defense + Math.random() * 0.5 ) * 3 );
+	    var a = Math.round( ( attackerStats.attack + Math.random() * 0.25 ) * 6 );
+	    var d = Math.round( ( defenderStats.defense + Math.random() * 0.25 ) * 3 );
 	    if( a > d ) {
-		var damage = Math.round( ( a - d ) * 1.5 );
+		var damage = Math.round( ( a - d ) );
 	    } else {
 		var damage = 0;
 	    }
@@ -64,10 +64,10 @@ Game.Battle = {
 	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( spellsList[ attacker.stats.activeSpell ].damage * ( ( Math.log( attacker.stats.magic ) ) + Math.random() * 0.5 ) ) ) );
-	    var d = Math.round( ( ( defenderStats.magicDefense * 1.5 ) + ( Math.random() * 0.5 ) ) );
+	    var a = Math.round( ( spellsList[ attacker.stats.activeSpell ].damage * attacker.stats.magic ) + Math.random() * 0.25 );
+	    var d = Math.round( ( ( defenderStats.magicDefense * ( spellsList[ attacker.stats.activeSpell ].damage / 1.5 ) ) + Math.random() * 0.25 ) );
 	    if( a > d ) {
-		var damage = Math.round( ( a - d ) * 1.25 );
+		var damage = Math.round( ( a - d ) );
 	    } else {
 		var damage = 0;
 	    }
@@ -89,7 +89,7 @@ Game.Battle = {
 	try {
 	    var healerStats = healer.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( defenderStats.defense / 2 ) * healerStats.magic + Math.random() * 0.5 ) * 3 );
+	    var a = Math.round( ( ( defenderStats.magicDefense / 2 ) * healerStats.magic + Math.random() * 0.25 ) * 1.25 );
 	    if( ( defender.healthRemain + a ) > defenderStats.health ) {
 		var health = defenderStats.health - defender.healthRemain;
 	    } else {
