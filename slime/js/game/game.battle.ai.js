@@ -95,8 +95,8 @@ Game.Battle.Ai = {
 	    gameData.battle.gui.cords = cords2;
 	    torch.position.x = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.x;
 	    torch.position.z = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.z;
-	    //monsters['healing'][0].healthRemain += healing.health;
-	    //monsters['healers'][0].manaRemain = ( monsters['healers'][0].manaRemain <= healing.health ) ? monsters['healers'][0].manaRemain - healing.health : 0;
+	    monsters['healing'][0].healthRemain += healing.health;
+	    monsters['healers'][0].manaRemain = ( monsters['healers'][0].manaRemain <= healing.health ) ? monsters['healers'][0].manaRemain - healing.health : 0;
 	    monsters['healers'][0].speedRemain = 0;
 	    Game.Battle.Animation.animate( settings );
 	console.log( 'settings', settings );
