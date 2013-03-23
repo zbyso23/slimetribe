@@ -34,6 +34,7 @@ var gameResources = {
 gameData = {
     run: false,
     gameOver: false,
+    state: 'adventure',
     character: {
 	position: {
 	    x: 0, y: 51.6, z: 0
@@ -87,6 +88,43 @@ gameData = {
 	    cords: []
 	}
     },
+    adventure: {
+	selection: {
+	    selected: false,
+	    x: -1,
+	    y: -1,
+	    player: 'left',
+	    path: [],
+	    movePath: [],
+	    attack: false,
+	    attackCords: [],
+	    turn: 1,
+	    endTurn: false,
+	    endTurnAnimation: false,
+	    hero: {},
+	    enemyHero: {}
+	},
+	world: {
+	    ready: false,
+	    first: true,
+	    reset: false,
+	    map: {}
+	},
+	plane: {
+	    gridWidth: 100,
+	    gridHeight: 100,
+	    step: 0,
+	    halfStep: 0,
+	    grid: []
+	},
+	gui: {
+	    cords: []
+	}
+    },
+    
+    
+    
+    
     settings: {
 	graphics: {
 	    shadows: 'high',
@@ -173,6 +211,21 @@ var BATTLE_GRID = {
     size: 90,
     transparent: true
 };
+var ADVENTURE_GRID = {
+    none: { color: 0xffffff, opacity: 0.15 },
+    left: { color: 0x0000ff, opacity: 0.1 },
+    right: { color: 0x00ff00, opacity: 0.1 },
+    neutral: { color: 0xffffff, opacity: 0.45 },
+    free: { color: 0x00ff00, opacity: 0.37 },
+    freeClear: { color: 0x00ff00, opacity: 0.15 },
+    enemy: { color: 0xff0000, opacity: 0.35 },
+    enemyFar: { color: 0xaf90af, opacity: 0.30 },
+    noMove: { color: 0x772222, opacity: 0.35 },
+    noMoveClear: { color: 0x772222, opacity: 0.15 },
+    height: 7,
+    size: 90,
+    transparent: true
+};
 var BATTLE = {
     ground: {
 	textures: {
@@ -240,6 +293,8 @@ var HTML = {
 	turn: 'center-turn',
 	loading: 'loading',
 	loadingImage: 'loading-image',
+	loadingAdventure: 'loading-adventure',
+	loadingAdventureImage: 'loading-adventure-image',
 	loadingBarBg: 'loading-bar-bg',
 	loadingBar: 'loading-bar'
 
@@ -327,6 +382,26 @@ var heroes = {
 	monsters: []
     }
 }
+
+var tribe = {
+    player: {
+	army: [ 
+	    { name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
+	    { name: 'healer', pos: [ [0,7] ] },
+	    { name: 'magican-swamp', pos: [ [0,3] ] },
+	    { name: 'magican', pos: [ [0,6] ] },
+	    { name: 'slizak-swamp', pos: [ [1,1], [1,4], [1,6] ] },
+	    { name: 'octopus', pos: [ [1,3] ] },
+	    { name: 'octopus-swamp', pos: [ [1,8] ] },
+	    { name: 'slizak', pos: [ [1,5], [1,7] ] }
+	],
+	character: { name: 'magican-swamp' },
+	controls: controls,
+	grid: [],
+	monsters: []
+    }
+}
+
 
 
 gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;

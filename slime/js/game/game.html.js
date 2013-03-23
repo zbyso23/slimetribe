@@ -9,6 +9,9 @@ Game.Html = {
 	loading: {},
 	loadingImage: {},
 	loadingImageSize: { w: 0, h: 0 },
+	loadingAdventure: {},
+	loadingAdventureImage: {},
+	loadingAdventureImageSize: { w: 0, h: 0 },
 	loadingBarBg: {},
 	loadingBar: {},
 	init: false,
@@ -41,6 +44,23 @@ Game.Html = {
 	    Game.Html.middle.style.opacity = 0;
 	    Game.Html.enemyStyle.opacity = 0;
 	    gameData.battle.selection.endTurnAnimation = false;
+	},
+	showAdventureLoadingScreen: function () {
+	    Game.Html.loadingAdventure.style.display = 'block';
+	    Game.Html.loadingBarBg.style.display = 'block';
+	    Game.Html.loadingBar.style.display = 'block';
+	    Game.Html.loadingAdventure.style.opacity = 0.99;
+	    Game.Html.loadingAdventureImage.style.opacity = 0.99;
+	    Game.Html.updateLoadingBar();
+	},
+	hideAdventureLoadingScreen: function () {
+	    Game.Html.loadingAdventure.style.display = 'none';
+	    Game.Html.loadingBarBg.style.display = 'none';
+	    Game.Html.loadingBar.style.display = 'none';
+	    Game.Html.loadingAdventure.style.opacity = 0;
+	    Game.Html.loadingAdventureImage.style.opacity = 0;
+	    Game.Html.loadingBarBg.style.opacity = 0;
+	    Game.Html.loadingBar.style.opacity = 0;
 	},
 	showBattleLoadingScreen: function () {
 	    Game.Html.loading.style.display = 'block';
@@ -76,9 +96,10 @@ Game.Html = {
 		Game.Html.loadingBarBg.style.opacity = 0;
 		Game.Html.loadingBar.style.opacity = 0;
 	    }
-	    Game.Html.updateLoadingScreen();
+	    Game.Html.updateBattleLoadingScreen();
+	    Game.Html.updateAdventureLoadingScreen();
 	},
-	updateLoadingScreen: function() {
+	updateBattleLoadingScreen: function() {
 	    try {
 		size = Game.Html._getSize( { w: Game.Html.loadingImageSize.w, h: Game.Html.loadingImageSize.h, scale: 1 } );
 		if( size === false ) throw "no size get";
@@ -90,7 +111,22 @@ Game.Html = {
 		Game.Html.loadingImage.style.left = left + 'px';
 		Game.Html.loadingImage.style.top = top + 'px';
 	    } catch( e ) {
-		console.log('updateLoadingScreen',e);
+		
+	    }
+	},
+	updateAdventureLoadingScreen: function() {
+	    try {
+		size = Game.Html._getSize( { w: Game.Html.loadingAdventureImageSize.w, h: Game.Html.loadingAdventureImageSize.h, scale: 1 } );
+		if( size === false ) throw "no size get";
+		Game.Html.loadingAdventureImage.style.width = size.w + 'px';
+		Game.Html.loadingAdventureImage.style.height = size.h + 'px';
+		Game.Html.loadingAdventureImage.style.backgroundSize = size.w + 'px ' + size.h + 'px';
+		var left = ( window.innerWidth / 2 ) - ( size.w / 2 );
+		var top = ( window.innerHeight / 2 ) - ( size.h / 2 );
+		Game.Html.loadingAdventureImage.style.left = left + 'px';
+		Game.Html.loadingAdventureImage.style.top = top + 'px';
+	    } catch( e ) {
+		
 	    }
 	},
 	hideBattleLoadingScreen: function () {
@@ -102,7 +138,6 @@ Game.Html = {
 	    Game.Html.loadingBarBg.style.opacity = 0;
 	    Game.Html.loadingBar.style.opacity = 0;
 	},
-
 	animateChangeTurn: function () {
 	    Game.Html.getPlayersStyle();
 	    var marginTopValue = parseFloat( Game.Html.middle.style.marginTop );
@@ -217,6 +252,11 @@ Game.Html = {
 	    Game.Html.loading = document.getElementById( HTML.id.loading );
 	    Game.Html.loadingImage = document.getElementById( HTML.id.loadingImage );
 	    Game.Html.loadingImageSize = { w: Game.Html.loadingImage.clientWidth, h: Game.Html.loadingImage.clientHeight };
+
+	    Game.Html.loadingAdventure = document.getElementById( HTML.id.loadingAdventure );
+	    Game.Html.loadingAdventureImage = document.getElementById( HTML.id.loadingAdventureImage );
+	    Game.Html.loadingAdventureImageSize = { w: Game.Html.loadingAdventureImage.clientWidth, h: Game.Html.loadingAdventureImage.clientHeight };
+
 
 	    Game.Html.loadingBarBg = document.getElementById( HTML.id.loadingBarBg );
 	    Game.Html.loadingBar = document.getElementById( HTML.id.loadingBar );

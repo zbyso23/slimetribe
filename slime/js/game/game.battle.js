@@ -1,4 +1,3 @@
-Game.Battle = {};
 Game.Battle = {
     generateWorld: function() {
 	if( gameDataImages.loadedRemain == 0 ) {
@@ -7,9 +6,9 @@ Game.Battle = {
 		Game.Scene.Graphics.addBattleAmbient();
 		Game.Battle.Sounds.preloader();
 	    }
-	    Game.Grid.generateCharacters( heroes.left, true, 3.14 );
-	    Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
-	    if( gameData.battle.world.first === true ) Game.Grid.generateMap();
+	    Game.Battle.Grid.generateCharacters( heroes.left, true, 3.14 );
+	    Game.Battle.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
+	    if( gameData.battle.world.first === true ) Game.Battle.Grid.generateMap();
 	    gameData.battle.world.first = false;
 	    gameData.battle.world.ready = true;
 	}
@@ -119,7 +118,7 @@ Game.Battle = {
     },
     changeTurn: function() {
 	try {
-	    if( gameData.battle.selection.selected === true ) Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+	    if( gameData.battle.selection.selected === true ) Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	    if( gameData.battle.selection.player == "right" ) gameData.battle.selection.turn++; 
 	    gameData.battle.selection.player = ( gameData.battle.selection.player == "left" ) ? "right" : "left";
 	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;
@@ -137,6 +136,39 @@ Game.Battle = {
 	    Game.Html.activePlayerGUI();
 	} catch( e ) {
 	    
+	}
+    },
+    refreshLogic: function( ) {
+	try {
+	    if( !gameData.battle.world.ready ) throw "generate";
+	    if( gameData.loader.jsonLoaded === true && animSpeedCalibrated === true ) {
+		Game.Html.hideBattleLoadingScreen();
+		if( heroes[ gameData.battle.selection.player ].ai === true && gameData.animation.run === false && gameData.battle.selection.endTurnAnimation === false ) {
+		    Game.Battle.Ai.turnStep();
+		}
+		if( gameData.battle.selection.endTurn === true ) {
+		    Game.Battle.changeTurn();
+		    gameData.battle.selection.endTurn = false;
+		    gameData.battle.gui.cords = [];
+		    Game.Html.showChangeTurn();
+		    Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+		}
+		if( gameData.battle.selection.endTurnAnimation === true ) {
+		    Game.Html.animateChangeTurn();
+		}
+	    } else if( gameData.loader.jsonLoaded === true ) {
+		if( animSpeedCalibrationCycles < 10 ) {
+		    if( tick % 9 === 0 ) Game.calibrateAnimationSpeed();
+		} else {
+		    animSpeedCalibrated = true;
+		}
+	    }
+	} catch( e ) {
+	    if( e === "generate" ) {
+		Game.Battle.Grid.reset( gameData.battle.world.first );
+		Game.Html.showBattleLoadingScreen();
+		Game.Battle.generateWorld();
+	    }
 	}
     },
     findNearAttackPath: function( from, cords ) {

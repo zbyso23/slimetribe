@@ -16,40 +16,23 @@ Game = {
     
     refreshLogic: function() {
 	if( gameData.run ) {
-	    if( !gameData.battle.world.ready ) {
-		Game.Grid.reset( gameData.battle.world.first );
-		Game.Html.showBattleLoadingScreen();
-		Game.Battle.generateWorld();
-	    } else {
-		if( gameData.loader.jsonLoaded === true && animSpeedCalibrated === true ) {
-		    Game.Html.hideBattleLoadingScreen();
-		    if( heroes[ gameData.battle.selection.player ].ai === true && gameData.animation.run === false && gameData.battle.selection.endTurnAnimation === false ) {
-			Game.Battle.Ai.turnStep();
-		    }
-		    if( gameData.battle.selection.endTurn === true ) {
-			Game.Battle.changeTurn();
-			gameData.battle.selection.endTurn = false;
-			gameData.battle.gui.cords = [];
-			Game.Html.showChangeTurn();
-			Game.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
-		    }
-		    if( gameData.battle.selection.endTurnAnimation === true ) {
-			Game.Html.animateChangeTurn();
-		    }
-		} else if( gameData.loader.jsonLoaded === true ) {
-		    if( animSpeedCalibrationCycles < 10 ) {
-			if( tick % 10 === 0 ) Game.calibrateAnimationSpeed();
-		    } else {
-			animSpeedCalibrated = true;
-		    }
-		}
+	    if( gameData.state === "battle" ) {
+		Game.Battle.refreshLogic();
+	    } else if( gameData.state === "adventure" ) {
+		Game.Adventure.refreshLogic();
 	    }
 	} else {
 	    //Blank - space for Menu etc.
 	    if( gameData.gameOver === false ) {
 		gameData.run = true;
-		Game.Html.showChangeTurn();
-		Game.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+		
+		if( gameData.state === "battle" ) {
+		    //Turn on default battle
+		    Game.Html.showChangeTurn();
+		    Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+		} else if( gameData.state === "adventure" ) {
+		    Game.Adventure.Grid.clearGrid( ADVENTURE_GRID[ gameData.adventure.selection.player ] );
+		}
 	    } else {
 		console.log('Run Again?');
 		if( gameData.battle.world.reset === true ) {
