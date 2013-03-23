@@ -358,5 +358,117 @@ var monstersList = {
 		'spell': 'magican/spell'
 	    }
 	}
+    },
+    'octopus': {
+	scale: 1.56,
+	color: 0x0099ff,
+	ambient: 0xddff99,
+	stats: { speed: 3, attack: 6, defense: 5, health: 85,
+	    magicDefense: 3, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	},
+	config: {
+	    baseUrl: "slime/md2/octopus/",
+
+	    body: "octopus.js",
+	    skins: [ "octopus.jpg" ],
+	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    animations: {
+		    move: "run",
+		    idle: "stand",
+		    attack: "attack",
+		    defense: "defense",
+		    death: "death"
+	    },
+	    runSpeed: 125,
+	    walkSpeed: 125,
+	    crouchSpeed: 25,
+	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
+	    invert: { x: true, z: true },
+	    fps: 9
+	},
+	sounds: {
+	    baseUrl: "slime/sounds/battle/",
+	    parts: {
+		'move': 'slizak/move',
+		'attack': 'slizak/attack',
+		'death': 'slizak/death',
+		'spell': 'magican/spell'
+	    }
+	}
+    },
+    'octopus-necro': {
+	scale: 1.56,
+	color: 0x0099ff,
+	ambient: 0xddff99,
+	stats: { speed: 3, attack: 6, defense: 5, health: 83,
+	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	},
+	config: {
+	    baseUrl: "slime/md2/octopus/",
+
+	    body: "octopus.js",
+	    skins: [ "octopus-necro.jpg" ],
+	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    animations: {
+		    move: "run",
+		    idle: "stand",
+		    attack: "attack",
+		    defense: "defense",
+		    death: "death"
+	    },
+	    runSpeed: 125,
+	    walkSpeed: 125,
+	    crouchSpeed: 25,
+	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
+	    
+	    invert: { x: true, z: true },
+	    fps: 9
+	},
+	sounds: {
+	    baseUrl: "slime/sounds/battle/",
+	    parts: {
+		'move': 'slizak/move',
+		'attack': 'slizak/attack',
+		'death': 'slizak/death',
+		'spell': 'magican/spell'
+	    }
+	}
+    },
+    'octopus-swamp': {
+	scale: 1.56,
+	color: 0x0099ff,
+	ambient: 0xddff99,
+	stats: { speed: 4, attack: 6, defense: 5, health: 80,
+	    magicDefense: 3, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	},
+	config: {
+	    baseUrl: "slime/md2/octopus/",
+
+	    body: "octopus.js",
+	    skins: [ "octopus-swamp.jpg" ],
+	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    animations: {
+		    move: "run",
+		    idle: "stand",
+		    attack: "attack",
+		    defense: "defense",
+		    death: "death"
+	    },
+	    runSpeed: 125,
+	    walkSpeed: 125,
+	    crouchSpeed: 25,
+	    orientations: { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 },
+	    invert: { x: true, z: true },
+	    fps: 9
+	},
+	sounds: {
+	    baseUrl: "slime/sounds/battle/",
+	    parts: {
+		'move': 'slizak/move',
+		'attack': 'slizak/attack',
+		'death': 'slizak/death',
+		'spell': 'magican/spell'
+	    }
+	}
     }
 };
