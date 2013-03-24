@@ -186,7 +186,7 @@ Game.Events = {
 
 			
 			//if( paths.length > 0 && gameData.battle.selection.attack === true ) gameData.battle.selection.path = paths[0];
-			if( pathAttack && gameData.battle.selection.path.length < ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain + 1 ) ) {
+			if( pathAttack && gameData.battle.selection.path.length < ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain + 2 ) ) {
 			    
 			    //params = ( gameData.battle.selection.attack === false ) ? BATTLE_GRID.enemyFar : BATTLE_GRID.enemy;
 			    //params = BATTLE_GRID.enemy;
@@ -294,7 +294,7 @@ Game.Events = {
 		var yFrom = parseInt( gameData.battle.selection.y );
 		var attack = Game.Battle.calcAttack( gameData.battle.selection.hero.monsters[xFrom][yFrom], gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] );
 		
-		if( typeof monsterTarget !== "undefined" && gameData.battle.selection.path.length !== 0 && gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain > ( gameData.battle.selection.path.length - 1 ) ) {
+		if( typeof monsterTarget !== "undefined" && gameData.battle.selection.path.length !== 0 && gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain > ( gameData.battle.selection.path.length - 2 ) ) {
 		    var settings = { x: gameData.battle.selection.x, y: gameData.battle.selection.y, xT: parseInt( cords[0] ), yT: parseInt( cords[1] ), move: true, moveX: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].x ), moveY: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].y ),  grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: true, withHealing: false, withDeath: attack.death, damage: attack.damage, nearAttack: false, withSpell: false };
 		} else {
 		    if( Game.Battle.findInGrid( { x: cords[0], y: cords[1], x2: gameData.battle.selection.x, y2: gameData.battle.selection.y } ) === false ) throw "is so far";

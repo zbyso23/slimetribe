@@ -82,6 +82,7 @@ Game.Grid = {
 	}
     },
     getHealthSize: function( character, object ) {
+	if( typeof object.root === "undefined" ) return { 'size': 0, 'x': 0 };
 	var num = ( character.healthRemain / character.stats.health );
 	var offset = object.root.position.z + ( ( ( BATTLE_GRID.size * 0.9 ) / 2 ) * ( 1 - num ) )
 	return { 'size': num, 'x': offset };

@@ -244,7 +244,7 @@ var monstersList = {
 	ambient: 0xddff99,
 	stats: {
 	    speed: 3, attack: 2, defense: 4, health: 70, 
-	    magicDefense: 7, magic: 6, mana: 130,
+	    magicDefense: 7, magic: 7, mana: 130,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [
 		'slime', 'boggy'
@@ -289,7 +289,7 @@ var monstersList = {
 	ambient: 0xddff99,
 	stats: {
 	    speed: 3, attack: 3, defense: 4,
-	    magicDefense: 7, magic: 6, health: 70, mana: 130,
+	    magicDefense: 7, magic: 7, health: 70, mana: 130,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [ 'darknessSlime', 'mummify', 'ringOfFear' ],
 	    activeSpell: 'mummify'
@@ -327,7 +327,7 @@ var monstersList = {
 	ambient: 0xddff99,
 	stats: {
 	    speed: 3, attack: 3, defense: 4, health: 75,
-	    magicDefense: 6, magic: 7, mana: 125,
+	    magicDefense: 7, magic: 7, mana: 125,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [ 'slimeMud', 'boggy', 'darknessSlime' ],
 	    activeSpell: 'boggy'

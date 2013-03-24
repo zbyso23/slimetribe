@@ -153,7 +153,6 @@ Game.Html = {
 		//Selected Player
 		if( gameData.battle.selection.selected === true ) {
 		    var characterStats = gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y];
-//console.log( 'characterStats', characterStats );
 		    var statsHtml = Game.Html.makeStats( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y] )
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).innerHTML = statsHtml;
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = .6;
