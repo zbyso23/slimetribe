@@ -23,7 +23,6 @@ Game.Events = {
 	if( Game.Events.keyDown === true ) return;
 	Game.Events.keyDown = true;
 	var kc = event.keyCode;
-	console.log( 'key', kc );
 	switch( kc ) {
 		case playerKeys.UP: controls.moveForward = true; break;
 		case playerKeys.DOWN: controls.moveBackward = true; break;

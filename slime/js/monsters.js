@@ -156,7 +156,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'healing': 'healer/heal'
@@ -196,7 +196,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'healing': 'healer/heal'
@@ -231,7 +231,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'healing': 'healer/heal'
@@ -276,7 +276,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'magican/attack',
 		'death': 'slizak/death',
 		'spell': 'magican/spell'
@@ -314,10 +314,10 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'magican/attack',
 		'death': 'slizak/death',
-		'spell': 'magican/spell'
+		'spell': 'magican/spell3'
 	    }
 	}
     },
@@ -352,10 +352,10 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'healer/move',
 		'attack': 'magican/attack',
 		'death': 'slizak/death',
-		'spell': 'magican/spell'
+		'spell': 'magican/spell2'
 	    }
 	}
     },
@@ -389,7 +389,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'octopus/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'spell': 'magican/spell'
@@ -427,7 +427,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'octopus/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'spell': 'magican/spell'
@@ -464,7 +464,7 @@ var monstersList = {
 	sounds: {
 	    baseUrl: "slime/sounds/battle/",
 	    parts: {
-		'move': 'slizak/move',
+		'move': 'octopus/move',
 		'attack': 'slizak/attack',
 		'death': 'slizak/death',
 		'spell': 'magican/spell'

@@ -1,17 +1,21 @@
 Game.Battle = {};
 Game.Battle = {
     generateWorld: function() {
-	if( gameDataImages.loadedRemain == 0 ) {
-	    if( gameData.battle.world.first === true ) {
-		//Game.Scene.Graphics.addBattleGround();
-		Game.Scene.Graphics.addBattleAmbient();
-		Game.Battle.Sounds.preloader();
-	    }
-	    Game.Grid.generateCharacters( heroes.left, true, 3.14 );
-	    Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
-	    if( gameData.battle.world.first === true ) Game.Grid.generateMap();
-	    gameData.battle.world.first = false;
-	    gameData.battle.world.ready = true;
+	try {
+	    //if( gameDataImages.loadedRemain == 0 ) {
+		if( gameData.battle.world.first === true ) {
+		    //Game.Scene.Graphics.addBattleGround();
+		    Game.Scene.Graphics.addBattleAmbient();
+		    Game.Battle.Sounds.preloader();
+		}
+		Game.Grid.generateCharacters( heroes.left, true, 3.14 );
+		Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
+		if( gameData.battle.world.first === true ) Game.Grid.generateMap();
+		gameData.battle.world.first = false;
+		gameData.battle.world.ready = true;
+	    //}
+	} catch( e ) {
+	    console.log( 'ee generateWorld', e );
 	}
     },
     healing: function( attacker, defender ) {
@@ -115,6 +119,23 @@ Game.Battle = {
 		}
 	    }
 	} catch( e ) {
+	}
+	return calc;
+    },
+    calcEndTurn: function( hero ) {
+	var calc = { 'endTurn': true };
+	try {
+	    console.log('Look for end turn',hero);
+	    for( x in hero.monsters ) {
+		for( y in hero.monsters[x] ) {
+		    if( hero.monsters[x][y] != 0 && hero.monsters[x][y].speedRemain > 0 ) {
+			calc.endTurn = false;
+			break;
+		    }
+		}
+	    }
+	} catch( e ) {
+	    console.log( 'ee calcEndTurn', e );
 	}
 	return calc;
     },

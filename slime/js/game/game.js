@@ -22,9 +22,8 @@ Game = {
 		Game.Battle.generateWorld();
 	    } else {
 		if( gameData.loader.jsonLoaded === true && animSpeedCalibrated === true ) {
-		    Game.Html.hideBattleLoadingScreen();
-		    if( heroes[ gameData.battle.selection.player ].ai === true && gameData.animation.run === false && gameData.battle.selection.endTurnAnimation === false ) {
-			Game.Battle.Ai.turnStep();
+		    if( heroes[ gameData.battle.selection.player ].ai === true ) {
+			if( gameData.animation.run === false && gameData.battle.selection.endTurnAnimation === false ) Game.Battle.Ai.turnStep();
 		    }
 		    if( gameData.battle.selection.endTurn === true ) {
 			Game.Battle.changeTurn();
@@ -41,6 +40,7 @@ Game = {
 			if( tick % 10 === 0 ) Game.calibrateAnimationSpeed();
 		    } else {
 			animSpeedCalibrated = true;
+			Game.Html.hideBattleLoadingScreen();
 		    }
 		}
 	    }

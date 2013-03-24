@@ -175,17 +175,8 @@ var BATTLE_GRID = {
 };
 
 var BATTLE_HEALTH = {
-    life100: { color: 0x00FF00, opacity: 0.45 }, 
-    life90: { color: 0x1AE600, opacity: 0.45 }, 
-    life80: { color: 0x33CC00, opacity: 0.45 }, 
-    life70: { color: 0x4DB300, opacity: 0.45 }, 
-    life60: { color: 0x669900, opacity: 0.45 }, 
-    life50: { color: 0x808000, opacity: 0.45 }, 
-    life40: { color: 0x996600, opacity: 0.45 }, 
-    life30: { color: 0xB34D00, opacity: 0.45 }, 
-    life20: { color: 0xCC3300, opacity: 0.45 }, 
-    life10: { color: 0xE61A00, opacity: 0.45 }, 
-    life0: { color: 0xFF0000, opacity: 0.45 }
+    lifeFriendly: { color: 0x00FF00, opacity: 0.45 }, 
+    lifeEnemy: { color: 0xFF0000, opacity: 0.45 }
 };
 var BATTLE = {
     ground: {
@@ -300,7 +291,7 @@ var heroes = {
 	params: {
 	    scale: 2.4
 	},
-	ai: true,
+	ai: false,
 	level: 'hard',
 	army: [ 
 	    { name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
@@ -323,10 +314,10 @@ var heroes = {
 	params: {
 	    scale: 0.4
 	},
-	ai: false,
+	ai: true,
 	level: 'hard',
 	army: [
-	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] }, 
+	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] },
 	    { name: 'magican-necro', pos: [ [0,4], [0,8] ] },
 	    { name: 'octopus-necro', pos: [ [1,2],  [1,8] ] },
 	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9] ] }

@@ -73,6 +73,12 @@ Game.Battle.Animation = {
 	    if( ( gameData.animation.path.length )  < ( gameData.animation.step + 2 ) || gameData.animation.withSpell === true || gameData.animation.withHealing === true ) {
 		Game.Battle.Animation.monsterLastStep();
 		gameData.animation.object.controls.move = false;
+		//End turn if human player and not more characters with move
+		if( heroes[ gameData.battle.selection.player ].ai === false ) {
+		    var result = Game.Battle.calcEndTurn( gameData.battle.selection.hero );
+		    gameData.battle.selection.endTurn = result.endTurn;
+		    console.log( 'check for end turn', result.endTurn );
+		}
 		throw "lastStepOver";
 	    }
 	    Game.Battle.Animation.monsterNextStep();
@@ -249,19 +255,15 @@ Game.Battle.Animation = {
 
 		    gameData.animation.run = false;
 		    deathGridModels[gameData.animation.targetX][gameData.animation.targetY] = 1;
-		    if( gameData.battle.selection.player == "left" ) {
-			var hero = heroes.left;
-			var enemyHero = heroes.right;
-		    } else {
-			var hero = heroes.right;
-			var enemyHero = heroes.left;
-		    }
-		    enemyHero.monsters[gameData.animation.targetX][gameData.animation.targetY] = 0;
+		    gameData.battle.selection.enemyHero.monsters[gameData.animation.targetX][gameData.animation.targetY] = 0;
 		    gameData.battle.plane.grid[gameData.animation.targetX][gameData.animation.targetY] = 0;
-		    enemyHero.grid[gameData.animation.targetX][gameData.animation.targetY] = 0;
+		    gameData.battle.selection.enemyHero.grid[gameData.animation.targetX][gameData.animation.targetY] = 0;
 		    gameData.animation.progress = false;
 		    scene.remove( monstersModels[gameData.animation.targetX][gameData.animation.targetY].root );
-		    var game = Game.Battle.calcGameover( enemyHero );
+		    scene.remove( gridHealthModels[gameData.animation.targetX][gameData.animation.targetY] );
+		    gridHealthModels[gameData.animation.targetX][gameData.animation.targetY] = 0;
+
+		    var game = Game.Battle.calcGameover( gameData.battle.selection.enemyHero );
 		    Game.Battle.Sounds.stop();
 		    if( game.gameOver === true ) {
 			Game.Html.showGameOver();
@@ -298,7 +300,7 @@ Game.Battle.Animation = {
 	    }
 	    Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	} catch( e ) {
-	    
+
 	}
     },
     monsterNextStep: function() {

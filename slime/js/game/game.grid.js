@@ -69,32 +69,22 @@ Game.Grid = {
 		    } else {
 			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.noMoveClear );
 		    }
-		    var health = 'life' + Game.Grid.getHealthColor( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] );
-		    console.log('health', health );
-		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH[ health ] );
+		    var position = Game.Grid.getHealthSize( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
+		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeFriendly, position );
 		} else if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) {
-		    //var health = 'life' + Game.Grid.getHealthColor( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] );
-		    //Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH[ health ] );		    
-		    gridHealthModels[cords[0]][cords[1]].material.opacity = 0;
+		    var position = Game.Grid.getHealthSize( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
+		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeEnemy, position );
+		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		} else {
 		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		}
 	    }
 	}
     },
-    getHealthColor: function( character ) {
-	var percent = 0;
-	for( var i = 0; i <= 255; i += 25.5 ) {
-	    var red = Game.Utils.dec2hex( Math.round( i ) );
-	    var green = Game.Utils.dec2hex( Math.round( 255 - i ) );
-	    color = '0x' + red + green + '00';
-	    percent += 10;
-	}
-	var num = Math.round( ( character.healthRemain / character.stats.health ) * 100 );
-	num -= ( num % 10 );
-	num += ( num === 100 ) ? 0 : 10;
-	num = ( character.healthRemain === 0 ) ? 0 : num;
-	return num;
+    getHealthSize: function( character, object ) {
+	var num = ( character.healthRemain / character.stats.health );
+	var offset = object.root.position.z + ( ( ( BATTLE_GRID.size * 0.9 ) / 2 ) * ( 1 - num ) )
+	return { 'size': num, 'x': offset };
     },
     showGrid: function( params, pos ) {
 	Game.Scene.Graphics.setGridCube( gridModels[gridModelsCords[pos.x][pos.y]].object, params );

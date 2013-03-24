@@ -1,16 +1,18 @@
 Game.Battle.Sounds = {};
 Game.Battle.Sounds = {
     ready: false,
+    playing: false,
     play: function() {
 	try {
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
 	    var el = document.getElementById( 'battle-sound' );
 	    el.addEventListener('canplaythrough', function(){
-				this.play();
+				if( Game.Battle.Sounds.playing === true ) this.play();
 			    }, false);
 	} catch( e ) {
 	    
 	}
+	Game.Battle.Sounds.playing = true;
     },
     isPlay: function() {
 	var el = document.getElementById( 'battle-sound' );
@@ -27,13 +29,9 @@ Game.Battle.Sounds = {
     stop: function() {
 	try {
 	    Game.Battle.Sounds.pause();
+	    Game.Battle.Sounds.playing = false;
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
 	    if( Game.Battle.Sounds.isEnd() === true ) return;
-	    var el = document.getElementById( 'battle-sound' );
-	    el.addEventListener('canplaythrough', function(){
-				this.pause();
-			    }, false);
-
 	} catch( e ) {
 	    
 	}
@@ -43,6 +41,10 @@ Game.Battle.Sounds = {
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
 	    if( Game.Battle.Sounds.isPaused() === true ) return;
 	    var el = document.getElementById( 'battle-sound' );
+	    el.removeEventListener('ended', function(){
+				this.currentTime = 0;
+				if( Game.Battle.Sounds.playing === true ) this.play();
+			    }, false);
 	    el.pause();
 	} catch( e ) {
 	    
@@ -58,9 +60,12 @@ Game.Battle.Sounds = {
 	el.load();
 	el.addEventListener('ended', function(){
 			    this.currentTime = 0;
-			    this.play();
+			    if( Game.Battle.Sounds.playing === true ) this.play();
 			}, false);
 	Game.Battle.Sounds.ready = true
+    },
+    _repeat: function() {
+	
     },
     prepare: function( params ) {
 	try {

@@ -10,7 +10,26 @@
 	<div></div>
 	<img src="http://www.darrenburnhill.com/graphics/img/apng/rev-counter_animation_white_small.apng_optimized.png" style="display:none;" id="" />
 	<script>
-	    
+	    function dec2hex(n){
+		n = parseInt(n); var c = 'ABCDEF';
+		var b = n / 16; var r = n % 16; b = b-(r/16); 
+		b = ((b>=0) && (b<=9)) ? b : c.charAt(b-10);    
+		return ((r>=0) && (r<=9)) ? b+''+r : b+''+c.charAt(r-10);
+	    }
+	    var percent = 0;
+	    for( var i = 0; i <= 255; i += 25.5 ) {
+		var red = dec2hex( Math.round( i ) );
+		var green = dec2hex( Math.round( 255 - i ) );
+		color = '0x' + red + green + '00';
+		//document.write( 'life' + percent + ': { color: ' + color + ', opacity: 0.17 },' + "\n" );
+		percent += 10;
+	    }
+	    health = 71;
+	    var num = Math.round( ( health / 80 ) * 100 );
+	    num -= ( num % 10 );
+	    num += ( num === 100 ) ? 0 : 10;
+	    num = ( health === 0 ) ? 0 : num;
+	    document.write( num );
 	</script>
     </body>
 </html>

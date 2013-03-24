@@ -199,8 +199,8 @@ Game.Html = {
 	},
 	showGameOver: function( hide ) {
 	    try {
-		if( typeof hide !== "undefined" ) throw "hide";
 		var divId = 'gameover';
+		if( typeof hide !== "undefined" ) throw "hide";
 		var playerName = ( gameData.battle.selection.player === "left" ) ? "Blue" : "Green";
 		var gameOverHtml = '<div class="player-' + gameData.battle.selection.player + '">' + playerName + ' Player wins!</div><div class="turn">In ' + gameData.battle.selection.turn + ' Turn <br />(F4 for Restart)</div>';
 		document.getElementById( divId ).innerHTML = gameOverHtml;
