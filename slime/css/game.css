@@ -205,7 +205,7 @@ div#left-damage, div#left-player {
     left: 10%;
 }
 div#left-damage, div#right-damage {
-    left: 1%;
+    left: 0%;
     width: 358px;
     height: 621px;
     padding-top: 105px;
@@ -234,19 +234,19 @@ div#right-damage {
 }
 div#left-damage.normal {
     background: transparent url( '../images/gui/battle_blue.png' ) no-repeat left top;
-    opacity: 0.9;
+    opacity: 0.6;
 }
 div#right-damage.normal {
     background: transparent url( '../images/gui/battle_green.png' ) no-repeat left top;
-    opacity: 0.9;
+    opacity: 0.6;
 }
 div#left-damage.active {
     background: transparent url( '../images/gui/battle_blue_active.png' ) no-repeat left top;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 div#right-damage.active {
     background: transparent url( '../images/gui/battle_green_active.png' ) no-repeat left top;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 div#left-damage div.spells, div#right-damage div.spells {
     /*padding-top: 135px;*/

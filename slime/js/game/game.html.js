@@ -141,7 +141,7 @@ Game.Html = {
 		    }
 		    damageHtml += '</div>';
 		    document.getElementById( divIdCenter ).innerHTML = damageHtml;
-		    document.getElementById( divIdCenter ).style.opacity = '0.79';
+		    document.getElementById( divIdCenter ).style.opacity = .79;
 		    document.getElementById( divIdCenter ).style.marginTop = ( window.innerHeight / 1.5 ) + 'px';
 		}
 	    } catch( e ) {
@@ -156,14 +156,14 @@ Game.Html = {
 //console.log( 'characterStats', characterStats );
 		    var statsHtml = Game.Html.makeStats( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y] )
 		    document.getElementById( gameData.battle.selection.player + '-damage' ).innerHTML = statsHtml;
-		    document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = .9;
+		    document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = .6;
 		    Game.Html._setStats( { w: 358, h: 441, id: gameData.battle.selection.player + '-damage' } );
 		    if( cords.length === 2 && ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] !== 0 || gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) ) {
 			var enemy = ( gameData.battle.selection.player === "left" ) ? "right" : "left";
 			var player = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? enemy : gameData.battle.selection.player;
 			statsHtml = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? Game.Html.makeStats( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] ) : Game.Html.makeStats( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] );
 			document.getElementById( player + '-damage' ).innerHTML = statsHtml;
-			document.getElementById( player + '-damage' ).style.opacity = .9;
+			document.getElementById( player + '-damage' ).style.opacity = .6;
 			Game.Html._setStats( { w: 358, h: 441, id: player + '-damage' } );
 
 		    }
@@ -173,7 +173,7 @@ Game.Html = {
 			var player = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? enemy : gameData.battle.selection.player;
 			statsHtml = ( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) ? Game.Html.makeStats( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] ) : Game.Html.makeStats( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], false );
 			document.getElementById( player + '-damage' ).innerHTML = statsHtml;
-			document.getElementById( player + '-damage' ).style.opacity = .9;
+			document.getElementById( player + '-damage' ).style.opacity = .6;
 			Game.Html._setStats( { w: 358, h: 441, id: player + '-damage' } );
 		    } else {
 			document.getElementById( gameData.battle.selection.player + '-damage' ).style.opacity = 0;
