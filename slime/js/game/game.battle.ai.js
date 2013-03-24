@@ -50,13 +50,18 @@ Game.Battle.Ai = {
 		    if( gameData.battle.selection.enemyHero.monsters[x][y].stats.spell === true && gameData.battle.selection.enemyHero.monsters[x][y].manaRemain >= lowCostSpell ) monsters['enemy-spells'].push( character );
 		}
 
-		//Nothing or friendly have no speed
-		if( gameData.battle.selection.hero.monsters[x][y] === 0 || gameData.battle.selection.hero.monsters[x][y].speedRemain < 1 ) continue;
+		//Nothing
+		if( gameData.battle.selection.hero.monsters[x][y] === 0 ) continue;
 		//Friendly monsters
 		character = gameData.battle.selection.hero.monsters[x][y];
 		character['cords'] = [ x, y ];
+		//First Aid:D
+		if( gameData.battle.selection.hero.monsters[x][y].stats.health > gameData.battle.selection.hero.monsters[x][y].healthRemain ) monsters.healing.push( character );
+		//No speed
+		if( gameData.battle.selection.hero.monsters[x][y].speedRemain < 1 ) continue;
 		//Friendly healer with mana
-		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === true && gameData.battle.selection.hero.monsters[x][y].manaRemain >= gameData.battle.selection.hero.monsters[x][y].stats.magic ) monsters.healers.push( character );
+		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === true && gameData.battle.selection.hero.monsters[x][y].manaRemain > 0 ) monsters.healers.push( character );
+		//Friendly magican with mana
 		lowCostSpell = 0;
 		currentCost = 0;
 		for( spell in gameData.battle.selection.hero.monsters[x][y].stats.spellsList ) {
@@ -64,10 +69,7 @@ Game.Battle.Ai = {
 		    currentCost = spellsList[spellName].manaCost * gameData.battle.selection.hero.monsters[x][y].stats.magic;
 		    lowCostSpell = ( currentCost < lowCostSpell ) ? currentCost : lowCostSpell;
 		}
-		//Friendly magican with mana
 		if( gameData.battle.selection.hero.monsters[x][y].stats.spell === true && gameData.battle.selection.hero.monsters[x][y].manaRemain >= lowCostSpell ) monsters.spells.push( character )
-		//First Aid:D
-		if( gameData.battle.selection.hero.monsters[x][y].stats.health > gameData.battle.selection.hero.monsters[x][y].healthRemain ) monsters.healing.push( character );
 		//Attack!
 		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === false || gameData.battle.selection.turn > 1 ) monsters.attack.push( character );
 	    }
@@ -80,7 +82,8 @@ Game.Battle.Ai = {
 	    //No healers or nobody to heal
 	    if( monsters['healing'].length < 1 || monsters['healers'].length < 1 ) throw "nobody to heal";
 	    //Find healer
-	    monsters['healers'].sort( function( a, b ){ return a['manaRemain'] - b['manaRemain'] } );
+	    monsters['healers'].sort( function( a, b ){ return b['manaRemain'] - a['manaRemain'] } );
+	    if( monsters['healers'][0].manaRemain < monsters['healers'][0].stats.magic ) throw "no mana";
 	    //Find best friend for him:)
 	    monsters['healing'].sort( function( a, b ){ return a['healthRemain'] - b['healthRemain'] } );
 	    var healing = Game.Battle.calcHealing( monsters['healers'][0], monsters['healing'][0] );
@@ -96,10 +99,9 @@ Game.Battle.Ai = {
 	    torch.position.x = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.x;
 	    torch.position.z = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.z;
 	    monsters['healing'][0].healthRemain += healing.health;
-	    monsters['healers'][0].manaRemain = ( monsters['healers'][0].manaRemain <= healing.health ) ? monsters['healers'][0].manaRemain - healing.health : 0;
+	    monsters['healers'][0].manaRemain = ( monsters['healers'][0].manaRemain >= monsters['healers'][0].stats.magic ) ? monsters['healers'][0].manaRemain - monsters['healers'][0].stats.magic : 0;
 	    monsters['healers'][0].speedRemain = 0;
 	    Game.Battle.Animation.animate( settings );
-	console.log( 'settings', settings );
 	} catch ( e ) {
 	    //Noheal action?
             return false;

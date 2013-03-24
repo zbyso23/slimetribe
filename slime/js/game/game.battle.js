@@ -21,7 +21,8 @@ Game.Battle = {
     healing: function( attacker, defender ) {
 	var healing = Game.Battle.calcHealing( gameData.battle.selection.hero.monsters[attacker.x][attacker.y], gameData.battle.selection.hero.monsters[defender.x][defender.y] );
 	gameData.battle.selection.hero.monsters[defender.x][defender.y].healthRemain += healing.health;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain -= healing.health;
+	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain -= gameData.battle.selection.hero.monsters[attacker.x][attacker.y].stats.magic;
+	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain = ( gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain < 0 ) ? 0 : gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain;
 	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].speedRemain = 0;
 	var settings = { x: attacker.x, y: attacker.y, xT: parseInt( defender.x ), yT: parseInt( defender.y ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: false, withHealing: true, withDeath: false, damage: 0, heal: healing.health, nearAttack: false, withSpell: false };
 	Game.Battle.Animation.animate( settings );
@@ -42,7 +43,7 @@ Game.Battle = {
 	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( attackerStats.attack + Math.random() * 0.5 ) * 9 ) );
+	    var a = Math.round( ( ( attackerStats.attack + Math.random() * 0.5 ) * 7 ) );
 	    var d = Math.round( ( ( defenderStats.defense ) + Math.random() * 0.5 ) * 3 );
 	    if( a > d ) {
 		var damage = Math.round( ( a - d )  );
@@ -69,10 +70,10 @@ Game.Battle = {
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
 	    console.log( 'attacker.stats.activeSpell', attacker.stats.activeSpell );
-	    var a = Math.round( spellsList[ attacker.stats.activeSpell ].damage * ( attacker.stats.magic + ( Math.random() * 0.5 ) ) );
-	    var d = Math.round( ( ( defenderStats.magicDefense * ( ( spellsList[ attacker.stats.activeSpell ].damage / 1.25 ) + ( Math.random() * 0.5 ) ) ) ) );
+	    var a = ( attacker.stats.magic + ( Math.random() * 0.5 ) );
+	    var d = ( ( ( defenderStats.magicDefense * .5 ) + ( Math.random() * 0.5 ) ) );
 	    if( a > d ) {
-		var damage = Math.round( ( a - d ) );
+		var damage = Math.round( a - ( d / 2 ) + spellsList[ attacker.stats.activeSpell ].damage );
 	    } else {
 		var damage = 0;
 	    }
@@ -94,7 +95,7 @@ Game.Battle = {
 	try {
 	    var healerStats = healer.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( healerStats.magic + ( Math.random() * 3 ) ) ) * 2 );
+	    var a = Math.round( ( ( healerStats.magic + ( Math.random() * 2 ) ) * 2 ) );
 	    if( ( defender.healthRemain + a ) > defenderStats.health ) {
 		var health = defenderStats.health - defender.healthRemain;
 	    } else {
@@ -146,26 +147,28 @@ Game.Battle = {
 	    gameData.battle.selection.player = ( gameData.battle.selection.player == "left" ) ? "right" : "left";
 	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;
 	    gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "left" ) ? heroes.right : heroes.left;
-	    var manaRegeneration = Math.round( Math.random() * 5 );
+	    var manaRegeneration;
 	    for( x in heroes.left.monsters ) {
 		for( y in heroes.left.monsters[x] ) {
 		    if( typeof heroes.left.monsters[x][y] === "object" ) {
 			heroes.left.monsters[x][y].speedRemain = heroes.left.monsters[x][y].stats.speed;
-			if( heroes.left.monsters[x][y].manaRemain < heroes.left.monsters[x][y].stats.mana ) {
-			    heroes.left.monsters[x][y].manaRemain = ( ( heroes.left.monsters[x][y].manaRemain + manaRegeneration ) > heroes.left.monsters[x][y].stats.mana ) ? heroes.left.monsters[x][y].stats.mana : ( heroes.left.monsters[x][y].manaRemain + manaRegeneration );
+			if( heroes.left.monsters[x][y].manaRemain < heroes.left.monsters[x][y].stats.magic ) {
+			    manaRegeneration = Math.round( heroes.left.monsters[x][y].stats.magic / 3 );
+			    heroes.left.monsters[x][y].manaRemain += manaRegeneration;
 			}
 		    }
 		    if( typeof heroes.right.monsters[x][y] === "object" ) {
 			heroes.right.monsters[x][y].speedRemain = heroes.right.monsters[x][y].stats.speed;
-			if( heroes.right.monsters[x][y].manaRemain < heroes.right.monsters[x][y].stats.mana ) {
-			    heroes.right.monsters[x][y].manaRemain = ( ( heroes.right.monsters[x][y].manaRemain + manaRegeneration ) > heroes.right.monsters[x][y].stats.mana ) ? heroes.right.monsters[x][y].stats.mana : ( heroes.right.monsters[x][y].manaRemain + manaRegeneration );
+			if( heroes.right.monsters[x][y].manaRemain < heroes.right.monsters[x][y].stats.magic ) {
+			    manaRegeneration = Math.round( heroes.right.monsters[x][y].stats.magic / 3 );
+			    heroes.right.monsters[x][y].manaRemain += manaRegeneration;
 			}
 		    }
 		}
 	    }
 	    Game.Html.activePlayerGUI();
 	} catch( e ) {
-	    
+	    console.log('ee turn?',e);
 	}
     },
     findNearAttackPath: function( from, cords ) {

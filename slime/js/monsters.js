@@ -17,7 +17,7 @@ var monstersList = {
 	scale: 5.76,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 4, attack: 4, defense: 5, health: 77,
+	stats: { speed: 3, attack: 4, defense: 4, health: 67,
 	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
@@ -54,8 +54,8 @@ var monstersList = {
 	scale: 5.76,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 5, attack: 4, defense: 5,
-		magicDefense: 5, magic: 1, health: 74, mana: 0, healing: false, spell: false, magicAttack: false
+	stats: { speed: 3, attack: 4, defense: 4,
+		magicDefense: 4, magic: 1, health: 67, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
 	    baseUrl: "slime/md2/slizak/",
@@ -92,8 +92,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 5, attack: 5, defense: 4, health: 72,
-	    magicDefense: 5, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	    speed: 4, attack: 4, defense: 4, health: 67,
+	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
 	    baseUrl: "slime/md2/slizak/",
@@ -129,8 +129,8 @@ var monstersList = {
 	scale: 4.26,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 4, attack: 3, defense: 4, magicDefense: 5, magic: 6, health: 70, 
-		    mana: 95, healing: true, spell: false, magicAttack: false
+	stats: { speed: 3, attack: 3, defense: 4, magicDefense: 5, magic: 7, health: 74, 
+		    mana: 21, healing: true, spell: false, magicAttack: false
 	},
 	config: {
 	    baseUrl: "slime/md2/healer/",
@@ -168,8 +168,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 4, attack: 4, defense: 3,
-	    magicDefense: 6, magic: 5, health: 75, mana: 90,
+	    speed: 3, attack: 3, defense: 4,
+	    magicDefense: 5, magic: 7, health: 74, mana: 21,
 	    healing: true, spell: false, magicAttack: false
 	},
 	config: {
@@ -208,8 +208,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 4, attack: 4, defense: 3,
-	    magicDefense: 5, magic: 6, health: 75, mana: 90,
+	    speed: 3, attack: 3, defense: 4,
+	    magicDefense: 5, magic: 7, health: 74, mana: 21,
 	    healing: true, spell: false, magicAttack: false
 	},
 	config: {
@@ -243,8 +243,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 3, attack: 2, defense: 4, health: 70, 
-	    magicDefense: 7, magic: 7, mana: 130,
+	    speed: 2, attack: 1, defense: 4, health: 80, 
+	    magicDefense: 6, magic: 6, mana: 135,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [
 		'slime', 'boggy'
@@ -288,8 +288,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 3, attack: 3, defense: 4,
-	    magicDefense: 7, magic: 7, health: 70, mana: 130,
+	    speed: 2, attack: 1, defense: 4,
+	    magicDefense: 6, magic: 6, health: 80, mana: 130,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [ 'darknessSlime', 'mummify', 'ringOfFear' ],
 	    activeSpell: 'mummify'
@@ -326,8 +326,8 @@ var monstersList = {
 	color: 0x0099ff,
 	ambient: 0xddff99,
 	stats: {
-	    speed: 3, attack: 3, defense: 4, health: 75,
-	    magicDefense: 7, magic: 7, mana: 125,
+	    speed: 2, attack: 1, defense: 4, health: 80,
+	    magicDefense: 6, magic: 6, mana: 125,
 	    healing: false, spell: true, magicAttack: true,
 	    spellsList: [ 'slimeMud', 'boggy', 'darknessSlime' ],
 	    activeSpell: 'boggy'
@@ -363,8 +363,8 @@ var monstersList = {
 	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 3, attack: 6, defense: 5, health: 85,
-	    magicDefense: 3, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	stats: { speed: 3, attack: 5, defense: 5, health: 95,
+	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
 	    baseUrl: "slime/md2/octopus/",
@@ -400,7 +400,7 @@ var monstersList = {
 	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 3, attack: 6, defense: 5, health: 83,
+	stats: { speed: 3, attack: 5, defense: 5, health: 95,
 	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
@@ -438,8 +438,8 @@ var monstersList = {
 	scale: 1.46,
 	color: 0x0099ff,
 	ambient: 0xddff99,
-	stats: { speed: 4, attack: 6, defense: 5, health: 80,
-	    magicDefense: 3, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
+	stats: { speed: 4, attack: 5, defense: 5, health: 95,
+	    magicDefense: 4, magic: 1, mana: 0, healing: false, spell: false, magicAttack: false
 	},
 	config: {
 	    baseUrl: "slime/md2/octopus/",

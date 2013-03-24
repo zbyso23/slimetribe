@@ -291,7 +291,7 @@ var heroes = {
 	params: {
 	    scale: 2.4
 	},
-	ai: false,
+	ai: true,
 	level: 'hard',
 	army: [ 
 	    { name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
@@ -315,7 +315,7 @@ var heroes = {
 	    scale: 0.4
 	},
 	ai: true,
-	level: 'hard',
+	level: 'easy',
 	army: [
 	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] },
 	    { name: 'magican-necro', pos: [ [0,4], [0,8] ] },
