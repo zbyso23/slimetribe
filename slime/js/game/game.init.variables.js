@@ -169,9 +169,23 @@ var BATTLE_GRID = {
     magican: { color: 0xff00ff, opacity: 0.35 },
     healer: { color: 0xffff00, opacity: 0.35 },
     healing: { color: 0xffff00, opacity: 0.35 },
-    height: 7,
+    height: 3,
     size: 90,
     transparent: true
+};
+
+var BATTLE_HEALTH = {
+    life100: { color: 0x00FF00, opacity: 0.45 }, 
+    life90: { color: 0x1AE600, opacity: 0.45 }, 
+    life80: { color: 0x33CC00, opacity: 0.45 }, 
+    life70: { color: 0x4DB300, opacity: 0.45 }, 
+    life60: { color: 0x669900, opacity: 0.45 }, 
+    life50: { color: 0x808000, opacity: 0.45 }, 
+    life40: { color: 0x996600, opacity: 0.45 }, 
+    life30: { color: 0xB34D00, opacity: 0.45 }, 
+    life20: { color: 0xCC3300, opacity: 0.45 }, 
+    life10: { color: 0xE61A00, opacity: 0.45 }, 
+    life0: { color: 0xFF0000, opacity: 0.45 }
 };
 var BATTLE = {
     ground: {
@@ -231,8 +245,6 @@ var BATTLE_AI = {
     }
 
 };
-
-
 var HTML = {
     id: {
 	leftPlayer: 'left-player',
@@ -295,9 +307,9 @@ var heroes = {
 	    { name: 'healer', pos: [ [0,7] ] },
 	    { name: 'magican-swamp', pos: [ [0,3] ] },
 	    { name: 'magican', pos: [ [0,6] ] },
-	    { name: 'slizak-swamp', pos: [ [1,1], [1,6] ] },
-	    { name: 'octopus', pos: [ [1,3], [1,7] ] },
-	    { name: 'octopus-swamp', pos: [ [1,4], [1,8] ] },
+	    { name: 'slizak-swamp', pos: [ [1,1] ] },
+	    { name: 'octopus', pos: [ [1,7] ] },
+	    { name: 'octopus-swamp', pos: [ [1,4] ] },
 	    { name: 'slizak', pos: [ [1,5], [0,9] ] }
 	],/*
 	army: [ 
@@ -316,8 +328,8 @@ var heroes = {
 	army: [
 	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] }, 
 	    { name: 'magican-necro', pos: [ [0,4], [0,8] ] },
-	    { name: 'octopus-necro', pos: [ [1,0], [1,2], [1,7], [1,8] ] },
-	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9], [1,9] ] }
+	    { name: 'octopus-necro', pos: [ [1,2],  [1,8] ] },
+	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9] ] }
 	],/*
 	army: [
 	    { name: 'slizak-necro', pos: [ [1,5] ] }
@@ -335,6 +347,7 @@ gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "rig
 var monstersModels = [];
 var gridModels = [];
 var gridModelsCords = [];
+var gridHealthModels = [];
 var deathGridModels = [];
 var healing, healer;
 

@@ -13,7 +13,24 @@ Game.Scene.Graphics = {
 	gridModelsCords[params.gridX][params.gridY] = mesh.id;
 	scene.add( mesh );
     },
+    addHealthCube: function( params ) {
+	var geometry = new THREE.CubeGeometry( params.size / 9, BATTLE_GRID.height, params.size );
+	var material = new THREE.MeshBasicMaterial( { color: BATTLE_GRID.neutral.color, wireframe: false, transparent: BATTLE_GRID.transparent, opacity: 0.2, side: THREE.DoubleSide } )
+	var mesh = new THREE.Mesh( geometry, material );
+	mesh.position.x = params.x - params.size / 3;
+	mesh.position.y = params.y + BATTLE_GRID.height + 100;
+	mesh.position.z = params.z;
+	if( typeof gridHealthModels[params.gridX] === "undefined" ) gridHealthModels[params.gridX] = [];
+	gridHealthModels[params.gridX][params.gridY] = mesh;
+	scene.add( mesh );
+    },
     setGridCube: function( cube, params ) {
+	if( typeof params !== "undefined" && typeof params.color !== "undefined" && typeof params.opacity !== "undefined" ) {
+	    cube.material.color = new THREE.Color( params.color );
+	    cube.material.opacity = params.opacity;
+	}
+    },
+    setHealthCube: function( cube, params ) {
 	if( typeof params !== "undefined" && typeof params.color !== "undefined" && typeof params.opacity !== "undefined" ) {
 	    cube.material.color = new THREE.Color( params.color );
 	    cube.material.opacity = params.opacity;

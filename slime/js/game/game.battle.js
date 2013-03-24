@@ -39,9 +39,9 @@ Game.Battle = {
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
 	    var a = Math.round( ( attackerStats.attack + Math.random() * 0.25 ) * 6 );
-	    var d = Math.round( ( defenderStats.defense + Math.random() * 0.25 ) * 3 );
+	    var d = Math.round( ( defenderStats.defense + Math.random() * 0.25 ) * 4 );
 	    if( a > d ) {
-		var damage = Math.round( ( a - d ) );
+		var damage = Math.round( ( a - d ) * 1.25 );
 	    } else {
 		var damage = 0;
 	    }
@@ -64,8 +64,9 @@ Game.Battle = {
 	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
 	    var attackerStats = attacker.stats;
 	    var defenderStats = defender.stats;
-	    var a = Math.round( ( spellsList[ attacker.stats.activeSpell ].damage * attacker.stats.magic ) + Math.random() * 0.25 );
-	    var d = Math.round( ( ( defenderStats.magicDefense * ( spellsList[ attacker.stats.activeSpell ].damage / 1.5 ) ) + Math.random() * 0.25 ) );
+	    console.log( 'attacker.stats.activeSpell', attacker.stats.activeSpell );
+	    var a = Math.round( ( spellsList[ attacker.stats.activeSpell ].damage * attacker.stats.magic ) + Math.random() * 0.125 );
+	    var d = Math.round( ( ( defenderStats.magicDefense * ( spellsList[ attacker.stats.activeSpell ].damage / 1.5 ) ) + Math.random() * 0.125 ) );
 	    if( a > d ) {
 		var damage = Math.round( ( a - d ) );
 	    } else {

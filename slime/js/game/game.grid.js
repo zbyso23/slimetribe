@@ -10,6 +10,7 @@ Game.Grid = {
 		heroes.right.grid[x] = [];
 		heroes.right.monsters[x] = [];
 		monstersModels[x] = [];
+		gridHealthModels[x] = [];
 		deathGridModels[x] = [];
 	    }
 	    for( var y = 0; y < gameData.battle.plane.gridHeight; y++ ) {
@@ -20,6 +21,7 @@ Game.Grid = {
 		heroes.right.grid[x][y] = 0;
 		heroes.right.monsters[x][y] = 0;
 		monstersModels[x][y] = 0;
+		gridHealthModels[x][y] = 0;
 		deathGridModels[x][y] = 0;
 	    }
 	}
@@ -43,10 +45,14 @@ Game.Grid = {
 	gameData.battle.selection.hero.monsters[params.x2][params.y2] = gameData.battle.selection.hero.monsters[params.x][params.y];
 	gameData.battle.plane.grid[params.x2][params.y2] = gameData.battle.plane.grid[params.x][params.y];
 	monstersModels[params.x2][params.y2] = monstersModels[params.x][params.y];
+	gridHealthModels[params.x2][params.y2] = gridHealthModels[params.x][params.y];
+	gridHealthModels[params.x2][params.y2].position.x = monstersModels[params.x2][params.y2].root.position.x + BATTLE_GRID.size / 3;
+	gridHealthModels[params.x2][params.y2].position.z = monstersModels[params.x2][params.y2].root.position.z;
 	gameData.battle.selection.hero.grid[params.x][params.y] = 0;
 	gameData.battle.selection.hero.monsters[params.x][params.y] = 0;
 	gameData.battle.plane.grid[params.x][params.y] = 0;
 	monstersModels[params.x][params.y] = 0;
+	gridHealthModels[params.x][params.y] = 0;
     },
     showGridPath: function( params, path ) {
 	for( i in path ) {
@@ -63,11 +69,32 @@ Game.Grid = {
 		    } else {
 			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.noMoveClear );
 		    }
+		    var health = 'life' + Game.Grid.getHealthColor( gameData.battle.selection.hero.monsters[cords[0]][cords[1]] );
+		    console.log('health', health );
+		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH[ health ] );
+		} else if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) {
+		    //var health = 'life' + Game.Grid.getHealthColor( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] );
+		    //Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH[ health ] );		    
+		    gridHealthModels[cords[0]][cords[1]].material.opacity = 0;
 		} else {
 		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		}
 	    }
 	}
+    },
+    getHealthColor: function( character ) {
+	var percent = 0;
+	for( var i = 0; i <= 255; i += 25.5 ) {
+	    var red = Game.Utils.dec2hex( Math.round( i ) );
+	    var green = Game.Utils.dec2hex( Math.round( 255 - i ) );
+	    color = '0x' + red + green + '00';
+	    percent += 10;
+	}
+	var num = Math.round( ( character.healthRemain / character.stats.health ) * 100 );
+	num -= ( num % 10 );
+	num += ( num === 100 ) ? 0 : 10;
+	num = ( character.healthRemain === 0 ) ? 0 : num;
+	return num;
     },
     showGrid: function( params, pos ) {
 	Game.Scene.Graphics.setGridCube( gridModels[gridModelsCords[pos.x][pos.y]].object, params );
@@ -140,6 +167,7 @@ Game.Grid = {
 		hero.monsters[gridX][gridY]['manaRemain'] = params.stats.mana;
 		hero.monsters[gridX][gridY]['healthRemain'] = ( params.stats.health );
 		--gameData.loader.jsonCount;
+		Game.Scene.Graphics.addHealthCube( { size: BATTLE_GRID.size, x: x, y: 0, z: z, 'gridX': gridX, 'gridY': gridY } );
 		Game.Html.updateLoadingBar();
 		if( gameData.loader.jsonCount === 0 ) gameData.loader.jsonLoaded = true;
 	};
