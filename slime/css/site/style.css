@@ -175,7 +175,63 @@ div#content div.show {
 div#content div.hide {
     display: none;
 }
-
+div#content div#bitcoin {
+    padding: 10px;
+}
+    div#content div#bitcoin-outer {
+	text-align: left; 
+	margin-left: 0px; 
+	padding: 9px; 
+	color: white; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+	font-family: sans-serif; 
+	font-size: 13px; 
+	font-weight: bold; 
+	background-color: #FFF; 
+	opacity: .9;
+    }
+    
+    div#content a#bitcoin-link {
+	background-color: #E98A0A; 
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+	text-decoration: none; 
+	color: white; 
+	padding: 3px 5px;
+	transition: 530ms ease-in-out;
+	-moz-transition: 530ms ease-in-out;
+	-webkit-transition: 530ms ease-in-out;
+	-o-transition: 530ms ease-in-out;
+    }
+    
+    div#content a#bitcoin-link:hover {
+	color: #AFA;
+	background-color: #E91A1A; 
+	transition: 530ms ease-in-out;
+	-moz-transition: 530ms ease-in-out;
+	-webkit-transition: 530ms ease-in-out;
+	-o-transition: 530ms ease-in-out;
+    }
+    
+    div#content span#bitcoin-address {
+	padding: 5px 15px; 
+	color: #000;
+	transition: 530ms ease-in-out;
+	-moz-transition: 530ms ease-in-out;
+	-webkit-transition: 530ms ease-in-out;
+	-o-transition: 530ms ease-in-out;
+    }
+    div#content span#bitcoin-address:hover {
+	color: #D00;
+	transition: 530ms ease-in-out;
+	-moz-transition: 530ms ease-in-out;
+	-webkit-transition: 530ms ease-in-out;
+	-o-transition: 530ms ease-in-out;
+    }
+    
 div#content div h1, div#content div h2, div#content div h3 {
     padding: 7px 7px;
     font-size: 115%;

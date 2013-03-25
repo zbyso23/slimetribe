@@ -55,7 +55,8 @@
 			return false;
 		    }
 		}
-		
+		var webgl = '<p class="center" id="demolink"><a href="demo.html" id="demo-button" target="_blank">DEMO</a></p>';
+		var nowebgl = '<h2>Ops!</h2><p class="center" id="nowebg">Sorry, your browser or your computer don\'t compatible with WebGL. For more information look <a href="#faq" target="_blank">here.</a></p>';
             </script>
             <div id="container">
                 <div id="header"><h1 style="display:none;">Slime Tribe</h1><p style="display:none;"><strong>WebGL Turn-based strategy</strong></p></div>
@@ -74,7 +75,14 @@
                     <div class="article show" id="article-demogame">
                         <h2>Online Demo</h2>
                         <p>Here is a playable demoversion from last "stable" relase:) If is WebGL not detected on Your computer link will be unavailable. In this case check Your system and browser configuration. More information in the FAQ section.</p>
-                        <p class="center" id="demo"><a href="demo.html" id="demo-button" target="_blank">DEMO</a></p>
+                        <div id="demo"></div>
+			<br />
+			<div id="bitcoin">
+			    <div id="bitcoin-outer">
+				<a href="http://www.bitcoin.org/" id="bitcoin-link" target="_blank">Donate using Bitcoin!</a><span id="bitcoin-address">1uJo1SsV6Eh7LA3GZqcbVMLowFhBh8THY</span>
+			    </div>
+			</div>
+
                     </div>
                     <div class="article hide" id="article-requiements">
                         <h2>Requiements</h2>
@@ -167,6 +175,9 @@
 		    if( anchor.length > 1 ) {
 			change( anchor[1] );
 		    }
+		    
+		    document.getElementById( 'demo' ).innerHTML = ( webglFound ) ? webgl : nowebgl;
+
 		</script>
             </div>
 	</body>

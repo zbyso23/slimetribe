@@ -2,20 +2,18 @@ Game.Battle = {};
 Game.Battle = {
     generateWorld: function() {
 	try {
-	    //if( gameDataImages.loadedRemain == 0 ) {
-		if( gameData.battle.world.first === true ) {
-		    //Game.Scene.Graphics.addBattleGround();
-		    Game.Scene.Graphics.addBattleAmbient();
-		    Game.Battle.Sounds.preloader();
-		}
-		Game.Grid.generateCharacters( heroes.left, true, 3.14 );
-		Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
-		if( gameData.battle.world.first === true ) Game.Grid.generateMap();
-		gameData.battle.world.first = false;
-		gameData.battle.world.ready = true;
-	    //}
+	    if( gameData.battle.world.first === true ) {
+		//Game.Scene.Graphics.addBattleGround();
+		Game.Scene.Graphics.addBattleAmbient();
+		Game.Battle.Sounds.preloader();
+	    }
+	    Game.Grid.generateCharacters( heroes.left, true, 3.14 );
+	    Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
+	    if( gameData.battle.world.first === true ) Game.Grid.generateMap();
+	    gameData.battle.world.first = false;
+	    gameData.battle.world.ready = true;
 	} catch( e ) {
-	    console.log( 'ee generateWorld', e );
+
 	}
     },
     healing: function( attacker, defender ) {
@@ -136,7 +134,7 @@ Game.Battle = {
 		}
 	    }
 	} catch( e ) {
-	    console.log( 'ee calcEndTurn', e );
+
 	}
 	return calc;
     },
@@ -168,7 +166,7 @@ Game.Battle = {
 	    }
 	    Game.Html.activePlayerGUI();
 	} catch( e ) {
-	    console.log('ee turn?',e);
+
 	}
     },
     findNearAttackPath: function( from, cords ) {

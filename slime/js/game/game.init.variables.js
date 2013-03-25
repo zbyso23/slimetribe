@@ -32,6 +32,10 @@ var gameResources = {
 };
 
 gameData = {
+    state: {
+	active: 'battle',
+	states: ['menu', 'battle']
+    },
     run: false,
     gameOver: false,
     character: {
