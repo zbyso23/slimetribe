@@ -214,10 +214,7 @@ Game.Events = {
     },
     onDocumentMouseDown: function( event ) {
 	//event.preventDefault();
-	if( Game.Events.mouseDown === true ) {
-	    Game.Events.mouseDown = ( gameData.animation.run === true ) ? false : true;
-	    return;
-	}
+	if( Game.Events.mouseDown === true || gameData.animation.run === true ) return;
 	Game.Events.mouseDown = true;
 	if( event.type == "mousedown" && event.button === 0 ) Game.Events.onDocumentMouseLeftEvent( event );
 	if( event.type == "mousedown" && event.button === 2 ) Game.Events.onDocumentMouseRightEvent( event );

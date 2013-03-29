@@ -70,8 +70,9 @@ Game.Battle = {
 	    console.log( 'attacker.stats.activeSpell', attacker.stats.activeSpell );
 	    var a = ( attacker.stats.magic + ( Math.random() * 0.5 ) );
 	    var d = ( ( ( defenderStats.magicDefense * .5 ) + ( Math.random() * 0.5 ) ) );
-	    if( a > d ) {
-		var damage = Math.round( a - ( d / 2 ) + spellsList[ attacker.stats.activeSpell ].damage );
+	    var attack = a - d;
+	    if( attack > 0 ) {
+		var damage = Math.round( spellsList[ attacker.stats.activeSpell ].damage + ( Math.random() * attack ) );
 	    } else {
 		var damage = 0;
 	    }
