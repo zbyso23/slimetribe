@@ -17,9 +17,10 @@ Game = {
     refreshLogic: function() {
 	if( gameData.run ) {
 	    if( !gameData.battle.world.ready ) {
-		Game.Grid.reset( gameData.battle.world.first );
+		Game.Battle.Grid.reset( gameData.battle.world.first );
 		Game.Html.showBattleLoadingScreen();
 		Game.Battle.generateWorld();
+		Game.Battle.Events.initialize();
 	    } else {
 		if( gameData.loader.jsonLoaded === true && animSpeedCalibrated === true ) {
 		    if( heroes[ gameData.battle.selection.player ].ai === true ) {
@@ -30,11 +31,9 @@ Game = {
 			gameData.battle.selection.endTurn = false;
 			gameData.battle.gui.cords = [];
 			Game.Html.showChangeTurn();
-			Game.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+			Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
 		    }
-		    if( gameData.battle.selection.endTurnAnimation === true ) {
-			Game.Html.animateChangeTurn();
-		    }
+		    if( gameData.battle.selection.endTurnAnimation === true ) Game.Html.animateChangeTurn();
 		} else if( gameData.loader.jsonLoaded === true ) {
 		    if( animSpeedCalibrationCycles < 10 ) {
 			if( tick % 10 === 0 ) Game.calibrateAnimationSpeed();
@@ -49,7 +48,7 @@ Game = {
 	    if( gameData.gameOver === false ) {
 		gameData.run = true;
 		Game.Html.showChangeTurn();
-		Game.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+		Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
 	    } else {
 		console.log('Run Again?');
 		if( gameData.battle.world.reset === true ) {
@@ -74,7 +73,6 @@ Game = {
 	Game.Init.dom();
 	Game.Loader.resourceLoader();
 	Game.Scene.Render.add();
-	Game.Events.initialize();
 	Game.Stats.add();
 	Game.Html.initialize();
 	console.log('initializing game.... OK');

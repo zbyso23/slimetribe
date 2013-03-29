@@ -1,6 +1,4 @@
-//TODO! Refactor
-Game.Events = {};
-Game.Events = {
+Game.Battle.Events = {
     windowResize: false,
     keyUp: false,
     keyDown: false,
@@ -8,20 +6,20 @@ Game.Events = {
     mouseMove: false,
     
     onWindowResize: function( event ) {
-	if( Game.Events.windowResize === true ) return;
-	Game.Events.windowResize = true;
+	if( Game.Battle.Events.windowResize === true ) return;
+	Game.Battle.Events.windowResize = true;
 	SCREEN_WIDTH = window.innerWidth;
 	SCREEN_HEIGHT = window.innerHeight;
 	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	camera.aspect = SCREEN_WIDTH/ SCREEN_HEIGHT;
 	camera.updateProjectionMatrix();
-	Game.Events.windowResize = false;
+	Game.Battle.Events.windowResize = false;
     },
 
 
     onKeyDown: function( event ) {
-	if( Game.Events.keyDown === true ) return;
-	Game.Events.keyDown = true;
+	if( Game.Battle.Events.keyDown === true ) return;
+	Game.Battle.Events.keyDown = true;
 	var kc = event.keyCode;
 	switch( kc ) {
 		case playerKeys.UP: controls.moveForward = true; break;
@@ -39,13 +37,13 @@ Game.Events = {
 	} else {
 	    event.preventDefault();
 	}
-	Game.Events.keyDown = false;
+	Game.Battle.Events.keyDown = false;
     },
 
     onKeyUp: function( event ) {
 	event.preventDefault();
-	if( Game.Events.keyUp === true ) return;
-	Game.Events.keyUp = true;
+	if( Game.Battle.Events.keyUp === true ) return;
+	Game.Battle.Events.keyUp = true;
 	var kc = event.keyCode;
 	var spellChange = false;
 	var spellAttack = false;
@@ -95,19 +93,19 @@ Game.Events = {
 		gameData.battle.gui.cords = [ xFrom, yFrom ];
 	    }
 	}
-	Game.Events.keyUp = false;
+	Game.Battle.Events.keyUp = false;
     },
     
 
     onDocumentMouseMove: function( event ) {
 	if( heroes[ gameData.battle.selection.player ].ai === true ) return false;
-	if( Game.Events.mouseMove === true ) {
-	    Game.Events.mouseMove = ( Game.Events.mouseDown === true ) ? false : true;
+	if( Game.Battle.Events.mouseMove === true ) {
+	    Game.Battle.Events.mouseMove = ( Game.Battle.Events.mouseDown === true ) ? false : true;
 	    return;
 	}
-	Game.Events.mouseMove = true;
-        Game.Events.onMouseMoveEvent( event );
-	Game.Events.mouseMove = false;
+	Game.Battle.Events.mouseMove = true;
+        Game.Battle.Events.onMouseMoveEvent( event );
+	Game.Battle.Events.mouseMove = false;
     },
     onMouseMoveEvent: function( event ) {
 	try {
@@ -116,26 +114,26 @@ Game.Events = {
 	    
 	    //console.log( 'mouse', mouse2D );
 	    
-	    var cords = Game.Grid.casting();
+	    var cords = Game.Battle.Grid.casting();
 	    if( !cords ) throw "nogrid";
 	    gameData.battle.gui.cords = cords;
 	    if( gameData.animation.run === true ) throw "animation";
-	    Game.Grid.clearGrid( BATTLE_GRID.none );
+	    Game.Battle.Grid.clearGrid( BATTLE_GRID.none );
 	    //Is selected friendly
 	    showPath = false;
 	    if( gameData.battle.selection.selected === false ) {
 		//Is nothing on this place?
 		if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] === 0 && gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) {
-		    Game.Grid.showGrid( BATTLE_GRID.neutral, { x: cords[0], y: cords[1] } );
+		    Game.Battle.Grid.showGrid( BATTLE_GRID.neutral, { x: cords[0], y: cords[1] } );
 		    throw "noselected";
 		}
-		Game.Grid.showPlayer( { x: cords[0], y: cords[1] } );
+		Game.Battle.Grid.showPlayer( { x: cords[0], y: cords[1] } );
 		throw "selected";
 	    }
 	    
 	    if( gameData.battle.selection.selected === true ) {
 		var params = ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) ? BATTLE_GRID.noMove : BATTLE_GRID.free;
-		Game.Grid.showGrid( params, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+		Game.Battle.Grid.showGrid( params, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 		if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) throw "nospeed";
 
 		var from = [ gameData.battle.selection.x, gameData.battle.selection.y ];
@@ -147,14 +145,14 @@ Game.Events = {
 		    gameData.battle.selection.path = aStar( from, to, gameData.battle.plane.grid, gameData.battle.plane.gridWidth, gameData.battle.plane.gridHeight, true );
 		    gameData.battle.selection.movePath = [];
 		    if( gameData.battle.selection.path.length <= ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain + 1 ) ) {
-			Game.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
+			Game.Battle.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
 			gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
 		    }
 		//Friendly Action
 		} else if( gameData.battle.selection.hero.grid[cords[0]][cords[1]] !== 0 ) {
 		    if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].stats.healing === true && gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].manaRemain > 0 && gameData.battle.selection.hero.monsters[cords[0]][cords[1]].healthRemain < gameData.battle.selection.hero.monsters[cords[0]][cords[1]].stats.health ) {
-			Game.Grid.showGrid( BATTLE_GRID.healer, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
-			Game.Grid.showGrid( BATTLE_GRID.healing, { x: cords[0], y: cords[1] } );
+			Game.Battle.Grid.showGrid( BATTLE_GRID.healer, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+			Game.Battle.Grid.showGrid( BATTLE_GRID.healing, { x: cords[0], y: cords[1] } );
 		    }
 		    throw "show";
 		//Enemy Action
@@ -190,10 +188,10 @@ Game.Events = {
 			    
 			    //params = ( gameData.battle.selection.attack === false ) ? BATTLE_GRID.enemyFar : BATTLE_GRID.enemy;
 			    //params = BATTLE_GRID.enemy;
-			    Game.Grid.showGrid( params, { x: cords[0], y: cords[1] } );
+			    Game.Battle.Grid.showGrid( params, { x: cords[0], y: cords[1] } );
 			    //if( gameData.battle.selection.attack === false ) throw "enemyfar";
 			    params = BATTLE_GRID.enemy;
-			    Game.Grid.showGridPath( params, gameData.battle.selection.path );
+			    Game.Battle.Grid.showGridPath( params, gameData.battle.selection.path );
 			} else if( nearAttack ) {
 			    gameData.battle.selection.path = [];
 			    params = BATTLE_GRID.enemy;
@@ -208,22 +206,22 @@ Game.Events = {
 	    gameData.battle.gui.cords = cords;
 	} catch ( e ) {
 	    if( e !== "nogrid" && e !== "enemyfar" && e !== "animation" ) {
-		Game.Grid.showPlayer( { x: cords[0], y: cords[1] } );
+		Game.Battle.Grid.showPlayer( { x: cords[0], y: cords[1] } );
 	    }
 	}
     },
     onDocumentMouseDown: function( event ) {
 	//event.preventDefault();
-	if( Game.Events.mouseDown === true || gameData.animation.run === true ) return;
-	Game.Events.mouseDown = true;
-	if( event.type == "mousedown" && event.button === 0 ) Game.Events.onDocumentMouseLeftEvent( event );
-	if( event.type == "mousedown" && event.button === 2 ) Game.Events.onDocumentMouseRightEvent( event );
-	Game.Events.mouseDown = false;
+	if( Game.Battle.Events.mouseDown === true || gameData.animation.run === true ) return;
+	Game.Battle.Events.mouseDown = true;
+	if( event.type == "mousedown" && event.button === 0 ) Game.Battle.Events.onDocumentMouseLeftEvent( event );
+	if( event.type == "mousedown" && event.button === 2 ) Game.Battle.Events.onDocumentMouseRightEvent( event );
+	Game.Battle.Events.mouseDown = false;
     },
     onDocumentMouseRightEvent: function( event ) {
 	try {
 	    if( gameData.battle.selection.selected === false ) throw "nobody to unselect";
-	    Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+	    Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	} catch( e ) {
 
 	}
@@ -231,13 +229,13 @@ Game.Events = {
     onDocumentMouseLeftEvent: function( event ) {
 	try {
 	    if( gameData.battle.world.ready === false ) return;
-	    var cords = Game.Grid.casting();
+	    var cords = Game.Battle.Grid.casting();
 	    if( !cords ) throw "nocasting";
 	    //Check try to select
 	    if( gameData.battle.selection.selected === false ) {
 		if( gameData.battle.selection.hero.grid[cords[0]][cords[1]] === 0 ) throw "noselect";
 		if( gameData.battle.selection.hero.monsters[cords[0]][cords[1]].speedRemain === 0 ) throw "nospeed";
-		Game.Grid.select( { x: cords[0], y: cords[1] } );
+		Game.Battle.Grid.select( { x: cords[0], y: cords[1] } );
 		throw "action";
 	    }
 
@@ -270,8 +268,8 @@ Game.Events = {
 	    }
 	    //Unselect - select other
 	    if( gameData.battle.selection.hero.grid[cords[0]][cords[1]] !== 0 && gameData.battle.selection.hero.monsters[cords[0]][cords[1]] !== gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y] ) {
-		Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
-		Game.Grid.select( { x: cords[0], y: cords[1] } );		
+		Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+		Game.Battle.Grid.select( { x: cords[0], y: cords[1] } );		
 		throw "action";
 	    }
 	    //No speed selected - exit
@@ -299,21 +297,21 @@ Game.Events = {
 		}
 		Game.Battle.Animation.animate( settings );
 		//throw "action";
-		//Game.Grid.select( { x: cords[0], y: cords[1] } );
+		//Game.Battle.Grid.select( { x: cords[0], y: cords[1] } );
 		throw "action";
 	    }
 	} catch ( e ) {
-	    if( e !== "action" && e !== "nocasting" && e !== "noselect" ) Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+	    if( e !== "action" && e !== "nocasting" && e !== "noselect" ) Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	}
 	return;
     },
     
     initialize: function() {
-	    window.addEventListener( 'resize', Game.Events.onWindowResize, false );
-	    document.addEventListener( 'keydown', Game.Events.onKeyDown, false );
-	    document.addEventListener( 'keyup', Game.Events.onKeyUp, false );
-	    document.addEventListener( 'mousedown', Game.Events.onDocumentMouseDown, false );
-	    document.addEventListener( 'contextmenu', Game.Events.onDocumentMouseDown, false );
-	    document.addEventListener( 'mousemove', Game.Events.onDocumentMouseMove, false );
+	    window.addEventListener( 'resize', Game.Battle.Events.onWindowResize, false );
+	    document.addEventListener( 'keydown', Game.Battle.Events.onKeyDown, false );
+	    document.addEventListener( 'keyup', Game.Battle.Events.onKeyUp, false );
+	    document.addEventListener( 'mousedown', Game.Battle.Events.onDocumentMouseDown, false );
+	    document.addEventListener( 'contextmenu', Game.Battle.Events.onDocumentMouseDown, false );
+	    document.addEventListener( 'mousemove', Game.Battle.Events.onDocumentMouseMove, false );
     }
 };

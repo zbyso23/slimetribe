@@ -1,5 +1,4 @@
-Game.Grid = {};
-Game.Grid = {
+Game.Battle.Grid = {
     reset: function( first ) {
 	first = ( first === "undefined" ) ? false : first;
 	for( var x = 0; x < gameData.battle.plane.gridWidth; x++ ) {
@@ -69,10 +68,10 @@ Game.Grid = {
 		    } else {
 			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.noMoveClear );
 		    }
-		    var position = Game.Grid.getHealthSize( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
+		    var position = Game.Battle.Grid.getHealthSize( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
 		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeFriendly, position );
 		} else if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) {
-		    var position = Game.Grid.getHealthSize( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
+		    var position = Game.Battle.Grid.getHealthSize( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
 		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeEnemy, position );
 		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		} else {
@@ -98,7 +97,7 @@ Game.Grid = {
 	} else if( gameData.battle.selection.enemyHero.grid[pos.x][pos.y] !== 0 ) {
 	    params = BATTLE_GRID.enemy;
 	}
-	Game.Grid.showGrid( params, pos );
+	Game.Battle.Grid.showGrid( params, pos );
     },
 
     
@@ -112,8 +111,8 @@ Game.Grid = {
 		++gameData.loader.jsonCount;
 		++gameData.loader.jsonCountAll;
 		tempX = ( x === undefined ) ? monster[0] : ( gameData.battle.plane.gridWidth - 1 ) - monster[0];
-		var cords = Game.Grid.gridToCords( tempX, monster[1] );
-		Game.Grid.addCharacter( monstersList[monsterPack.name], cords[1], 0, cords[0], tempX, monster[1], rot, left );
+		var cords = Game.Battle.Grid.gridToCords( tempX, monster[1] );
+		Game.Battle.Grid.addCharacter( monstersList[monsterPack.name], cords[1], 0, cords[0], tempX, monster[1], rot, left );
 	    }
 	}
     },
@@ -124,7 +123,7 @@ Game.Grid = {
 	    for( i in gridModels ) grid.push( gridModels[i].object );
 	    var intersects = raycaster.intersectObjects( grid );
 	    if ( intersects.length === 0 ) throw "no intersect";
-	    var cords = Game.Grid.findById( intersects[0].object.id );
+	    var cords = Game.Battle.Grid.findById( intersects[0].object.id );
 	    if( cords.length === 0 ) throw "no cords for intersect";
 	    //cords.push( intersects[0].object.id );
 	    //if( typeof monstersModels[cords[0]][cords[1]] === "object" ) cords.push( monstersModels[cords[0]][cords[1]] );
@@ -198,8 +197,8 @@ Game.Grid = {
         gameData.battle.selection.selected = true;
         gameData.battle.selection.x = params.x;
         gameData.battle.selection.y = params.y;
-        Game.Grid.showGrid( BATTLE_GRID.free, { x: params.x, y: params.y } );
-        var posAbsolute = Game.Grid.cordsToGrid( params.x, params.y );
+        Game.Battle.Grid.showGrid( BATTLE_GRID.free, { x: params.x, y: params.y } );
+        var posAbsolute = Game.Battle.Grid.cordsToGrid( params.x, params.y );
         Game.Scene.Lights.setPosition( torch, { x: posAbsolute[0], y: posAbsolute[1] } );
     },
     unselect: function( params ) {
@@ -207,7 +206,7 @@ Game.Grid = {
         //gameData.battle.selection.x = -1;
         //gameData.battle.selection.y = -1;
 	
-        Game.Grid.showGrid( BATTLE_GRID.none, { x: params.x, y: params.y } );
+        Game.Battle.Grid.showGrid( BATTLE_GRID.none, { x: params.x, y: params.y } );
 	
         Game.Scene.Lights.setPosition( torch, { x: -1000, y: -1000 } );
     }

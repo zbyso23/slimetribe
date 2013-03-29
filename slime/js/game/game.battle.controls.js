@@ -1,5 +1,4 @@
-Game.Controls = {};
-Game.Controls = {
+Game.Battle.Controls = {
     resetMove: function( character ) {
 	if( ( gameData.animation.path.length )  < ( gameData.animation.step + 2 ) ) {
 	    //character.speed = 0;

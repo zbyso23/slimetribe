@@ -292,13 +292,13 @@ Game.Battle.Animation = {
 	    if( gameData.animation.run === false && gameData.animation.nearAttack === false ) {
 		if( gameData.animation.move === true ) {
 		    gameData.animation.object.controls.move = false;
-		    Game.Controls.resetMove( gameData.animation.object );
-		    Game.Grid.switchCube( {x: gameData.battle.selection.x, y: gameData.battle.selection.y, x2: gameData.animation.moveX, y2: gameData.animation.moveY } );
-		    //Game.Grid.unselect( {x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
-		    Game.Grid.clearGrid( BATTLE_GRID.none );
+		    Game.Battle.Controls.resetMove( gameData.animation.object );
+		    Game.Battle.Grid.switchCube( {x: gameData.battle.selection.x, y: gameData.battle.selection.y, x2: gameData.animation.moveX, y2: gameData.animation.moveY } );
+		    //Game.Battle.Grid.unselect( {x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+		    Game.Battle.Grid.clearGrid( BATTLE_GRID.none );
 		}
 	    }
-	    Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+	    Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	} catch( e ) {
 
 	}
@@ -319,7 +319,7 @@ Game.Battle.Animation = {
 	    gameData.animation.nextY = nextStep.y;
 	    gameData.animation.dirs = nextStep2[4];
 	    
-	    var nextCords = Game.Grid.gridToCords( nextStep.x, nextStep.y );
+	    var nextCords = Game.Battle.Grid.gridToCords( nextStep.x, nextStep.y );
 	    gameData.animation.nextCX = nextCords[0];
 	    gameData.animation.nextCY = nextCords[1];
 	    gameData.animation.progress = true;
@@ -342,7 +342,7 @@ Game.Battle.Animation = {
 	    path = gameData.battle.selection.path;
 	    var orient = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].orientations
 	    if( path.length < 2 ) throw "no path";
-	    cords = Game.Grid.gridToCords( gameData.battle.selection.x, gameData.battle.selection.y );
+	    cords = Game.Battle.Grid.gridToCords( gameData.battle.selection.x, gameData.battle.selection.y );
 	    lastX = -1;
 	    lastY = -1;
 	    rot = Game.Battle.Animation.getRotation( lastX, lastY, path[0].x, path[0].y, monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].orientations );
@@ -356,7 +356,7 @@ Game.Battle.Animation = {
 		    
 		    rot = Game.Battle.Animation.getRotation( lastX, lastY, path[i].x, path[i].y, orient );
 		    var dirs = Game.Battle.Animation.getDirs( rot, orient );
-		    cords = Game.Grid.gridToCords( path[i].x, path[i].y );
+		    cords = Game.Battle.Grid.gridToCords( path[i].x, path[i].y );
 		    cords.push( rot );
 		    cords.push( last );
 		    cords.push( dirs );

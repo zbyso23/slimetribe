@@ -1,7 +1,6 @@
-Game.Battle.Ai = {};
 Game.Battle.Ai = {
     turnStep: function() {
-	Game.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
+	Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
 	gameData.battle.gui.cords = [];
 	var monsters = Game.Battle.Ai.anybodyHere();
 	var success = false;
@@ -10,7 +9,7 @@ Game.Battle.Ai = {
 	success = ( success !== true ) ? Game.Battle.Ai.attack( monsters ) : success;
 	success = ( success !== true ) ? Game.Battle.Ai.move( monsters ) : success;
 	if( gameData.animation.run === false && ( success !== true || monsters.attack.length < 1 ) ) {
-	    console.log( 'seru ti na to :)' );
+	    console.log( 'kaslu na to :)' );
 	    torch.position.x -= 10000;
 	    gameData.battle.selection.endTurn = true;
 	    return;
@@ -168,7 +167,7 @@ Game.Battle.Ai = {
             var cords1 = attacker['cords'];
             var cords2 = enemy['cords'];
             var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false,  'withSpell': true, 'withHealing': false, 'withDeath': spell.death, 'damage': spell.damage, 'spell': spellsList[ monsters['spells'][0].stats.activeSpell ], 'nearAttack': true };
-            Game.Grid.select( { x: cords1[0], y: cords1[1] } );
+            Game.Battle.Grid.select( { x: cords1[0], y: cords1[1] } );
 	    gameData.battle.selection.selected = true;
 	    gameData.battle.selection.x = cords1[0];
 	    gameData.battle.selection.y = cords1[1];
@@ -207,8 +206,8 @@ Game.Battle.Ai = {
 	    if( enemy === false ) throw "nobody to attack";
 	    var cords1 = attacker['cords'];
 	    var cords2 = enemy.monster['cords'];
-            Game.Grid.select( { x: cords1[0], y: cords1[1] } );
-	    Game.Grid.showGrid( BATTLE_GRID.enemy, { x: cords2[0], y: cords2[1] } );
+            Game.Battle.Grid.select( { x: cords1[0], y: cords1[1] } );
+	    Game.Battle.Grid.showGrid( BATTLE_GRID.enemy, { x: cords2[0], y: cords2[1] } );
 	    gameData.battle.selection.path = ( enemy.path === true ) ? [] : enemy.path;
 	    var xFrom = parseInt( gameData.battle.selection.x );
 	    var yFrom = parseInt( gameData.battle.selection.y );
@@ -220,7 +219,7 @@ Game.Battle.Ai = {
 		enemy.path = [];
 		gameData.battle.selection.path = [];
 	    } else {
-		Game.Grid.showGridPath( BATTLE_GRID.enemy, gameData.battle.selection.path );
+		Game.Battle.Grid.showGridPath( BATTLE_GRID.enemy, gameData.battle.selection.path );
 	    }
 	    if( enemy.path !== true && typeof monsterTarget !== "undefined" ) {
 		//Nothing
@@ -264,8 +263,8 @@ Game.Battle.Ai = {
 	    gameData.battle.selection.x = cords1[0];
 	    gameData.battle.selection.y = cords1[1];
 	    gameData.battle.selection.path = enemy.path;
-	    Game.Grid.showGrid( BATTLE_GRID.free, { x: cords1[0], y: cords1[1] } );
-	    Game.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
+	    Game.Battle.Grid.showGrid( BATTLE_GRID.free, { x: cords1[0], y: cords1[1] } );
+	    Game.Battle.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
 	    torch.position.x = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.x;
 	    torch.position.z = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.z;
 	    var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': whereMove.x, 'yT': whereMove.y, 'move': true, 'moveX': whereMove.x, 'moveY': whereMove.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false, 'withHealing': false, 'withDeath': false, 'damage': 0, 'nearAttack': false, 'withSpell': false };

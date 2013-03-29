@@ -7,9 +7,9 @@ Game.Battle = {
 		Game.Scene.Graphics.addBattleAmbient();
 		Game.Battle.Sounds.preloader();
 	    }
-	    Game.Grid.generateCharacters( heroes.left, true, 3.14 );
-	    Game.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
-	    if( gameData.battle.world.first === true ) Game.Grid.generateMap();
+	    Game.Battle.Grid.generateCharacters( heroes.left, true, 3.14 );
+	    Game.Battle.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
+	    if( gameData.battle.world.first === true ) Game.Battle.Grid.generateMap();
 	    gameData.battle.world.first = false;
 	    gameData.battle.world.ready = true;
 	} catch( e ) {
@@ -141,7 +141,7 @@ Game.Battle = {
     },
     changeTurn: function() {
 	try {
-	    if( gameData.battle.selection.selected === true ) Game.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+	    if( gameData.battle.selection.selected === true ) Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	    if( gameData.battle.selection.player == "right" ) gameData.battle.selection.turn++; 
 	    gameData.battle.selection.player = ( gameData.battle.selection.player == "left" ) ? "right" : "left";
 	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;
