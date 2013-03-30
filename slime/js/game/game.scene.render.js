@@ -19,7 +19,6 @@ Game.Scene.Render = {
 		}
 	    }
 	    Game.Battle.Animation.animate( false, delta );
-	    if( tick % 5 === 0 ) Game.Html.showGUI();
 	}
 	renderer.render( scene, camera );
     },

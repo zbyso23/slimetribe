@@ -9,7 +9,9 @@ body {
     margin: 0px;
     overflow: hidden;
 }
-
+.click {
+    cursor: pointer;
+}
 #info {
     color:#000;
     position: relative;
@@ -294,25 +296,22 @@ div#center-turn div, div#damage div {
     text-align: center;
     text-transform: uppercase;
 }
-div#battle-end-turn, div#battle-change-spell, div#battle-change-attack {
-    background: transparent url( '../images/gui/battle_endturn.png' ) no-repeat left top;
-    background-size: 125px 100px;
+div#battle-end-turn {
+    /*background: transparent url( '../images/gui/battle_endturn.png' ) no-repeat left top;*/
+    /*background-size: 125px 100px;*/
     position: absolute;
     top: 0%;
-    width: 125px;
-    height: 100px;
-    left: 34.5%;
-    opacity: 1;
-}
-div#battle-change-spell {
-    background: transparent url( '../images/gui/battle_changespell.png' ) no-repeat left top;
-    background-size: 125px 100px;
-    left: 42.5%;
-}
-div#battle-change-attack {
-    background: transparent url( '../images/gui/battle_changeattack.png' ) no-repeat left top;
-    background-size: 125px 100px;
-    left: 50.5%;
+    width: 5%;
+    height: 4%;
+    left: 47%;
+    opacity: .7;
+    font-size: 150%;
+    font-weight: bold;
+    background-color: #F99;
+    text-shadow: 0px 0px 15px #5F5;
+    color: #FFF;
+    padding: 2%;
+    border-radius: 5px;
 }
 div#gameover {
     width: 100%;

@@ -1,103 +1,9 @@
 Game.Battle.Events = {
-    windowResize: false,
-    keyUp: false,
-    keyDown: false,
     mouseDown: false,
     mouseMove: false,
     
-    onWindowResize: function( event ) {
-	if( Game.Battle.Events.windowResize === true ) return;
-	Game.Battle.Events.windowResize = true;
-	SCREEN_WIDTH = window.innerWidth;
-	SCREEN_HEIGHT = window.innerHeight;
-	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-	camera.aspect = SCREEN_WIDTH/ SCREEN_HEIGHT;
-	camera.updateProjectionMatrix();
-	Game.Battle.Events.windowResize = false;
-    },
-
-
-    onKeyDown: function( event ) {
-	if( Game.Battle.Events.keyDown === true ) return;
-	Game.Battle.Events.keyDown = true;
-	var kc = event.keyCode;
-	switch( kc ) {
-		case playerKeys.UP: controls.moveForward = true; break;
-		case playerKeys.DOWN: controls.moveBackward = true; break;
-		case playerKeys.LEFT: controls.moveLeft = true; break;
-		case playerKeys.RIGHT: controls.moveRight = true; break;
-		case playerKeys.HOME: Game.calibrateAnimationSpeed(); break;
-		case playerKeys.NUM0: animSpeed = animSpeed - 5; break;
-		case playerKeys.NUM1: animSpeed = animSpeed + 5; break;
-		case playerKeys.ALT: controls.crouch = true; break;
-		case playerKeys.SPACE: controls.jump = true; break;
-		case playerKeys.CTRL: controls.attack = true; break;
-	}
-	if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
-	} else {
-	    event.preventDefault();
-	}
-	Game.Battle.Events.keyDown = false;
-    },
-
-    onKeyUp: function( event ) {
-	event.preventDefault();
-	if( Game.Battle.Events.keyUp === true ) return;
-	Game.Battle.Events.keyUp = true;
-	var kc = event.keyCode;
-	var spellChange = false;
-	var spellAttack = false;
-
-	switch( kc ) {
-		case playerKeys.UP: controls.moveForward = false; break;
-		case playerKeys.DOWN: controls.moveBackward = false; break;
-		case playerKeys.LEFT: controls.moveLeft = false; break;
-		case playerKeys.RIGHT: controls.moveRight = false; break;
-
-		case playerKeys.ALT: controls.crouch = false; break;
-		case playerKeys.SPACE: controls.jump = false; break;
-		case playerKeys.CTRL: controls.attack = false; break;
-		case playerKeys.F2: gameData.battle.selection.endTurn = ( heroes[ gameData.battle.selection.player ].ai === false ) ? true : false; break;
-		case playerKeys.F4: gameData.battle.world.reset = ( gameData.gameOver === true ) ? true : false; break;
-		case playerKeys.SHIFT: spellChange = ( gameData.battle.selection.selected === true ) ? true : false; break;
-		case playerKeys.ENTER: spellAttack = ( gameData.battle.selection.selected === true ) ? true : false; break;
-	}
-	if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
-	} else {
-
-	}
-
-	if( spellChange === true || spellAttack === true ) {
-	    var xFrom = parseInt( gameData.battle.selection.x );
-	    var yFrom = parseInt( gameData.battle.selection.y );
-	    var stats = gameData.battle.selection.hero.monsters[xFrom][yFrom].stats;
-	    if( stats.spell === true ) {
-		if( spellAttack === true ) {
-		    stats.magicAttack = ( stats.magicAttack === true ) ? false : true;
-		} else {
-		    var next = false;
-		    if( stats.spellsList.length > 1 ) {
-			for( var i in stats.spellsList ) {
-			    if( stats.activeSpell === stats.spellsList[i] ) {
-				var next = true;
-				continue;
-			    }
-			    if( next === true ) {
-				stats.activeSpell = stats.spellsList[i];
-				next = false;
-			    }
-			}
-			if( next === true ) stats.activeSpell = stats.spellsList[0];
-		    }
-		}
-		gameData.battle.gui.cords = [ xFrom, yFrom ];
-	    }
-	}
-	Game.Battle.Events.keyUp = false;
-    },
-    
-
     onDocumentMouseMove: function( event ) {
+	if( tick % 5 === 0 ) Game.Html.showGUI();
 	if( heroes[ gameData.battle.selection.player ].ai === true ) return false;
 	if( Game.Battle.Events.mouseMove === true ) {
 	    Game.Battle.Events.mouseMove = ( Game.Battle.Events.mouseDown === true ) ? false : true;
@@ -111,9 +17,7 @@ Game.Battle.Events = {
 	try {
 	    mouse2D.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	    mouse2D.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-	    
-	    //console.log( 'mouse', mouse2D );
-	    
+	    document.body.style.cursor = 'default';
 	    var cords = Game.Battle.Grid.casting();
 	    if( !cords ) throw "nogrid";
 	    gameData.battle.gui.cords = cords;
@@ -127,6 +31,7 @@ Game.Battle.Events = {
 		    Game.Battle.Grid.showGrid( BATTLE_GRID.neutral, { x: cords[0], y: cords[1] } );
 		    throw "noselected";
 		}
+		document.body.style.cursor = 'pointer';
 		Game.Battle.Grid.showPlayer( { x: cords[0], y: cords[1] } );
 		throw "selected";
 	    }
@@ -147,11 +52,13 @@ Game.Battle.Events = {
 		    if( gameData.battle.selection.path.length <= ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain + 1 ) ) {
 			Game.Battle.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
 			gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
+			document.body.style.cursor = 'pointer';
 		    }
 		//Friendly Action
 		} else if( gameData.battle.selection.hero.grid[cords[0]][cords[1]] !== 0 ) {
 		    if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].stats.healing === true && gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].manaRemain > 0 && gameData.battle.selection.hero.monsters[cords[0]][cords[1]].healthRemain < gameData.battle.selection.hero.monsters[cords[0]][cords[1]].stats.health ) {
 			Game.Battle.Grid.showGrid( BATTLE_GRID.healer, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
+			document.body.style.cursor = 'pointer';
 			Game.Battle.Grid.showGrid( BATTLE_GRID.healing, { x: cords[0], y: cords[1] } );
 		    }
 		    throw "show";
@@ -177,6 +84,7 @@ Game.Battle.Events = {
 			if( pathAttack || nearAttack ) {
 			    gameData.battle.selection.attackCords = cords;
 			    gameData.battle.selection.attack = true;
+			    document.body.style.cursor = 'pointer';
 			} else {
 			    gameData.battle.selection.attackCords = [];
 			    gameData.battle.selection.attack = false;
@@ -307,11 +215,13 @@ Game.Battle.Events = {
     },
     
     initialize: function() {
-	    window.addEventListener( 'resize', Game.Battle.Events.onWindowResize, false );
-	    document.addEventListener( 'keydown', Game.Battle.Events.onKeyDown, false );
-	    document.addEventListener( 'keyup', Game.Battle.Events.onKeyUp, false );
 	    document.addEventListener( 'mousedown', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.addEventListener( 'contextmenu', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.addEventListener( 'mousemove', Game.Battle.Events.onDocumentMouseMove, false );
+    },
+    uninitialize: function() {
+	    document.removeEventListener( 'mousedown', Game.Battle.Events.onDocumentMouseDown, false );
+	    document.removeEventListener( 'contextmenu', Game.Battle.Events.onDocumentMouseDown, false );
+	    document.removeEventListener( 'mousemove', Game.Battle.Events.onDocumentMouseMove, false );
     }
 };

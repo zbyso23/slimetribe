@@ -74,6 +74,7 @@ Game = {
 	Game.Loader.resourceLoader();
 	Game.Scene.Render.add();
 	Game.Stats.add();
+	Game.Events.initialize();
 	Game.Html.initialize();
 	console.log('initializing game.... OK');
 	Game.refresh();

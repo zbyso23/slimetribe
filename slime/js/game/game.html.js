@@ -112,6 +112,7 @@ Game.Html = {
 	    var opacity = Game.Html.middle.style.opacity;
 	    if( marginTopValue <= 0 || opacity <= ( 1 - 0.89 ) ) {
 		Game.Html.hideChangeTurn();
+		Game.Html.middle.style.marginTop = '-10000px';
 	    } else {
 		Game.Html.middle.style.marginTop = ( marginTopValue - (animSpeedDiv * 100) ) + 'px';
 		Game.Html.middle.style.opacity = ( opacity - (animSpeedDiv * 0.1) );
@@ -248,20 +249,18 @@ Game.Html = {
 		
 		if( stats.stats.spell === true ) {
 		    var spells = stats.stats.spellsList;
-		    //consle.log('spells',spells);
-		    //statsHtml += '<span class="name">Active Spell: </span>' + spellsList[ stats.stats.activeSpell ].name;
 		    var activeAttack = ( stats.stats.magicAttack === true ) ? "Magic" : "Melee"
-		    statsHtml += '<div class="part"><span class="name">Active Attack: </span>' + activeAttack + '</div>';
+		    statsHtml += '<div class="part"><span class="name">Active Attack: </span><span class="click" onclick=\'Game.Battle.Controls.switchSpell();\'>' + activeAttack + '</span></div>';
 		    statsHtml += '<div class="part"><span class="name">Active Spell: </span></div><div class="part">' + spellsList[ stats.stats.activeSpell ].name + '</div><div class="part">(' + spellsList[ stats.stats.activeSpell ].manaCost + 'Mana / ' + spellsList[ stats.stats.activeSpell ].damage + 'Damage)</div>';
 		    statsHtml += '<div class="spells">';
 		    
 		    var itemSpell;
 		    for( spell in spells ) {
 			itemSpell = spellsList[ spells[ spell ] ];
-			if( stats.stats.activeSpell === spells[ spell ] && active === true ) {
-			    statsHtml += '<div class="' + itemSpell.color + ' active">' + itemSpell.icon + '</div>';
+			if( stats.stats.activeSpell === spells[ spell ] && active === true && stats.stats.magicAttack === true ) {
+			    statsHtml += '<div class="' + itemSpell.color + ' active">' + itemSpell.icon + '</a></div>';
 			} else {
-			    statsHtml += '<div class="' + itemSpell.color + '">' + itemSpell.icon + '</div>';
+			    statsHtml += '<div onclick=\'Game.Battle.Controls.changeSpell("' + spells[ spell ] + '");\' class="click ' + itemSpell.color + '">' + itemSpell.icon + '</div></a>';
 			}
 		    }
 		    statsHtml += '</div>';

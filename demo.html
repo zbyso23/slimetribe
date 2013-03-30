@@ -12,14 +12,10 @@
 		<div id="loading-bar-bg" ></div>
 		<div id="loading-bar" ></div>	    
 		<div id="gameover"></div>
-		<div id="gui-top"></div>
-		<div id="gui"></div>
 		<div id="left-damage" class="active"></div>
 		<div id="right-damage" class="normal"></div>
 		<div id="damage"></div>
-		<div id="battle-end-turn"></div>
-		<div id="battle-change-spell"></div>
-		<div id="battle-change-attack"></div>
+		<div id="battle-end-turn" class="click" onclick="Game.Battle.Controls.changeTurn();">END TURN</div>
 		<div id="left-player"><div>Play</div></div>
 		<div id="right-player"><div>Play</div></div>
 		<div id="center-turn"></div>
@@ -43,6 +39,7 @@
 		<script src='slime/js/game/game.init.js'></script>
 		<script src='slime/js/game/game.utils.js'></script>
 		<script src='slime/js/game/game.loader.js'></script>
+		<script src='slime/js/game/game.events.js'></script>
 		<script src='slime/js/game/game.html.js'></script>
 		<script src='slime/js/game/game.stats.js'></script>
 		<script src='slime/js/game/game.init.variables.js'></script>
