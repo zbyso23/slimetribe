@@ -250,7 +250,7 @@ Game.Html = {
 		if( stats.stats.spell === true ) {
 		    var spells = stats.stats.spellsList;
 		    var activeAttack = ( stats.stats.magicAttack === true ) ? "Magic" : "Melee"
-		    statsHtml += '<div class="part"><span class="name">Active Attack: </span><span class="click" onclick=\'Game.Battle.Controls.switchSpell();\'>' + activeAttack + '</span></div>';
+		    statsHtml += '<div class="part"><span onclick=\'Game.Battle.Controls.switchSpell();\' class="click name">Active Attack: </span><span class="click" onclick=\'Game.Battle.Controls.switchSpell();\'>' + activeAttack + '</span></div>';
 		    statsHtml += '<div class="part"><span class="name">Active Spell: </span></div><div class="part">' + spellsList[ stats.stats.activeSpell ].name + '</div><div class="part">(' + spellsList[ stats.stats.activeSpell ].manaCost + 'Mana / ' + spellsList[ stats.stats.activeSpell ].damage + 'Damage)</div>';
 		    statsHtml += '<div class="spells">';
 		    
@@ -298,6 +298,8 @@ Game.Html = {
 		document.getElementById( params.id ).style.backgroundSize = size.w + 'px ' + size.h + 'px';
 		document.getElementById( params.id ).style.paddingLeft = ( document.getElementById( params.id ).clientWidth * 0.23 ) + 'px';
 		document.getElementById( params.id ).style.paddingTop = ( document.getElementById( params.id ).clientHeight * 0.185 ) + 'px';
+		var changeTurn = document.getElementById( "battle-end-turn" );
+		changeTurn.style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0133 ) + 'px';
 		var nodes = document.getElementById( params.id ).childNodes;
 		var lastHeight = 0
 		for( i in nodes ) {
@@ -309,9 +311,11 @@ Game.Html = {
 			if( nodes[i].childNodes[j].nodeName == 'DIV' ) {
 			    var sizeSpell = Game.Html._getSize( { w: 161, h: 161, scale: Math.max( window.innerWidth, window.innerHeight ) * 0.000089 } );
 			    nodes[i].childNodes[j].style.backgroundSize = sizeSpell.w + 'px ' + sizeSpell.h + 'px';
+			    nodes[i].childNodes[j].style.marginLeft = sizeSpell.w * -0.5;
 			    nodes[i].childNodes[j].style.width = sizeSpell.w + 'px';
 			    nodes[i].childNodes[j].style.height = ( sizeSpell.h - ( sizeSpell.h * 0.35 ) ) + 'px';
-			    nodes[i].childNodes[j].style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.023 ) + 'px';
+			    nodes[i].childNodes[j].style.fontSize = ( Math.max( window.innerWidth, window.innerHeight ) * 0.0123 ) + 'px';
+			    
 			    nodes[i].childNodes[j].style.marginTop = '-' + ( sizeSpell.h * 0.25 ) + 'px';
 			    nodes[i].childNodes[j].style.paddingTop = ( sizeSpell.h * 0.25 ) + 'px';
 			    isSpell = true;
