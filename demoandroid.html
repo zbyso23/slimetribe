@@ -46,6 +46,19 @@
 		<script src='slime/js/game/game.html.js'></script>
 		<script src='slime/js/game/game.stats.js'></script>
 		<script src='slime/js/game/game.init.variables.js'></script>
+<!-- Android Fast Hack:D -->
+<script>
+tribe.left.army = [ 
+	    { name: 'healer', pos: [ [0,2], [0,5], [0,7] ] },
+	    { name: 'slizak', pos: [ [1,1], [1,5], [1,7], [1,9] ] }
+	];
+tribe.right.army = [
+	    { name: 'healer-necro', pos: [ [0,2], [0,5], [0,7] ] },
+	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [1,7], [1,9] ] }
+	];
+gameData.settings.graphics.mobile = 'on';
+</script>
+<!-- Android Fast Hack:D End -->
 		<script src='slime/js/game/game.scene.js'></script>
 		<script src='slime/js/game/game.scene.camera.js'></script>
 		<script src='slime/js/game/game.scene.graphics.js'></script>

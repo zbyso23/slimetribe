@@ -27,7 +27,7 @@ Game.Html = {
 	showChangeTurn: function () {
 	    Game.Html.getPlayersStyle();
 	    var playerName = ( gameData.battle.selection.player === "left" ) ? "Blue Player" : "Green Player";
-	    playerName += ( heroes[ gameData.battle.selection.player ].ai ) ? " (AI)" : "";
+	    playerName += ( tribe[ gameData.battle.selection.player ].ai ) ? " (AI)" : "";
 	    gameData.battle.selection.endTurnAnimation = true;
 	    var turnHtml = Game.Html.classDiv( gameData.battle.selection.player, gameData.battle.selection.turn + ' Turn' );
 	    turnHtml += Game.Html.classDiv( gameData.battle.selection.player, playerName );

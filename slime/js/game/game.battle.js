@@ -7,8 +7,8 @@ Game.Battle = {
 		Game.Scene.Graphics.addBattleAmbient();
 		Game.Battle.Sounds.preloader();
 	    }
-	    Game.Battle.Grid.generateCharacters( heroes.left, true, 3.14 );
-	    Game.Battle.Grid.generateCharacters( heroes.right, false, 0, gameData.battle.plane.gridWidth - 1 );
+	    Game.Battle.Grid.generateCharacters( tribe.left, true, 3.14 );
+	    Game.Battle.Grid.generateCharacters( tribe.right, false, 0, gameData.battle.plane.gridWidth - 1 );
 	    if( gameData.battle.world.first === true ) Game.Battle.Grid.generateMap();
 	    gameData.battle.world.first = false;
 	    gameData.battle.world.ready = true;
@@ -144,23 +144,23 @@ Game.Battle = {
 	    if( gameData.battle.selection.selected === true ) Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 	    if( gameData.battle.selection.player == "right" ) gameData.battle.selection.turn++; 
 	    gameData.battle.selection.player = ( gameData.battle.selection.player == "left" ) ? "right" : "left";
-	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;
-	    gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "left" ) ? heroes.right : heroes.left;
+	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? tribe.left : tribe.right;
+	    gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "left" ) ? tribe.right : tribe.left;
 	    var manaRegeneration;
-	    for( x in heroes.left.monsters ) {
-		for( y in heroes.left.monsters[x] ) {
-		    if( typeof heroes.left.monsters[x][y] === "object" ) {
-			heroes.left.monsters[x][y].speedRemain = heroes.left.monsters[x][y].stats.speed;
-			if( heroes.left.monsters[x][y].manaRemain < heroes.left.monsters[x][y].stats.magic ) {
-			    manaRegeneration = Math.round( heroes.left.monsters[x][y].stats.magic / 3 );
-			    heroes.left.monsters[x][y].manaRemain += manaRegeneration;
+	    for( x in tribe.left.monsters ) {
+		for( y in tribe.left.monsters[x] ) {
+		    if( typeof tribe.left.monsters[x][y] === "object" ) {
+			tribe.left.monsters[x][y].speedRemain = tribe.left.monsters[x][y].stats.speed;
+			if( tribe.left.monsters[x][y].manaRemain < tribe.left.monsters[x][y].stats.magic ) {
+			    manaRegeneration = Math.round( tribe.left.monsters[x][y].stats.magic / 3 );
+			    tribe.left.monsters[x][y].manaRemain += manaRegeneration;
 			}
 		    }
-		    if( typeof heroes.right.monsters[x][y] === "object" ) {
-			heroes.right.monsters[x][y].speedRemain = heroes.right.monsters[x][y].stats.speed;
-			if( heroes.right.monsters[x][y].manaRemain < heroes.right.monsters[x][y].stats.magic ) {
-			    manaRegeneration = Math.round( heroes.right.monsters[x][y].stats.magic / 3 );
-			    heroes.right.monsters[x][y].manaRemain += manaRegeneration;
+		    if( typeof tribe.right.monsters[x][y] === "object" ) {
+			tribe.right.monsters[x][y].speedRemain = tribe.right.monsters[x][y].stats.speed;
+			if( tribe.right.monsters[x][y].manaRemain < tribe.right.monsters[x][y].stats.magic ) {
+			    manaRegeneration = Math.round( tribe.right.monsters[x][y].stats.magic / 3 );
+			    tribe.right.monsters[x][y].manaRemain += manaRegeneration;
 			}
 		    }
 		}

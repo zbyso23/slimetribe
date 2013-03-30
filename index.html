@@ -55,7 +55,7 @@
 			return false;
 		    }
 		}
-		var webgl = '<p class="center" id="demolink"><a href="demo.html" id="demo-button" target="_blank">DEMO</a></p>';
+		var webgl = '<p class="center" id="demolink"><a href="demo.html" class="demo-button" target="_blank">DESKTOP</a><a href="demoandroid.html" class="demo-button" target="_blank">ANDROID</a></p>';
 		var nowebgl = '<h2>Ops!</h2><p class="center" id="nowebg">Sorry, your browser or your computer don\'t compatible with WebGL. For more information look <a href="#faq" target="_blank">here.</a></p>';
             </script>
             <div id="container">
@@ -87,22 +87,22 @@
                     <div class="article hide" id="article-requiements">
                         <h2>Requiements</h2>
                         <p>This game have no special system requiements, but comsumption of WebGL in browser is bigger compare with eqivalent desktop application. Planed compatibility is all devices with WebGL compatible browser, like Safari, Chrome and Firefox.</p>
-                        <p><strong>Minimum configuration:</strong></p>
+                        <p><strong>Desktop configuration:</strong></p>
                         <ul>
-                            <li><strong>CPU:</strong> 1GHz</li>
-                            <li><strong>Memmory:</strong> 512MB RAM</li>
-                            <li><strong>Graphics:</strong> Intel HD 2000 or better</li>
+                            <li><strong>CPU:</strong> 1GHz (Minimal) / 2GHz (Recomended)</li>
+                            <li><strong>Memmory:</strong> 512MB RAM (Minimal) / 2048MB RAM (Recomended)</li>
+                            <li><strong>Graphics:</strong> Intel HD 2000 (Minimal) / external PCI-E (Recomended)</li>
                             <li><strong>OS:</strong> Linux / Mac OS X / Windows XP</li>
                             <li><strong>Web Browser:</strong> WebGL compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
                         </ul>
                         <br />
-                        <p><strong>Recomended configuration:</strong></p>
+                        <p><strong>Android recomended configuration:</strong></p>
                         <ul>
-                            <li><strong>CPU:</strong> 2GHz</li>
-                            <li><strong>Memmory:</strong> 1024MB RAM</li>
-                            <li><strong>Graphics:</strong> Intel HD 3000 or better</li>
-                            <li><strong>OS:</strong> Linux / Mac OS X / Windows 7</li>
-                            <li><strong>Web Browser:</strong> WebGL compatible (Mozilla Firefox, Google Chrome, Apple Safari)</li>
+                            <li><strong>CPU:</strong> 1.5GHz Cortex A9 Dual Core</li>
+                            <li><strong>Memmory:</strong> 1024MB RAM DD3</li>
+                            <li><strong>Graphics:</strong> Mali-400MP or better</li>
+			    <li><strong>OS:</strong> Android 4.0</li>
+                            <li><strong>Web Browser:</strong> Google Chrome Beta with enabled WebGL - <a href="#" onclick="change('faq');" >look here for details.</a></li>
                         </ul>
                     </div>
                     <div class="article hide" id="article-faq">
@@ -166,6 +166,11 @@
 			    <li><a href="#" onclick="change('faq');">How enable WebGL?</a></li>
 			    <li><a href="#" onclick="change('faq');">How speed up game?</a></li>
 			</ul>
+			<h3>News:</h3>
+			<ul>
+			    <li><a href="#" onclick="change('demo');"><strong>30.3.</strong> Added Android version</a></li>
+			</ul>
+			
 		    </div>
                 </div>
                 <div id="footer"></div>

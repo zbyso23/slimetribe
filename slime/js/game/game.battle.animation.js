@@ -56,7 +56,7 @@ Game.Battle.Animation = {
 		gameData.animation.targetObject = monstersModels[ settings.xT ][ settings.yT ];
 	    }
 	} catch( e ) {
-	    if( e === "action" ) Game.Battle.Animation.monster( delta );
+	    if( e === "action" && gameData.animation.run === true ) Game.Battle.Animation.monster( delta );
 	}
     },
     monster: function( delta ) {
@@ -74,7 +74,7 @@ Game.Battle.Animation = {
 		Game.Battle.Animation.monsterLastStep();
 		gameData.animation.object.controls.move = false;
 		//End turn if human player and not more characters with move
-		if( heroes[ gameData.battle.selection.player ].ai === false ) {
+		if( tribe[ gameData.battle.selection.player ].ai === false ) {
 		    var result = Game.Battle.calcEndTurn( gameData.battle.selection.hero );
 		    gameData.battle.selection.endTurn = result.endTurn;
 		    console.log( 'check for end turn', result.endTurn );

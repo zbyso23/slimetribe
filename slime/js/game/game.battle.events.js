@@ -4,7 +4,7 @@ Game.Battle.Events = {
     
     onDocumentMouseMove: function( event ) {
 	if( tick % 5 === 0 ) Game.Html.showGUI();
-	if( heroes[ gameData.battle.selection.player ].ai === true ) return false;
+	if( tribe[ gameData.battle.selection.player ].ai === true ) return false;
 	if( Game.Battle.Events.mouseMove === true ) {
 	    Game.Battle.Events.mouseMove = ( Game.Battle.Events.mouseDown === true ) ? false : true;
 	    return;

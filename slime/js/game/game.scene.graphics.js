@@ -73,7 +73,7 @@ Game.Scene.Graphics = {
 	gameData.battle.world.ground.object.position.z += gameData.battle.world.ground.width / 2;
 	gameData.battle.world.ground.object.position.x += gameData.battle.world.ground.width / 2;
 	scene.add( gameData.battle.world.ground.object );
-	Game.Scene.Graphics.setEffects( gameData.battle.world.ground.object );
+	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Graphics.setEffects( gameData.battle.world.ground.object );
     },
     addBattleAmbient: function() {
 	var gat = THREE.ImageUtils.loadTexture( BATTLE.ambient.textures.difuse );
@@ -98,7 +98,7 @@ Game.Scene.Graphics = {
 	gameData.battle.world.ambient.object.rotation = BATTLE.ambient.rotation;
 	gameData.battle.world.ambient.object.scale = BATTLE.ambient.scale;
 	gameData.battle.world.ambient.object.position = BATTLE.ambient.position;
-	Game.Scene.Graphics.setEffects( gameData.battle.world.ambient.object );
+	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Graphics.setEffects( gameData.battle.world.ambient.object );
     },
     removeBattleAmbient: function() {
 	scene.remove( gameData.battle.world.ambient.object );

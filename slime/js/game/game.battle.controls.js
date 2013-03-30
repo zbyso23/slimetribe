@@ -47,7 +47,7 @@ Game.Battle.Controls = {
 	}
     },
     changeTurn: function() {
-	gameData.battle.selection.endTurn = ( heroes[ gameData.battle.selection.player ].ai === false ) ? true : false;
+	gameData.battle.selection.endTurn = ( tribe[ gameData.battle.selection.player ].ai === false ) ? true : false;
     }
 
 };

@@ -4,9 +4,10 @@ Game.Battle.Sounds = {
     playing: false,
     play: function() {
 	try {
+	    if( gameData.settings.graphics.mobile === "on" ) return;
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
 	    var el = document.getElementById( 'battle-sound' );
-	    el.addEventListener('canplaythrough', function(){
+	    el.addEventListener('canplaythrough', function() {
 				if( Game.Battle.Sounds.playing === true ) this.play();
 			    }, false);
 	} catch( e ) {
@@ -15,19 +16,23 @@ Game.Battle.Sounds = {
 	Game.Battle.Sounds.playing = true;
     },
     isPlay: function() {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	var el = document.getElementById( 'battle-sound' );
 	return el.played;
     },
     isPause: function() {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	var el = document.getElementById( 'battle-sound' );
 	return el.paused;
     },
     isEnd: function() {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	var el = document.getElementById( 'battle-sound' );
 	return el.ended;
     },
     stop: function() {
 	try {
+	    if( gameData.settings.graphics.mobile === "on" ) return;
 	    Game.Battle.Sounds.pause();
 	    Game.Battle.Sounds.playing = false;
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
@@ -38,6 +43,7 @@ Game.Battle.Sounds = {
     },
     pause: function() {
 	try {
+	    if( gameData.settings.graphics.mobile === "on" ) return;
 	    if( Game.Battle.Sounds.ready === false ) throw "noready";
 	    if( Game.Battle.Sounds.isPaused() === true ) return;
 	    var el = document.getElementById( 'battle-sound' );
@@ -51,6 +57,7 @@ Game.Battle.Sounds = {
 	}
     },
     load: function( url ) {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	Game.Battle.Sounds.stop();
 	//var elMp3 = document.getElementById( 'battle-sound-mp3' );
 	var elOgg = document.getElementById( 'battle-sound-ogg' );
@@ -69,6 +76,7 @@ Game.Battle.Sounds = {
     },
     prepare: function( params ) {
 	try {
+	    if( gameData.settings.graphics.mobile === "on" ) return;
 	    if( typeof params.sounds.parts[ params.active ] === "undefined" ) throw "nosound";
 	    Game.Battle.Sounds.load( params.sounds.baseUrl + params.sounds.parts[ params.active ] );
 	    Game.Battle.Sounds.ready = true;
@@ -77,6 +85,7 @@ Game.Battle.Sounds = {
 	}
     },
     preloader: function() {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	var sounds = Game.Battle.Sounds.__findMonsterSounds();
 	for( i in sounds ) {
 	    ++gameData.loader.soundsCount;
@@ -86,6 +95,7 @@ Game.Battle.Sounds = {
 	}
     },
     __findMonsterSounds: function() {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	sounds = [];
 	for( m in monstersList ) {
 	    var baseUrl = monstersList[m].sounds.baseUrl;
@@ -99,6 +109,7 @@ Game.Battle.Sounds = {
 	return sounds;
     },
     preloaderLoaded: function( e ) {
+	if( gameData.settings.graphics.mobile === "on" ) return;
 	--gameData.loader.soundsCount;
 	if( gameData.loader.soundsCount === 0 ) gameData.loader.soundsLoaded = true;
     }

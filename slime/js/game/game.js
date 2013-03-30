@@ -23,7 +23,7 @@ Game = {
 		Game.Battle.Events.initialize();
 	    } else {
 		if( gameData.loader.jsonLoaded === true && animSpeedCalibrated === true ) {
-		    if( heroes[ gameData.battle.selection.player ].ai === true ) {
+		    if( tribe[ gameData.battle.selection.player ].ai === true ) {
 			if( gameData.animation.run === false && gameData.battle.selection.endTurnAnimation === false ) Game.Battle.Ai.turnStep();
 		    }
 		    if( gameData.battle.selection.endTurn === true ) {

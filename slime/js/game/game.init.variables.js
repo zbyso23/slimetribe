@@ -93,11 +93,14 @@ gameData = {
     },
     settings: {
 	graphics: {
+	    lights: 'high',
 	    shadows: 'high',
-	    antialiasing: false,
-	    anisotropy: 0,
+	    antialiasing: true,
+	    anisotropy: 4,
 	    models: { 'name': 'Low', 'id': 'low', 'groundGridX': 127, 'groundGridY': 127 },
-            textures: 'low'
+            textures: 'low',
+	    mobile: 'off'
+	    
 	}
     },
     loader: {
@@ -283,14 +286,22 @@ var gameMenu = {
 		models: [
 		    { name: 'Low', id: 'low' },
 		    { name: 'Medium', id: 'medium' },
-		    { name: 'High', id: 'High' },
+		    { name: 'High', id: 'high' },
+		],
+		lights: [
+		    { name: 'Low', id: 'low' },
+		    { name: 'High', id: 'high' }
+		],
+		mobile: [
+		    { name: 'On', id: 'on' },
+		    { name: 'Off', id: 'off' }
 		]
 	    }
 	}
     }
 }
 
-var heroes = {
+var tribe = {
     left: {
 	params: {
 	    scale: 2.4
@@ -308,7 +319,8 @@ var heroes = {
 	    { name: 'slizak', pos: [ [1,5], [0,9] ] }
 	],/*
 	army: [ 
-	    { name: 'slizak', pos: [ [1,5] ] }
+	    { name: 'healer', pos: [ [0,2], [0,5], [0,7] ] },
+	    { name: 'slizak', pos: [ [1,1], [1,5], [1,7], [1,9] ] }
 	],*/
 	controls: controls,
 	grid: [],
@@ -327,7 +339,8 @@ var heroes = {
 	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9] ] }
 	],/*
 	army: [
-	    { name: 'slizak-necro', pos: [ [1,5] ] }
+	    { name: 'healer-necro', pos: [ [0,2], [0,5], [0,7] ] },
+	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [1,7], [1,9] ] }
 	],*/
 	controls: controls,
 	grid: [],
@@ -336,8 +349,8 @@ var heroes = {
 }
 
 
-gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? heroes.left : heroes.right;
-gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "right" ) ? heroes.left : heroes.right;
+gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? tribe.left : tribe.right;
+gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "right" ) ? tribe.left : tribe.right;
 
 var monstersModels = [];
 var gridModels = [];

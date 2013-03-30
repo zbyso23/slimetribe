@@ -4,7 +4,7 @@ Game.Scene.Render = {
 	renderer = new THREE.WebGLRenderer( { antialias: gameData.settings.antialiasing } );
 	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	renderer.setClearColor( 0xffeeff, 1 );
-	Game.Scene.Render.shadows();
+	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Render.shadows();
 	canvas = renderer.domElement;
 	container.appendChild( renderer.domElement );
 	renderer.gammaInput = true;

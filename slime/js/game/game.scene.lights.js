@@ -10,7 +10,7 @@ Game.Scene.Lights = {
     addLight: function() {
 	light = new THREE.DirectionalLight( LIGHTS.light.color, LIGHTS.light.intensity );
 	light.position.set( LIGHTS.light.x, LIGHTS.light.y, LIGHTS.light.z );
-	Game.Scene.Lights.shadowLight( light );
+	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Lights.shadowLight( light );
 	scene.add( light );
     },
     removeLight: function() {
@@ -61,7 +61,7 @@ Game.Scene.Lights = {
     addPointLight: function( params ) {
 	var light = new THREE.PointLight( params.color, params.intensity, params.distance );
 	if( params.x && params.y && params.z ) light.position.set( params.x, params.y, params.z );
-	Game.Scene.Lights.shadowPointLight( light );
+	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Lights.shadowPointLight( light );
 	scene.add( light );
 	return light;
     },
