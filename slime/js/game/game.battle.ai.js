@@ -1,4 +1,7 @@
 Game.Battle.Ai = {
+    iteration: 0,
+    fullStats: { attack: 0, healers: 0, spells: 0 },
+    
     turnStep: function() {
 	Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
 	gameData.battle.gui.cords = [];
@@ -55,24 +58,37 @@ Game.Battle.Ai = {
 		character = gameData.battle.selection.hero.monsters[x][y];
 		character['cords'] = [ x, y ];
 		//First Aid:D
-		if( gameData.battle.selection.hero.monsters[x][y].stats.health > gameData.battle.selection.hero.monsters[x][y].healthRemain ) monsters.healing.push( character );
+		if( character.stats.health > character.healthRemain ) monsters.healing.push( character );
 		//No speed
-		if( gameData.battle.selection.hero.monsters[x][y].speedRemain < 1 ) continue;
+		if( character.speedRemain < 1 ) continue;
 		//Friendly healer with mana
-		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === true && gameData.battle.selection.hero.monsters[x][y].manaRemain > 0 ) monsters.healers.push( character );
+		if( character.stats.healing === true && character.manaRemain > 0 ) monsters.healers.push( character );
 		//Friendly magican with mana
 		lowCostSpell = 0;
 		currentCost = 0;
-		for( spell in gameData.battle.selection.hero.monsters[x][y].stats.spellsList ) {
-		    spellName = gameData.battle.selection.hero.monsters[x][y].stats.spellsList[ spell ];
-		    currentCost = spellsList[spellName].manaCost * gameData.battle.selection.hero.monsters[x][y].stats.magic;
+		for( spell in character.stats.spellsList ) {
+		    spellName = character.stats.spellsList[ spell ];
+		    currentCost = spellsList[spellName].manaCost * character.stats.magic;
 		    lowCostSpell = ( currentCost < lowCostSpell ) ? currentCost : lowCostSpell;
 		}
-		if( gameData.battle.selection.hero.monsters[x][y].stats.spell === true && gameData.battle.selection.hero.monsters[x][y].manaRemain >= lowCostSpell ) monsters.spells.push( character )
+		if( character.stats.spell === true && character.manaRemain >= lowCostSpell ) monsters.spells.push( character )
 		//Attack!
-		if( gameData.battle.selection.hero.monsters[x][y].stats.healing === false || gameData.battle.selection.turn > 1 ) monsters.attack.push( character );
+		monsters.attack.push( character );
 	    }
 	}
+	//Save stats from full battlefield
+	if( Game.Battle.Ai.iteration === 0 ) {
+	    Game.Battle.Ai.fullStats.attack = monsters.attack.length;
+	    Game.Battle.Ai.fullStats.healers = monsters.healers.length;
+	    Game.Battle.Ai.fullStats.spells = monsters.spells.length;
+	}
+	//Remove healers from attack, if is anybody other to attack + 1
+	if( Game.Battle.Ai.fullStats.attack > Game.Battle.Ai.fullStats.healers + 1 ) {
+	    var newAttack = [];
+	    for( i in monsters.attack ) if( monsters.stats.healing === false ) newAttack.push( monsters.attack[ i ] );
+	    monsters.attack = newAttack;
+	}
+	Game.Battle.Ai.iteration++;
 	return monsters;
     },
     

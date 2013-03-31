@@ -165,6 +165,8 @@ Game.Battle = {
 		    }
 		}
 	    }
+	    //Restart AI Iteration after change turn
+	    Game.Battle.Ai.iteration = 0;
 	    Game.Html.activePlayerGUI();
 	} catch( e ) {
 

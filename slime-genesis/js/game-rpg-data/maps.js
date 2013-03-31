@@ -1,0 +1,6 @@
+var GameRpgMaps = {
+    map01: {
+	
+    }
+    
+};

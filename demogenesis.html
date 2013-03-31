@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+	<p id="abc">TODO write content</p>
+	<script>
+	function onDocumentMouseMove( event ) {
+	    document.getElementById('abc').innerHTML += '...move...<br />';
+	}
+	//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	
+	
+	document.addEventListener('touchstart', function(event) {
+	    event.preventDefault();
+	    var touch = event.touches[0];
+	    document.getElementById('abc').innerHTML += "Touch x:" + touch.pageX + ", y:" + touch.pageY + ' ... ';
+	}, false);
+	
+	document.addEventListener('touchmove', function(event) {
+	    event.preventDefault();
+	    var touch = event.touches[0];
+	    document.getElementById('abc').innerHTML += "TouchMOVE x:" + touch.pageX + ", y:" + touch.pageY + ' ... ';
+	}, false);
+	</script>
+    </body>
+</html>

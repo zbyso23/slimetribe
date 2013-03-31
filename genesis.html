@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - morphtargets - MD2 controls</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="slime-genesis/css/game-rpg.css" type="text/css" media="screen, projection" />
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div id="ground-images" style="display:none" >
+		    <img id="ground-collision-img" src="slime-genesis/textures/ground/ground-collision.gif" />
+		    <img id="ground-height-img" src="slime-genesis/textures/ground/ground-test10-128.png" width="128" height="128" />
+		    <canvas id="ground-collision" width="512" height="512" ></canvas>
+		    <canvas id="ground-height" width="128" height="128" ></canvas>
+		</div>
+		<img class="buttons" id="buttons-arrows" src="slime-genesis/images/genesis-arrows.png" width="10" height="10"/>
+		<img class="buttons" id="buttons-action" src="slime-genesis/images/genesis-action.png" width="10" height="10"/>
+		<img class="buttons" id="buttons-attack" src="slime-genesis/images/genesis-attack.png" width="10" height="10"/>
+		
+
+		<script src="slime-genesis/js/three.js"></script>
+		<script src="slime-genesis/js/TrackballControls.js"></script>
+		<script src='slime-genesis/js/MD2CharacterComplex.js'></script>
+		<script src='slime-genesis/js/libs/stats.min.js'></script>
+		
+		<script src="slime-genesis/js/game-rpg/game.rpg.js"></script>
+		<script src="slime-genesis/js/game/game.utils.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.html.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.stats.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.init.variables.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.events.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.events.tablet.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.events.mouse.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.camera.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.renderer.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.lights.js"></script>
+		
+		<script src="slime-genesis/js/game-rpg-data/ambient.js"></script>
+		<script src="slime-genesis/js/game-rpg-data/maps.js"></script>
+
+		<script>
+		    Game.Rpg.initialize();
+		    console.log('load complete....');
+		</script>
+
+	</body>
+</html>
