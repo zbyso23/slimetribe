@@ -34,7 +34,8 @@ var gameRpgData = {
     world: {
 	ready: false,
 	ground: { width: 1024, height: 1024, id: 0, object: {}, map: [], collision: [], ambient: [] },
-	ambientObjects: []
+	ambientObjects: [],
+	ambientMap: []
     },
     settings: {
 	graphics: {
@@ -53,14 +54,27 @@ var gameRpgData = {
 	    animations: {
 		    move: "run",
 		    idle: "stand",
-		    attack: "attack"
+		    attack: "attack",
+		    grow: "grow"
 	    },
 	    runSpeed: 70,
 	    walkSpeed: 70,
 	    crouchSpeed: 25
 	},
 	params: {
-	    scale: 5.95
+	    scale: 1.30
+	},
+	items: {
+	    'rock1': 0,
+	    'mushrom1': 0
+	},
+	stats: {
+	    health: 90,
+	    healthRemain: 90,
+	    experience: 0,
+	    level: 1,
+	    attack: 3,
+	    defense: 4
 	}
     }
 };
@@ -123,7 +137,7 @@ var KEYS = {
 var playerKeys = KEYS;
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
-var container, camera, scene, renderer;
+var container, camera, scene, renderer, projector;
 var groundHeightMap;
 var vectorsGround = [];
 var vectors = [];
@@ -139,6 +153,7 @@ var controls = {
 	jump: false,
 	attack: false,
 	block: false,
+	grow: false,
 	lockForward: false,
 	lockBackward: false,
 	lockLeft: false,

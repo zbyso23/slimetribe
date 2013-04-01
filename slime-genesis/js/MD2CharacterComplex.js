@@ -46,11 +46,12 @@ THREE.MD2CharacterComplex = function () {
 	this.meshes = [];
 	this.animations = {};
 	this.loadCounter = 0;
-
+	this.params = {};
 	// internal movement control variables
 	this.speed = 0;
 	this.bodyOrientation = (Math.PI * 2);
 	this.walkSpeed = this.maxSpeed;
+	this.heightSet = false;
 	// internal animation parameters
 
 	this.activeAnimation = null;
@@ -77,16 +78,39 @@ THREE.MD2CharacterComplex = function () {
 	    controls.lockBackward = false;
 	}
 	
-	this.setHeight = function ( ) {
+	this.setHeight = function ( character ) {
+	    if( !character && this.heightSet ) return;
 	    var x = ( ( Math.round( this.root.position.z + ( gameRpgData.world.ground.width / 2 ) )  ) >> gameRpgData.settings.graphics.models.divider );
 	    var y = ( ( Math.round( this.root.position.x  + ( gameRpgData.world.ground.height / 2 ) ) ) >> gameRpgData.settings.graphics.models.divider );
 	    var index = ( ( y + ( x * ( gameRpgData.settings.graphics.models.groundGridX + 1 ) ) ) );
 	    
 	    if( gameRpgData.world.ground.map[index] != undefined ) {
-		var diff = ((( gameRpgData.world.ground.map[index-1] + gameRpgData.world.ground.map[index] + gameRpgData.world.ground.map[index+1] ) / 3 ) + 2.5 ) - this.root.position.y;
+		var diff = ((( gameRpgData.world.ground.map[index-1] + gameRpgData.world.ground.map[index] + gameRpgData.world.ground.map[index+1] ) / 3 ) + this.params.height ) - this.root.position.y;
 		if( diff !== 0 ) {
 		    var target = diff / ( this.animationFPS );
 		    this.root.position.y += target;
+		}
+	    }
+	    this.heightSet = true;
+	    if( ( typeof gameRpgData.world.ambientMap[ index ] !== "undefined" || typeof gameRpgData.world.ambientMap[ index - 1] !== "undefined" || typeof gameRpgData.world.ambientMap[ index + 1] !== "undefined" ) && character === true ) {
+		var object = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? gameRpgData.world.ground.ambient[index - 1] : gameRpgData.world.ground.ambient[index];
+		var index2 = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? index - 1 : index;
+		object = ( object === 255 ) ? gameRpgData.world.ground.ambient[index + 1] : object;
+		index2 = ( object === 255 ) ? index + 1 : index;
+		
+		if( typeof gameRpgData.world.ambientMap[ index2 ] !== "undefined" ) {
+		    if( gameRpgData.world.ambientMap[ index2 ].attributes.timeout === 0 && gameRpgData.world.ambientMap[ index2 ].attributes.type === 'item' && controls.grow === true ) {
+			gameRpgData.player.items[ gameRpgData.world.ambientMap[ index2 ].attributes.name ]++;
+			gameRpgData.world.ambientMap[ index2 ].meshBody.visible = false;
+			gameRpgData.world.ambientMap[ index2 ].attributes.timeout = 500;
+			console.log( 'vem to:) ', gameRpgData.world.ambientMap[ index2 ].meshBody.visible = false );
+		    } else if( gameRpgData.world.ambientMap[ index2 ].attributes.type === 'storage' ) {
+			if( gameRpgData.player.items.rock1 > 0 || gameRpgData.player.items.mushrom1 > 0 ) {
+			    gameRpgData.player.items.rock1 = 0;
+			    gameRpgData.player.items.mushrom1 = 0;
+			    console.log( 'dej to sem:) ', gameRpgData.player.items );
+			}
+		    }
 		}
 	    }
 	    
@@ -238,8 +262,8 @@ THREE.MD2CharacterComplex = function () {
 	    }
 	};
 
-	this.update = function ( delta ) {
-	    if ( this.controls ) this.updateMovementModel( delta );
+	this.update = function ( delta, character ) {
+	    if ( this.controls ) this.updateMovementModel( delta, character );
 
 	    if ( this.animations ) {
 		this.updateBehaviors( delta );
@@ -284,6 +308,10 @@ THREE.MD2CharacterComplex = function () {
 		idleAnimation = animations[ "attack" ];
 	    }
 
+	    if ( controls.grow ) {
+		moveAnimation = animations[ "grow" ];
+		idleAnimation = animations[ "grow" ];
+	    }
 	    // set animations
 
 	    if ( controls.moveForward || controls.moveBackward || controls.moveLeft || controls.moveRight ) {
@@ -325,7 +353,7 @@ THREE.MD2CharacterComplex = function () {
 	    }
 	};
 
-	this.updateMovementModel = function ( delta ) {
+	this.updateMovementModel = function ( delta, character ) {
 	    var controls = this.controls;
 
 	    // speed based on controls
@@ -374,11 +402,13 @@ THREE.MD2CharacterComplex = function () {
 		    this.speed = THREE.Math.clamp( this.speed + k * delta * this.backAcceleration, this.maxReverseSpeed, 0 );
 		}
 	    }
-	    this.setHeight();
+	    this.setHeight( character );
 
 	    // displacement
-	    var forwardDelta = this.speed * delta;
+	    var forwardDelta = ( controls.grow ) ? this.speed / 2 * delta : this.speed * delta;
 	    if( !controls.attack ) {
+		
+		
 		this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
 		this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
 	    }

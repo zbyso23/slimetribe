@@ -38,6 +38,7 @@
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.camera.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.renderer.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.projection.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.lights.js"></script>
 		
 		<script src="slime-genesis/js/game-rpg-data/ambient.js"></script>
@@ -46,6 +47,48 @@
 		<script>
 		    Game.Rpg.initialize();
 		    console.log('load complete....');
+		    
+			function onKeyDown ( event ) {
+				var kc = event.keyCode;
+				switch( kc ) {
+					case playerKeys.UP: controls.moveForward = true; break;
+					case playerKeys.DOWN: controls.moveBackward = true; break;
+					case playerKeys.LEFT: controls.moveLeft = true; break;
+					case playerKeys.RIGHT: controls.moveRight = true; break;
+
+					case playerKeys.ALT: controls.crouch = true; break;
+					case playerKeys.SPACE: controls.jump = true; break;
+					case playerKeys.CTRL: controls.attack = true; break;
+
+				}
+				if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
+				} else {
+				    event.preventDefault();
+				}
+
+			};
+
+			function onKeyUp ( event ) {
+				var kc = event.keyCode;
+				switch( kc ) {
+					case playerKeys.UP: controls.moveForward = false; break;
+					case playerKeys.DOWN: controls.moveBackward = false; break;
+					case playerKeys.LEFT: controls.moveLeft = false; break;
+					case playerKeys.RIGHT: controls.moveRight = false; break;
+
+					case playerKeys.ALT: controls.crouch = false; break;
+					case playerKeys.SPACE: controls.jump = false; break;
+					case playerKeys.CTRL: controls.attack = false; break;
+
+				}
+				if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
+				} else {
+				    event.preventDefault();
+				}
+			};
+
+//			document.addEventListener( 'keydown', onKeyDown, false );
+//			document.addEventListener( 'keyup', onKeyUp, false );
 		</script>
 
 	</body>

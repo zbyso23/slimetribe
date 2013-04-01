@@ -30,8 +30,9 @@ Game.Rpg.Events = {
 	    //Attack
 	    if( ( touch.pageX >= ( onePieceX * 80 ) && touch.pageX < ( onePieceX * 90 ) ) ) {
 		controls.attack = true;
+	    //Action
 	    } else if( touch.pageX >= ( onePieceX * 90 ) && touch.pageX < ( onePieceX * 100 ) ) {
-		controls.attack = true;
+		controls.grow = true;
 	    }
 
 	}
@@ -39,6 +40,8 @@ Game.Rpg.Events = {
     
     resetMove: function() {
 	controls.attack = false;
+	controls.jump = false;
+	controls.grow = false;
 	controls.moveForward = false;
 	controls.moveBackward = false;
 	controls.moveLeft = false;
@@ -48,4 +51,9 @@ Game.Rpg.Events = {
     initialize: function() {
 	window.addEventListener( 'resize', Game.Rpg.Events.resize, false );
     }
+    
+    
+    
+    
+    
 };

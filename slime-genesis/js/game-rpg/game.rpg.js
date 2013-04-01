@@ -3,6 +3,7 @@ Game.Rpg = {
     refresh: function() {
 	requestAnimationFrame( Game.Rpg.refresh );
 	Game.Rpg.refreshLogic();
+	Game.Rpg.refreshAmbient();
 	Game.Rpg.Scene.Renderer.refresh();
 	stats.update();
 	tick++;
@@ -23,7 +24,16 @@ Game.Rpg = {
 	    gameRpgData.run = true;
 	}
     },
-    
+    refreshAmbient: function() {
+	for( i in gameRpgData.world.ambientMap ) {
+	    if( typeof gameRpgData.world.ambientMap[ i ] === "undefined" || gameRpgData.world.ambientMap[ i ].attributes.timeout === 0 || gameRpgData.world.ambientMap[ i ].attributes.spawn === false ) continue;
+	    gameRpgData.world.ambientMap[ i ].attributes.timeout -= 1;
+	    if( gameRpgData.world.ambientMap[ i ].attributes.timeout === 0 ) {
+		gameRpgData.world.ambientMap[ i ].meshBody.visible = true;
+	    }
+	}
+    },
+
     generateWorld: function() {
 	if( gameDataImages.loadedRemain == 0 ) {
 	    
@@ -113,7 +123,8 @@ Game.Rpg = {
 		y = -( ( ( gameRpgData.settings.graphics.models.groundGridX + 1 ) << gameRpgData.settings.graphics.models.divider ) / 2 ) + y;
 		var z = gg.vertices[ i ].z;
 		
-		Game.Rpg.addAmbient( found.config, found.params.scale, { x: y, y: z, z: x } );
+		var ambientObject = Game.Rpg.addAmbient( found.config, found.params.scale, { x: y + found.params.x, y: z + found.params.y, z: x, rot: found.params.rot, height: found.params.z, opacity: found.params.opacity, attributes: found.attributes } );
+		gameRpgData.world.ambientMap[i] = ambientObject;
 	    }
 	}
 	
@@ -132,7 +143,7 @@ Game.Rpg = {
 	gameRpgData.character.md2 = new THREE.MD2CharacterComplex();
 	gameRpgData.character.md2.scale = gameRpgData.player.params.scale;
 	gameRpgData.character.md2.controls = controls;
-	gameRpgData.character.md2.scale = 1;
+	//gameRpgData.character.md2.scale = 1;
 	gameRpgData.character.md2.loadParts( gameRpgData.player.config );
 	gameRpgData.character.md2.onLoadComplete = function () {
 	    //gameRpgData.character.md2.enableShadows( true );
@@ -141,6 +152,7 @@ Game.Rpg = {
 	    gameRpgData.character.md2.root.position.x = gameRpgData.character.position.x;
 	    gameRpgData.character.md2.root.position.y = gameRpgData.character.position.y;
 	    gameRpgData.character.md2.root.position.z = gameRpgData.character.position.z;
+	    gameRpgData.character.md2.params = { height: 2.5 };
 	    scene.add( gameRpgData.character.md2.root );
 	    gameRpgData.character.object = gameRpgData.character.md2.root;
 	    gameRpgData.character.loaded = true;
@@ -149,7 +161,7 @@ Game.Rpg = {
 	    gameRpgData.character.md2.root.add( gyro );
 	}
     },
-    addAmbient: function( config, scale, pos ) {
+    addAmbient: function( config, scale, params ) {
 	var ambient = new THREE.MD2CharacterComplex();
 	ambient.controls = Game.Utils.cloneObj( controls );
 	ambient.scale = 1;
@@ -157,20 +169,18 @@ Game.Rpg = {
 	ambient.loadParts( config );
 	ambient.onLoadComplete = function ( c ) {
 	    ambient.setSkin( 0 );
-	    ambient.root.position.x = pos.x;
-	    ambient.root.position.y = pos.y;
-	    ambient.root.position.z = pos.z;
-	    ambient.root.rotation.y = Math.random( 0, 3 );
-	    ambient.root.rotation.z = Math.random( -0.5, 0.25 );
-	    
-	    /*
-	    ambient.root.scale.x = scale;
-	    ambient.root.scale.y = scale;
-	    ambient.root.scale.z = scale;
-	    */
+	    ambient.root.position.x = params.x;
+	    ambient.root.position.y = params.y;
+	    ambient.root.position.z = params.z;
+	    ambient.bodyOrientation = params.rot;
+	    ambient.params = { height: params.height };
+	    ambient.attributes = Game.Utils.cloneObj( params.attributes );
+	    ambient.meshBody.material.transparent = true;
+	    ambient.meshBody.material.opacity = params.opacity;
 	    scene.add( ambient.root );
 	    gameRpgData.world.ambientObjects.push( ambient );
 	}
+	return ambient;
     },
     
     
@@ -185,6 +195,7 @@ Game.Rpg = {
 	Game.Rpg.Events.initialize();
 	Game.Rpg.Events.Tablet.initialize();
 	Game.Rpg.Events.Mouse.initialize();
+	Game.Rpg.Scene.Projection.initialize();
 	Game.Rpg.refresh();
     }
 };

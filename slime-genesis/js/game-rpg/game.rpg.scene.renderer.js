@@ -14,9 +14,9 @@ Game.Rpg.Scene.Renderer = {
 
 	//cameraControls.update( delta );
 	if( gameRpgData.character.loaded ) {
-	    gameRpgData.character.md2.update( delta );
+	    gameRpgData.character.md2.update( delta, true );
 	}
-	for( i in gameRpgData.world.ambientObjects ) gameRpgData.world.ambientObjects[ i ].update( delta );
+	for( i in gameRpgData.world.ambientObjects ) gameRpgData.world.ambientObjects[ i ].update( delta, false );
 	    
 	
 	

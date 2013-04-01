@@ -25,7 +25,7 @@
 	"colorSpecular" : [0.5, 0.5, 0.5],
 	"depthTest" : true,
 	"depthWrite" : true,
-	"transparency" : 1.0,
+	"transparency" : 0.7,
 	"transparent" : false,
 	"vertexColors" : false
 	}],
