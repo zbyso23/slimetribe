@@ -200,7 +200,15 @@ Game.Rpg = {
 	return ambient;
     },
     
-    
+    coordsToGrid: function() {
+	var stepX = Math.round( gameRpgData.world.ground.width / gameRpgData.settings.graphics.models.groundGridX );
+	var stepY = Math.round( gameRpgData.world.ground.height / gameRpgData.settings.graphics.models.groundGridY );
+	var x = ( gameRpgData.world.ground.width / 2 ) - gameRpgData.character.object.position.x;
+	var y = ( gameRpgData.world.ground.height / 2 ) - gameRpgData.character.object.position.z;
+	var gridX = Math.round( x / stepX );
+	var gridY = Math.round( y / stepY );
+	return [ gridX, gridY ];
+    },
     initialize: function() {
 	Game.Rpg.gameLoader();
 	Game.Rpg.Html.initialize();
