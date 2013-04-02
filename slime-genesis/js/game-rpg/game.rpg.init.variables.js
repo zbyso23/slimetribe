@@ -34,6 +34,7 @@ var gameRpgData = {
     world: {
 	ready: false,
 	ground: { width: 1024, height: 1024, id: 0, object: {}, map: [], collision: [], ambient: [] },
+	sky: { radius: 1000, object: {} },
 	ambientObjects: [],
 	ambientMap: []
     },

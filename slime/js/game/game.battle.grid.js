@@ -69,13 +69,13 @@ Game.Battle.Grid = {
 			Game.Scene.Graphics.setGridCube( gridModels[i].object, BATTLE_GRID.noMoveClear );
 		    }
 		    var position = Game.Battle.Grid.getHealthSize( gameData.battle.selection.hero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
-		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeFriendly, position );
+		    if( typeof gridHealthModels[cords[0]][cords[1]] === "object" ) Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeFriendly, position );
 		} else if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] !== 0 ) {
 		    var position = Game.Battle.Grid.getHealthSize( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]], monstersModels[cords[0]][cords[1]] );
-		    Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeEnemy, position );
-		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
+		    if( typeof gridHealthModels[cords[0]][cords[1]] === "object" ) Game.Scene.Graphics.setHealthCube( gridHealthModels[cords[0]][cords[1]], BATTLE_HEALTH.lifeEnemy, position );
+		    if( typeof gridModels[i].object === "object" ) Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		} else {
-		    Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
+		    if( typeof gridModels[i].object === "object" ) Game.Scene.Graphics.setGridCube( gridModels[i].object, params );
 		}
 	    }
 	}

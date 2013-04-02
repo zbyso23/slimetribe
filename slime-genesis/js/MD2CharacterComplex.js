@@ -431,7 +431,8 @@ THREE.MD2CharacterComplex = function () {
 	    geometry.computeMorphNormals();
 	    var whiteMap = THREE.ImageUtils.generateDataTexture( 1, 1, new THREE.Color( 0xffffff ) );
 	    var materialWireframe = new THREE.MeshPhongMaterial( { color: 0xffaa00, specular: 0x111111, shininess: 50, wireframe: true, shading: THREE.SmoothShading, map: whiteMap, morphTargets: true, morphNormals: true, metal: true } );
-	    var materialTexture = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 50, wireframe: false, shading: THREE.SmoothShading, map: skinMap, morphTargets: true, morphNormals: true, metal: true } );
+	    //var materialTexture = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 50, wireframe: false, shading: THREE.SmoothShading, map: skinMap, morphTargets: true, morphNormals: true, metal: true } );
+	    var materialTexture = new THREE.MeshBasicMaterial( { color: 0xffffff, specular: 0x111111, shininess: 50, wireframe: false, map: skinMap, morphTargets: true, morphNormals: true } );
 	    materialTexture.wrapAround = true;
 	    var mesh = new THREE.MorphBlendMesh( geometry, materialTexture );
 	    mesh.rotation.y = -Math.PI/2;

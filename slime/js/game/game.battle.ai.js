@@ -83,11 +83,12 @@ Game.Battle.Ai = {
 	    Game.Battle.Ai.fullStats.spells = monsters.spells.length;
 	}
 	//Remove healers from attack, if is anybody other to attack + 1
+	/*
 	if( Game.Battle.Ai.fullStats.attack > Game.Battle.Ai.fullStats.healers + 1 ) {
 	    var newAttack = [];
 	    for( i in monsters.attack ) if( monsters.stats.healing === false ) newAttack.push( monsters.attack[ i ] );
 	    monsters.attack = newAttack;
-	}
+	}*/
 	Game.Battle.Ai.iteration++;
 	return monsters;
     },

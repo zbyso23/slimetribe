@@ -7,6 +7,8 @@ Game.Rpg.Scene.Renderer = {
 	container.appendChild( renderer.domElement );
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
+	//NO ANDROID
+	//renderer.shadowMapEnabled = true;
     },
     refresh: function() {
 	var delta = clock.getDelta();

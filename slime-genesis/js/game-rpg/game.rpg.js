@@ -36,7 +36,6 @@ Game.Rpg = {
 
     generateWorld: function() {
 	if( gameDataImages.loadedRemain == 0 ) {
-	    
 	    Game.Rpg.generateWorldGround();
 	    
 	    Game.Rpg.generateCharacter();
@@ -77,14 +76,12 @@ Game.Rpg = {
     
     generateWorldGround: function() {
 	//  GROUND
-	var gt = THREE.ImageUtils.loadTexture( "slime-genesis/textures/terrain/grass.gif" );
-	
-	gt.anisotropy = renderer.getMaxAnisotropy();
-	
+	var gt = THREE.ImageUtils.loadTexture( "slime-genesis/textures/terrain/grass-1024.jpg" );
 	var quality = 16, step = 1024 / quality;
 	var ggGridX = gameRpgData.settings.graphics.models.groundGridX;
 	var ggGridY = gameRpgData.settings.graphics.models.groundGridY;
 	var gg = new THREE.PlaneGeometry( gameRpgData.world.ground.width, gameRpgData.world.ground.height, ggGridX, ggGridY );
+	
 	//gg.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	var ggLength = gg.vertices.length;
 	var ggLengthX = ggGridX;
@@ -129,14 +126,33 @@ Game.Rpg = {
 	}
 	
 	var shininess = 50;
-	var gm = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false, map: gt, side: THREE.DoubleSide } )
+	//ANDROID
+	var gm = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); 
+	//Faster ANDROID
+	//var gm = new THREE.MeshLambertMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); 
+	//No ANDROID
+	//var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
 	var ground = new THREE.Mesh( gg, gm );
-	//ground.rotation.x = - Math.PI / 2;
 	ground.rotation.x = -1.57;
-	ground.material.map.repeat.set( 1, 1 );
+	//No ANDROID 
+	//var anisotropyMax = renderer.getMaxAnisotropy(); ground.material.map.anisotropy = renderer.getMaxAnisotropy();
+	ground.material.map.repeat.set( 2, 2 );
 	ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
+	//No ANDROID 
+	//ground.receiveShadow = true;
 	gameRpgData.world.ground.object = ground;
 	scene.add( gameRpgData.world.ground.object );
+	/*
+	var ggSky = new THREE.SphereGeometry( 90, 32, 32 );
+	var gmSky = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: false, map: gt, gtside: THREE.DoubleSide } );
+	var sky = new THREE.Mesh( ggSky, gmSky );
+	var skyOuter = new THREE.Mesh( ggSky, gmSky );
+	skyOuter.scale.set( 6, 6, 6 );
+	sky.scale.set( -6, -6, -6 );
+	gameRpgData.world.sky.object = sky;
+	scene.add( gameRpgData.world.sky.object );
+	scene.add( gameRpgData.world.skyOuter );
+	*/
     },
     
     generateCharacter: function() {
@@ -146,6 +162,7 @@ Game.Rpg = {
 	//gameRpgData.character.md2.scale = 1;
 	gameRpgData.character.md2.loadParts( gameRpgData.player.config );
 	gameRpgData.character.md2.onLoadComplete = function () {
+	    //NO ANDROID
 	    //gameRpgData.character.md2.enableShadows( true );
 	    //gameRpgData.character.md2.setWeapon( 0 );
 	    gameRpgData.character.md2.setSkin( 0 );
