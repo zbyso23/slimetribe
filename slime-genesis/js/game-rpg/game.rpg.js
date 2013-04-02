@@ -87,15 +87,25 @@ Game.Rpg = {
 	var ggLengthX = ggGridX;
 	var ggLengthY = gg.vertices.length / ggGridY;
 	groundHeightMap = gameResources.images['ground-test1-128'].canvas.getImageData( 0, 0, gameResources.images['ground-test1-128'].w, gameResources.images['ground-test1-128'].h );
-
+	var x = y = 0;
+	var test = [];
 	for( var i = 0, l = groundHeightMap.data.length; i < l; i = i + 4 ) {
+	    if( i % ( gameRpgData.settings.graphics.models.groundGridX + 1 ) === 0 ) {
+		console.log('je dlouhy?', i );
+		x = 0;
+		y++;
+	    }
+	    if( typeof test[x] === "undefined" ) test[x] = [];
+	    test[x][y] = i;
+
 	    var ambient = l - i;
 	    var map = l - ( i - 1 );
 	    var collision = l - ( i - 2 );
-	    gameRpgData.world.ground.map.push( parseInt( groundHeightMap.data[map] ) / 4 );
+	    gameRpgData.world.ground.map.push( parseInt( groundHeightMap.data[map] ) / 3.3333333 );
 	    gameRpgData.world.ground.ambient.push( parseInt( groundHeightMap.data[ambient] ) );
 	    gameRpgData.world.ground.collision.push( parseInt( groundHeightMap.data[collision] ) );
 	}
+	console.log('test', test );
 	
 	for( var i = 0, l = gg.vertices.length; i < l; i++ ) {
 	    var j = l - i;
