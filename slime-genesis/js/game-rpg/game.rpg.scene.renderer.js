@@ -13,14 +13,9 @@ Game.Rpg.Scene.Renderer = {
     refresh: function() {
 	var delta = clock.getDelta();
 	if ( t > 1 ) t = 0;
-
 	//cameraControls.update( delta );
-	if( gameRpgData.character.loaded ) {
-	    gameRpgData.character.md2.update( delta, true );
-	}
-	for( i in gameRpgData.world.ambientObjects ) gameRpgData.world.ambientObjects[ i ].update( delta, false );
-	    
-	
+	if( gameRpgData.character.loaded ) gameRpgData.character.md2.update( delta, true );
+	for( var y = 0; y < gameRpgData.world.ambientObjects.length; y++ ) for( var x = 0; x < gameRpgData.world.ambientObjects[y].length; x++ ) if( gameRpgData.world.ambientObjects[y][x] !== 0 ) gameRpgData.world.ambientObjects[y][x].update( delta, false );
 	
 	renderer.render( scene, camera );
     }

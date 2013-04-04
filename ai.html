@@ -3,12 +3,10 @@
     <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src='heroes/js/ai.js'></script>
-
     </head>
     <body>
 	<div></div>
-	<img src="http://www.darrenburnhill.com/graphics/img/apng/rev-counter_animation_white_small.apng_optimized.png" style="display:none;" id="" />
+	
 	<script>
 	    function dec2hex(n){
 		n = parseInt(n); var c = 'ABCDEF';
@@ -16,6 +14,7 @@
 		b = ((b>=0) && (b<=9)) ? b : c.charAt(b-10);    
 		return ((r>=0) && (r<=9)) ? b+''+r : b+''+c.charAt(r-10);
 	    }
+	    /*
 	    var percent = 0;
 	    for( var i = 0; i <= 255; i += 25.5 ) {
 		var red = dec2hex( Math.round( i ) );
@@ -30,6 +29,22 @@
 	    num += ( num === 100 ) ? 0 : 10;
 	    num = ( health === 0 ) ? 0 : num;
 	    document.write( num );
+	    */
+	   
+	var test = [];
+	var row = [];
+	for( var i = 0; i < 65535; i = i + 4 ) {
+	    if( i > 0 && i % 128 === 0 ) {
+		//console.log('je dlouhy?', i );
+		test.push( row );
+		row = [];
+	    }
+	    row.push( 1 );
+	}
+	console.log('test', test );	   
+	   
+	   
+	   
 	</script>
     </body>
 </html>

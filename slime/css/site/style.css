@@ -24,6 +24,15 @@ div#container {
     -webkit-box-shadow: inset 5px 5px 27px 3px #110; 
     box-shadow: inset 5px 5px 27px 3px #110; 
 }
+div#github {
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    z-index: 11000;
+    right: 0px;
+    top: 0px;
+    display: block;
+}
 
 div#header {
     float: left;

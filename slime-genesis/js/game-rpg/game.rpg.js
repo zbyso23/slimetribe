@@ -25,13 +25,14 @@ Game.Rpg = {
 	}
     },
     refreshAmbient: function() {
+	/*
 	for( i in gameRpgData.world.ambientMap ) {
-	    if( typeof gameRpgData.world.ambientMap[ i ] === "undefined" || gameRpgData.world.ambientMap[ i ].attributes.timeout === 0 || gameRpgData.world.ambientMap[ i ].attributes.spawn === false ) continue;
+	    if( typeof gameRpgData.world.ambientMap[ i ] === "undefined" || typeof gameRpgData.world.ambientMap[ i ].attributes === "undefined" || gameRpgData.world.ambientMap[ i ].attributes.timeout === 0 || gameRpgData.world.ambientMap[ i ].attributes.spawn === false ) continue;
 	    gameRpgData.world.ambientMap[ i ].attributes.timeout -= 1;
 	    if( gameRpgData.world.ambientMap[ i ].attributes.timeout === 0 ) {
 		gameRpgData.world.ambientMap[ i ].meshBody.visible = true;
 	    }
-	}
+	}*/
     },
 
     generateWorld: function() {
@@ -82,98 +83,90 @@ Game.Rpg = {
 	var ggGridY = gameRpgData.settings.graphics.models.groundGridY;
 	var gg = new THREE.PlaneGeometry( gameRpgData.world.ground.width, gameRpgData.world.ground.height, ggGridX, ggGridY );
 	
-	//gg.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
-	var ggLength = gg.vertices.length;
-	var ggLengthX = ggGridX;
-	var ggLengthY = gg.vertices.length / ggGridY;
 	groundHeightMap = gameResources.images['ground-test1-128'].canvas.getImageData( 0, 0, gameResources.images['ground-test1-128'].w, gameResources.images['ground-test1-128'].h );
 	var x = y = 0;
-	var test = [];
+	gameRpgData.world.ambientMap = [];
+	var heightMap = [];
+	var ambientRow = [];
+	var heightRow = [];
+	var collisionRow = [];
+	var heightMap = [];
+	var ambientObjectsRow = [];
+	gameRpgData.world.ambientObjects = [];
 	for( var i = 0, l = groundHeightMap.data.length; i < l; i = i + 4 ) {
-	    if( i % ( gameRpgData.settings.graphics.models.groundGridX + 1 ) === 0 ) {
-		console.log('je dlouhy?', i );
-		x = 0;
-		y++;
+	    if( i > 0 && i % ( ( gameRpgData.settings.graphics.models.groundGridX + 1 ) * 4 ) === 0 ) {
+		gameRpgData.world.ambientMap.push( ambientRow );
+		gameRpgData.world.collisionMap.push( collisionRow );
+		gameRpgData.world.heightMap.push( heightRow );
+		gameRpgData.world.ambientObjects.push( ambientObjectsRow );
+		var ambientRow = [];
+		var heightRow = [];
+		var collisionRow = [];
+		var ambientObjectsRow = [];
 	    }
-	    if( typeof test[x] === "undefined" ) test[x] = [];
-	    test[x][y] = i;
-
-	    var ambient = l - i;
-	    var map = l - ( i - 1 );
-	    var collision = l - ( i - 2 );
-	    gameRpgData.world.ground.map.push( parseInt( groundHeightMap.data[map] ) / 3.3333333 );
-	    gameRpgData.world.ground.ambient.push( parseInt( groundHeightMap.data[ambient] ) );
-	    gameRpgData.world.ground.collision.push( parseInt( groundHeightMap.data[collision] ) );
-	}
-	console.log('test', test );
-	
-	for( var i = 0, l = gg.vertices.length; i < l; i++ ) {
-	    var j = l - i;
-	    gg.vertices[ i ].z = gameRpgData.world.ground.map[ i + 1 ];
 	    
-	    if( gameRpgData.world.ground.ambient[ i ] !== 255 ) {
-		var id = gameRpgData.world.ground.ambient[ i ];
-		var found = false;
-		for( a in GameRpgAmbientList ) {
-		    if( GameRpgAmbientList[ a ].id == id ) {
-			found = GameRpgAmbientList[ a ].object;
-			break;
-		    }
-		}
-		if( !found ) continue;
-		
-		var x = ( i / ( gameRpgData.settings.graphics.models.groundGridX + 1 ) );
-		var y = ( i % ( gameRpgData.settings.graphics.models.groundGridX + 1 ) );
-		x = x << gameRpgData.settings.graphics.models.divider;
-		y = y << gameRpgData.settings.graphics.models.divider;
-		x = -( ( ( gameRpgData.settings.graphics.models.groundGridX + 1 ) << gameRpgData.settings.graphics.models.divider ) / 2 ) + x;
-		y = -( ( ( gameRpgData.settings.graphics.models.groundGridX + 1 ) << gameRpgData.settings.graphics.models.divider ) / 2 ) + y;
-		var z = gg.vertices[ i ].z;
-		
-		var ambientObject = Game.Rpg.addAmbient( found.config, found.params.scale, { x: y + found.params.x, y: z + found.params.y, z: x, rot: found.params.rot, height: found.params.z, opacity: found.params.opacity, attributes: found.attributes } );
-		gameRpgData.world.ambientMap[i] = ambientObject;
-	    }
+	    var ambient = i
+	    var map = i + 1;
+	    var collision = i + 2;
+	    ambientRow.push( groundHeightMap.data[ambient] );
+	    heightRow.push( groundHeightMap.data[map] / 3.3333333 );
+	    heightMap.push( parseInt( groundHeightMap.data[map] ) / 3.3333333 );
+	    collisionRow.push( groundHeightMap.data[collision] );
+	    ambientObjectsRow.push( 0 );
 	}
+	gameRpgData.world.ambientMap.push( ambientRow );
+	gameRpgData.world.collisionMap.push( collisionRow );
+	gameRpgData.world.heightMap.push( heightRow );
+
+	for( var i = 0, l = gg.vertices.length; i < l; i++ ) gg.vertices[ i ].z = heightMap[i];
+	for( var y in gameRpgData.world.ambientMap ) for( var x in gameRpgData.world.ambientMap[y] ) {
+	    var coords = Game.Rpg.gridToCoords( { x: x, y: y, center: true } );
+	    if( gameRpgData.world.ambientMap[y][x] !== 255 ) Game.Rpg.addAmbientObject( { id: gameRpgData.world.ambientMap[y][x], x: coords.x, y: coords.y, z: gameRpgData.world.heightMap[y][x], gridX: x, gridY: y } )
+	}
+	
+	console.log( 'gameRpgData.world.ambientObjects', gameRpgData.world.ambientObjects );
 	
 	var shininess = 50;
 	//ANDROID
 	var gm = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); 
 	//Faster ANDROID
 	//var gm = new THREE.MeshLambertMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); 
-	//No ANDROID
-	//var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
+	//No ANDROID var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
 	var ground = new THREE.Mesh( gg, gm );
 	ground.rotation.x = -1.57;
-	//No ANDROID 
-	//var anisotropyMax = renderer.getMaxAnisotropy(); ground.material.map.anisotropy = renderer.getMaxAnisotropy();
+	//No ANDROID var anisotropyMax = renderer.getMaxAnisotropy(); ground.material.map.anisotropy = renderer.getMaxAnisotropy();
 	ground.material.map.repeat.set( 2, 2 );
 	ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
-	//No ANDROID 
-	//ground.receiveShadow = true;
+	//No ANDROID ground.receiveShadow = true;
 	gameRpgData.world.ground.object = ground;
 	scene.add( gameRpgData.world.ground.object );
-	/*
-	var ggSky = new THREE.SphereGeometry( 90, 32, 32 );
+	/*var ggSky = new THREE.SphereGeometry( 90, 32, 32 );
 	var gmSky = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: false, map: gt, gtside: THREE.DoubleSide } );
 	var sky = new THREE.Mesh( ggSky, gmSky );
-	var skyOuter = new THREE.Mesh( ggSky, gmSky );
-	skyOuter.scale.set( 6, 6, 6 );
 	sky.scale.set( -6, -6, -6 );
 	gameRpgData.world.sky.object = sky;
-	scene.add( gameRpgData.world.sky.object );
-	scene.add( gameRpgData.world.skyOuter );
-	*/
+	scene.add( gameRpgData.world.sky.object );*/
     },
-    
+    addAmbientObject: function( params ) {
+	var found = false;
+	for( a in GameRpgAmbientList ) {
+	    if( GameRpgAmbientList[ a ].id == params.id ) {
+		found = GameRpgAmbientList[ a ].object;
+		break;
+	    }
+	}
+	if( !found ) return false;
+	var ambientObject = Game.Rpg.addAmbient( found.config, found.params.scale, { x: params.x + found.params.x, y: params.z, z: params.y + found.params.y, rot: found.params.rot, height: found.params.z, opacity: found.params.opacity, attributes: found.attributes } );
+	if( typeof gameRpgData.world.ambientObjects[params.gridY] === "undefined" ) gameRpgData.world.ambientObjects[params.gridY] = [];
+	gameRpgData.world.ambientObjects[params.gridY][params.gridX] = ambientObject;
+    },
     generateCharacter: function() {
 	gameRpgData.character.md2 = new THREE.MD2CharacterComplex();
 	gameRpgData.character.md2.scale = gameRpgData.player.params.scale;
 	gameRpgData.character.md2.controls = controls;
-	//gameRpgData.character.md2.scale = 1;
 	gameRpgData.character.md2.loadParts( gameRpgData.player.config );
 	gameRpgData.character.md2.onLoadComplete = function () {
-	    //NO ANDROID
-	    //gameRpgData.character.md2.enableShadows( true );
+	    //NO ANDROID gameRpgData.character.md2.enableShadows( true );
 	    //gameRpgData.character.md2.setWeapon( 0 );
 	    gameRpgData.character.md2.setSkin( 0 );
 	    gameRpgData.character.md2.root.position.x = gameRpgData.character.position.x;
@@ -207,18 +200,29 @@ Game.Rpg = {
 	    scene.add( ambient.root );
 	    gameRpgData.world.ambientObjects.push( ambient );
 	}
+	console.log( 'params ambient', params );
 	return ambient;
     },
     
-    coordsToGrid: function() {
+    coordsToGrid: function( params ) {
 	var stepX = Math.round( gameRpgData.world.ground.width / gameRpgData.settings.graphics.models.groundGridX );
 	var stepY = Math.round( gameRpgData.world.ground.height / gameRpgData.settings.graphics.models.groundGridY );
-	var x = ( gameRpgData.world.ground.width / 2 ) - gameRpgData.character.object.position.x;
-	var y = ( gameRpgData.world.ground.height / 2 ) - gameRpgData.character.object.position.z;
-	var gridX = Math.round( x / stepX );
-	var gridY = Math.round( y / stepY );
-	return [ gridX, gridY ];
+	var x = ( gameRpgData.world.ground.width / 2 ) - params.x;//gameRpgData.character.object.position.x;
+	var y = ( gameRpgData.world.ground.height / 2 ) - params.y;//gameRpgData.character.object.position.z;
+	var gridX = ( gameRpgData.settings.graphics.models.groundGridX + 1 ) - Math.round( x / stepX );
+	var gridY = ( gameRpgData.settings.graphics.models.groundGridY + 1 ) - Math.round( y / stepY );
+	return { x: gridX, y: gridY };
     },
+    gridToCoords: function( params ) {
+	var stepX = Math.round( gameRpgData.world.ground.width / gameRpgData.settings.graphics.models.groundGridX );
+	var stepY = Math.round( gameRpgData.world.ground.height / gameRpgData.settings.graphics.models.groundGridY );
+	var coordsX = ( gameRpgData.world.ground.width / 2 ) - ( params.x * stepX );
+	var coordsY = ( gameRpgData.world.ground.height / 2 ) - ( params.y * stepY );
+	coordsX = ( params.center === true ) ? coordsX + ( stepX / 2 ) : coordsX;
+	coordsY = ( params.center === true ) ? coordsY + ( stepY / 2 ) : coordsY;
+	return { x: coordsX, y: coordsY, center: params.center };
+    },
+
     initialize: function() {
 	Game.Rpg.gameLoader();
 	Game.Rpg.Html.initialize();

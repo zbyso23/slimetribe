@@ -80,18 +80,25 @@ THREE.MD2CharacterComplex = function () {
 	
 	this.setHeight = function ( character ) {
 	    if( !character && this.heightSet ) return;
-	    var x = ( ( Math.round( this.root.position.z + ( gameRpgData.world.ground.width / 2 ) )  ) >> gameRpgData.settings.graphics.models.divider );
-	    var y = ( ( Math.round( this.root.position.x  + ( gameRpgData.world.ground.height / 2 ) ) ) >> gameRpgData.settings.graphics.models.divider );
-	    var index = ( ( y + ( x * ( gameRpgData.settings.graphics.models.groundGridX + 1 ) ) ) );
+	    //var x = ( ( Math.round( this.root.position.z + ( gameRpgData.world.ground.width / 2 ) )  ) >> gameRpgData.settings.graphics.models.divider );
+	    //var y = ( ( Math.round( this.root.position.x  + ( gameRpgData.world.ground.height / 2 ) ) ) >> gameRpgData.settings.graphics.models.divider );
+	    //var index = ( ( y + ( x * ( gameRpgData.settings.graphics.models.groundGridX + 1 ) ) ) );
+	    var grid = Game.Rpg.coordsToGrid( { x: this.root.position.z, y: this.root.position.x } );
+	    if( grid.x < 0 || grid.Y < 0 || grid.x > gameRpgData.settings.graphics.models.groundGridX || grid.y > gameRpgData.settings.graphics.models.groundGridY ) return;
 	    
-	    if( gameRpgData.world.ground.map[index] != undefined ) {
-		var diff = ((( gameRpgData.world.ground.map[index-1] + gameRpgData.world.ground.map[index] + gameRpgData.world.ground.map[index+1] ) / 3 ) + this.params.height ) - this.root.position.y;
-		if( diff !== 0 ) {
-		    var target = diff / ( this.animationFPS );
-		    this.root.position.y += target;
-		}
+	    if( !character ) {
+		this.root.position.y = gameRpgData.world.heightMap[grid.x][grid.y];
+		//this.heightSet = true;
+		return;
 	    }
-	    this.heightSet = true;
+	    var diff = ( this.root.position.y - gameRpgData.world.heightMap[grid.x][grid.y] );
+	    if( Math.abs( diff ) > 2 ) {
+		var target = ( diff > 0 ) ? diff : diff * -1;
+		target = target / this.animationFPS;
+		this.root.position.y = ( diff > 0 ) ? this.root.position.y - target : this.root.position.y + target;
+	    }
+	    
+/*	    
 	    if( ( typeof gameRpgData.world.ambientMap[ index ] !== "undefined" || typeof gameRpgData.world.ambientMap[ index - 1] !== "undefined" || typeof gameRpgData.world.ambientMap[ index + 1] !== "undefined" ) && character === true ) {
 		var object = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? gameRpgData.world.ground.ambient[index - 1] : gameRpgData.world.ground.ambient[index];
 		var index2 = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? index - 1 : index;
@@ -113,29 +120,7 @@ THREE.MD2CharacterComplex = function () {
 		    }
 		}
 	    }
-	    
-	    if( gameRpgData.world.ground.collision[index] != undefined && gameRpgData.world.ground.collision[index] < 255 ) {
-		if ( this.bodyOrientation == this.orientations.f ) {
-		    controls.lockBackward = true;
-		    this.root.position.z += 5;
-		} else if ( this.bodyOrientation == this.orientations.b ) {
-		    controls.lockForward = true;
-		    this.root.position.z -= 5;
-		} else if( this.bodyOrientation == this.orientations.r ) {
-		    controls.lockLeft = true;
-		    this.root.position.x -= 5;
-		} else if( this.bodyOrientation == this.orientations.l ) {
-		    controls.lockRight = true;
-		    this.root.position.x += 5;
-		}
-		if( gameRpgData.world.ground.collision[index] === 0 ) {
-		    this.speed = this.maxSpeed * -0.55; 
-		} else {
-		    this.speed = this.maxSpeed * -0.25; 
-		}
-	    } else {
-		this.unlockKeys();
-	    }
+	    */
 	}
 
 	this.setBodyOrientation = function ( orientation ) {
@@ -407,10 +392,15 @@ THREE.MD2CharacterComplex = function () {
 	    // displacement
 	    var forwardDelta = ( controls.grow ) ? this.speed / 2 * delta : this.speed * delta;
 	    if( !controls.attack ) {
-		
-		
-		this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
-		this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
+		var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
+		collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;
+		collisionDetect.y += Math.cos( this.bodyOrientation ) * forwardDelta;
+		var grid = Game.Rpg.coordsToGrid( { x: collisionDetect.x, y: collisionDetect.y } );
+		if( grid.x < 0 || grid.Y < 0 || grid.x <= gameRpgData.settings.graphics.models.groundGridX || grid.y <= gameRpgData.settings.graphics.models.groundGridY )
+		if( grid.x > 0 && grid.y > 0 && grid.x <= gameRpgData.settings.graphics.models.groundGridX && grid.y <= gameRpgData.settings.graphics.models.groundGridY ) {
+		    this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
+		    this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
+		}
 	    }
 	    // steering
 	    this.root.rotation.y = this.bodyOrientation;
