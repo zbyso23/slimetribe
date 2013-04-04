@@ -57,6 +57,13 @@
 		}
 		var webgl = '<p class="center" id="demolink"><a href="demo.html" class="demo-button" target="_blank">DESKTOP</a><a href="genesis.html" class="demo-button" target="_blank">ANDROID</a></p>';
 		var nowebgl = '<h2>Ops!</h2><p class="center" id="nowebg">Sorry, your browser or your computer don\'t compatible with WebGL. For more information look <a href="#faq" target="_blank">here.</a></p>';
+		function refresh() {
+		    var random = Math.random( 15 ) * 7;
+		    document.getElementById('github').style.opacity = 0.7 - random / 23;
+		};
+		setInterval( refresh, 230 );
+		
+		
             </script>
 	    
             <div id="container">
