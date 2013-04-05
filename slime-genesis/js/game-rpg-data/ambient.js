@@ -58,7 +58,7 @@ GameRpgAmbient = {
 	params: { scale: 2.05, z: 7, y: 0, x: 0, rot: -1.57, opacity: 0.45 },
 	attributes: {
 	    type: 'storage',
-	    itemsMax: 15,
+	    itemsMax: 150,
 	    items: [],
 	    accept: [ 0, 1 ],
 	    spawn: false,
