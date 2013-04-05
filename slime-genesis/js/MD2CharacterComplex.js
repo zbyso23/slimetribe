@@ -7,7 +7,7 @@ THREE.MD2CharacterComplex = function () {
 	this.scale = 1;
 	this.myPi = 3.14;
 	// animation parameters
-	this.animationFPS = 7;
+	this.animationFPS = 9;
 	this.transitionFrames = 15;
 	//this.orientations = { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 };
 	//this.orientations = { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 };
@@ -25,7 +25,7 @@ THREE.MD2CharacterComplex = function () {
 	
 	// movement model parameters
 
-	this.maxSpeed = 275;
+	this.maxSpeed = 375;
 	this.maxReverseSpeed = -275;
 	this.frontAcceleration = 400;
 	this.backAcceleration = 600;
@@ -80,47 +80,23 @@ THREE.MD2CharacterComplex = function () {
 	
 	this.setHeight = function ( character ) {
 	    if( !character && this.heightSet ) return;
-	    //var x = ( ( Math.round( this.root.position.z + ( gameRpgData.world.ground.width / 2 ) )  ) >> gameRpgData.settings.graphics.models.divider );
-	    //var y = ( ( Math.round( this.root.position.x  + ( gameRpgData.world.ground.height / 2 ) ) ) >> gameRpgData.settings.graphics.models.divider );
-	    //var index = ( ( y + ( x * ( gameRpgData.settings.graphics.models.groundGridX + 1 ) ) ) );
 	    var grid = Game.Rpg.coordsToGrid( { x: this.root.position.z, y: this.root.position.x } );
 	    if( grid.x < 0 || grid.Y < 0 || grid.x > gameRpgData.settings.graphics.models.groundGridX || grid.y > gameRpgData.settings.graphics.models.groundGridY ) return;
-	    
+	    var reversedGrid = Game.Rpg.reverseGrid( grid );
 	    if( !character ) {
-		this.root.position.y = gameRpgData.world.heightMap[grid.x][grid.y];
+		this.root.position.y = gameRpgData.world.heightMap[reversedGrid.x][reversedGrid.y];
 		//this.heightSet = true;
 		return;
 	    }
-	    var diff = ( this.root.position.y - gameRpgData.world.heightMap[grid.x][grid.y] );
+	    
+	    var diff = ( this.root.position.y - gameRpgData.world.heightMap[reversedGrid.x][reversedGrid.y] );
 	    if( Math.abs( diff ) > 2 ) {
 		var target = ( diff > 0 ) ? diff : diff * -1;
-		target = target / this.animationFPS;
+		target = ( target / ( this.animationFPS * 2.3 ) );
 		this.root.position.y = ( diff > 0 ) ? this.root.position.y - target : this.root.position.y + target;
 	    }
 	    
-/*	    
-	    if( ( typeof gameRpgData.world.ambientMap[ index ] !== "undefined" || typeof gameRpgData.world.ambientMap[ index - 1] !== "undefined" || typeof gameRpgData.world.ambientMap[ index + 1] !== "undefined" ) && character === true ) {
-		var object = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? gameRpgData.world.ground.ambient[index - 1] : gameRpgData.world.ground.ambient[index];
-		var index2 = ( gameRpgData.world.ground.ambient[index - 1] !== 255 ) ? index - 1 : index;
-		object = ( object === 255 ) ? gameRpgData.world.ground.ambient[index + 1] : object;
-		index2 = ( object === 255 ) ? index + 1 : index;
-		
-		if( typeof gameRpgData.world.ambientMap[ index2 ] !== "undefined" ) {
-		    if( gameRpgData.world.ambientMap[ index2 ].attributes.timeout === 0 && gameRpgData.world.ambientMap[ index2 ].attributes.type === 'item' && controls.grow === true ) {
-			gameRpgData.player.items[ gameRpgData.world.ambientMap[ index2 ].attributes.name ]++;
-			gameRpgData.world.ambientMap[ index2 ].meshBody.visible = false;
-			gameRpgData.world.ambientMap[ index2 ].attributes.timeout = 500;
-			console.log( 'vem to:) ', gameRpgData.world.ambientMap[ index2 ].meshBody.visible = false );
-		    } else if( gameRpgData.world.ambientMap[ index2 ].attributes.type === 'storage' ) {
-			if( gameRpgData.player.items.rock1 > 0 || gameRpgData.player.items.mushrom1 > 0 ) {
-			    gameRpgData.player.items.rock1 = 0;
-			    gameRpgData.player.items.mushrom1 = 0;
-			    console.log( 'dej to sem:) ', gameRpgData.player.items );
-			}
-		    }
-		}
-	    }
-	    */
+	    if( this.controls.grow === true ) Game.Rpg.Character.action( grid );
 	}
 
 	this.setBodyOrientation = function ( orientation ) {

@@ -33,6 +33,7 @@ Game.Rpg = {
 		gameRpgData.world.ambientMap[ i ].meshBody.visible = true;
 	    }
 	}*/
+	
     },
 
     generateWorld: function() {
@@ -109,8 +110,10 @@ Game.Rpg = {
 	    var map = i + 1;
 	    var collision = i + 2;
 	    ambientRow.push( groundHeightMap.data[ambient] );
-	    heightRow.push( groundHeightMap.data[map] / 3.3333333 );
-	    heightMap.push( parseInt( groundHeightMap.data[map] ) / 3.3333333 );
+	    
+	    //if( groundHeightMap.data[ambient] !== 255 ) console.log( 'ambient ' + ambientRow.length - 1 + ' x ' + gameRpgData.world.ambientMap.length - 1 );
+	    heightRow.push( groundHeightMap.data[map] / 2.3333333 );
+	    heightMap.push( parseInt( groundHeightMap.data[map] ) / 2.3333333 );
 	    collisionRow.push( groundHeightMap.data[collision] );
 	    ambientObjectsRow.push( 0 );
 	}
@@ -121,7 +124,11 @@ Game.Rpg = {
 	for( var i = 0, l = gg.vertices.length; i < l; i++ ) gg.vertices[ i ].z = heightMap[i];
 	for( var y in gameRpgData.world.ambientMap ) for( var x in gameRpgData.world.ambientMap[y] ) {
 	    var coords = Game.Rpg.gridToCoords( { x: x, y: y, center: true } );
-	    if( gameRpgData.world.ambientMap[y][x] !== 255 ) Game.Rpg.addAmbientObject( { id: gameRpgData.world.ambientMap[y][x], x: coords.x, y: coords.y, z: gameRpgData.world.heightMap[y][x], gridX: x, gridY: y } )
+	    
+	    if( gameRpgData.world.ambientMap[y][x] !== 255 ) {
+		Game.Rpg.addAmbientObject( { id: gameRpgData.world.ambientMap[y][x], x: coords.x, y: coords.y, z: gameRpgData.world.heightMap[y][x], gridX: x, gridY: y } )
+		//console.log( 'ambient ', x + ' x ' + y );
+	    }
 	}
 	
 	console.log( 'gameRpgData.world.ambientObjects', gameRpgData.world.ambientObjects );
@@ -135,7 +142,7 @@ Game.Rpg = {
 	var ground = new THREE.Mesh( gg, gm );
 	ground.rotation.x = -1.57;
 	//No ANDROID var anisotropyMax = renderer.getMaxAnisotropy(); ground.material.map.anisotropy = renderer.getMaxAnisotropy();
-	ground.material.map.repeat.set( 2, 2 );
+	ground.material.map.repeat.set( 16, 16 );
 	ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
 	//No ANDROID ground.receiveShadow = true;
 	gameRpgData.world.ground.object = ground;
@@ -200,7 +207,6 @@ Game.Rpg = {
 	    scene.add( ambient.root );
 	    gameRpgData.world.ambientObjects.push( ambient );
 	}
-	console.log( 'params ambient', params );
 	return ambient;
     },
     
@@ -209,8 +215,8 @@ Game.Rpg = {
 	var stepY = Math.round( gameRpgData.world.ground.height / gameRpgData.settings.graphics.models.groundGridY );
 	var x = ( gameRpgData.world.ground.width / 2 ) - params.x;//gameRpgData.character.object.position.x;
 	var y = ( gameRpgData.world.ground.height / 2 ) - params.y;//gameRpgData.character.object.position.z;
-	var gridX = ( gameRpgData.settings.graphics.models.groundGridX + 1 ) - Math.round( x / stepX );
-	var gridY = ( gameRpgData.settings.graphics.models.groundGridY + 1 ) - Math.round( y / stepY );
+	var gridX = Math.round( x / stepX );
+	var gridY = Math.round( y / stepY );
 	return { x: gridX, y: gridY };
     },
     gridToCoords: function( params ) {
@@ -218,9 +224,14 @@ Game.Rpg = {
 	var stepY = Math.round( gameRpgData.world.ground.height / gameRpgData.settings.graphics.models.groundGridY );
 	var coordsX = ( gameRpgData.world.ground.width / 2 ) - ( params.x * stepX );
 	var coordsY = ( gameRpgData.world.ground.height / 2 ) - ( params.y * stepY );
-	coordsX = ( params.center === true ) ? coordsX + ( stepX / 2 ) : coordsX;
-	coordsY = ( params.center === true ) ? coordsY + ( stepY / 2 ) : coordsY;
+	if( params.center === true ) {
+	    //coordsX = ( ( gameRpgData.world.ground.width / 2 ) > params.x ) ? coordsX + ( stepX / 2 ) : coordsX - ( stepX / 2 );
+	    //coordsY = ( ( gameRpgData.world.ground.height / 2 ) > params.x ) ? coordsY + ( stepY / 2 ) : coordsY - ( stepY / 2 );
+	}
 	return { x: coordsX, y: coordsY, center: params.center };
+    },
+    reverseGrid: function( params ) {
+	return { x: ( gameRpgData.settings.graphics.models.groundGridX + 1 ) - params.x, y: ( gameRpgData.settings.graphics.models.groundGridY + 1 ) - params.y };
     },
 
     initialize: function() {

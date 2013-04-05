@@ -7,6 +7,8 @@ Game.Rpg.Events = {
 	camera.aspect = SCREEN_WIDTH/ SCREEN_HEIGHT;
 	camera.updateProjectionMatrix();
 	Game.Rpg.Html.refreshButtons();
+	Game.Rpg.Html.refreshGui();
+	Game.Rpg.Html.refreshGuiContent();
     },
     
     buttons: function( params ) {

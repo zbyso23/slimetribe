@@ -33,3 +33,14 @@ img.buttons {
     opacity: .25;
     z-index: 10000;
 }
+div#gui {
+    position: absolute;
+    display: block;
+    opacity: .35;
+    z-index: 10000;
+    width: 0px;
+    height: 0px;
+    top: 0px;
+    left: 0px;
+    background-color: #FFF;
+}

@@ -33,7 +33,7 @@ var gameRpgData = {
     },
     world: {
 	ready: false,
-	ground: { width: 1024, height: 1024, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
+	ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
 	sky: { radius: 1000, object: {} },
 	ambientObjects: [],
 	ambientMap: [],
@@ -61,8 +61,8 @@ var gameRpgData = {
 		    attack: "attack",
 		    grow: "grow"
 	    },
-	    runSpeed: 70,
-	    walkSpeed: 70,
+	    runSpeed: 110,
+	    walkSpeed: 110,
 	    crouchSpeed: 25
 	},
 	params: {

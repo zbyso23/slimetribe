@@ -1,4 +1,5 @@
-var GameRpgAmbient = {
+GameRpgAmbientList = [];
+GameRpgAmbient = {
     rock1: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
@@ -57,16 +58,47 @@ var GameRpgAmbient = {
 	params: { scale: 2.05, z: 7, y: 0, x: 0, rot: -1.57, opacity: 0.45 },
 	attributes: {
 	    type: 'storage',
-	    accept: [ 'mushrom1', 'rock1' ],
+	    itemsMax: 15,
+	    items: [],
+	    accept: [ 0, 1 ],
 	    spawn: false,
 	    timeout: 0
 	}
+    },
+    storageAccept: function( id ) {
+	var accept = false;
+	for( i in GameRpgAmbient.storage1.attributes.accept ) {
+	    console.log( 'GameRpgAmbient.storage1.attributes.accept', GameRpgAmbient.storage1.attributes.accept[i] );
+	    console.log( 'GameRpgAmbient.storage1.attributes.accept <- ', id );
+	    if( GameRpgAmbient.storage1.attributes.accept[i] == id ) accept = true;
+	}
+	return accept;
+    },
+
+    
+    getAmbient: function( id ) {
+	var ambient = false;
+	try {
+	    var i = -1;
+	    for( i in GameRpgAmbientList ) {
+		if( GameRpgAmbientList[i].id == id ) {
+		    ambient = GameRpgAmbientList[i].object;
+		    break;
+		}
+	    }
+	} catch( e ) {
+	    console.log( 'getAmbient ee', e );
+	}
+	return { item: ambient, name: i };
     }
 
 };
 
-var GameRpgAmbientList = [ 
+GameRpgAmbientList = [ 
     { id: 0, object: GameRpgAmbient.mushrom1 }, 
     { id: 1, object: GameRpgAmbient.rock1 },
     { id: 2, object: GameRpgAmbient.storage1 }
 ];
+
+
+
