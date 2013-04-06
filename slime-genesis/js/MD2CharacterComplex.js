@@ -79,11 +79,12 @@ THREE.MD2CharacterComplex = function () {
 	}
 	
 	this.setHeight = function () {
+	    var map = GameRpgMaps.current;
 	    var grid = Game.Rpg.coordsToGrid( { x: this.root.position.x, y: this.root.position.z } );
 	    
-	    if( grid.x < 0 || grid.Y < 0 || grid.x > gameRpgData.settings.graphics.models.groundGridX || grid.y > gameRpgData.settings.graphics.models.groundGridY ) return;
+	    if( grid.x < 0 || grid.Y < 0 || grid.x > map.config.gridX || grid.y > map.config.gridY ) return;
 	    var reversedGrid = Game.Rpg.reverseGrid( grid );
-	    var diff = ( this.root.position.y - gameRpgData.world.heightMap[reversedGrid.x][reversedGrid.y] );
+	    var diff = ( this.root.position.y - map.world.heightMap[reversedGrid.x][reversedGrid.y] );
 	    if( Math.abs( diff ) > 2 ) {
 		var target = ( diff > 0 ) ? diff : diff * -1;
 		target = ( target / ( this.animationFPS * 2.3 ) );
@@ -326,18 +327,20 @@ THREE.MD2CharacterComplex = function () {
 		    var k = exponentialEaseOut( this.speed / this.maxReverseSpeed );
 		    this.speed = THREE.Math.clamp( this.speed + k * delta * this.backAcceleration, this.maxReverseSpeed, 0 );
 		}
+	    } else {
+		controls.grow = false;
 	    }
 	    this.setHeight( character );
 
 	    // displacement
-	    var forwardDelta = ( controls.grow ) ? this.speed / 2 * delta : this.speed * delta;
+	    var forwardDelta = ( controls.grow ) ? 0 * delta : this.speed * delta;
 	    if( !controls.attack && !controls.grow ) {
 		var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
 		collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;
 		collisionDetect.y += Math.cos( this.bodyOrientation ) * forwardDelta;
 		var grid = Game.Rpg.coordsToGrid( { x: collisionDetect.x, y: collisionDetect.y } );
-		if( grid.x < 0 || grid.Y < 0 || grid.x <= gameRpgData.settings.graphics.models.groundGridX || grid.y <= gameRpgData.settings.graphics.models.groundGridY )
-		if( grid.x > 0 && grid.y > 0 && grid.x <= gameRpgData.settings.graphics.models.groundGridX && grid.y <= gameRpgData.settings.graphics.models.groundGridY ) {
+		var reversedGrid = Game.Rpg.reverseGrid( grid );
+		if( GameRpgMaps.current.world.collisionMap[ reversedGrid.x ][ reversedGrid.y ] === 255 ) {
 		    this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
 		    this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
 		}

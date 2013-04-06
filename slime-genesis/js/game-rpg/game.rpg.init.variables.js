@@ -2,12 +2,14 @@ var tick = 0;
 var gameDataImages = {
     loadedRemain: 0,
     list: [
-	{ id: 'ground-test1-128', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 }
+	{ id: 'ground-map1', url: 'slime-genesis/textures/ground/map01light.png', w: 128, h: 128 },
+	{ id: 'ground-map2', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 }
     ]
 };
 var gameResources = {
     images: {
-	'ground-test1-128': { image: {}, canvas: {}, w: 128, h: 128 }
+	'ground-map1': { image: {}, canvas: {}, w: 128, h: 128 },
+	'ground-map2': { image: {}, canvas: {}, w: 128, h: 128 }
     }
 }
 var gameRpgData = {
@@ -53,7 +55,7 @@ var gameRpgData = {
 	    baseUrl: "slime-genesis/md2/slizak/",
 
 	    body: "slizak.js",
-	    skins: [ "slizak.jpg" ],
+	    skins: [ "slizak-necro2.gif" ],
 	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
 	    animations: {
 		    move: "run",
@@ -66,7 +68,7 @@ var gameRpgData = {
 	    crouchSpeed: 25
 	},
 	params: {
-	    scale: 1.30
+	    scale: 1.430
 	},
 	items: {
 	    'rock1': 0,

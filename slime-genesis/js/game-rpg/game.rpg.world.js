@@ -18,11 +18,12 @@ Game.Rpg.World = {
     },
     spawn: function( delta ) {
 	try {
+	    var map = GameRpgMaps.current;
 	    if( gameRpgData.character.md2.controls.grow === true ) throw "growing lock";
 	    var newSpawnItems = [];
 	    var change = false;
 	    for( var i in Game.Rpg.World.spawnItems ) {
-		var object = gameRpgData.world.ambientObjects[ Game.Rpg.World.spawnItems[ i ][0] ][ Game.Rpg.World.spawnItems[ i ][1] ];
+		var object = map.world.ambientObjects[ Game.Rpg.World.spawnItems[ i ][0] ][ Game.Rpg.World.spawnItems[ i ][1] ];
 		object.attributes.timeout -= Game.Rpg.delta;
 		if( object.attributes.timeout < 4 ) {
 		    object.meshBody.visible = true;

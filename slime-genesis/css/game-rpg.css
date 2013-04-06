@@ -36,7 +36,7 @@ img.buttons {
 div#gui {
     position: absolute;
     display: block;
-    opacity: .35;
+    opacity: .25;
     z-index: 10000;
     width: 0px;
     height: 0px;

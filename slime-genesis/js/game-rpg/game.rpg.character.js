@@ -67,9 +67,10 @@ Game.Rpg.Character = {
     
     action: function( grid ) {
 	//if( Game.Rpg.Character.closed === true ) return;
+	var map = GameRpgMaps.current;
 	Game.Rpg.Character.closed = true;
 	try {
-	    if( gameRpgData.world.ambientMap[grid.x][grid.y] === 255 ) throw "no ambient here";
+	    if( map.world.ambientMap[grid.x][grid.y] === 255 ) throw "no ambient here";
 	    Game.Rpg.Character.actionGrowAmbient( grid );
 	    Game.Rpg.Character.actionStorage( grid );
 	} catch( e ) {
@@ -80,15 +81,15 @@ Game.Rpg.Character = {
     
     actionGrowAmbient: function( grid ) {
 	try {
-	    var object = gameRpgData.world.ambientObjects[grid.x][grid.y];
-	    console.log( 'object', object );
+	    var map = GameRpgMaps.current;
+	    var object = map.world.ambientObjects[grid.x][grid.y];
 	    if( object.attributes.type !== 'item' ) throw "no item or to grow";
 	    if( object.attributes.timeout !== 0 ) throw "growing, wait...";
 	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
 	    if( object.meshBody.material.opacity > .3 ) {
 		object.meshBody.material.opacity -= Game.Rpg.delta;
 	    } else {
-		if( !Game.Rpg.Character.addItem( gameRpgData.world.ambientMap[grid.x][grid.y] ) ) throw "item not added?";
+		if( !Game.Rpg.Character.addItem( map.world.ambientMap[grid.x][grid.y] ) ) throw "item not added?";
 		Game.Rpg.Character.addExperience( object.attributes.experience );
 		object.meshBody.visible = false;
 		object.attributes.timeout = 500;
@@ -102,7 +103,8 @@ Game.Rpg.Character = {
     },
     actionStorage: function( grid ) {
 	try {
-	    var object = gameRpgData.world.ambientObjects[grid.x][grid.y];
+	    var map = GameRpgMaps.current;
+	    var object = map.world.ambientObjects[grid.x][grid.y];
 	    if( object.attributes.type !== 'storage' ) throw "no storage here";
 	    if( Game.Rpg.Character.items.length === 0 ) throw "bag is empty";
 	    for( var i = 0; i < Game.Rpg.Character.items.length; i++ ) {

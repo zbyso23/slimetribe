@@ -11,18 +11,13 @@
 	</head>
 
 	<body>
-		<div id="ground-images" style="display:none" >
-		    <img id="ground-collision-img" src="slime-genesis/textures/ground/ground-collision.gif" />
-		    <img id="ground-height-img" src="slime-genesis/textures/ground/ground-test10-128.png" width="128" height="128" />
-		    <canvas id="ground-collision" width="512" height="512" ></canvas>
-		    <canvas id="ground-height" width="128" height="128" ></canvas>
-		</div>
 		<img class="buttons" id="buttons-arrows" src="slime-genesis/images/genesis-arrows.png" width="10" height="10"/>
 		<img class="buttons" id="buttons-action" src="slime-genesis/images/genesis-action.png" width="10" height="10"/>
 		<img class="buttons" id="buttons-attack" src="slime-genesis/images/genesis-attack.png" width="10" height="10"/>
-		<div id="gui">
-		    
-		</div>
+		<img class="buttons" id="buttons-menu" src="slime-genesis/images/genesis-menu.png" width="10" height="10"/>
+		<img class="buttons" id="buttons-character" src="slime-genesis/images/genesis-character.png" width="10" height="10"/>
+		<div id="gui"></div>
+		<div id="menu"></div>
 
 		<script src="slime-genesis/js/three.js"></script>
 		<script src="slime-genesis/js/TrackballControls.js"></script>
@@ -52,48 +47,6 @@
 		<script>
 		    Game.Rpg.initialize();
 		    console.log('load complete....');
-		    
-			function onKeyDown ( event ) {
-				var kc = event.keyCode;
-				switch( kc ) {
-					case playerKeys.UP: controls.moveForward = true; break;
-					case playerKeys.DOWN: controls.moveBackward = true; break;
-					case playerKeys.LEFT: controls.moveLeft = true; break;
-					case playerKeys.RIGHT: controls.moveRight = true; break;
-
-					case playerKeys.ALT: controls.crouch = true; break;
-					case playerKeys.SPACE: controls.jump = true; break;
-					case playerKeys.CTRL: controls.attack = true; break;
-
-				}
-				if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
-				} else {
-				    event.preventDefault();
-				}
-
-			};
-
-			function onKeyUp ( event ) {
-				var kc = event.keyCode;
-				switch( kc ) {
-					case playerKeys.UP: controls.moveForward = false; break;
-					case playerKeys.DOWN: controls.moveBackward = false; break;
-					case playerKeys.LEFT: controls.moveLeft = false; break;
-					case playerKeys.RIGHT: controls.moveRight = false; break;
-
-					case playerKeys.ALT: controls.crouch = false; break;
-					case playerKeys.SPACE: controls.jump = false; break;
-					case playerKeys.CTRL: controls.attack = false; break;
-
-				}
-				if( kc > KEYS.F4 || kc <= KEYS.F12 ) {
-				} else {
-				    event.preventDefault();
-				}
-			};
-
-//			document.addEventListener( 'keydown', onKeyDown, false );
-//			document.addEventListener( 'keyup', onKeyUp, false );
 		</script>
 
 	</body>
