@@ -2,7 +2,7 @@ var tick = 0;
 var gameDataImages = {
     loadedRemain: 0,
     list: [
-	{ id: 'ground-test1-128', url: 'slime-genesis/textures/ground/map02-height-collision-obj.png', w: 128, h: 128 }
+	{ id: 'ground-test1-128', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 }
     ]
 };
 var gameResources = {
@@ -33,7 +33,7 @@ var gameRpgData = {
     },
     world: {
 	ready: false,
-	ground: { width: 2048, height: 2048, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
+	ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
 	sky: { radius: 1000, object: {} },
 	ambientObjects: [],
 	ambientMap: [],
@@ -61,8 +61,8 @@ var gameRpgData = {
 		    attack: "attack",
 		    grow: "grow"
 	    },
-	    runSpeed: 110,
-	    walkSpeed: 110,
+	    runSpeed: 130,
+	    walkSpeed: 130,
 	    crouchSpeed: 25
 	},
 	params: {

@@ -14,6 +14,7 @@ GameRpgAmbient = {
 	    type: 'item',
 	    name: 'rock1',
 	    spawn: true,
+	    experience: 5,
 	    timeout: 0
 	}
     },
@@ -30,6 +31,7 @@ GameRpgAmbient = {
 	attributes: {
 	    type: 'item',
 	    name: 'rock2',
+	    experience: 230,
 	    spawn: true,
 	    timeout: 0
 	}
@@ -48,6 +50,7 @@ GameRpgAmbient = {
 	params: { scale: 0.55, z: 0, y: 0, x: 0, rot: 0, opacity: 0.9 },
 	attributes: {
 	    type: 'item',
+	    experience: 7,
 	    name: 'mushrom1',
 	    spawn: true,
 	    timeout: 0
@@ -69,6 +72,27 @@ GameRpgAmbient = {
 	    type: 'item',
 	    name: 'mushrom2',
 	    spawn: true,
+	    experience: 7,
+	    timeout: 0
+	}
+    },
+    three1: {
+	config: {
+	    baseUrl: "slime-genesis/md2/ambient/",
+	    body: "three-1.js",
+	    skins: [ "three-1.gif" ],
+	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    animations: {
+		    idle: "stand"
+	    },
+	    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
+	},
+	params: { scale: 1.23, z: 0, y: 0, x: 0, rot: 0, opacity: 0.75 },
+	attributes: {
+	    type: 'static',
+	    name: 'three1',
+	    spawn: false,
+	    experience: 1,
 	    timeout: 0
 	}
     },
@@ -90,7 +114,7 @@ GameRpgAmbient = {
 	    type: 'storage',
 	    itemsMax: 150,
 	    items: [],
-	    accept: [ 0, 1, 3, 4 ],
+	    accept: [ 1, 2, 3, 4, 5, 6 ],
 	    spawn: false,
 	    timeout: 0
 	}
@@ -98,8 +122,6 @@ GameRpgAmbient = {
     storageAccept: function( id ) {
 	var accept = false;
 	for( i in GameRpgAmbient.storage1.attributes.accept ) {
-	    console.log( 'GameRpgAmbient.storage1.attributes.accept', GameRpgAmbient.storage1.attributes.accept[i] );
-	    console.log( 'GameRpgAmbient.storage1.attributes.accept <- ', id );
 	    if( GameRpgAmbient.storage1.attributes.accept[i] == id ) accept = true;
 	}
 	return accept;
@@ -125,11 +147,17 @@ GameRpgAmbient = {
 };
 
 GameRpgAmbientList = [ 
-    { id: 0, object: GameRpgAmbient.mushrom1 }, 
-    { id: 1, object: GameRpgAmbient.rock1 },
-    { id: 2, object: GameRpgAmbient.storage1 },
+    { id: 0, object: GameRpgAmbient.storage1 },
+    { id: 1, object: GameRpgAmbient.mushrom1 }, 
+    { id: 2, object: GameRpgAmbient.mushrom2 }, 
     { id: 3, object: GameRpgAmbient.mushrom2 }, 
-    { id: 4, object: GameRpgAmbient.rock2 }
+    { id: 4, object: GameRpgAmbient.mushrom2 }, 
+    { id: 5, object: GameRpgAmbient.mushrom2 }, 
+    { id: 6, object: GameRpgAmbient.rock1 },
+    { id: 7, object: GameRpgAmbient.rock2 },
+    { id: 8, object: GameRpgAmbient.rock2 },
+    { id: 9, object: GameRpgAmbient.rock2 },
+    { id: 10, object: GameRpgAmbient.three1 }
 ];
 
 

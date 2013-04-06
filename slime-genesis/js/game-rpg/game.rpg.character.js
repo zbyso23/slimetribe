@@ -44,10 +44,7 @@ Game.Rpg.Character = {
 	    if( Game.Rpg.Character.items.length === 0 ) throw "bag is empty";
 	    var itemsWithoutItem = [];
 	    var removed = false;
-	    console.log( 'item', item );
 	    for( i in Game.Rpg.Character.items ) {
-		console.log( 'Game.Rpg.Character.items[i]', Game.Rpg.Character.items[i] );
-		
 		if( Game.Rpg.Character.items[i] !== item || removed ) itemsWithoutItem.push( Game.Rpg.Character.items[i] );
 		if( Game.Rpg.Character.items[i] === item && !removed ) removed = true;
 	    }
@@ -55,7 +52,6 @@ Game.Rpg.Character = {
 	    Game.Rpg.Character.items = itemsWithoutItem;
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
-	    console.log('remove item e', e );
 	    return false;
 	}
 	return true;
@@ -70,7 +66,7 @@ Game.Rpg.Character = {
     
     
     action: function( grid ) {
-	if( Game.Rpg.Character.closed === true ) return;
+	//if( Game.Rpg.Character.closed === true ) return;
 	Game.Rpg.Character.closed = true;
 	try {
 	    if( gameRpgData.world.ambientMap[grid.x][grid.y] === 255 ) throw "no ambient here";
@@ -85,6 +81,7 @@ Game.Rpg.Character = {
     actionGrowAmbient: function( grid ) {
 	try {
 	    var object = gameRpgData.world.ambientObjects[grid.x][grid.y];
+	    console.log( 'object', object );
 	    if( object.attributes.type !== 'item' ) throw "no item or to grow";
 	    if( object.attributes.timeout !== 0 ) throw "growing, wait...";
 	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
@@ -92,6 +89,7 @@ Game.Rpg.Character = {
 		object.meshBody.material.opacity -= Game.Rpg.delta;
 	    } else {
 		if( !Game.Rpg.Character.addItem( gameRpgData.world.ambientMap[grid.x][grid.y] ) ) throw "item not added?";
+		Game.Rpg.Character.addExperience( object.attributes.experience );
 		object.meshBody.visible = false;
 		object.attributes.timeout = 500;
 		object.meshBody.material.opacity = 0;
@@ -99,7 +97,7 @@ Game.Rpg.Character = {
 		Game.Rpg.Html.refreshGuiContent();
 	    }
 	} catch( e ) {
-	    
+	    console.log( 'Ambient e', e );
 	}
     },
     actionStorage: function( grid ) {
@@ -115,7 +113,6 @@ Game.Rpg.Character = {
 	    }
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
-	    console.log( 'action storage e', e );
 	}
     },
     addExperience: function( experience ) {
@@ -126,18 +123,13 @@ Game.Rpg.Character = {
 		Game.Rpg.Character.stats.level = newLevel;
 	    }
 	} catch( e ) {
-	    console.log( 'add exp e', e );
 	}
     },
     getLevel: function( experience ) {
 	var level = 1;
 	for( var i in Game.Rpg.Character.levels ) {
-	    console.log( 'curr level', Game.Rpg.Character.levels[ i ] );
 	    if( experience >= Game.Rpg.Character.levels[ i ] ) level = i;
 	}
-	console.log( 'level', level + ' - ' + experience );
 	return level;
     }
-    
-    
 };

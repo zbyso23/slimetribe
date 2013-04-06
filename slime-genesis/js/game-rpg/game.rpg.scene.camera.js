@@ -1,7 +1,7 @@
 Game.Rpg.Scene.Camera = {
     camera: {},
     add: function() {
-	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 700 );
 	camera.position.set( 0, 150, 1300 );
 	scene.add( camera );
 	Game.Rpg.Scene.Camera.factoryDefault( camera );

@@ -1,6 +1,8 @@
 Game.Rpg.World = {
     spawnItems: [],
     storageExperience: 15,
+    ambientItemsCount: 0,
+    ambientItemsLoaded: false,
     addItemToStorage: function( storage, item ) {
 	try {
 	    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";

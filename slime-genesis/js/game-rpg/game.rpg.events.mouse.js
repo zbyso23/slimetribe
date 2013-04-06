@@ -8,6 +8,8 @@ Game.Rpg.Events.Mouse = {
     },
 
     initialize: function(){
+	//Disabled mouse 
+	return;
 	document.addEventListener( 'mousemove', Game.Rpg.Events.Mouse.mouse, false);
 	document.addEventListener( 'mousedown', Game.Rpg.Events.Mouse.mouse, false);
     }

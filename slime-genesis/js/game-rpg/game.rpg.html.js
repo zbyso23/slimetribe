@@ -37,7 +37,6 @@ Game.Rpg.Html = {
 	gui.style.height = ( y * 10 ) + 'px';
 	gui.style.top = ( y * 1 ) + 'px';
 	gui.style.left = ( x * 15 ) + 'px';
-	console.log('style',gui.style );
     },
     refreshGuiContent: function() {
 	var contentHtml = Game.Rpg.Html._parseContentHtml();

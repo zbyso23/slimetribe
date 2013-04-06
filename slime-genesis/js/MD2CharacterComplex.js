@@ -78,58 +78,22 @@ THREE.MD2CharacterComplex = function () {
 	    controls.lockBackward = false;
 	}
 	
-	this.setHeight = function ( character ) {
-	    if( !character && this.heightSet ) return;
-	    var grid = Game.Rpg.coordsToGrid( { x: this.root.position.z, y: this.root.position.x } );
+	this.setHeight = function () {
+	    var grid = Game.Rpg.coordsToGrid( { x: this.root.position.x, y: this.root.position.z } );
+	    
 	    if( grid.x < 0 || grid.Y < 0 || grid.x > gameRpgData.settings.graphics.models.groundGridX || grid.y > gameRpgData.settings.graphics.models.groundGridY ) return;
 	    var reversedGrid = Game.Rpg.reverseGrid( grid );
-	    if( !character ) {
-		this.root.position.y = gameRpgData.world.heightMap[reversedGrid.x][reversedGrid.y];
-		//this.heightSet = true;
-		return;
-	    }
-	    
 	    var diff = ( this.root.position.y - gameRpgData.world.heightMap[reversedGrid.x][reversedGrid.y] );
 	    if( Math.abs( diff ) > 2 ) {
 		var target = ( diff > 0 ) ? diff : diff * -1;
 		target = ( target / ( this.animationFPS * 2.3 ) );
 		this.root.position.y = ( diff > 0 ) ? this.root.position.y - target : this.root.position.y + target;
 	    }
-	    
 	    if( this.controls.grow === true ) Game.Rpg.Character.action( grid );
 	}
-
 	this.setBodyOrientation = function ( orientation ) {
 	    this.bodyOrientation = orientation;
 	};
-
-	this.shareParts = function ( original ) {
-	    this.animations = original.animations;
-	    this.walkSpeed = original.walkSpeed;
-	    this.skinsBody = original.skinsBody;
-	    this.skinsWeapon = original.skinsWeapon;
-	    // BODY
-	    var mesh = createPart( original.meshBody.geometry, this.skinsBody[ 0 ] );
-	    mesh.scale.set( this.scale, this.scale, this.scale );
-
-	    this.root.position.y = original.root.position.y;
-	    this.root.add( mesh );
-
-	    this.meshBody = mesh;
-	    this.meshes.push( mesh );
-	    // WEAPONS
-	    for ( var i = 0; i < original.weapons.length; i ++ ) {
-		var meshWeapon = createPart( original.weapons[ i ].geometry, this.skinsWeapon[ i ] );
-		meshWeapon.scale.set( this.scale, this.scale, this.scale );
-		meshWeapon.visible = false;
-		meshWeapon.name = original.weapons[ i ].name;
-		this.root.add( meshWeapon );
-		this.weapons[ i ] = meshWeapon;
-		this.meshWeapon = meshWeapon;
-		this.meshes.push( meshWeapon );
-	    }
-	};
-
 	this.loadParts = function ( config ) {
 	    this.animations = config.animations;
 	    this.walkSpeed = config.walkSpeed;
@@ -395,16 +359,11 @@ THREE.MD2CharacterComplex = function () {
 
 	function createPart( geometry, skinMap ) {
 	    geometry.computeMorphNormals();
-	    var whiteMap = THREE.ImageUtils.generateDataTexture( 1, 1, new THREE.Color( 0xffffff ) );
-	    var materialWireframe = new THREE.MeshPhongMaterial( { color: 0xffaa00, specular: 0x111111, shininess: 50, wireframe: true, shading: THREE.SmoothShading, map: whiteMap, morphTargets: true, morphNormals: true, metal: true } );
-	    //var materialTexture = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 50, wireframe: false, shading: THREE.SmoothShading, map: skinMap, morphTargets: true, morphNormals: true, metal: true } );
 	    var materialTexture = new THREE.MeshBasicMaterial( { color: 0xffffff, specular: 0x111111, shininess: 50, wireframe: false, map: skinMap, morphTargets: true, morphNormals: true } );
 	    materialTexture.wrapAround = true;
 	    var mesh = new THREE.MorphBlendMesh( geometry, materialTexture );
 	    mesh.rotation.y = -Math.PI/2;
-
 	    mesh.materialTexture = materialTexture;
-	    mesh.materialWireframe = materialWireframe;
 	    mesh.autoCreateAnimations( scope.animationFPS );
 	    return mesh;
 	};
