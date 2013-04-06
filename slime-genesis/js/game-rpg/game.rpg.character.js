@@ -1,29 +1,37 @@
 Game.Rpg.Character = {
     stats: {
-	itemsMax: 5,
+	itemsMax: 12,
 	experience: 0,
 	level: 1
-	
     },
     items: [],
     levels: {
 	1: 0,
-	2: 100,
-	3: 200,
-	4: 390,
-	5: 750,
-	6: 1250,
-	7: 2250,
-	8: 4500,
+	2: 115,
+	3: 230,
+	4: 400,
+	5: 900,
+	6: 1500,
+	7: 3000,
+	8: 5000,
 	9: 7000,
 	10: 10000
     },
     
     closed: false,
     
-    addItem: function( item ) {
+    isBagFull: function() {
 	try {
 	    if( Game.Rpg.Character.stats.itemsMax <= Game.Rpg.Character.items.length ) throw "bag is full";
+	} catch( e ) {
+	    return true;
+	}
+	return false;
+    },
+    
+    addItem: function( item ) {
+	try {
+	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
 	    Game.Rpg.Character.items.push( item );
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
@@ -45,7 +53,6 @@ Game.Rpg.Character = {
 	    }
 	    if( removed === false ) throw "is no item";
 	    Game.Rpg.Character.items = itemsWithoutItem;
-	    console.log( 'Game.Rpg.Character.items', Game.Rpg.Character.items );
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
 	    console.log('remove item e', e );
@@ -80,10 +87,17 @@ Game.Rpg.Character = {
 	    var object = gameRpgData.world.ambientObjects[grid.x][grid.y];
 	    if( object.attributes.type !== 'item' ) throw "no item or to grow";
 	    if( object.attributes.timeout !== 0 ) throw "growing, wait...";
-	    if( !Game.Rpg.Character.addItem( gameRpgData.world.ambientMap[grid.x][grid.y] ) ) throw "bag is full";
-	    object.meshBody.visible = false;
-	    object.attributes.timeout = 500;
-	    Game.Rpg.Html.refreshGuiContent();
+	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
+	    if( object.meshBody.material.opacity > .3 ) {
+		object.meshBody.material.opacity -= Game.Rpg.delta;
+	    } else {
+		if( !Game.Rpg.Character.addItem( gameRpgData.world.ambientMap[grid.x][grid.y] ) ) throw "item not added?";
+		object.meshBody.visible = false;
+		object.attributes.timeout = 500;
+		object.meshBody.material.opacity = 0;
+		Game.Rpg.World.spawnItems.push( [ grid.x, grid.y ] );
+		Game.Rpg.Html.refreshGuiContent();
+	    }
 	} catch( e ) {
 	    
 	}
@@ -118,8 +132,10 @@ Game.Rpg.Character = {
     getLevel: function( experience ) {
 	var level = 1;
 	for( var i in Game.Rpg.Character.levels ) {
-	    if( experience >= Game.Rpg.Character.levels ) level = i;
+	    console.log( 'curr level', Game.Rpg.Character.levels[ i ] );
+	    if( experience >= Game.Rpg.Character.levels[ i ] ) level = i;
 	}
+	console.log( 'level', level + ' - ' + experience );
 	return level;
     }
     

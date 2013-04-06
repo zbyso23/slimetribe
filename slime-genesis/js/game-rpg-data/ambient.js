@@ -6,17 +6,30 @@ GameRpgAmbient = {
 	    body: "rock-1.js",
 	    skins: [ "rock-1.gif" ],
 	    weapons:  [ [ "rock-1.js", "rock-1.gif" ] ],
-	    animations: {
-		    idle: "stand"
-	    },
-	    runSpeed: 70,
-	    walkSpeed: 70,
-	    crouchSpeed: 25
+	    animations: { idle: "stand" },
+	    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
 	},
 	params: { scale: 0.7, z: -1, y: 0, x: 0, rot: 0, opacity: 0.9 },
 	attributes: {
 	    type: 'item',
 	    name: 'rock1',
+	    spawn: true,
+	    timeout: 0
+	}
+    },
+    rock2: {
+	config: {
+	    baseUrl: "slime-genesis/md2/ambient/",
+	    body: "rock-1.js",
+	    skins: [ "rock-2.gif" ],
+	    weapons:  [ [ "rock-1.js", "rock-2.gif" ] ],
+	    animations: { idle: "stand" },
+	    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
+	},
+	params: { scale: 0.7, z: -1, y: 0, x: 0, rot: 0, opacity: 0.9 },
+	attributes: {
+	    type: 'item',
+	    name: 'rock2',
 	    spawn: true,
 	    timeout: 0
 	}
@@ -30,14 +43,31 @@ GameRpgAmbient = {
 	    animations: {
 		    idle: "stand"
 	    },
-	    runSpeed: 70,
-	    walkSpeed: 70,
-	    crouchSpeed: 25
+	    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
 	},
 	params: { scale: 0.55, z: 0, y: 0, x: 0, rot: 0, opacity: 0.9 },
 	attributes: {
 	    type: 'item',
 	    name: 'mushrom1',
+	    spawn: true,
+	    timeout: 0
+	}
+    },
+    mushrom2: {
+	config: {
+	    baseUrl: "slime-genesis/md2/ambient/",
+	    body: "mushrom-1.js",
+	    skins: [ "mushrom-2.gif" ],
+	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    animations: {
+		    idle: "stand"
+	    },
+	    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
+	},
+	params: { scale: 0.55, z: 0, y: 0, x: 0, rot: 0, opacity: 0.9 },
+	attributes: {
+	    type: 'item',
+	    name: 'mushrom2',
 	    spawn: true,
 	    timeout: 0
 	}
@@ -60,7 +90,7 @@ GameRpgAmbient = {
 	    type: 'storage',
 	    itemsMax: 150,
 	    items: [],
-	    accept: [ 0, 1 ],
+	    accept: [ 0, 1, 3, 4 ],
 	    spawn: false,
 	    timeout: 0
 	}
@@ -97,7 +127,9 @@ GameRpgAmbient = {
 GameRpgAmbientList = [ 
     { id: 0, object: GameRpgAmbient.mushrom1 }, 
     { id: 1, object: GameRpgAmbient.rock1 },
-    { id: 2, object: GameRpgAmbient.storage1 }
+    { id: 2, object: GameRpgAmbient.storage1 },
+    { id: 3, object: GameRpgAmbient.mushrom2 }, 
+    { id: 4, object: GameRpgAmbient.rock2 }
 ];
 
 

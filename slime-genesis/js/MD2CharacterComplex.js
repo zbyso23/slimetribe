@@ -367,7 +367,7 @@ THREE.MD2CharacterComplex = function () {
 
 	    // displacement
 	    var forwardDelta = ( controls.grow ) ? this.speed / 2 * delta : this.speed * delta;
-	    if( !controls.attack ) {
+	    if( !controls.attack && !controls.grow ) {
 		var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
 		collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;
 		collisionDetect.y += Math.cos( this.bodyOrientation ) * forwardDelta;

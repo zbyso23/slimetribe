@@ -11,7 +11,7 @@ Game.Rpg.Scene.Renderer = {
 	//renderer.shadowMapEnabled = true;
     },
     refresh: function() {
-	var delta = clock.getDelta();
+	var delta = Game.Rpg.delta;
 	if ( t > 1 ) t = 0;
 	//cameraControls.update( delta );
 	if( gameRpgData.character.loaded ) gameRpgData.character.md2.update( delta, true );

@@ -1,13 +1,13 @@
 var tick = 0;
 var gameDataImages = {
-    'loadedRemain': 0,
-    'list': [
-	{ 'id': 'ground-test1-128', 'url': 'slime-genesis/textures/ground/map01-height-collision-obj.png', 'w': 128, 'h': 128 }
+    loadedRemain: 0,
+    list: [
+	{ id: 'ground-test1-128', url: 'slime-genesis/textures/ground/map02-height-collision-obj.png', w: 128, h: 128 }
     ]
 };
 var gameResources = {
-    'images': {
-	'ground-test1-128': { 'image': {}, 'canvas': {}, 'w': 128, 'h': 128 }
+    images: {
+	'ground-test1-128': { image: {}, canvas: {}, w: 128, h: 128 }
     }
 }
 var gameRpgData = {
@@ -33,7 +33,7 @@ var gameRpgData = {
     },
     world: {
 	ready: false,
-	ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
+	ground: { width: 2048, height: 2048, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
 	sky: { radius: 1000, object: {} },
 	ambientObjects: [],
 	ambientMap: [],

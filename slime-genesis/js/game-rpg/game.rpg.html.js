@@ -35,7 +35,7 @@ Game.Rpg.Html = {
 	var gui = document.getElementById( 'gui' );
 	gui.style.width = ( x * 70 ) + 'px';
 	gui.style.height = ( y * 10 ) + 'px';
-	gui.style.top = ( y * 0 ) + 'px';
+	gui.style.top = ( y * 1 ) + 'px';
 	gui.style.left = ( x * 15 ) + 'px';
 	console.log('style',gui.style );
     },
@@ -44,9 +44,9 @@ Game.Rpg.Html = {
 	document.getElementById( 'gui' ).innerHTML = contentHtml;
     },
     _parseContentHtml: function() {
-	var items = 'items: ' + Game.Rpg.Character.items.length;
-	var experience = 'Level ' + Game.Rpg.Character.stats.level + ' (Exp: ' + Game.Rpg.Character.stats.experience + ')';
-	var html = '<p>' + items + '<br />' + experience + '</p>';
+	var items = 'ITEMS: ' + Game.Rpg.Character.items.length + ' / ' + Game.Rpg.Character.stats.itemsMax;
+	var experience = 'LEVEL: ' + Game.Rpg.Character.stats.level + ' (' + Game.Rpg.Character.stats.experience + ' exp)';
+	var html = '<p> ::::::: ' + items + ' :::::: ' + experience + ' ::::::: </p>';
 	return html;
     }
 };

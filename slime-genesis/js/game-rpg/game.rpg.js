@@ -1,9 +1,11 @@
 var Game = ( typeof Game === "undefined" ) ? {} : Game;
 Game.Rpg = {
+    delta: 0,
     refresh: function() {
+	Game.Rpg.delta = clock.getDelta();
 	requestAnimationFrame( Game.Rpg.refresh );
 	Game.Rpg.refreshLogic();
-	Game.Rpg.refreshAmbient();
+	Game.Rpg.World.spawn();
 	Game.Rpg.Scene.Renderer.refresh();
 	stats.update();
 	tick++;
@@ -245,6 +247,7 @@ Game.Rpg = {
 	Game.Rpg.Events.initialize();
 	Game.Rpg.Events.Tablet.initialize();
 	Game.Rpg.Events.Mouse.initialize();
+	Game.Rpg.Events.Keyboard.initialize();
 	Game.Rpg.Scene.Projection.initialize();
 	Game.Rpg.refresh();
     }

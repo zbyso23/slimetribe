@@ -43,4 +43,10 @@ div#gui {
     top: 0px;
     left: 0px;
     background-color: #FFF;
+    border-radius: 17px;
+    box-shadow: #EC9 0px 0px 15px;
+}
+div#gui p {
+    color: #230;
+    text-shadow: #F77 0px 0px 2px;
 }
