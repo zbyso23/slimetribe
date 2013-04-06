@@ -5,7 +5,7 @@ Game.Rpg = {
 	Game.Rpg.delta = clock.getDelta();
 	requestAnimationFrame( Game.Rpg.refresh );
 	Game.Rpg.refreshLogic();
-	if( gameRpgData.character.loaded === true && Game.Rpg.World.ambientItemsLoaded === true ) {
+	if( gameRpgData.character.loaded === true && Game.Rpg.World.ambientItemsLoaded === true && gameDataImages.loaded === true ) {
 	    Game.Rpg.World.spawn();
 	    Game.Rpg.Scene.Renderer.refresh();
 	    stats.update();
@@ -29,42 +29,40 @@ Game.Rpg = {
 	}
     },
     generateWorld: function() {
-	if( gameDataImages.loadedRemain == 0 ) {
+	if( gameDataImages.loaded ) {
 	    Game.Rpg.generateWorldGround();
 	    
 	    Game.Rpg.generateCharacter();
 	    gameRpgData.world.ready = true;
 	}
     },
-
-    
-    gameLoader: function() {
-	gameDataImages.loadedRemain = gameDataImages.list.length;
+    gameImagesLoader: function() {
+	gameDataImages.loadedRemain = 1;
 
 	var gameHidden = document.createElement( 'div' );
 	gameHidden.style['display'] = 'none';
 	gameHidden.setAttribute( 'id', 'game-hidden' );
 	document.body.appendChild( gameHidden );
-
+	
+	var map = GameRpgMaps.current;
 	for( i = 0; i <= gameDataImages.list.length; i++ ) {
-	    if( gameDataImages.list[i] === undefined ) {
-		continue;
-	    }
+	    if( gameDataImages.list[i] === undefined ) continue;
 	    var id = gameDataImages.list[i].id;
-	    var w = gameDataImages.list[i].w;
-	    var h = gameDataImages.list[i].h;
-	    gameResources.images[id].image = new Image();
-	    gameResources.images[id].image.onload = function() {
+	    var w = map.config.gridX + 1;
+	    var h = map.config.gridY + 1;
+	    gameResources.images.map.image = new Image();
+	    gameResources.images.map.image.onload = function() {
 		var canvas = document.createElement( 'canvas' );
-		canvas.setAttribute( 'id', 'canvas-' + id );
+		canvas.setAttribute( 'id', 'canvas-map' );
 		canvas.setAttribute( 'width', w );
 		canvas.setAttribute( 'height', h );
 		gameHidden.appendChild( canvas );
-		gameResources.images[id].canvas = canvas.getContext( "2d" );
-		gameResources.images[id].canvas.drawImage( gameResources.images[id].image, 0, 0 );
+		gameResources.images.map.canvas = canvas.getContext( "2d" );
+		gameResources.images.map.canvas.drawImage( gameResources.images.map.image, 0, 0 );
 		--gameDataImages.loadedRemain;
+		if( gameDataImages.loadedRemain === 0 ) gameDataImages.loaded = true;
 	    }
-	    gameResources.images[id].image.src = gameDataImages.list[i].url;
+	    gameResources.images.map.image.src = map.config.groundImage;
 	}
     },
     
@@ -73,13 +71,10 @@ Game.Rpg = {
 	//  GROUND
 	var gt = THREE.ImageUtils.loadTexture( map.config.groundTexture );
 	var quality = 16, step = 1024 / quality;
-	//gameResources.images[ map.config.groundMap ].w
 	var ggGridX = map.config.gridX;
 	var ggGridY = map.config.gridY;
 	var gg = new THREE.PlaneGeometry( map.ground.width, map.ground.height, ggGridX, ggGridY );
-	console.log( 'map.config.groundMap', map.config.groundMap );
-	console.log( 'gameResources.images', gameResources.images );
-	var groundHeightMap = gameResources.images[ map.config.groundMap ].canvas.getImageData( 0, 0, gameResources.images[ map.config.groundMap ].w, gameResources.images[ map.config.groundMap ].h );
+	var groundHeightMap = gameResources.images.map.canvas.getImageData( 0, 0, gameResources.images.map.w, gameResources.images.map.h );
 	var x = y = 0;
 	map.world.ambientMap = [];
 	map.world.collisionMap = [];
@@ -235,7 +230,6 @@ Game.Rpg = {
     },
 
     initialize: function() {
-	Game.Rpg.gameLoader();
 	Game.Rpg.Html.initialize();
 	Game.Rpg.Scene.add();
 	Game.Rpg.Scene.Renderer.add();
@@ -248,6 +242,7 @@ Game.Rpg = {
 	Game.Rpg.Events.Keyboard.initialize();
 	Game.Rpg.Scene.Projection.initialize();
 	GameRpgMaps.setActiveToCurrent();
+	Game.Rpg.gameImagesLoader();
 	Game.Rpg.refresh();
     }
 };

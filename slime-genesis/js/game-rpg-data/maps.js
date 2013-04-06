@@ -3,7 +3,8 @@ var GameRpgMaps = {
     map01: {
 	config: {
 	    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
-	    groundMap: "ground-map1",
+	    groundImage: "slime-genesis/textures/ground/map01light.png",
+	    groundMap: "map",
 	    gridX: 127,
 	    gridY: 127
 	},
@@ -22,7 +23,8 @@ var GameRpgMaps = {
     map02: {
 	config: {
 	    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
-	    groundMap: "ground-map2",
+	    groundImage: "slime-genesis/textures/ground/map02light.png",
+	    groundMap: "map",
 	    gridX: 127,
 	    gridY: 127
 	},
@@ -39,8 +41,16 @@ var GameRpgMaps = {
 	}
     },
     current: {},
+    setActive: function( map ) {
+	var found = false;
+	for( i in GameRpgMaps.mapList ) if( GameRpgMaps.mapList[ i ] === map ) found = true;
+	if( found === true ) GameRpgMaps.active = map;
+	return found;
+    },
     setActiveToCurrent: function() {
 	GameRpgMaps.current = GameRpgMaps[ GameRpgMaps.active ];
-    }
+	
+    },
+    mapList: [ 'map01', 'map02' ]
     
 };
