@@ -327,13 +327,11 @@ THREE.MD2CharacterComplex = function () {
 		    var k = exponentialEaseOut( this.speed / this.maxReverseSpeed );
 		    this.speed = THREE.Math.clamp( this.speed + k * delta * this.backAcceleration, this.maxReverseSpeed, 0 );
 		}
-	    } else {
-		controls.grow = false;
 	    }
 	    this.setHeight( character );
 
 	    // displacement
-	    var forwardDelta = ( controls.grow ) ? 0 * delta : this.speed * delta;
+	    var forwardDelta = this.speed * delta;
 	    if( !controls.attack && !controls.grow ) {
 		var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
 		collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;

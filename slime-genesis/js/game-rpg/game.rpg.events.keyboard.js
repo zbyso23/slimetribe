@@ -11,7 +11,13 @@ Game.Rpg.Events.Keyboard = {
 
 		case KEYS.SPACE: controls.grow = true; break;
 		case KEYS.CTRL: controls.attack = true; break;
-
+	}
+	
+	if( controls.grow || controls.attack ) {
+	    controls.moveForward = false;
+	    controls.moveBackward = false;
+	    controls.moveLeft = false;
+	    controls.moveRight = false;
 	}
     },
     keysUp: function( event ) {
