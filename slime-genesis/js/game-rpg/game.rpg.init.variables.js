@@ -20,6 +20,7 @@ var gameRpgData = {
 	health: 100,
 	object: {},
 	md2: {},
+	gyro: {},
 	md2base: {},
 	stats: {},
 	controls: {

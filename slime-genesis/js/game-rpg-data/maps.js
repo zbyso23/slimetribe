@@ -1,5 +1,5 @@
 var GameRpgMaps = {
-    active: 'map02',
+    active: 'map01',
     map01: {
 	config: {
 	    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
