@@ -56,9 +56,9 @@ var gameRpgData = {
 	config: {
 	    baseUrl: "slime-genesis/md2/slizak/",
 
-	    body: "slizak.js",
+	    body: "slizak.json",
 	    skins: [ "slizak-necro2.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 	    animations: {
 		    move: "run",
 		    idle: "stand",

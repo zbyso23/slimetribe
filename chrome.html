@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+	<h3>Audio tag with controls</h3>
+	<ul>
+	    <li>Desktop: Work</li>
+	    <li>Android: Work</li>
+	</ul>
+	<audio id="ambient-controls" controls>
+	  <source src="slime-genesis/music/map01-ambient.ogg" type="audio/ogg">
+	</audio>
+	<h3>Audio tag with controls & preload</h3>
+	<ul>
+	    <li>Desktop: Work</li>
+	    <li>Android: Work</li>
+	</ul>
+	<audio id="ambient-preload" controls preload="auto">
+	  <source src="slime-genesis/music/map01-ambient.ogg" type="audio/ogg">
+	</audio>
+	<h3>Javascipt DIV onlick play()</h3>
+	<ul>
+	    <li>Desktop: Work</li>
+	    <li>Android: Work</li>
+	</ul>
+	<audio id="ambient-javascript">
+	  <source src="slime-genesis/music/map01-ambient.ogg" type="audio/ogg">
+	</audio>
+	<div style="background-color:green;padding:5px;" onclick="document.getElementById( 'ambient-javascript' ).play();">Play</div>
+	
+	<h3>Javascipt DIV onlick activate and them play()</h3>
+	<ul>
+	    <li>Desktop: Work</li>
+	    <li>Android: Work</li>
+	</ul>
+	<audio id="ambient-javascript-activate">
+	  <source src="slime-genesis/music/attack.ogg" type="audio/ogg">
+	</audio>
+	<script>
+	var playing = false;
+	//setInterval( function() { var el = document.getElementById( 'ambient-javascript-activate' ); console.log( el.ended ); if( el.paused ) { el.currnetTime = 0; } }, 10 );
+	</script>
+	<div onclick="document.getElementById( 'ambient-javascript-activate' ).play();playing = true;">Sound On</div>
+	<h3>Pure Javascript without prepared HTML tags</h3>
+	<script>
+	    var snd = new Audio( "slime-genesis/music/map01-ambient.ogg" );
+	    snd.load();
+	    //snd.play();
+	</script>
+	
+	<embed scr="slime-genesis/music/map01-ambient.ogg" id="javscript-embed" />
+	<script>
+	    
+	</script>
+    </body>
+</html>

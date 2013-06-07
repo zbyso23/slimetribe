@@ -27,7 +27,7 @@ Game.Rpg = {
 	} else {
 	    //Blank - space for Menu etc.
 	    //RUN manually - DEBUG and prepare menu
-	    //gameRpgData.run = true;
+	    gameRpgData.run = true;
 	}
     },
     generateWorld: function() {
@@ -139,13 +139,10 @@ Game.Rpg = {
     },
     uninitializeMap: function() {
 	var map = GameRpgMaps.current;
-	
 	for( var y = 0; y < map.world.ambientObjects.length; y++ ) for( var x = 0; x < map.world.ambientObjects[y].length; x++ ) {
-	    if( map.world.ambientObjects[y][x] !== 0 ) console.log( scene.remove( map.world.ambientObjects[y][x].root ) );
-	    //if( map.world.ambientObjects[y][x] !== 0 ) scene.remove( map.world.ambientObjects[y][x].root );
+	    if( map.world.ambientObjects[y][x] !== 0 ) scene.remove( map.world.ambientObjects[y][x].root );
 	}
 	scene.remove( gameRpgData.world.ground.object );
-	
     },
     addAmbientObject: function( params ) {
 	var found = false;
@@ -258,5 +255,23 @@ Game.Rpg = {
 	GameRpgMaps.setActiveToCurrent();
 	Game.Rpg.gameImagesLoader();
 	Game.Rpg.refresh();
+    },
+    
+    switchMap: function( map ) {
+	try {
+	    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
+	    gameRpgData.run = false;
+	    Game.Rpg.uninitializeMap();
+	    Game.Rpg.uninitializeCharacter();
+	    GameRpgMaps.setActive( map );
+	    GameRpgMaps.setActiveToCurrent();
+	    Game.Rpg.gameImagesLoader();
+	    Game.Rpg.initializeCharacter();
+	    Game.Rpg.initializeMap();
+	    gameRpgData.run = true;
+	} catch( e ) {
+	    throw e;
+	}
+	return true;
     }
 };

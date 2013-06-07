@@ -24,6 +24,7 @@ Game.Rpg.Character = {
 	try {
 	    if( Game.Rpg.Character.stats.itemsMax <= Game.Rpg.Character.items.length ) throw "bag is full";
 	} catch( e ) {
+	    Game.Utils.log( 'isBagFull e', e );
 	    return true;
 	}
 	return false;
@@ -35,6 +36,7 @@ Game.Rpg.Character = {
 	    Game.Rpg.Character.items.push( item );
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
+	    Game.Utils.log( 'addItem e', e );
 	    return false;
 	}
 	return true;
@@ -52,6 +54,7 @@ Game.Rpg.Character = {
 	    Game.Rpg.Character.items = itemsWithoutItem;
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
+	    Game.Utils.log( 'removeItem e', e );
 	    return false;
 	}
 	return true;
@@ -98,7 +101,7 @@ Game.Rpg.Character = {
 		Game.Rpg.Html.refreshGuiContent();
 	    }
 	} catch( e ) {
-	    console.log( 'Ambient e', e );
+	    Game.Utils.log( 'Ambient e', e );
 	}
     },
     actionStorage: function( grid ) {
@@ -115,6 +118,7 @@ Game.Rpg.Character = {
 	    }
 	    Game.Rpg.Html.refreshGuiContent();
 	} catch( e ) {
+	    Game.Utils.log( 'actionStorage e', e );
 	}
     },
     addExperience: function( experience ) {
@@ -125,6 +129,7 @@ Game.Rpg.Character = {
 		Game.Rpg.Character.stats.level = newLevel;
 	    }
 	} catch( e ) {
+	    Game.Utils.log( 'addExperience e', e );
 	}
     },
     getLevel: function( experience ) {
