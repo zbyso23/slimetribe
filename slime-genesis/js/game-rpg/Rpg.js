@@ -3,6 +3,7 @@
 	Game.Rpg = {};
 
 	var clock = new THREE.Clock();
+	var scene;
 
 	Rpg = function()
 	{
@@ -361,16 +362,16 @@
 	    this.run = function() 
 	    {
 			Game.Rpg.Html.initialize();
-			Game.Rpg.Scene.add();
 			render.add();
-			Game.Rpg.Scene.Camera.add();
-			Game.Rpg.Scene.Lights.simplyAdd();
-			Game.Rpg.Stats.add();
+			render.addScene();
+			render.addCamera();
+			render.addLight();
+			render.addStats();
 			Game.Rpg.Events.initialize();
 			Game.Rpg.Events.Tablet.initialize();
 			Game.Rpg.Events.Mouse.initialize();
 			Game.Rpg.Events.Keyboard.initialize();
-			Game.Rpg.Scene.Projection.initialize();
+			//disabled - refactor; Game.Rpg.Scene.Projection.initialize();
 			GameRpgMaps.setActiveToCurrent();
 			this.gameImagesLoader();
 		//	Game.Rpg.AI.birthWizzard(); //New

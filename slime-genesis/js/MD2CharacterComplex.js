@@ -220,11 +220,11 @@ THREE.MD2CharacterComplex = function () {
 		this.meshBody.setAnimationWeight( this.activeAnimation, mix );
 		this.meshBody.setAnimationWeight( this.oldAnimation,  1 - mix );
 	    }
-	    if ( this.meshWeapon ) {
-		this.meshWeapon.update( delta );
-		this.meshWeapon.setAnimationWeight( this.activeAnimation, mix );
-		this.meshWeapon.setAnimationWeight( this.oldAnimation,  1 - mix );
-	    }
+	 //    if ( this.meshWeapon ) {
+		// this.meshWeapon.update( delta );
+		// this.meshWeapon.setAnimationWeight( this.activeAnimation, mix );
+		// this.meshWeapon.setAnimationWeight( this.oldAnimation,  1 - mix );
+	 //    }
 	};
 
 	this.updateBehaviors = function ( delta ) {
@@ -232,62 +232,64 @@ THREE.MD2CharacterComplex = function () {
 	    var animations = this.animations;
 
 	    var moveAnimation, idleAnimation;
+
 	    moveAnimation = animations[ "move" ];
 	    idleAnimation = animations[ "idle" ];
 
 	    // actions
 	    if ( controls.jump ) {
-		moveAnimation = animations[ "jump" ];
-		idleAnimation = animations[ "jump" ];
-	    }
-
-	    if ( controls.attack ) {
-		moveAnimation = animations[ "attack" ];
-		idleAnimation = animations[ "attack" ];
-	    }
-
-	    if ( controls.grow ) {
-		moveAnimation = animations[ "grow" ];
-		idleAnimation = animations[ "grow" ];
+			moveAnimation = animations[ "jump" ];
+			idleAnimation = animations[ "jump" ];
 	    }
 	    // set animations
+	    if ( controls.attack ) idleAnimation = animations[ "attack" ];
+	    if ( controls.grow ) idleAnimation = animations[ "grow" ];
 
-	    if ( controls.moveForward || controls.moveBackward || controls.moveLeft || controls.moveRight ) {
-		if ( this.activeAnimation !== moveAnimation ) {
-		    this.setAnimation( moveAnimation );
-		}
+	    if ( controls.moveForward || controls.moveBackward || controls.moveLeft || controls.moveRight ) 
+	    {
+			if ( this.activeAnimation !== moveAnimation ) 
+			{
+		    	this.setAnimation( moveAnimation );
+			}
 	    }
 
-
-	    if ( Math.abs( this.speed ) < 0.2 * this.maxSpeed && !( controls.moveLeft || controls.moveRight || controls.moveForward || controls.moveBackward ) ) {
-		if ( this.activeAnimation !== idleAnimation ) {
-		    this.setAnimation( idleAnimation );
-		}
+	    if ( Math.abs( this.speed ) < 0.2 * this.maxSpeed && !( controls.moveLeft || controls.moveRight || controls.moveForward || controls.moveBackward ) ) 
+	    {
+			if ( this.activeAnimation !== idleAnimation ) 
+			{
+			    this.setAnimation( idleAnimation );
+			}
 	    }
 
 	    // set animation direction
 
-	    if ( controls.moveForward ) {
-		if ( this.meshBody )   {
-		    this.meshBody.setAnimationDirectionForward( this.activeAnimation );
-		    this.meshBody.setAnimationDirectionForward( this.oldAnimation );
-		}
+	    if ( controls.moveForward ) 
+	    {
+			if ( this.meshBody )   
+			{
+			    this.meshBody.setAnimationDirectionForward( this.activeAnimation );
+			    this.meshBody.setAnimationDirectionForward( this.oldAnimation );
+			}
 
-		if ( this.meshWeapon ) {
-		    this.meshWeapon.setAnimationDirectionForward( this.activeAnimation );
-		    this.meshWeapon.setAnimationDirectionForward( this.oldAnimation );
-		}
+			if ( this.meshWeapon ) 
+			{
+			    this.meshWeapon.setAnimationDirectionForward( this.activeAnimation );
+			    this.meshWeapon.setAnimationDirectionForward( this.oldAnimation );
+			}
 	    }
 
-	    if ( controls.moveBackward ) {
-		if ( this.meshBody ) {
-		    this.meshBody.setAnimationDirectionBackward( this.activeAnimation );
-		    this.meshBody.setAnimationDirectionBackward( this.oldAnimation );
-		}
-		if ( this.meshWeapon ) {
-		    this.meshWeapon.setAnimationDirectionBackward( this.activeAnimation );
-		    this.meshWeapon.setAnimationDirectionBackward( this.oldAnimation );
-		}
+	    if ( controls.moveBackward ) 
+	    {
+			if ( this.meshBody ) 
+			{
+			    this.meshBody.setAnimationDirectionBackward( this.activeAnimation );
+			    this.meshBody.setAnimationDirectionBackward( this.oldAnimation );
+			}
+			if ( this.meshWeapon ) 
+			{
+			    this.meshWeapon.setAnimationDirectionBackward( this.activeAnimation );
+			    this.meshWeapon.setAnimationDirectionBackward( this.oldAnimation );
+			}
 	    }
 	};
 
@@ -365,7 +367,7 @@ THREE.MD2CharacterComplex = function () {
 				Game.Rpg.Character.isCollisionDetect = true;
 			}
 			*/
-			
+
 	    //}
 
 	    // steering
