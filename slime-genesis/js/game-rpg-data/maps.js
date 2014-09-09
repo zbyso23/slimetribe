@@ -1,5 +1,7 @@
 var GameRpgMaps = {
+    mapList: [ 'map01', 'map02' ],
     active: 'map01',
+    current: {},
     map01: {
 	config: {
 	    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
@@ -40,17 +42,22 @@ var GameRpgMaps = {
 	    id: 0, object: {}
 	}
     },
-    current: {},
     setActive: function( map ) {
-	var found = false;
-	for( i in GameRpgMaps.mapList ) if( GameRpgMaps.mapList[ i ] === map ) found = true;
-	if( found === true ) GameRpgMaps.active = map;
-	return found;
+	try {
+	    var exists = GameRpgMaps.mapExists( map );
+	    if( false === exists ) throw "map not found";
+	    GameRpgMaps.active = map;
+	} catch( e ) {
+	    
+	}
+	return exists;
+	
     },
     setActiveToCurrent: function() {
 	GameRpgMaps.current = GameRpgMaps[ GameRpgMaps.active ];
-	
     },
-    mapList: [ 'map01', 'map02' ]
-    
+    mapExists: function( map ) {
+	for( i in GameRpgMaps.mapList ) if( GameRpgMaps.mapList[ i ] === map ) return true;
+	return false;
+    }
 };

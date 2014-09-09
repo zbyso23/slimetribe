@@ -2,7 +2,7 @@ Game.Scene.Graphics = {};
 Game.Scene.Graphics = {
     
     addGridCube: function( params ) {
-	var geometry = new THREE.CubeGeometry( params.size, BATTLE_GRID.height, params.size );
+	var geometry = new THREE.BoxGeometry( params.size, BATTLE_GRID.height, params.size );
 	var material = new THREE.MeshBasicMaterial( { color: BATTLE_GRID.neutral.color, wireframe: false, transparent: BATTLE_GRID.transparent, opacity: 0.2, side: THREE.DoubleSide } )
 	var mesh = new THREE.Mesh( geometry, material );
 	mesh.position.x = params.x;
@@ -14,7 +14,7 @@ Game.Scene.Graphics = {
 	scene.add( mesh );
     },
     addHealthCube: function( params ) {
-	var geometry = new THREE.CubeGeometry( params.size / 12, BATTLE_GRID.height, params.size );
+	var geometry = new THREE.BoxGeometry( params.size / 12, BATTLE_GRID.height, params.size );
 	var material = new THREE.MeshBasicMaterial( { color: BATTLE_GRID.neutral.color, wireframe: false, transparent: BATTLE_GRID.transparent, opacity: 0.2, side: THREE.DoubleSide } )
 	var mesh = new THREE.Mesh( geometry, material );
 	mesh.position.x = params.x + params.size / 3;
@@ -76,28 +76,29 @@ Game.Scene.Graphics = {
 	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Graphics.setEffects( gameData.battle.world.ground.object );
     },
     addBattleAmbient: function() {
-	var gat = THREE.ImageUtils.loadTexture( BATTLE.ambient.textures.difuse );
+
+	var gat = THREE.ImageUtils.loadTexture( BATTLE.ambient.textures.difuse, THREE.UVMapping );
 	var anisotropySet = parseInt( gameData.settings.graphics.anisotropy );
 	var anisotropyMax = renderer.getMaxAnisotropy();
 	if( anisotropySet > anisotropyMax ) anisotropySet = anisotropyMax;
 	gat.anisotropy = anisotropySet;
         if( gameData.settings.graphics.textures === "high" ) {
             var normalTextureAmbient = ( typeof BATTLE.ambient.textures.normal !== "undefined" ) ? BATTLE.ambient.textures.normal : BATTLE.ambient.textures.difuse;
-            var gaNt = THREE.ImageUtils.loadTexture( normalTextureAmbient );
+            var gaNt = THREE.ImageUtils.loadTexture( normalTextureAmbient, THREE.UVMapping );
             var gam = new THREE.MeshPhongMaterial( { color: BATTLE.ambient.color, map: gat, bumpMap: gaBt, bumpScale: BATTLE.ambient.bump, normalMap:gaNt, normalScale: BATTLE.ambient.normalScale, specular: BATTLE.ambient.specular, shininess: BATTLE.ambient.shininess, shading: BATTLE.ambient.shading } );    
         } else if( gameData.settings.graphics.textures === "medium" ) {
             var bumpTextureAmbient = ( typeof BATTLE.ambient.textures.bump !== "undefined" ) ? BATTLE.ambient.textures.bump : BATTLE.ambient.textures.difuse;
-            var gaBt = THREE.ImageUtils.loadTexture( bumpTextureAmbient );
+            var gaBt = THREE.ImageUtils.loadTexture( bumpTextureAmbient, THREE.UVMapping );
             var gam = new THREE.MeshPhongMaterial( { color: BATTLE.ambient.color, map: gat, bumpMap: gaBt, bumpScale: BATTLE.ambient.bump, specular: BATTLE.ambient.specular, shininess: BATTLE.ambient.shininess, shading: BATTLE.ambient.shading } );
         } else {
             var gam = new THREE.MeshPhongMaterial( { color: BATTLE.ambient.color, map: gat, specular: BATTLE.ambient.specular, shininess: BATTLE.ambient.shininess, shading: BATTLE.ambient.shading } );
         }
 	
-	gameData.battle.world.ambient.object = new THREE.Mesh( new THREE.CubeGeometry( 1600, 900, 40 ), gam );
+	gameData.battle.world.ambient.object = new THREE.Mesh( new THREE.BoxGeometry( 1600, 900, 40 ), gam );
 	scene.add( gameData.battle.world.ambient.object );
-	gameData.battle.world.ambient.object.rotation = BATTLE.ambient.rotation;
-	gameData.battle.world.ambient.object.scale = BATTLE.ambient.scale;
-	gameData.battle.world.ambient.object.position = BATTLE.ambient.position;
+	gameData.battle.world.ambient.object.rotation = { x: 1.57, y: 3.14, z: -1.57 }; //BATTLE.ambient.rotation;
+	gameData.battle.world.ambient.object.scale = {x: -2.1, y: 2.2, z: 1}; //BATTLE.ambient.scale;
+	gameData.battle.world.ambient.object.position = {x: 500, y: 20, z: 555};
 	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Graphics.setEffects( gameData.battle.world.ambient.object );
     },
     removeBattleAmbient: function() {

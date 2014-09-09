@@ -36,54 +36,54 @@ var gameRpgData = {
 	torch: {}
     },
     world: {
-	ready: false,
-	ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
-	sky: { radius: 1000, object: {} },
-	ambientObjects: [],
-	ambientMap: [],
-	collisionMap: [],
-	heightMap: []
+		ready: false,
+		ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
+		skybox: { size: 5000, imagesPath: "slime-genesis/images/skybox/space/", object: {}, loaded: false },
+		ambientObjects: [],
+		ambientMap: [],
+		collisionMap: [],
+		heightMap: []
 	
     },
     settings: {
 	graphics: {
 	    shadows: 'low',
-	    antialiasing: false,
+	    antialiasing: true,
 	    models: { name: 'Low', id: 'low', groundGridX: 127, groundGridY: 127, divider: 3 }
 	}
     },
     player: {
-	config: {
-	    baseUrl: "slime-genesis/md2/slizak/",
+		config: {
+			baseUrl: "slime-genesis/md2/slizak/",
 
-	    body: "slizak.js",
-	    skins: [ "slizak-necro2.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
-	    animations: {
-		    move: "run",
-		    idle: "stand",
-		    attack: "attack",
-		    grow: "grow"
-	    },
-	    runSpeed: 130,
-	    walkSpeed: 130,
-	    crouchSpeed: 25
-	},
-	params: {
-	    scale: 1.430
-	},
-	items: {
-	    'rock1': 0,
-	    'mushrom1': 0
-	},
-	stats: {
-	    health: 90,
-	    healthRemain: 90,
-	    experience: 0,
-	    level: 1,
-	    attack: 3,
-	    defense: 4
-	}
+			body: "slizak.json",
+			skins: [ "slizak-necro2.gif" ],
+			weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
+			animations: {
+				move: "run",
+				idle: "stand",
+				attack: "attack",
+				grow: "grow"
+			},
+			runSpeed: 130,
+			walkSpeed: 130,
+			crouchSpeed: 25
+		},
+		params: {
+			scale: 1.430
+		},
+		items: {
+			'rock1': 0,
+			'mushrom1': 0
+		},
+		stats: {
+			health: 90,
+			healthRemain: 90,
+			experience: 0,
+			level: 1,
+			attack: 3,
+			defense: 4
+		}
     }
 };
 
@@ -168,6 +168,6 @@ var controls = {
 	lockRight: false
 };
 
-var clock = new THREE.Clock();
+
 
 var t = 0;

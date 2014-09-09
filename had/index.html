@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>three.js css3d - periodic table</title>
+		<style>
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #000000;
+				margin: 0;
+				font-family: Helvetica, sans-serif;;
+				overflow: hidden;
+			}
+
+			a {
+				color: #ffffff;
+			}
+
+			#info {
+				position: absolute;
+				width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				font-weight: bold;
+				text-align: center;
+				z-index: 1;
+			}
+
+			#menu {
+				position: absolute;
+				bottom: 20px;
+				width: 100%;
+				text-align: center;
+			}
+
+			.element {
+				width: 120px;
+				height: 120px;
+				box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+				border: 1px solid rgba(127,255,255,0.25);
+				text-align: center;
+				cursor: default;
+			}
+
+			.element:hover {
+				box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+				border: 1px solid rgba(127,255,255,0.75);
+			}
+
+				.element .number {
+					position: absolute;
+					top: 20px;
+					right: 20px;
+					font-size: 12px;
+					color: rgba(127,255,255,0.75);
+				}
+
+				.element .symbol {
+					position: absolute;
+					top: 40px;
+					left: 0px;
+					right: 0px;
+					font-size: 60px;
+					font-weight: bold;
+					color: rgba(255,255,255,0.75);
+					text-shadow: 0 0 10px rgba(0,255,255,0.95);
+				}
+
+				.element .details {
+					position: absolute;
+					bottom: 15px;
+					left: 0px;
+					right: 0px;
+					font-size: 12px;
+					color: rgba(127,255,255,0.75);
+				}
+
+			button {
+				color: rgba(127,255,255,0.75);
+				background: transparent;
+				outline: 1px solid rgba(127,255,255,0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: rgba(0,255,255,0.5);
+			}
+			button:active {
+				color: #000000;
+				background-color: rgba(0,255,255,0.75);
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/three.min.js.67"></script>
+		<script src="js/libs/tween.min.js"></script>
+		<script src="js/renderers/CSS3DRenderer.js"></script>
+
+		<div id="container"></div>
+		<div id="info"><a href="#" target="_blank">LikeSnake</a></div>
+		<div id="menu" style="display: none;">
+			<button id="table">TABLE</button>
+			<button id="sphere">SPHERE</button>
+			<button id="helix">HELIX</button>
+			<button id="grid">GRID</button>
+		</div>
+		<script>
+			var camera, scene, renderer;
+			var controls;
+
+			var objects = [];
+			var targets = { table: [], sphere: [], helix: [], grid: [] };
+			var levelGrid = [];
+			var levelGridConfig = { x: 15, y: 9, sizeX: 200, sizeY: 190, spaceX: 2, spaceY: 2.3, color: {r: 0, g: 127, b: 127 }, xOffset: 1400, yOffset: 700, zOffset: 200 };
+			var levelColors = { brick: {r: 0, g: 127, b: 127 }, player: { auto: {r: 0, g: 27, b: 157 }, moveLeft: {r: 23, g: 123, b: 230 }, moveRight: {r: 123, g: 23, b: 230 } } };
+			var player = { x: 9, y: 4, last: {x: 0, y: 0}, move: {is: false, x: 0, y: 0}, auto: true, color: {r: 0, g: 27, b: 157 } };
+			var contorlsRequest = { valid: false, data: {} };
+
+			init();
+			animate();
+
+			function getHtmlColor(color, opacity)
+			{
+				return 'rgba('+Array(color.r, color.g, color.b).join(',')+','+opacity+')';
+			}
+			
+			function getPercent(x, y)
+			{
+				var x1 = window.innerWidth / 100;
+				var y1 = window.innerHeight / 100;
+				return { x: (x / x1), y: (y / y1) };
+			}
+
+			function tick()
+			{
+				levelGrid[player.last.y][player.last.x].element.style.backgroundColor = getHtmlColor(levelColors.brick, Math.random() * 0.5 + 0.25);
+				
+				if(player.x >= levelGridConfig.x) 
+				{
+					player.x = 0;
+				}
+				if(player.y >= levelGridConfig.y) 
+				{
+					player.y = 0;
+				}
+//console.log('player',player);
+				levelGrid[player.y][player.x].element.style.backgroundColor = getHtmlColor(player.color, Math.random() * 0.5 + 0.25);
+				if(player.auto)
+				{
+					player.last.x = player.x;
+					player.last.y = player.y;
+					player.x += 1;
+					if(player.x === levelGridConfig.x) 
+					{
+						player.y += 1;
+					}
+				}
+			}
+
+			function eventTouch( event )
+			{
+				event.preventDefault();
+				var x1 = window.innerWidth / 100;
+				var y1 = window.innerHeight / 100;
+				if(event.touches.length === 0)
+				{
+					player.auto = true;
+					player.move.is = false;
+					player.move.x = 0;
+					player.color = levelColors.player.auto;
+					return;
+				}
+				player.auto = false;
+				for( i in event.touches )
+				{
+					var touch = getPercent(event.touches[i].pageX, event.touches[i].pageY);
+//					var touch = event.touches[i];
+//					var touchX = ((touch.pageX / 100) * x1);
+//					var touchY = ((touch.pageY / 100) * y1);
+					if(touch.y < 50) continue;
+					player.move.x = (touch.x <= 50) ? -1 : 1;
+					player.move.is = true;
+					break;
+				}
+				if(player.move.is === false) return;
+				player.color = (player.move.x == -1) ? levelColors.player.moveLeft : levelColors.player.moveRight;
+			}
+
+			function eventMouseUp( event )
+			{
+				player.auto = true;
+				player.move.is = false;
+				player.move.x = 0;
+				player.color = levelColors.player.auto;
+				console.log('mouseEvent', event);
+			}
+
+			function eventMouseDown( event )
+			{
+				event.preventDefault();
+				var click = getPercent(event.clientX, event.clientY);
+				if(click.y < 50) return;
+				player.auto = false;
+				player.color = levelColors.player.move;
+				player.move.x = (click.x <= 50) ? -1 : 1;
+				player.move.is = true;
+				player.color = (player.move.x == -1) ? levelColors.player.moveLeft : levelColors.player.moveRight;
+				console.log('mouseEvent', event);
+				console.log('playerColor', player.color);
+			}
+			
+			function eventMove( event )
+			{
+				console.log('mouseEvent move', event);
+			}
+
+
+			function initEvents()
+			{
+				document.addEventListener( 'touchstart', eventTouch, false);
+				document.addEventListener( 'touchmove', eventTouch, false);
+				document.addEventListener( 'touchend', eventTouch, false);
+				document.addEventListener( 'mousedown', eventMouseDown, false);
+				document.addEventListener( 'mouseup', eventMouseUp, false);
+				//document.addEventListener( 'mousemove', eventClick, false);
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+
+			function init() 
+			{
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 3000;
+
+				scene = new THREE.Scene();
+
+				for ( var y = 0; y < levelGridConfig.y; y += 1 ) {
+					var levelGridLine = [];
+					for ( var x = 0; x < levelGridConfig.x; x += 1 ) {
+						var element = document.createElement( 'div' );
+						element.className = 'element';
+						element.style.backgroundColor = getHtmlColor(levelGridConfig.color, Math.random() * 0.5 + 0.25);
+
+						var object = new THREE.CSS3DObject( element );
+						var position = {x:0, y: 0, z: 0};
+						position.x = (x * ( levelGridConfig.sizeX + levelGridConfig.spaceX )) - levelGridConfig.xOffset;
+						position.y = (y * ( levelGridConfig.sizeY + levelGridConfig.spaceY )) - levelGridConfig.yOffset;
+						position.z = levelGridConfig.zOffset;
+						object.position.x = position.x;
+						object.position.y = position.y;
+						object.position.z = position.z;
+						levelGridLine.push( object );
+						scene.add( object );
+						objects.push( object );
+						targets.table.push( object );
+					}
+					levelGrid.push( levelGridLine );
+				}
+				console.log(levelGrid);
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
+				transform( targets.table, 5000 );
+				initEvents();
+			}
+
+			function transform( targets, duration ) 
+			{
+				TWEEN.removeAll();
+
+				for ( var i = 0; i < objects.length; i ++ ) 
+				{
+					var object = objects[ i ];
+					var target = targets[ i ];
+
+					new TWEEN.Tween( object.position )
+						.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+				}
+
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+			}
+
+			function onWindowResize() 
+			{
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+			}
+
+			function animate() 
+			{
+				requestAnimationFrame( animate );
+
+				TWEEN.update();
+				tick();
+				//controls.update();
+			}
+			
+//			setInterval(tick, 300);
+
+			function render() {
+				renderer.render( scene, camera );
+			}
+		</script>
+	</body>
+</html>
+

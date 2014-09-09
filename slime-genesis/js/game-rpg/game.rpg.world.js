@@ -9,6 +9,7 @@ Game.Rpg.World = {
 	    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
 	    storage.attributes.items.push( item );
 	} catch( e ) {
+	    utils.log( 'addItemToStorage' , e );
 	    return false;
 	}
 	return true;
@@ -36,7 +37,7 @@ Game.Rpg.World = {
 	    if( !change ) throw "no item fully spawned";
 	    Game.Rpg.World.spawnItems = newSpawnItems;
 	} catch( e ) {
-	    
+//	    utils.log( 'spawn' , e );
 	}
     }
 

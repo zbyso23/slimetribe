@@ -3,9 +3,9 @@ GameRpgAmbient = {
     rock1: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "rock-1.js",
+	    body: "rock-1.json",
 	    skins: [ "rock-1.gif" ],
-	    weapons:  [ [ "rock-1.js", "rock-1.gif" ] ],
+	    weapons:  [ [ "rock-1.json", "rock-1.gif" ] ],
 	    animations: { idle: "stand" },
 	    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
 	},
@@ -21,9 +21,9 @@ GameRpgAmbient = {
     rock2: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "rock-1.js",
+	    body: "rock-1.json",
 	    skins: [ "rock-2.gif" ],
-	    weapons:  [ [ "rock-1.js", "rock-2.gif" ] ],
+	    weapons:  [ [ "rock-1.json", "rock-2.gif" ] ],
 	    animations: { idle: "stand" },
 	    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
 	},
@@ -39,9 +39,9 @@ GameRpgAmbient = {
     mushrom1: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "mushrom-1.js",
+	    body: "mushrom-1.json",
 	    skins: [ "mushrom-1.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 	    animations: {
 		    idle: "stand"
 	    },
@@ -53,15 +53,15 @@ GameRpgAmbient = {
 	    experience: 7,
 	    name: 'mushrom1',
 	    spawn: true,
-	    timeout: 0
+	    timeout: 50
 	}
     },
     mushrom2: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "mushrom-1.js",
+	    body: "mushrom-1.json",
 	    skins: [ "mushrom-2.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 	    animations: {
 		    idle: "stand"
 	    },
@@ -73,15 +73,15 @@ GameRpgAmbient = {
 	    name: 'mushrom2',
 	    spawn: true,
 	    experience: 7,
-	    timeout: 0
+	    timeout: 100
 	}
     },
     three1: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "three-1.js",
+	    body: "three-1.json",
 	    skins: [ "three-1.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 	    animations: {
 		    idle: "stand"
 	    },
@@ -99,9 +99,9 @@ GameRpgAmbient = {
     storage1: {
 	config: {
 	    baseUrl: "slime-genesis/md2/ambient/",
-	    body: "storage-1.js",
+	    body: "storage-1.json",
 	    skins: [ "storage-1.gif" ],
-	    weapons:  [ [ "weapon-blender2.js", "test-sword2.gif" ] ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 	    animations: {
 		    idle: "stand"
 	    },
@@ -120,11 +120,8 @@ GameRpgAmbient = {
 	}
     },
     storageAccept: function( id ) {
-	var accept = false;
-	for( i in GameRpgAmbient.storage1.attributes.accept ) {
-	    if( GameRpgAmbient.storage1.attributes.accept[i] == id ) accept = true;
-	}
-	return accept;
+	for( i in GameRpgAmbient.storage1.attributes.accept ) if( GameRpgAmbient.storage1.attributes.accept[i] == id ) return true;
+	return false;
     },
 
     

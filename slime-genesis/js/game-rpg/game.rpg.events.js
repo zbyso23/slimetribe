@@ -2,7 +2,7 @@ Game.Rpg.Events = {
     resize: function( event ) {
 	SCREEN_WIDTH = window.innerWidth;
 	SCREEN_HEIGHT = window.innerHeight;
-	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+	//temporaray refactor; renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 
 	camera.aspect = SCREEN_WIDTH/ SCREEN_HEIGHT;
 	camera.updateProjectionMatrix();

@@ -17,14 +17,22 @@
 		<img class="buttons" id="buttons-character" src="slime-genesis/images/genesis-character.png" width="10" height="10"/>
 		<div id="gui"></div>
 		<div id="menu"></div>
-
+		<script>
+		Date.prototype.getJulian = function() 
+		{
+			return ((this / 86400000) - (this.getTimezoneOffset() / 1440) + 2440587.5);
+		};
+		</script>
+		<script src="slime-genesis/js/ai/jquery-1.4.2.min.js"></script>
+		<script src="slime-genesis/js/ai/brain-0.6.3.js"></script>
 		<script src="slime-genesis/js/three.js"></script>
 		<script src="slime-genesis/js/TrackballControls.js"></script>
 		<script src='slime-genesis/js/MD2CharacterComplex.js'></script>
 		<script src='slime-genesis/js/libs/stats.min.js'></script>
 		
-		<script src="slime-genesis/js/game-rpg/game.rpg.js"></script>
-		<script src="slime-genesis/js/game/game.utils.js"></script>
+		<script src="slime-genesis/js/game-rpg/Rpg.js"></script>
+		<script src="slime-genesis/js/game-rpg/RpgRender.js"></script>
+		<script src="slime-genesis/js/game/utils.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.html.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.stats.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.init.variables.js"></script>
@@ -36,15 +44,20 @@
 		<script src="slime-genesis/js/game-rpg/game.rpg.events.keyboard.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.camera.js"></script>
-		<script src="slime-genesis/js/game-rpg/game.rpg.scene.renderer.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.projection.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.lights.js"></script>
+		
+		<script src="slime-genesis/js/game-rpg/game.rpg.ai.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.ai.character.js"></script>
 		
 		<script src="slime-genesis/js/game-rpg-data/ambient.js"></script>
 		<script src="slime-genesis/js/game-rpg-data/maps.js"></script>
 
 		<script>
-		    Game.Rpg.initialize();
+			var game = new Rpg();
+			game.run();
+		    //Game.Rpg.initialize();
+			var wizzard;
 		    console.log('load complete....');
 		</script>
 

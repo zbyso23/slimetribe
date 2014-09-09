@@ -6,14 +6,19 @@
     </head>
     <body>
 	<div></div>
+<audio id="ambient">
+  <source src="slime-genesis/music/map01-ambient.ogg" type="audio/ogg">
+</audio>
 	
 	<script>
+	    /*
 	    function dec2hex(n){
 		n = parseInt(n); var c = 'ABCDEF';
 		var b = n / 16; var r = n % 16; b = b-(r/16); 
 		b = ((b>=0) && (b<=9)) ? b : c.charAt(b-10);    
 		return ((r>=0) && (r<=9)) ? b+''+r : b+''+c.charAt(r-10);
 	    }
+	    */
 	    /*
 	    var percent = 0;
 	    for( var i = 0; i <= 255; i += 25.5 ) {
@@ -30,7 +35,7 @@
 	    num = ( health === 0 ) ? 0 : num;
 	    document.write( num );
 	    */
-	   
+/*	   
 	var test = [];
 	var row = [];
 	for( var i = 0; i < 65535; i = i + 4 ) {
@@ -42,9 +47,11 @@
 	    row.push( 1 );
 	}
 	console.log('test', test );	   
-	   
-	   
-	   
+*/	   
+
+	var el = document.getElementById( 'ambient' );
+	el.play();
 	</script>
+	
     </body>
 </html>

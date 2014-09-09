@@ -77,6 +77,18 @@ THREE.MD2CharacterComplex = function () {
 	    controls.lockForward = false;
 	    controls.lockBackward = false;
 	}
+
+	this.coordsToGrid = function( ) {
+		var map = GameRpgMaps.current;
+		var stepX = Math.round( map.ground.width / map.config.gridX );
+		var stepY = Math.round( map.ground.height / map.config.gridY );
+		var x = ( map.ground.width / 2 ) - params.x;//map.character.object.position.x;
+		var y = ( map.ground.height / 2 ) - params.y;//map.character.object.position.z;
+		var gridX = Math.round( x / stepX );
+		var gridY = Math.round( y / stepY );
+		return { x: gridX, y: gridY };
+
+	}
 	
 	this.setHeight = function () {
 	    var map = GameRpgMaps.current;
@@ -328,21 +340,34 @@ THREE.MD2CharacterComplex = function () {
 		    this.speed = THREE.Math.clamp( this.speed + k * delta * this.backAcceleration, this.maxReverseSpeed, 0 );
 		}
 	    }
-	    this.setHeight( character );
+	    //temporary disabled - refactor this.setHeight( character );
 
 	    // displacement
 	    var forwardDelta = this.speed * delta;
-	    if( !controls.attack && !controls.grow ) {
-		var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
-		collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;
-		collisionDetect.y += Math.cos( this.bodyOrientation ) * forwardDelta;
-		var grid = Game.Rpg.coordsToGrid( { x: collisionDetect.x, y: collisionDetect.y } );
-		var reversedGrid = Game.Rpg.reverseGrid( grid );
-		if( GameRpgMaps.current.world.collisionMap[ reversedGrid.x ][ reversedGrid.y ] === 255 ) {
-		    this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
-		    this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
-		}
-	    }
+	    //temporary disabled - refactor 
+	    //if( !controls.attack && !controls.grow ) {
+			var collisionDetect = { x: this.root.position.x, y: this.root.position.z };
+			collisionDetect.x += Math.sin( this.bodyOrientation ) * forwardDelta;
+			collisionDetect.y += Math.cos( this.bodyOrientation ) * forwardDelta;
+			//temporary disabled - refactor 
+			/*
+			var grid = Game.Rpg.coordsToGrid( { x: collisionDetect.x, y: collisionDetect.y } );
+			var reversedGrid = Game.Rpg.reverseGrid( grid );
+			if( GameRpgMaps.current.world.collisionMap[ reversedGrid.x ][ reversedGrid.y ] === 255 ) {
+			*/
+				Game.Rpg.Character.isCollisionDetect = false;
+				this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
+				this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
+			/*
+			}
+			else
+			{
+				Game.Rpg.Character.isCollisionDetect = true;
+			}
+			*/
+			
+	    //}
+
 	    // steering
 	    this.root.rotation.y = this.bodyOrientation;
 	};

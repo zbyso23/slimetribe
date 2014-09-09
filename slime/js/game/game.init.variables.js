@@ -93,13 +93,13 @@ gameData = {
     },
     settings: {
 	graphics: {
-	    lights: 'high',
-	    shadows: 'high',
+	    lights: 'none',
+	    shadows: 'none',
 	    antialiasing: true,
 	    anisotropy: 4,
 	    models: { 'name': 'Low', 'id': 'low', 'groundGridX': 127, 'groundGridY': 127 },
             textures: 'low',
-	    mobile: 'off'
+	    mobile: 'on'
 	    
 	}
     },
@@ -309,13 +309,13 @@ var tribe = {
 	ai: false,
 	level: 'hard',
 	army: [ 
-	    { name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
+	    /*{ name: 'healer-swamp', pos: [ [0,0], [0,8] ] }, 
 	    { name: 'healer', pos: [ [0,7] ] },
 	    { name: 'magican-swamp', pos: [ [0,3] ] },
 	    { name: 'magican', pos: [ [0,6] ] },
 	    { name: 'slizak-swamp', pos: [ [1,1] ] },
 	    { name: 'octopus', pos: [ [1,7] ] },
-	    { name: 'octopus-swamp', pos: [ [1,4] ] },
+	    { name: 'octopus-swamp', pos: [ [1,4] ] },*/
 	    { name: 'slizak', pos: [ [1,5], [0,9] ] }
 	],/*
 	army: [ 
@@ -333,9 +333,9 @@ var tribe = {
 	ai: true,
 	level: 'hard',
 	army: [
-	    { name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] },
+	    /*{ name: 'healer-necro', pos: [ [0,0], [0,2], [0,6] ] },
 	    { name: 'magican-necro', pos: [ [0,4], [0,8] ] },
-	    { name: 'octopus-necro', pos: [ [1,2],  [1,8] ] },
+	    { name: 'octopus-necro', pos: [ [1,2],  [1,8] ] },*/
 	    { name: 'slizak-necro', pos: [ [1,1], [1,5], [0,7], [0,9] ] }
 	],/*
 	army: [
