@@ -56,6 +56,7 @@ var gameRpgData = {
 		config: {
 			baseUrl: "slime-genesis/md2/slizak/",
 
+<<<<<<< HEAD
 			body: "slizak.json",
 			skins: [ "slizak-necro2.gif" ],
 			weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
@@ -84,6 +85,36 @@ var gameRpgData = {
 			attack: 3,
 			defense: 4
 		}
+=======
+	    body: "slizak.json",
+	    skins: [ "slizak-necro2.gif" ],
+	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
+	    animations: {
+		    move: "run",
+		    idle: "stand",
+		    attack: "attack",
+		    grow: "grow"
+	    },
+	    runSpeed: 130,
+	    walkSpeed: 130,
+	    crouchSpeed: 25
+	},
+	params: {
+	    scale: 1.430
+	},
+	items: {
+	    'rock1': 0,
+	    'mushrom1': 0
+	},
+	stats: {
+	    health: 90,
+	    healthRemain: 90,
+	    experience: 0,
+	    level: 1,
+	    attack: 3,
+	    defense: 4
+	}
+>>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
     }
 };
 

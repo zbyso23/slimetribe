@@ -45,7 +45,11 @@ var GameRpgMaps = {
     setActive: function( map ) {
 	try {
 	    var exists = GameRpgMaps.mapExists( map );
+<<<<<<< HEAD
 	    if( false === exists ) throw "map not found";
+=======
+	    if( !exists ) throw "map not found";
+>>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
 	    GameRpgMaps.active = map;
 	} catch( e ) {
 	    
@@ -57,7 +61,13 @@ var GameRpgMaps = {
 	GameRpgMaps.current = GameRpgMaps[ GameRpgMaps.active ];
     },
     mapExists: function( map ) {
+<<<<<<< HEAD
 	for( i in GameRpgMaps.mapList ) if( GameRpgMaps.mapList[ i ] === map ) return true;
 	return false;
+=======
+	var exists = false;
+	for( i in GameRpgMaps.mapList ) if( GameRpgMaps.mapList[ i ] === map ) exists = true;
+	return exists;
+>>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
     }
 };
