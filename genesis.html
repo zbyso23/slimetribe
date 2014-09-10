@@ -32,20 +32,24 @@
 		
 		<script src="slime-genesis/js/game-rpg/Rpg.js"></script>
 		<script src="slime-genesis/js/game-rpg/RpgRender.js"></script>
+		<script src="slime-genesis/js/game-rpg/RpgEvents.js"></script>
+		<script src="slime-genesis/js/game-rpg/RpgWorld.js"></script>
 		<script src="slime-genesis/js/game/utils.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.html.js"></script>
-		<script src="slime-genesis/js/game-rpg/game.rpg.stats.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.init.variables.js"></script>
-		<script src="slime-genesis/js/game-rpg/game.rpg.events.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.character.js"></script>
+		<!-- 
+		<script src="slime-genesis/js/game-rpg/game.rpg.stats.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.world.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.events.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.events.tablet.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.events.mouse.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.events.keyboard.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.camera.js"></script>
-		<!-- <script src="slime-genesis/js/game-rpg/game.rpg.scene.projection.js"></script> -->
+		<script src="slime-genesis/js/game-rpg/game.rpg.scene.projection.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.lights.js"></script>
+		-->
 		
 		<script src="slime-genesis/js/game-rpg/game.rpg.ai.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.ai.character.js"></script>
@@ -54,11 +58,20 @@
 		<script src="slime-genesis/js/game-rpg-data/maps.js"></script>
 
 		<script>
+		try
+		{
 			var game = new Rpg();
 			game.run();
 		    //Game.Rpg.initialize();
 			var wizzard;
 		    console.log('load complete....');
+
+		}
+		catch(e)
+		{
+			game.pause();
+			alert(e.message);
+		}
 		</script>
 
 	</body>

@@ -137,12 +137,12 @@ var gameMenu = {
     }
 }
 
-var KEYS = { 
-    LEFT:37, RIGHT:39, UP:38, DOWN:40, 
-    SPACE:32, CTRL: 17, SHIFT: 16, ALT: 18 
-};
+// var KEYS = { 
+//     LEFT:37, RIGHT:39, UP:38, DOWN:40, 
+//     SPACE:32, CTRL: 17, SHIFT: 16, ALT: 18 
+// };
 
-var playerKeys = KEYS;
+// var playerKeys = KEYS;
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
 var container, camera, scene, renderer, projector;
