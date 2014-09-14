@@ -16,24 +16,24 @@ var gameResources = {
 var gameRpgData = {
     run: false,
     character: {
-	loaded: false,
-	health: 100,
-	object: {},
-	md2: {},
-	gyro: {},
-	md2base: {},
-	stats: {},
-	controls: {
-	    reverseY: false,
-	    reverseX: false
-	},
-	position: {
-	    x: 0, y: 87.6, z: 0
-	},
-	currentPosition: {
-	    x: 0, y: 72.6, z: 0
-	},
-	torch: {}
+		loaded: false,
+		health: 100,
+		object: {},
+		md2: {},
+		gyro: {},
+		md2base: {},
+		stats: {},
+		controls: {
+		    reverseY: false,
+		    reverseX: false
+		},
+		position: {
+		    x: 0, y: 87.6, z: 0
+		},
+		currentPosition: {
+		    x: 0, y: 72.6, z: 0
+		},
+		torch: {}
     },
     world: {
 		ready: false,
@@ -46,46 +46,16 @@ var gameRpgData = {
 	
     },
     settings: {
-	graphics: {
-	    shadows: 'low',
-	    antialiasing: true,
-	    models: { name: 'Low', id: 'low', groundGridX: 127, groundGridY: 127, divider: 3 }
-	}
+		graphics: {
+		    shadows: 'low',
+		    antialiasing: true,
+		    models: { name: 'Low', id: 'low', groundGridX: 127, groundGridY: 127, divider: 3 }
+		}
     },
     player: {
 		config: {
 			baseUrl: "slime-genesis/md2/slizak/",
-
-<<<<<<< HEAD
-			body: "slizak.json",
-			skins: [ "slizak-necro2.gif" ],
-			weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
-			animations: {
-				move: "run",
-				idle: "stand",
-				attack: "attack",
-				grow: "grow"
-			},
-			runSpeed: 130,
-			walkSpeed: 130,
-			crouchSpeed: 25
-		},
-		params: {
-			scale: 1.430
-		},
-		items: {
-			'rock1': 0,
-			'mushrom1': 0
-		},
-		stats: {
-			health: 90,
-			healthRemain: 90,
-			experience: 0,
-			level: 1,
-			attack: 3,
-			defense: 4
-		}
-=======
+			
 	    body: "slizak.json",
 	    skins: [ "slizak-necro2.gif" ],
 	    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
@@ -114,7 +84,7 @@ var gameRpgData = {
 	    attack: 3,
 	    defense: 4
 	}
->>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
+
     }
 };
 
@@ -176,14 +146,6 @@ var gameMenu = {
 // var playerKeys = KEYS;
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
-var container, camera, scene, renderer, projector;
-var groundHeightMap;
-var vectorsGround = [];
-var vectors = [];
-var w;
-var characters = [];
-var nCharacters = 0;
-var cameraControls;
 var controls = {
 	moveForward: false,
 	moveBackward: false,

@@ -1,10 +1,24 @@
 (function(){
-	var clock = new THREE.Clock();
-	var delta;
-	var loop;
+	IRpgWorld = 
+	{
+		addItemToStorage: function( storage, item ) {},
+		addSpawnItem: function( coords ) {},
+		getStorageExperience: function() {},
+		addAmbientItem: function() {},
+		removeAmbientItem: function() {},
+		getAmbientItems: function() {},
+		setAmbient: function() {},
+		run: function() {},
+		pause: function() {},
+		uninitialize: function() {},
+		switchMap: function( map ) {}
+	}
 
 	RpgWorld = function( game )
 	{
+		var clock = new THREE.Clock();
+		var loop;
+
 	    var delta  = 0;
 	    var tick   = 0;
 	    var gyro   = {};
@@ -14,12 +28,14 @@
 	    var ambientItemsCount = 0;
 	    var ambientItemsLoaded = false;
 
-	    var render = new RpgRender( this );
-	    var events = new RpgEvents();
-
+	    var render    = new RpgRender( this );
+	    var events    = new RpgEvents();
+	    var character = new RpgCharacter( this, render );
+	    var stopRequest = false;
 
 	    var runLoop = function() 
 	    {
+	    	++tick;
 			delta = clock.getDelta();
 			refreshLogic();
 			loop = window.requestAnimationFrame( runLoop );
@@ -28,42 +44,33 @@
 		    	spawn();
 		    	render.refresh( delta );
 			}
-			tick++;
+			if(stopRequest)
+			{
+				stop();
+				gameRpgData.run = false;
+			}
     	};
 
 	    var refreshLogic = function() 
 	    {
-			if( gameRpgData.run )
-			{
-			    if( !gameRpgData.world.ready ) 
-			    {
-					generateWorld();
-			    } 
-			    else 
-			    {
-					if( gameRpgData.character.loaded === true ) 
-					{
-						gameRpgData.character.torch.position.x = gameRpgData.character.object.position.x;
-						gameRpgData.character.torch.position.y = gameRpgData.character.object.position.y + 10;
-						gameRpgData.character.torch.position.z = gameRpgData.character.object.position.z;
-					}
-					//wizzard.refresh();
-			    }
+	    	if( !gameRpgData.run )
+	    	{
+			    //Blank - space for Menu etc.
+			    //RUN manually - DEBUG and prepare menu
+			    render.imagesLoader();
+			    gameRpgData.run = true;
 			    return;
-			} 
-
-		    //Blank - space for Menu etc.
-		    //RUN manually - DEBUG and prepare menu
-		    render.imagesLoader();
-		    gameRpgData.run = true;
+	    	}
+		    if( gameRpgData.world.ready ) return;
+		    if( !gameDataImages.loaded ) return;
+			generateWorld();
 	    };
 
 	    var generateWorld = function() 
 	    {
-			if( !gameDataImages.loaded ) return;
 	    	initializeMap();
-	    	render.initializeCharacter();
-
+	    	render.initializeMap( GameRpgMaps.current );
+	    	character.initialize();
 			//first AI refactor - disabled
 			// wizzard = new GameRpgAIcharacter({
 			// 		hiddenLayers: 3, 
@@ -76,83 +83,11 @@
 		    gameRpgData.world.ready = true;
 	    };
 
-
-	    this.addItemToStorage = function( storage, item ) 
+	    var stop = function()
 	    {
-			try 
-			{
-			    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";
-			    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
-			    storage.attributes.items.push( item );
-			} 
-			catch( e ) 
-			{
-			    utils.log( 'addItemToStorage' , e );
-			    return false;
-			}
-			return true;
-	    };
-
-	    this.getStorageExperience = function() 
-	    {
-			return storageExperience;
-	    };
-
-	    this.addAmbientItem = function()
-	    {
-	    	++ambientItemsCount;
-	    };
-
-	    this.removeAmbientItem = function()
-	    {
-	    	--ambientItemsCount;
-	    };
-
-	    this.getAmbientItems = function()
-	    {
-	    	return Math.ceil( ambientItemsCount );
-	    };
-
-	    this.setAmbient = function()
-	    {
-
-	    };
-
-	    this.run = function()
-	    {
-			Game.Rpg.Html.initialize();
-			render.initialize();
-			events.initialize();
-			GameRpgMaps.setActiveToCurrent();
-	    	runLoop();
-	    };
-
-	    this.pause = function()
-	    {
-	    	loop = window.cancelAnimationFrame( runLoop );
+	     	loop = window.cancelAnimationFrame( runLoop );
 			loop = undefined;
 	    };
-
-	    this.uninitialize = function()
-	    {
-	    	uninitializeMap();
-	    	render.uninitializeCharacter();
-	    };
-
-	    this.switchMap = function( map ) 
-	    {
-		    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
-		    gameRpgData.run = false;
-		    this.uninitialize();
-		    GameRpgMaps.setActive( map );
-		    GameRpgMaps.setActiveToCurrent();
-		    render.imagesLoader();
-	    	uninitializeMap();
-	    	render.uninitializeCharacter();
-		    gameRpgData.run = true;
-
-	    };
-
 
    	    var initializeMap = function() 
 	    {
@@ -199,7 +134,6 @@
 			map.world.ambientObjects.push( ambientObjectsRow );
 			map.world.collisionMap.push( collisionRow );
 			map.world.heightMap.push( heightRow );
-			render.initializeMap( map );
 	    };
 
 	    var uninitilizeMap = function()
@@ -236,8 +170,91 @@
 			} 
 			catch( e ) 
 			{
-		//	    utils.log( 'spawn' , e );
+			    utils.log( 'spawn' , e );
 			}
 	    };
 	};
+
+	RpgWorld.prototype = Object.create(IRpgWorld);
+
+
+    RpgWorld.prototype.addItemToStorage = function( storage, item ) 
+    {
+		try 
+		{
+		    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";
+		    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
+		    storage.attributes.items.push( item );
+		} 
+		catch( e ) 
+		{
+		    utils.log( 'addItemToStorage' , e );
+		    return false;
+		}
+		return true;
+    };
+
+    RpgWorld.prototype.addSpawnItem = function( coords )
+    {
+		spawnItems.push( coords );
+    };
+
+    RpgWorld.prototype.getStorageExperience = function() 
+    {
+		return storageExperience;
+    };
+
+    RpgWorld.prototype.addAmbientItem = function()
+    {
+    	++ambientItemsCount;
+    };
+
+    RpgWorld.prototype.removeAmbientItem = function()
+    {
+    	--ambientItemsCount;
+    };
+
+    RpgWorld.prototype.getAmbientItems = function()
+    {
+    	return Math.ceil( ambientItemsCount );
+    };
+
+    RpgWorld.prototype.setAmbient = function()
+    {
+
+    };
+
+    RpgWorld.prototype.run = function()
+    {
+		render.initialize();
+		events.initialize();
+		GameRpgMaps.setActiveToCurrent();
+     	runLoop();
+    };
+
+    RpgWorld.prototype.pause = function()
+    {
+    	stopRequest = true;
+    }
+
+    RpgWorld.prototype.uninitialize = function()
+    {
+    	uninitializeMap();
+    	character.uninitialize();
+    };
+
+    RpgWorld.prototype.switchMap = function( map ) 
+    {
+	    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
+	    gameRpgData.run = false;
+    	uninitializeMap();
+    	character.uninitialize();
+	    GameRpgMaps.setActive( map );
+	    GameRpgMaps.setActiveToCurrent();
+	    render.imagesLoader();
+    	initializeMap();
+    	render.initializeMap( GameRpgMaps.current );
+    	character.initialize();
+	    gameRpgData.run = true;
+    };
 })();

@@ -1,31 +1,23 @@
 (function(){
-	var KEYS = 
+	IRpgEvents = 
 	{
-	    SHIFT: 16, 
-	    CTRL : 17, 
-	    ALT  : 18,
-	    SPACE: 32, 
-	    LEFT : 37, 
-	    RIGHT: 39, 
-	    UP   : 38, 
-	    DOWN : 40
+		initialize: function() {}
 	};
 
 	RpgEvents = function()
 	{
-	    var screenResize = function( event ) 
-	    {
-			SCREEN_WIDTH = window.innerWidth;
-			SCREEN_HEIGHT = window.innerHeight;
-			renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-
-			camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
-			camera.updateProjectionMatrix();
-			Game.Rpg.Html.refreshButtons();
-			Game.Rpg.Html.refreshGui();
-			Game.Rpg.Html.refreshGuiContent();
-	    };
-	    
+		var KEYS = 
+		{
+		    SHIFT: 16, 
+		    CTRL : 17, 
+		    ALT  : 18,
+		    SPACE: 32, 
+		    LEFT : 37, 
+		    RIGHT: 39, 
+		    UP   : 38, 
+		    DOWN : 40
+		};
+		
 	    var touches = function( event ) 
 	    {
 			event.preventDefault();
@@ -150,24 +142,22 @@
 			    }
 			}
 	    };
-	    
-	    this.initialize = function() 
-	    {
-	    	//Screen resize (rotate)
-			window.addEventListener( 'resize', screenResize, false );
-			//touch screen controls
-			document.addEventListener( 'touchstart', touches, false);
-			document.addEventListener( 'touchmove',  touches, false);
-			document.addEventListener( 'touchend',   touches, false);
-			document.addEventListener( 'touchleave', touches, false);
-			//mouse buttons controls
-			document.addEventListener( 'mousemove', mouse, false);
-			document.addEventListener( 'mousedown', mouse, false);
-			//keyboard controls
-			document.addEventListener( 'keydown', keyDown, false);
-			document.addEventListener( 'keyup', keyUp, false);
-
-	    };
 	};
 
+	RpgEvents.prototype = Object.create(IRpgEvents);
+
+    RpgEvents.initialize = function() 
+    {
+		//touch screen controls
+		document.addEventListener( 'touchstart', touches, false);
+		document.addEventListener( 'touchmove',  touches, false);
+		document.addEventListener( 'touchend',   touches, false);
+		document.addEventListener( 'touchleave', touches, false);
+		//mouse buttons controls
+		document.addEventListener( 'mousemove', mouse, false);
+		document.addEventListener( 'mousedown', mouse, false);
+		//keyboard controls
+		document.addEventListener( 'keydown', keyDown, false);
+		document.addEventListener( 'keyup',   keyUp, false);
+    };
 })();

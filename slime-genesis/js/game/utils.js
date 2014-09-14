@@ -22,9 +22,9 @@ utils = {
 		b = ( ( b >= 0 ) && ( b <= 9 ) ) ? b : c.charAt( b - 10 );
 		return ( ( r >= 0 ) && ( r <= 9 ) ) ? b + '' + r : b + '' + c.charAt( r - 10 );
     },
-    log: function( message ) 
+    log: function( name, message ) 
     {
-		console.log( message );
+    	return ( message ) ? console.log( name, message ) : console.log( name );
     },
 	isObject: function(input)
 	{

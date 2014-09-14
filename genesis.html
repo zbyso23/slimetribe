@@ -30,14 +30,14 @@
 		<script src='slime-genesis/js/MD2CharacterComplex.js'></script>
 		<script src='slime-genesis/js/libs/stats.min.js'></script>
 		
-		<script src="slime-genesis/js/game-rpg/Rpg.js"></script>
+		<script src="slime-genesis/js/game-rpg/Game.js"></script>
+		<script src="slime-genesis/js/game-rpg/HtmlRender.js"></script>
 		<script src="slime-genesis/js/game-rpg/RpgRender.js"></script>
 		<script src="slime-genesis/js/game-rpg/RpgEvents.js"></script>
 		<script src="slime-genesis/js/game-rpg/RpgWorld.js"></script>
+		<script src="slime-genesis/js/game-rpg/RpgCharacter.js"></script>
 		<script src="slime-genesis/js/game/utils.js"></script>
-		<script src="slime-genesis/js/game-rpg/game.rpg.html.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.init.variables.js"></script>
-		<script src="slime-genesis/js/game-rpg/game.rpg.character.js"></script>
 		<!-- 
 		<script src="slime-genesis/js/game-rpg/game.rpg.stats.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.world.js"></script>
@@ -49,28 +49,36 @@
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.camera.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.projection.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.scene.lights.js"></script>
-		-->
-		
+		<script src="slime-genesis/js/game-rpg/game.rpg.html.js"></script>
+		<script src="slime-genesis/js/game-rpg/game.rpg.character.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.ai.js"></script>
 		<script src="slime-genesis/js/game-rpg/game.rpg.ai.character.js"></script>
-		
+		-->
 		<script src="slime-genesis/js/game-rpg-data/ambient.js"></script>
 		<script src="slime-genesis/js/game-rpg-data/maps.js"></script>
 
 		<script>
 		try
 		{
-			var game = new Rpg();
-			game.run();
+			var game = new Game();
+			//game.run();
 		    //Game.Rpg.initialize();
 			var wizzard;
-		    console.log('load complete....');
+		    //console.log('load complete....');
 
 		}
 		catch(e)
 		{
-			game.pause();
-			alert(e.message);
+			if(e instanceof GameException)
+			{
+				utils.log('GameException', e.message);
+				if( true === utils.isObject( game ) ) game.pause();
+			}
+			else
+			{
+				utils.log('Exception', e.message);
+			}
+			
 		}
 		</script>
 

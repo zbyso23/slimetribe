@@ -1,3 +1,5 @@
+    }
+};
 Game.Rpg.Html = {
     initialize: function() {
 	container = document.createElement( 'div' );
@@ -60,5 +62,3 @@ Game.Rpg.Html = {
 	var experience = 'LEVEL: ' + Game.Rpg.Character.stats.level + ' (' + Game.Rpg.Character.stats.experience + ' exp)';
 	var html = '<p> ::::::: ' + items + ' :::::: ' + experience + ' ::::::: </p>';
 	return html;
-    }
-};

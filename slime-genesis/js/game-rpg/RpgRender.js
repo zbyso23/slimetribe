@@ -1,58 +1,29 @@
 (function(){
-	var renderer;
-	var scene;
-	var camera;
-	var light;
-	var stats;
-
-	var HtmlRender = function()
+	IRpgRender = 
 	{
-	    this.imagesLoader = function()
-	    {
-			gameDataImages.loadedRemain = 1;
-
-			var gameHidden = document.createElement( 'div' );
-			gameHidden.style['display'] = 'none';
-			gameHidden.setAttribute( 'id', 'game-hidden' );
-			document.body.appendChild( gameHidden );
-			
-			var map = GameRpgMaps.current;
-			for( i = 0; i <= gameDataImages.list.length; i++ ) 
-			{
-			    if( gameDataImages.list[i] === undefined ) continue;
-			    var id = gameDataImages.list[i].id;
-			    var w = map.config.gridX + 1;
-			    var h = map.config.gridY + 1;
-			    gameResources.images.map.image = new Image();
-			    gameResources.images.map.image.onload = function() 
-			    {
-					var canvas = document.createElement( 'canvas' );
-					canvas.setAttribute( 'id', 'canvas-map' );
-					canvas.setAttribute( 'width', w );
-					canvas.setAttribute( 'height', h );
-					gameHidden.appendChild( canvas );
-					gameResources.images.map.canvas = canvas.getContext( "2d" );
-					gameResources.images.map.canvas.drawImage( gameResources.images.map.image, 0, 0 );
-					--gameDataImages.loadedRemain;
-					if( gameDataImages.loadedRemain === 0 ) gameDataImages.loaded = true;
-			    }
-			    gameResources.images.map.image.src = map.config.groundImage;
-			}
-	    };
-
-
-	};
-
+		this.imagesLoader = function() {},
+		this.refreshGuiContent = function( stats, items ) {},
+		this.callbackImagesLoaderError = function() {},
+	    this.callbackScreenResize = function( event ) {},
+	    this.addToScene = function( object ) {},
+	    this.removeFromScene = function( object ) {},
+	    this.initializeCharacter = function() {},
+	    this.uninitializeCharacter = function() {},
+	    this.initializeMap = function( map ) {},
+	    this.uninitializeMap = function( map ) {},
+	    this.initialize = function() {},
+	    this.refresh = function(delta) {},
+	    this.getMaxAnisotropy = function() {}
+	}
 
 	RpgRender = function( world )
 	{
 		var that = this;
-		var htmlRender = new HtmlRender();
-
-		this.imagesLoader = function()
-		{
-			htmlRender.imagesLoader();
-		};
+		var scene;
+		var camera;
+		var light;
+		var stats;
+		var htmlRender = new HtmlRender( this );
 
 	    var gridToCoords = function( params ) 
 	    {
@@ -87,37 +58,12 @@
 			scene.fog = new THREE.Fog( params.color, params.near, params.far );
 	    };
 
-	    var add = function() 
-	    {
-			var SCREEN_WIDTH = window.innerWidth;
-			var SCREEN_HEIGHT = window.innerHeight;
-			renderer = new THREE.WebGLRenderer( { antialias: gameRpgData.settings.antialiasing } );
-			renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-			renderer.setClearColor( 0x000000, 1 );
-			container.appendChild( renderer.domElement );
-			renderer.gammaInput = true;
-			renderer.gammaOutput = true;
-			//NO ANDROID renderer.shadowMapEnabled = true;
-	    };
-
 	    var addScene = function() 
 	    {
 			// SCENE
 			scene = new THREE.Scene();
 			utils.log(scene);
 			//setFog({color: 0xdddddd, near: 1, far: 1250});
-	    };
-
-	    this.addToScene = function( object )
-	    {
-	    	if( false === utils.isObject( object ) ) return;
-	    	scene.add( object );
-	    };
-
-	    this.removeFromScene = function( object )
-	    {
-	    	if( false === utils.isObject( object ) ) return;
-	    	scene.remove( object );
 	    };
 
 	    var addCamera = function() 
@@ -219,89 +165,6 @@
 			return ambient;
 	    };
 
-	    this.initializeCharacter = function() 
-	    {
-			gameRpgData.character.md2 = new THREE.MD2CharacterComplex();
-			gameRpgData.character.md2.scale = gameRpgData.player.params.scale;
-			gameRpgData.character.md2.controls = controls;
-			gameRpgData.character.md2.loadParts( gameRpgData.player.config );
-			gameRpgData.character.md2.onLoadComplete = function () 
-			{
-			    //NO ANDROID 
-			    gameRpgData.character.md2.enableShadows( true );
-			    //gameRpgData.character.md2.setWeapon( 0 );
-			    gameRpgData.character.md2.setSkin( 0 );
-			    gameRpgData.character.md2.root.position.x = gameRpgData.character.position.x;
-			    gameRpgData.character.md2.root.position.y = gameRpgData.character.position.y;
-			    gameRpgData.character.md2.root.position.z = gameRpgData.character.position.z;
-			    gameRpgData.character.md2.params = { height: 2.5 };
-			    that.addToScene( gameRpgData.character.md2.root );
-			    gameRpgData.character.object = gameRpgData.character.md2.root;
-			    gameRpgData.character.loaded = true;
-			    gameRpgData.character.gyro = new THREE.Gyroscope();
-			    gameRpgData.character.gyro.add( camera );
-			    gameRpgData.character.md2.root.add( gameRpgData.character.gyro );
-			}
-	    };
-
-	    this.uninitializeCharacter = function() 
-	    {
-			//gameRpgData.character.md2.root.remove( gameRpgData.character.gyro );
-			//gameRpgData.character.gyro.remove( camera );
-			this.removeFromScene( gameRpgData.character.md2.root );
-	    };
-
-	    this.initializeMap = function( map )
-	    {
-			//  GROUND
-			var gt = THREE.ImageUtils.loadTexture( map.config.groundTexture );
-			var quality = 16, step = 1024 / quality;
-			var ggGridX = map.config.gridX;
-			var ggGridY = map.config.gridY;
-			var gg = new THREE.PlaneGeometry( map.ground.width, map.ground.height, ggGridX, ggGridY );
-			var shininess = 50; //ANDROID
-
-			for( var y in map.world.ambientMap ) for( var x in map.world.ambientMap[y] ) 
-			{
-			    gg.vertices[ gridToStream( { x: x, y: y } ) ].z = map.world.heightMap[x][y];
-			    var coords = gridToCoords( { x: x, y: y, center: false } );
-			    var reversedGrid = reverseGrid( { x: x, y: y } );
-			    if( map.world.ambientMap[x][y] !== 255 ) 
-			    {
-			    	var ambientObject = { 
-			    							id   : map.world.ambientMap[x][y], 
-		    								x    : coords.x, 
-		    								y    : coords.y, 
-		    								z    : map.world.heightMap[reversedGrid.x][reversedGrid.y], 
-		    								gridX: x, 
-		    								gridY: y 
-			    	};
-					addAmbientObject( ambientObject )
-			    }
-			}
-
-
-			var gm = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //Faster ANDROID
-			var gm = new THREE.MeshLambertMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //No ANDROID 
-			var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
-			var ground = new THREE.Mesh( gg, gm );
-			ground.rotation.x = -1.57; //No ANDROID 
-			var anisotropyMax = this.getMaxAnisotropy(); ground.material.map.anisotropy = this.getMaxAnisotropy();
-			ground.material.map.repeat.set( 16, 16 );
-			ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
-			ground.receiveShadow = true; //No ANDROID
-			gameRpgData.world.ground.object = ground;
-			that.addToScene( gameRpgData.world.ground.object );
-	    };
-
-	    this.uninitializeMap = function( map ) 
-	    {
-			for( var y = 0; y < map.world.ambientObjects.length; y++ ) for( var x = 0; x < map.world.ambientObjects[y].length; x++ ) 
-			{
-			    if( map.world.ambientObjects[y][x] !== 0 ) this.removeFromScene( map.world.ambientObjects[y][x].root );
-			}
-			this.removeFromScene( gameRpgData.world.ground.object );
-	    };
 
 	    var addSkybox = function() 
 	    {
@@ -332,31 +195,156 @@
 	    	gameRpgData.world.skybox.object = {};
 	    	skybox.loaded = false;
 	    };
-
-	    this.initialize = function()
-	    {
-			add();
-			addScene();
-			addCamera();
-			addLight();
-			//addSkybox();
-			addStats();
-	    };
-
-	    this.refresh = function(delta) 
-	    {
-			if ( t > 1 ) t = 0;
-			//cameraControls.update( delta );
-			if( gameRpgData.character.loaded ) gameRpgData.character.md2.update( delta, true );
-			
-			//for( var y = 0; y < gameRpgData.world.ambientObjects.length; y++ ) for( var x = 0; x < gameRpgData.world.ambientObjects[y].length; x++ ) if( gameRpgData.world.ambientObjects[y][x] !== 0 ) gameRpgData.world.ambientObjects[y][x].update( delta, false );
-			renderer.render( scene, camera );
-			if( stats ) stats.update();
-	    };
-
-	    this.getMaxAnisotropy = function()
-	    {
-			return renderer.getMaxAnisotropy();
-	    };
 	};
+
+	RpgRender.prototype = Object.create(IRpgRender);
+
+	RpgRender.prototype.imagesLoader = function()
+	{
+		htmlRender.imagesLoader( this.callbackImagesLoaderError );
+	};
+
+	RpgRender.prototype.refreshGuiContent = function( stats, items )
+	{
+		htmlRender.refreshGuiContent( stats, items );
+	}
+
+	RpgRender.prototype.callbackImagesLoaderError = function()
+	{
+		utils.log('pause');
+		world.pause();
+	};
+
+    RpgRender.prototype.callbackScreenResize = function( event ) 
+    {
+		camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+		camera.updateProjectionMatrix();
+		htmlRender.refreshButtons();
+		htmlRender.refreshGui();
+    };
+
+    RpgRender.prototype.addToScene = function( object )
+    {
+    	if( false === utils.isObject( object ) ) return;
+    	scene.add( object );
+    };
+
+    RpgRender.prototype.removeFromScene = function( object )
+    {
+    	if( false === utils.isObject( object ) ) return;
+    	scene.remove( object );
+    };
+
+    RpgRender.prototype.initializeCharacter = function() 
+    {
+		gameRpgData.character.md2 = new THREE.MD2CharacterComplex();
+		gameRpgData.character.md2.scale = gameRpgData.player.params.scale;
+		gameRpgData.character.md2.controls = controls;
+		gameRpgData.character.md2.loadParts( gameRpgData.player.config );
+		gameRpgData.character.md2.onLoadComplete = function () 
+		{
+		    //NO ANDROID 
+		    //gameRpgData.character.md2.enableShadows( true );
+		    //gameRpgData.character.md2.setWeapon( 0 );
+		    gameRpgData.character.md2.setSkin( 0 );
+		    gameRpgData.character.md2.root.position.x = gameRpgData.character.position.x;
+		    gameRpgData.character.md2.root.position.y = gameRpgData.character.position.y;
+		    gameRpgData.character.md2.root.position.z = gameRpgData.character.position.z;
+		    gameRpgData.character.md2.params = { height: 2.5 };
+		    that.addToScene( gameRpgData.character.md2.root );
+		    gameRpgData.character.object = gameRpgData.character.md2.root;
+		    gameRpgData.character.gyro = new THREE.Gyroscope();
+		    gameRpgData.character.gyro.add( camera );
+		    gameRpgData.character.md2.root.add( gameRpgData.character.gyro );
+		    gameRpgData.character.loaded = true;
+		}
+    };
+
+    RpgRender.prototype.uninitializeCharacter = function() 
+    {
+		//gameRpgData.character.md2.root.remove( gameRpgData.character.gyro );
+		//gameRpgData.character.gyro.remove( camera );
+		this.removeFromScene( gameRpgData.character.md2.root );
+    };
+
+    RpgRender.prototype.initializeMap = function( map )
+    {
+		//  GROUND
+		var gt = THREE.ImageUtils.loadTexture( map.config.groundTexture );
+		var quality = 16, step = 1024 / quality;
+		var ggGridX = map.config.gridX;
+		var ggGridY = map.config.gridY;
+		var gg = new THREE.PlaneGeometry( map.ground.width, map.ground.height, ggGridX, ggGridY );
+		var shininess = 50; //ANDROID
+		var gm = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //Faster ANDROID
+		var gm = new THREE.MeshLambertMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //No ANDROID 
+		//var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
+		var ground = new THREE.Mesh( gg, gm );
+		ground.rotation.x = -1.57; //No ANDROID 
+		var anisotropyMax = this.getMaxAnisotropy(); ground.material.map.anisotropy = this.getMaxAnisotropy();
+		ground.material.map.repeat.set( 16, 16 );
+		ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
+		ground.receiveShadow = true; //No ANDROID
+		gameRpgData.world.ground.object = ground;
+		this.addToScene( gameRpgData.world.ground.object );
+
+		for( var y in map.world.ambientMap ) for( var x in map.world.ambientMap[y] ) 
+		{
+		    gg.vertices[ gridToStream( { x: x, y: y } ) ].z = map.world.heightMap[x][y];
+		    var coords = gridToCoords( { x: x, y: y, center: false } );
+		    var reversedGrid = reverseGrid( { x: x, y: y } );
+		    if( map.world.ambientMap[x][y] !== 255 ) 
+		    {
+		    	var ambientObject = { 
+		    							id   : map.world.ambientMap[x][y], 
+	    								x    : coords.x, 
+	    								y    : coords.y, 
+	    								z    : map.world.heightMap[reversedGrid.x][reversedGrid.y], 
+	    								gridX: x, 
+	    								gridY: y 
+		    	};
+				addAmbientObject( ambientObject )
+		    }
+		}
+    };
+
+    RpgRender.prototype.uninitializeMap = function( map ) 
+    {
+		for( var y = 0; y < map.world.ambientObjects.length; y++ ) for( var x = 0; x < map.world.ambientObjects[y].length; x++ ) 
+		{
+		    if( map.world.ambientObjects[y][x] !== 0 ) this.removeFromScene( map.world.ambientObjects[y][x].root );
+		}
+		this.removeFromScene( gameRpgData.world.ground.object );
+    };
+
+    RpgRender.prototype.initialize = function()
+    {
+    	htmlRender.initialize();
+    	htmlRender.add( this.callbackScreenResize );
+		addScene();
+		addCamera();
+		addLight();
+		//addSkybox();
+		addStats();
+    };
+
+    RpgRender.prototype.refresh = function(delta) 
+    {
+		if ( t > 1 ) t = 0;
+		//cameraControls.update( delta );
+		//refactor; if( gameRpgData.character.loaded ) 
+		gameRpgData.character.torch.position.x = gameRpgData.character.object.position.x;
+		gameRpgData.character.torch.position.y = gameRpgData.character.object.position.y + 10;
+		gameRpgData.character.torch.position.z = gameRpgData.character.object.position.z;
+		gameRpgData.character.md2.update( delta, true );
+		
+		//for( var y = 0; y < gameRpgData.world.ambientObjects.length; y++ ) for( var x = 0; x < gameRpgData.world.ambientObjects[y].length; x++ ) if( gameRpgData.world.ambientObjects[y][x] !== 0 ) gameRpgData.world.ambientObjects[y][x].update( delta, false );
+		htmlRender.render( scene, camera );
+		if( stats ) stats.update();
+    };
+
+    RpgRender.prototype.getMaxAnisotropy = function()
+    {
+		return renderer.getMaxAnisotropy();
+    };
 })();

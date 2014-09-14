@@ -22,7 +22,6 @@ Game.Rpg.Character = {
 	isCollisionDetect: false,
     
     isBagFull: function() {
-<<<<<<< HEAD
 		try {
 			if( Game.Rpg.Character.stats.itemsMax <= Game.Rpg.Character.items.length ) throw "bag is full";
 		} catch( e ) {
@@ -60,45 +59,7 @@ Game.Rpg.Character = {
 			return false;
 		}
 		return true;
-=======
-	try {
-	    if( Game.Rpg.Character.stats.itemsMax <= Game.Rpg.Character.items.length ) throw "bag is full";
-	} catch( e ) {
-	    Game.Utils.log( 'isBagFull e', e );
-	    return true;
-	}
-	return false;
-    },
-    
-    addItem: function( item ) {
-	try {
-	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
-	    Game.Rpg.Character.items.push( item );
-	    Game.Rpg.Html.refreshGuiContent();
-	} catch( e ) {
-	    Game.Utils.log( 'addItem e', e );
-	    return false;
-	}
-	return true;
-    },
-    removeItem: function( item ) {
-	try {
-	    if( Game.Rpg.Character.items.length === 0 ) throw "bag is empty";
-	    var itemsWithoutItem = [];
-	    var removed = false;
-	    for( i in Game.Rpg.Character.items ) {
-		if( Game.Rpg.Character.items[i] !== item || removed ) itemsWithoutItem.push( Game.Rpg.Character.items[i] );
-		if( Game.Rpg.Character.items[i] === item && !removed ) removed = true;
-	    }
-	    if( removed === false ) throw "is no item";
-	    Game.Rpg.Character.items = itemsWithoutItem;
-	    Game.Rpg.Html.refreshGuiContent();
-	} catch( e ) {
-	    Game.Utils.log( 'removeItem e', e );
-	    return false;
-	}
-	return true;
->>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
+
     },
     getItems: function() {
 		return Game.Rpg.Character.items;
@@ -123,7 +84,6 @@ Game.Rpg.Character = {
     },
     
     actionGrowAmbient: function( grid ) {
-<<<<<<< HEAD
 		try {
 			var map = GameRpgMaps.current;
 			var object = map.world.ambientObjects[grid.x][grid.y];
@@ -144,28 +104,7 @@ Game.Rpg.Character = {
 		} catch( e ) {
 			utils.log( 'Ambient e', e );
 		}
-=======
-	try {
-	    var map = GameRpgMaps.current;
-	    var object = map.world.ambientObjects[grid.x][grid.y];
-	    if( object.attributes.type !== 'item' ) throw "no item or to grow";
-	    if( object.attributes.timeout !== 0 ) throw "growing, wait...";
-	    if( Game.Rpg.Character.isBagFull() ) throw "bag is full";
-	    if( object.meshBody.material.opacity > .3 ) {
-		object.meshBody.material.opacity -= Game.Rpg.delta;
-	    } else {
-		if( !Game.Rpg.Character.addItem( map.world.ambientMap[grid.x][grid.y] ) ) throw "item not added?";
-		Game.Rpg.Character.addExperience( object.attributes.experience );
-		object.meshBody.visible = false;
-		object.attributes.timeout = 500;
-		object.meshBody.material.opacity = 0;
-		Game.Rpg.World.spawnItems.push( [ grid.x, grid.y ] );
-		Game.Rpg.Html.refreshGuiContent();
-	    }
-	} catch( e ) {
-	    Game.Utils.log( 'Ambient e', e );
-	}
->>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
+
     },
     actionStorage: function( grid ) {
 		try {
@@ -183,7 +122,6 @@ Game.Rpg.Character = {
 		} catch( e ) {
 			utils.log( 'actionStorage e', e );
 		}
-<<<<<<< HEAD
     },
     addExperience: function( experience ) {
 		try {
@@ -195,24 +133,6 @@ Game.Rpg.Character = {
 		} catch( e ) {
 			utils.log( 'addExperience e', e );
 		}
-=======
-	    }
-	    Game.Rpg.Html.refreshGuiContent();
-	} catch( e ) {
-	    Game.Utils.log( 'actionStorage e', e );
-	}
-    },
-    addExperience: function( experience ) {
-	try {
-	    Game.Rpg.Character.stats.experience += experience;
-	    var newLevel = Game.Rpg.Character.getLevel( Game.Rpg.Character.stats.experience );
-	    if( newLevel > Game.Rpg.Character.stats.level ) {
-		Game.Rpg.Character.stats.level = newLevel;
-	    }
-	} catch( e ) {
-	    Game.Utils.log( 'addExperience e', e );
-	}
->>>>>>> fb93c3f738b35af0f6ca3c998fa00faee7a57e98
     },
     getLevel: function( experience ) {
 		var level = 1;
