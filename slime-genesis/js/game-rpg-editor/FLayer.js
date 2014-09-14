@@ -14,17 +14,20 @@
 
 		this.pixel = function( x, y, size )
 		{
-			//ctx.save();
-
 			size = size || 1;
-			//ctx.globalAlpha = alpha || 1.0;
 		    ctx.fillRect( x, y, size, size );
-		    //ctx.restore();
+		};
+
+		this.circle = function( x, y, size )
+		{
+			size = size || 1;
+			ctx.beginPath();
+			ctx.arc( x, y, size, 0, 2 * Math.PI, false );
+			ctx.fill();
 		};
 
 		this.setColor = function( color )
 		{
-			console.log(color);
 			ctx.fillStyle = color;
 		};
 		

@@ -8,13 +8,17 @@
 		var layer;
 
 		var controls = {
-			active: false
+			active: false,
+			modal: false
 		};
 
 		var tools = {
 			brush:
 			{
-				size: 20
+				size: 20,
+				type: 'pixel',
+				color: '#000',
+				alpha: 1.0
 			}
 		};
 
@@ -47,14 +51,19 @@
 		var eventMouseMove = function( e )
 		{
 			if( false === controls.active ) return;
-			layers[layer].setAlpha(fg.getAlpha());
-			layers[layer].setColor( fg.getColor() );
-			layers[layer].pixel( e.clientX, e.clientY, activeTool.size );
-			fs.drawLayers( layers );
+			if( activeTool.type === 'pixel' )
+			{
+				layers[layer].pixel( e.clientX, e.clientY, activeTool.size );
+			}
+			else if( activeTool.type === 'circle' )
+			{
+				layers[layer].circle( e.clientX, e.clientY, activeTool.size );	
+			}
 		}
 
 		var eventKeyboard = function( e )
 		{
+			e.preventDefault();
 			switch(e.keyCode)
 			{
 				case(KEYS.SIZE_UP):
@@ -66,7 +75,20 @@
 					break;
 
 				default:
-					fg.showColorModal();
+					if( false === controls.modal )
+					{
+						controls.modal = true;
+						fg.showBrushModal();
+						break;
+					}
+					activeTool.color = fg.getBrushColor();
+					activeTool.alpha = fg.getBrushAlpha();
+					activeTool.size = fg.getBrushSize();
+					activeTool.type = fg.getBrushType();
+					layers[layer].setAlpha( activeTool.alpha );
+					layers[layer].setColor( activeTool.color );
+					controls.modal = false;
+					fg.hideBrushModal();
 					break;
 			}
 			//console.log(e.keyCode);
@@ -75,7 +97,7 @@
 		var initializeKeyboardEvents = function()
 		{
 			document.addEventListener( 'keyup', eventKeyboard );
-			document.addEventListener( 'keydown', eventKeyboard );
+			//document.addEventListener( 'keydown', eventKeyboard );
 		};
 
 		var initializeMouseEvents = function()
@@ -91,6 +113,12 @@
 			layers.push( new FLayer() );
 		};
 
+		var refresh = function()
+		{
+			window.requestAnimationFrame( refresh );
+			fs.drawLayers( layers );
+		}
+
 		this.run = function()
 		{
 			fs = new FScreen();
@@ -104,7 +132,9 @@
 
 			addLayer();
 			layer = 0;
-			fg.addColorModal();		
+			fg.addBrushModal();
+
+			refresh();
 		};
 
 

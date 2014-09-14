@@ -35,39 +35,57 @@
 			return modal.id;
 		};
 
-		this.addColorModal = function() 
+		this.addBrushModal = function() 
 		{
 			var id = 'fgui-modal-' + guid();
-			modals.color = id;
+			modals.brush = id;
 			var inputColorId = id + '-color';
 			var inputAlphaId = id + '-alpha';
+			var inputSizeId = id + '-size';
+			var inputTypeId = id + '-type';
 			var modalContent = '<input type="color" id="' + inputColorId + '" />';
 			modalContent += '<input type="range" id="' + inputAlphaId + '" min="0" max="255" />';
+			modalContent += '<input type="range" id="' + inputSizeId + '" min="1" max="200" />';
+			modalContent += '<select id="' + inputTypeId + '">';
+			modalContent += '<option value="pixel">pixel</option>';
+			modalContent += '<option value="circle" selected>circle</option>';
+			modalContent += '</select>';
 			this.addModal(id, modalContent);
 			return id;
 		};
 
-		this.getColor = function()
+		this.getBrushColor = function()
 		{
-			var colorHex = document.getElementById( modals.color + '-color' ).value;
+			var colorHex = document.getElementById( modals.brush + '-color' ).value;
 			return colorHex;
 		};
 
-		this.getAlpha = function()
+		this.getBrushAlpha = function()
 		{
-			var alphaInput = document.getElementById( modals.color + '-alpha' ).value;
+			var alphaInput = document.getElementById( modals.brush + '-alpha' ).value;
 			return parseInt( alphaInput ) / 255;
 		};
 
-		this.showColorModal = function()
+		this.getBrushSize = function()
 		{
-			$( '#'+modals.color ).modal('show');
+			var sizeInput = document.getElementById( modals.brush + '-size' ).value;
+			return parseInt( sizeInput );
 		};
 
-		this.hideColorModal = function()
+		this.getBrushType = function()
 		{
-			$( '#'+modals.color ).modal('hide');
+			var typeInput = document.getElementById( modals.brush + '-type' ).value;
+			return typeInput;
 		};
 
+		this.showBrushModal = function()
+		{
+			$( '#'+modals.brush ).modal('show');
+		};
+
+		this.hideBrushModal = function()
+		{
+			$( '#'+modals.brush ).modal('hide');
+		};
 	};
 })();
