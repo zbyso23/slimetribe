@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Slime Tribe Genesis - Map editor</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="slime-genesis/css/game-rpg-editor.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="slime-genesis/css/bootstrap.min.css" type="text/css" media="screen, projection" />
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<script src="slime-genesis/js/jquery-1.11.1.min.js"></script>
+		<script src="slime-genesis/js/bootstrap.min.js"></script>
+		<script src="slime-genesis/js/game/utils.js"></script>
+		<script src="slime-genesis/js/game/guid.js"></script>
+		<script src="slime-genesis/js/game-rpg-editor/Editor.js"></script>
+		<script src="slime-genesis/js/game-rpg-editor/FScreen.js"></script>
+		<script src="slime-genesis/js/game-rpg-editor/FLayer.js"></script>
+		<script src="slime-genesis/js/game-rpg-editor/FGui.js"></script>
+		<script type="text/javascript">
+		try
+		{
+			var editor = new Editor();
+			window.onload = function()
+			{
+				editor.run();
+			}
+		}
+		catch( e )
+		{
+			console.log(e);
+		}
+		</script>
+
+
+
+
+
+	</body>
+</html>
