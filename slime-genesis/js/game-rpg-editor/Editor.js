@@ -18,6 +18,7 @@
 				size: 20,
 				type: 'pixel',
 				color: '#000',
+				rotate: 0,
 				alpha: 1.0
 			}
 		};
@@ -41,6 +42,7 @@
 		var eventMouseDown = function( e )
 		{
 			controls.active = true;
+			layers[layer].brush( e.clientX, e.clientY, activeTool );
 		};
 
 		var eventMouseUp = function( e )
@@ -51,46 +53,67 @@
 		var eventMouseMove = function( e )
 		{
 			if( false === controls.active ) return;
-			if( activeTool.type === 'pixel' )
-			{
-				layers[layer].pixel( e.clientX, e.clientY, activeTool.size );
-			}
-			else if( activeTool.type === 'circle' )
-			{
-				layers[layer].circle( e.clientX, e.clientY, activeTool.size );	
-			}
+			layers[layer].brush( e.clientX, e.clientY, activeTool );
+			// if( activeTool.type === 'pixel' )
+			// {
+			// 	layers[layer].pixel( e.clientX, e.clientY, activeTool.size );
+			// }
+			// else if( activeTool.type === 'circle' )
+			// {
+			// 	layers[layer].circle( e.clientX, e.clientY, activeTool.size );	
+			// }
 		}
 
 		var eventKeyboard = function( e )
 		{
 			e.preventDefault();
-			switch(e.keyCode)
+			e.stopPropagation();
+			//console.log(e.keyCode);
+			var key = e.keyCode;
+			if( ( key < 48 || key > 57 ) && ( key < 96 || key > 105 ) )
 			{
-				case(KEYS.SIZE_UP):
-					activeTool.size += 1;
-					break;
-
-				case(KEYS.SIZE_DOWN):
-					if(activeTool.size >= 2) activeTool.size -= 1;
-					break;
-
-				default:
-					if( false === controls.modal )
-					{
-						controls.modal = true;
-						fg.showBrushModal();
+				switch(e.keyCode)
+				{
+					case(KEYS.SIZE_UP):
+						activeTool.size += 1;
 						break;
-					}
-					activeTool.color = fg.getBrushColor();
-					activeTool.alpha = fg.getBrushAlpha();
-					activeTool.size = fg.getBrushSize();
-					activeTool.type = fg.getBrushType();
-					layers[layer].setAlpha( activeTool.alpha );
-					layers[layer].setColor( activeTool.color );
-					controls.modal = false;
-					fg.hideBrushModal();
-					break;
+
+					case(KEYS.SIZE_DOWN):
+						if(activeTool.size >= 2) activeTool.size -= 1;
+						break;
+
+					case(KEYS.SHIFT):
+						if( false === controls.modal )
+						{
+							controls.modal = true;
+							fg.showBrushModal();
+							break;
+						}
+						activeTool.color = fg.getBrushColor();
+						activeTool.alpha = fg.getBrushAlpha();
+						activeTool.size = fg.getBrushSize();
+						activeTool.type = fg.getBrushType();
+						activeTool.rotate = fg.getBrushRotate();
+						layers[layer].setAlpha( activeTool.alpha );
+						layers[layer].setColor( activeTool.color );
+						controls.modal = false;
+						fg.hideBrushModal();
+						layers[layer].updateBrush( activeTool.rotate );
+						break;
+
+					default:
+						break;
+				};
+
 			}
+			else
+			{
+				key = ( key > 57 ) ? key - 48 : key;
+				var index = key - 48;
+				var blendTypes = ['normal', 'lighter', 'multiply', 'overlay', 'darken', 'lighten', 'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity'];
+				layers[layer].setBlending( blendTypes[ index ] );
+			}
+			return false;
 			//console.log(e.keyCode);
 		};
 
