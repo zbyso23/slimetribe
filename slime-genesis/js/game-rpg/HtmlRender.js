@@ -11,14 +11,15 @@
 		getMaxAnisotropy: function() {}
 	}
 
-	HtmlRender = function()
+	HtmlRender = function( render, data, ambient, maps )
 	{
 		var that = this;
 		var renderer;
 		var imagesLoaderRun   = false;
 		var imagesLoaderError = false;
+		var imagesLoaderCount = 0;
 
-	    var addStats = function() 
+	    var addStats = function()
 	    {
 			stats = new Stats();
 			container.appendChild( stats.domElement );
@@ -119,22 +120,25 @@
 	    this.imagesLoader = function( callbackError )
 	    {
 	    	if( true === imagesLoaderRun ) return;
-	    	imagesLoaderRun = true;
-			gameDataImages.loadedRemain = 1;
+	    	data.setImagesLoaded( false );
+	    	var map           = maps.getCurrent();
+	    	var imagesList    = data.getImagesList();
+	    	imagesLoaderCount = imagesList.length;
+	    	imagesLoaderRun   = true;
 			//refactor - remove adding elements to DOM, create only in vars
 			// var gameHidden = document.createElement( 'div' );
 			// gameHidden.style['display'] = 'none';
 			// gameHidden.setAttribute( 'id', 'game-hidden' );
 			// document.body.appendChild( gameHidden );
-			var map = GameRpgMaps.current;
-			for( i = 0; i <= gameDataImages.list.length; i++ ) 
+			for( i = 0; i <= imagesList.length; i++ ) 
 			{
-			    if( gameDataImages.list[i] === undefined ) continue;
-			    var id = gameDataImages.list[i].id;
+			    if( imagesList[i] === undefined ) continue;
+			    var id = imagesList[i].id;
 			    var w = map.config.gridX + 1;
 			    var h = map.config.gridY + 1;
-			    gameResources.images.map.image = new Image();
-			    gameResources.images.map.image.onload = function() 
+			    var mapResource = data.getResourcesImage( 'map' );
+			    mapResource.image = new Image();
+			    mapResource.image.onload = function() 
 			    {
 					var canvas = document.createElement( 'canvas' );
 					canvas.setAttribute( 'id', 'canvas-map' );
@@ -142,13 +146,13 @@
 					canvas.setAttribute( 'height', h );
 					//refactor - remove adding elements to DOM, create only in vars
 					//gameHidden.appendChild( canvas );
-					gameResources.images.map.canvas = canvas.getContext( "2d" );
-					gameResources.images.map.canvas.drawImage( gameResources.images.map.image, 0, 0 );
-					--gameDataImages.loadedRemain;
-					if( gameDataImages.loadedRemain === 0 ) gameDataImages.loaded = true;
+					mapResource.canvas = canvas.getContext( "2d" );
+					mapResource.canvas.drawImage( mapResource.image, 0, 0 );
+					--imagesLoaderCount;
+					if( imagesLoaderCount === 0 ) data.setImagesLoaded( true );
 			    }
-			    gameResources.images.map.image.onerror = callbackError;
-			    gameResources.images.map.image.src = map.config.groundImage;
+			    mapResource.image.onerror = callbackError;
+			    mapResource.image.src     = map.config.groundImage;
 			}
 	    };
 

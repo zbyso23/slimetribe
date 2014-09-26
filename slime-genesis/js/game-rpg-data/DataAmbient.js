@@ -159,39 +159,39 @@
 		    { id: 9,  object: RpgAmbient.rock2 },
 		    { id: 10, object: RpgAmbient.three1 }
 		];
+
+		this.initialize = function()
+		{
+
+		};
+
+	    this.storageAccept = function( id ) 
+	    {
+			for( i in RpgAmbient.storage1.attributes.accept ) if( RpgAmbient.storage1.attributes.accept[i] == id ) return true;
+			return false;
+	    },
+	    
+	    this.getAmbient = function( id ) 
+	    {
+			var ambient = false;
+			try 
+			{
+			    var i;
+			    for( i in GameRpgAmbientList ) 
+			    {
+					if( GameRpgAmbientList[i].id == id )
+					{
+					    ambient = GameRpgAmbientList[i].object;
+					    break;
+					}
+			    }
+			}
+			catch( e ) 
+			{
+			    console.log( 'getAmbient ee', e );
+			}
+			return ambient;
+	    };
 	};
 
-	DataAmbient.prototype = Object.create(IDataAmbient);
-
-	DataAmbient.prototype.initialize = function()
-	{
-	};
-
-    DataAmbient.prototype.storageAccept = function( id ) 
-    {
-		for( i in RpgAmbient.storage1.attributes.accept ) if( RpgAmbient.storage1.attributes.accept[i] == id ) return true;
-		return false;
-    },
-    
-    DataAmbient.prototype.getAmbient = function( id ) 
-    {
-		var ambient = false;
-		try 
-		{
-		    var i = -1;
-		    for( i in GameRpgAmbientList ) 
-		    {
-				if( GameRpgAmbientList[i].id == id )
-				{
-				    ambient = GameRpgAmbientList[i].object;
-				    break;
-				}
-		    }
-		} 
-		catch( e ) 
-		{
-		    console.log( 'getAmbient ee', e );
-		}
-		return { item: ambient, name: i };
-    };
 })();

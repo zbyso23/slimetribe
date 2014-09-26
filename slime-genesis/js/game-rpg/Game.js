@@ -12,11 +12,14 @@
 
 	Game = function()
 	{
-	    var world  = new RpgWorld( this );
+		var data        = new Data();
+		var dataAmbient = new DataAmbient();
+		var dataMaps    = new DataMaps();
+	    var world       = new RpgWorld( this, { "data": data, "dataAmbient": dataAmbient, "dataMaps": dataMaps  } );
 
 	    var coordsToGrid = function( params ) 
 	    {
-			var map = GameRpgMaps.current;
+			var map = dataMaps.getCurrent();
 			var stepX = Math.round( map.ground.width / map.config.gridX );
 			var stepY = Math.round( map.ground.height / map.config.gridY );
 			var x = ( map.ground.width / 2 ) - params.x;//map.character.object.position.x;

@@ -1,37 +1,27 @@
 (function(){
-	IRpgWorld = 
+	RpgWorld = function( game, gameData )
 	{
-		addItemToStorage: function( storage, item ) {},
-		addSpawnItem: function( coords ) {},
-		getStorageExperience: function() {},
-		addAmbientItem: function() {},
-		removeAmbientItem: function() {},
-		getAmbientItems: function() {},
-		setAmbient: function() {},
-		run: function() {},
-		pause: function() {},
-		uninitialize: function() {},
-		switchMap: function( map ) {}
-	}
+		var data    = gameData.data;
+		var ambient = gameData.dataAmbient;
+		var maps    = gameData.dataMaps;
 
-	RpgWorld = function( game )
-	{
-		var clock = new THREE.Clock();
-		var loop;
-
-	    var delta  = 0;
-	    var tick   = 0;
-	    var gyro   = {};
-
-	    var spawnItems = [];
-	    var storageExperience = 15;
-	    var ambientItemsCount = 0;
-	    var ambientItemsLoaded = false;
-
-	    var render    = new RpgRender( this );
+	    var render    = new RpgRender( this, data, ambient, maps );
 	    var events    = new RpgEvents();
-	    var character = new RpgCharacter( this, render );
+	    var character = new RpgCharacter( this, render, data, ambient, maps );
+
+		var clock       = new THREE.Clock();
+	    var delta       = 0;
+	    var tick        = 0;
+	    var gyro        = {};
+		var loop;
+	    var run         = false;
 	    var stopRequest = false;
+
+	    var spawnItems         = [];
+	    var storageExperience  = 15;
+	    var ambientItemsCount  = 0;
+	    var ambientItemsLoaded = false;
+	    var characterLoaded    = false;
 
 	    var runLoop = function() 
 	    {
@@ -40,37 +30,37 @@
 			refreshLogic();
 			loop = window.requestAnimationFrame( runLoop );
 //console.log(ambientItemsLoaded);
-			if( gameRpgData.run && gameRpgData.character.loaded && ambientItemsLoaded && gameDataImages.loaded )
+			if( true === run && true === characterLoaded && ambientItemsLoaded && true === data.getImagesLoaded() )
 			{
 		    	//spawn();
-		    	render.refresh( delta );
+		    	render.refresh( delta, character );
 			}
 			if(stopRequest)
 			{
 				stop();
-				gameRpgData.run = false;
+				run = false;
 			}
     	};
 
 	    var refreshLogic = function() 
 	    {
-	    	if( !gameRpgData.run )
+	    	if( false === run )
 	    	{
 			    //Blank - space for Menu etc.
 			    //RUN manually - DEBUG and prepare menu
 			    render.imagesLoader();
-			    gameRpgData.run = true;
+			    run = true;
 			    return;
 	    	}
 		    if( gameRpgData.world.ready ) return;
-		    if( !gameDataImages.loaded ) return;
+		    if( false === data.getImagesLoaded() ) return;
 			generateWorld();
 	    };
 
 	    var generateWorld = function() 
 	    {
 	    	initializeMap();
-	    	render.initializeMap( GameRpgMaps.current );
+	    	render.initializeMap();
 	    	character.initialize();
 			//first AI refactor - disabled
 			// wizzard = new GameRpgAIcharacter({
@@ -92,11 +82,11 @@
 
    	    var initializeMap = function() 
 	    {
-			var map = GameRpgMaps.current;
-			var ggGridX = map.config.gridX;
-			var ggGridY = map.config.gridY;
-			var groundHeightMap = gameResources.images.map.canvas.getImageData( 0, 0, gameResources.images.map.w, gameResources.images.map.h );
-			var x = y = 0;
+			var map             = maps.getCurrent();
+			var mapResource     = data.getResourcesImage( 'map' );
+			var ggGridX         = map.config.gridX;
+			var ggGridY         = map.config.gridY;
+			var groundHeightMap = mapResource.canvas.getImageData( 0, 0, mapResource.w, mapResource.h );
 			map.world.ambientMap     = [];
 			map.world.collisionMap   = [];
 			map.world.ambientObjects = [];
@@ -147,8 +137,8 @@
 	    {
 			try 
 			{
-			    var map = GameRpgMaps.current;
-			    if( gameRpgData.character.md2.controls.grow === true ) throw "growing lock";
+			    var map = maps.getCurrent();
+			    //REFACTOR: if( gameRpgData.character.md2.controls.grow === true ) throw "growing lock";
 			    var newSpawnItems = [];
 			    var change = false;
 			    for( var i in spawnItems )
@@ -180,6 +170,7 @@
 			try 
 			{
 			    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";
+			    //REFACTOR TO: ambient.storageAccept(item)
 			    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
 			    storage.attributes.items.push( item );
 			} 
@@ -225,7 +216,7 @@
 	    {
 			render.initialize();
 			events.initialize();
-			GameRpgMaps.setActiveToCurrent();
+			maps.setActiveToCurrent();
 	     	runLoop();
 	    };
 
@@ -242,22 +233,27 @@
 
 	    this.switchMap = function( map ) 
 	    {
-		    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
-		    gameRpgData.run = false;
+		    if( false === maps.mapExists( map ) ) throw "map dont exists";
+		    run = false;
 	    	uninitializeMap();
 	    	character.uninitialize();
-		    GameRpgMaps.setActive( map );
-		    GameRpgMaps.setActiveToCurrent();
+		    maps.setActive( map );
+		    maps.setActiveToCurrent();
 		    render.imagesLoader();
 	    	initializeMap();
-	    	render.initializeMap( GameRpgMaps.current );
+	    	render.initializeMap();
 	    	character.initialize();
-		    gameRpgData.run = true;
+		    run = true;
 	    };
 
-	    this.setAmbientItemsLoaded = function(state)
+	    this.setAmbientItemsLoaded = function( state )
 	    {
 	    	ambientItemsLoaded = state;
-	    }
+	    };
+
+	    this.setCharacterLoaded = function( state )
+	    {
+	    	characterLoaded = state;
+	    };
 	};
 })();

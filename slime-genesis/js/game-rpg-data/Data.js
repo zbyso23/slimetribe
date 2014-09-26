@@ -1,10 +1,9 @@
 (function(){
 	var tick = 0;
+	//var imagesList = [ { id: 'map', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 } ];
 	var images = 
 	{
-	    loadedRemain: 0,
 	    loaded: false,
-	    items: [],
 	    list: [ { id: 'map', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 } ]
 	};
 
@@ -18,7 +17,6 @@
 
 	var gameData = 
 	{
-	    run: false,
 	    character: 
 	    {
 			loaded: false,
@@ -54,7 +52,7 @@
 			heightMap: []
 		
 	    },
-	    settings: 
+	    settings:
 	    {
 			graphics: 
 			{
@@ -155,13 +153,28 @@
 	
 	Data = function()
 	{
+		this.getImagesList = function()
+		{
+			return images.list;
+		};
 
+		this.getImagesLoaded = function()
+		{
+			return images.loaded;
+		};
+
+		this.setImagesLoaded = function( state )
+		{
+			images.loaded = state;
+		};
+
+		this.getResourcesImage = function( id )
+		{
+			return resources.images[ id ];
+		};
 	}
 })();
 
-var SCREEN_WIDTH = window.innerWidth;
-var SCREEN_HEIGHT = window.innerHeight;
-//var container, camera, scene, renderer, projector;
 var groundHeightMap;
 var vectorsGround = [];
 var vectors = [];

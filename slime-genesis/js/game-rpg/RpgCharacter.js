@@ -1,27 +1,26 @@
 (function(){
-	IRpgCharacter = 
+	RpgCharacter = function( world, render, data, ambient, maps )
 	{
-		stats: {},
-		items: [],
-		levels: {},
+		//REFACTOR MOVE FROM Data.js: 
+		var object   = {};
+		var model    = {};
+		var gyro     = {};
+		var md2base  = {};
+		var position = { x: 0, y: 87.6, z: 0 };
 
-		closed: false,
-		isCollisionDetect: false,
-		initialize: function() {},
-		uninitialize: function() {},
-		isBagFull: function() {},
-		addItem: function( item ) {},
-		removeItem: function( item ) {},
-	    getItems: function() {},
-	    removeItems: function() {},
-	    action: function( grid ) {},
-	    actionGrowAmbient: function( grid ) {},
-	    actionStorage: function( grid ) {},
-	    addExperience: function( experience ) {}
-	};
+	    var config   = {
+			stats: {},
+			controls:
+			{
+			    reverseY: false,
+			    reverseX: false
+			},
+			currentPosition: 
+			{
+			    x: 0, y: 72.6, z: 0
+			}
+	    };
 
-	RpgCharacter = function( world, render )
-	{
 	    var getLevel = function( experience ) 
 	    {
 			var level = 1;
@@ -34,9 +33,10 @@
 
 		this.stats = 
 	    {
-			itemsMax: 12,
+			itemsMax  : 12,
 			experience: 0,
-			level: 1
+			health    : 100,
+			level     : 1
 	    };
 		this.items = [];
 		this.levels = 
@@ -54,14 +54,17 @@
 	    };
 		this.closed = false;
 		this.isCollisionDetect = false;
+
 		this.initialize = function()
 	    {
-	    	render.initializeCharacter();
+	    	render.initializeCharacter( this );
 	    };
+
 	    this.uninitialize = function()
 	    {
-	    	render.uninitializeCharacter();
+	    	render.uninitializeCharacter( this );
 	    };
+
 	    this.isBagFull = function() 
 	    {
 			try 
@@ -114,18 +117,21 @@
 			}
 			return true;
 	    };
+
 	    this.getItems = function() 
 	    {
 			return this.items;
 	    };
+
 	    this.removeItems = function() 
 	    {
 			this.items = [];
 			render.refreshGuiContent( this.stats, this.items );
 	    };
+
 	    this.action = function( grid ) 
 	    {
-			var map = GameRpgMaps.current;
+			var map = maps.getCurrent();
 			this.closed = true;
 			try 
 			{
@@ -138,12 +144,13 @@
 				utils.log('RpgCharacter action exception');
 			}
 			this.closed = false;
-	    };   
+	    };
+
 	    this.actionGrowAmbient = function( grid ) 
 	    {
 			try 
 			{
-				var map = GameRpgMaps.current;
+				var map = maps.getCurrent();
 				var object = map.world.ambientObjects[grid.x][grid.y];
 				if( object.attributes.type !== 'item' ) throw "no item or to grow";
 				if( object.attributes.timeout !== 0 ) throw "growing, wait...";
@@ -168,11 +175,12 @@
 				utils.log( 'Ambient e', e );
 			}
 	    };
+
 	    this.actionStorage = function( grid ) 
 	    {
 			try 
 			{
-				var map = GameRpgMaps.current;
+				var map = maps.getCurrent();
 				var object = map.world.ambientObjects[grid.x][grid.y];
 				if( object.attributes.type !== 'storage' ) throw "no storage here";
 				if( this.items.length === 0 ) throw "bag is empty";
@@ -189,6 +197,7 @@
 				utils.log( 'actionStorage e', e );
 			}
 	    };
+
 	    this.addExperience = function( experience ) 
 	    {
 			try 
@@ -204,6 +213,26 @@
 			{
 				utils.log( 'addExperience e', e );
 			}
+	    };
+
+	    this.getModel = function()
+	    {
+	    	return model;
+	    };
+
+	    this.getObject = function()
+	    {
+	    	return object;
+	    };
+
+	    this.getGyro = function()
+	    {
+	    	return gyro;
+	    };
+
+	    this.getPosition = function()
+	    {
+	    	return position;
 	    };
 	};
 })();

@@ -1,34 +1,16 @@
 (function(){
-	IRpgRender = 
-	{
-		imagesLoader: function() {},
-		refreshGuiContent: function( stats, items ) {},
-		callbackImagesLoaderError: function() {},
-	    callbackScreenResize: function( event ) {},
-	    addToScene: function( object ) {},
-	    removeFromScene: function( object ) {},
-	    initializeCharacter: function() {},
-	    uninitializeCharacter: function() {},
-	    initializeMap: function( map ) {},
-	    uninitializeMap: function( map ) {},
-	    initialize: function() {},
-	    refresh: function(delta) {},
-	    getMaxAnisotropy: function() {}
-	}
-
-	RpgRender = function( world )
+	RpgRender = function( world, data, ambient, maps )
 	{
 		var that = this;
 		var scene;
 		var camera;
 		var light;
 		var stats;
-		var htmlRender = new HtmlRender( this );
+		var htmlRender = new HtmlRender( this, data, ambient, maps );
 
 	    var gridToCoords = function( params ) 
 	    {
-			var map = GameRpgMaps.current;
-			
+			var map = maps.getCurrent();
 			var stepX = Math.round( map.ground.width / map.config.gridX );
 			var stepY = Math.round( map.ground.height / map.config.gridY );
 			var coordsX = ( map.ground.width / 2 ) - ( params.x * stepX );
@@ -43,13 +25,13 @@
 
 	    var reverseGrid = function( params ) 
 	    {
-			var map = GameRpgMaps.current;
+			var map = maps.getCurrent();
 			return { x: ( map.config.gridX ) - params.x, y: ( map.config.gridY ) - params.y };
 	    };
 
 	    var gridToStream = function( params ) 
 	    {
-			var map = GameRpgMaps.current;
+			var map = maps.getCurrent();
 			return ( parseInt( params.x ) + ( parseInt( params.y ) * ( map.config.gridX + 1 ) ) );
 	    };
 
@@ -83,8 +65,9 @@
 			//No ANDROID light.castShadow = true;
 			light.position.set( 500, 300, 1500 );
 			scene.add( light );
-			gameRpgData.character.torch = new THREE.PointLight( 0xffffff, 1, 50 );
-			scene.add( gameRpgData.character.torch );
+			//REFACTOR FUNCTION ADD addTorch & remove link to character:
+			// gameRpgData.character.torch = new THREE.PointLight( 0xffffff, 1, 50 );
+			// scene.add( gameRpgData.character.torch );
 	    };
 
 	    var addStats = function() 
@@ -111,6 +94,7 @@
 
 	    var addAmbientObject = function( params ) 
 	    {
+	    	//REFACTOR TO: dataAmbient.getAmbient(params.id)
 			var found = false;
 			for( a in GameRpgAmbientList ) 
 			{
@@ -141,6 +125,7 @@
 	    var addAmbient = function( config, scale, params ) 
 	    {
 			var ambient = new THREE.MD2CharacterComplex();
+			var map     = maps.getCurrent();
 			ambient.controls = utils.cloneObj( controls );
 			ambient.scale = 1;
 			ambient.scale = scale;
@@ -158,7 +143,7 @@
 			    ambient.meshBody.material.transparent = true;
 			    ambient.meshBody.material.opacity = params.opacity;
 			    that.addToScene( ambient.root );
-			    GameRpgMaps.current.world.ambientObjects[params.gridX][params.gridY] = ambient;
+			    map.world.ambientObjects[params.gridX][params.gridY] = ambient;
 			    world.removeAmbientItem();
 			    if( world.getAmbientItems() === 0 ) world.setAmbientItemsLoaded(true);
 			}
@@ -232,41 +217,46 @@
 	    	scene.remove( object );
 	    };
 
-	    this.initializeCharacter = function() 
+	    this.initializeCharacter = function( character ) 
 	    {
-			gameRpgData.character.md2 = new THREE.MD2CharacterComplex();
-			gameRpgData.character.md2.scale = gameRpgData.player.params.scale;
-			gameRpgData.character.md2.controls = controls;
-			gameRpgData.character.md2.loadParts( gameRpgData.player.config );
-			gameRpgData.character.md2.onLoadComplete = function () 
+	    	var model      = character.getModel();
+	    	var gyro       = character.getGyro();
+	    	var object     = character.getObject();
+			model          = new THREE.MD2CharacterComplex();
+			model.scale    = gameRpgData.player.params.scale;
+			model.controls = controls;
+			model.loadParts( gameRpgData.player.config );
+			model.onLoadComplete = function () 
 			{
 			    //NO ANDROID 
-			    //gameRpgData.character.md2.enableShadows( true );
-			    //gameRpgData.character.md2.setWeapon( 0 );
-			    gameRpgData.character.md2.setSkin( 0 );
-			    gameRpgData.character.md2.root.position.x = gameRpgData.character.position.x;
-			    gameRpgData.character.md2.root.position.y = gameRpgData.character.position.y;
-			    gameRpgData.character.md2.root.position.z = gameRpgData.character.position.z;
-			    gameRpgData.character.md2.params = { height: 2.5 };
-			    that.addToScene( gameRpgData.character.md2.root );
-			    gameRpgData.character.object = gameRpgData.character.md2.root;
-			    gameRpgData.character.gyro = new THREE.Gyroscope();
-			    gameRpgData.character.gyro.add( camera );
-			    gameRpgData.character.md2.root.add( gameRpgData.character.gyro );
-			    gameRpgData.character.loaded = true;
+			    //model.enableShadows( true );
+			    //model.setWeapon( 0 );
+			    model.setSkin( 0 );
+			    model.root.position = character.getPosition();
+			    model.params = { height: 2.5 };
+			    that.addToScene( model.root );
+			    object = model.root;
+			    gyro = new THREE.Gyroscope();
+			    gyro.add( camera );
+			    model.root.add( gyro );
+			    world.setCharacterLoaded( true );
 			}
 	    };
 
 	    this.uninitializeCharacter = function() 
 	    {
-			//gameRpgData.character.md2.root.remove( gameRpgData.character.gyro );
-			//gameRpgData.character.gyro.remove( camera );
-			this.removeFromScene( gameRpgData.character.md2.root );
+	    	var model      = character.getModel();
+	    	var gyro       = character.getGyro();
+			//model.root.remove( gyro );
+			//gyro.remove( camera );
+			this.removeFromScene( model.root );
+			world.setCharacterLoaded = false;
 	    };
 
-	    this.initializeMap = function( map )
+	    this.initializeMap = function()
 	    {
-	    	world.setAmbientItemsLoaded(false);
+	    	var map = maps.getCurrent();
+	    	world.setAmbientItemsLoaded( false );
 			//  GROUND
 			var gt = THREE.ImageUtils.loadTexture( map.config.groundTexture );
 			var quality = 16, step = 1024 / quality;
@@ -326,17 +316,16 @@
 			addStats();
 	    };
 
-	    this.refresh = function(delta) 
+	    this.refresh = function( delta, character ) 
 	    {
 			if ( t > 1 ) t = 0;
 			//cameraControls.update( delta );
-			//refactor; if( gameRpgData.character.loaded ) 
-			gameRpgData.character.torch.position.x = gameRpgData.character.object.position.x;
-			gameRpgData.character.torch.position.y = gameRpgData.character.object.position.y + 10;
-			gameRpgData.character.torch.position.z = gameRpgData.character.object.position.z;
-			gameRpgData.character.md2.update( delta, true );
-// console.log(delta);
-// if(t === 0) console.log(gameRpgData.character.md2);
+			//refactor; if( true === characterLoaded ) 
+			//REFACTOR remove link to character: 
+			// gameRpgData.character.torch.position.x = gameRpgData.character.object.position.x;
+			// gameRpgData.character.torch.position.y = gameRpgData.character.object.position.y + 10;
+			// gameRpgData.character.torch.position.z = gameRpgData.character.object.position.z;
+			character.md2.update( delta, true );
 			//for( var y = 0; y < gameRpgData.world.ambientObjects.length; y++ ) for( var x = 0; x < gameRpgData.world.ambientObjects[y].length; x++ ) if( gameRpgData.world.ambientObjects[y][x] !== 0 ) gameRpgData.world.ambientObjects[y][x].update( delta, false );
 			htmlRender.render( scene, camera );
 			if( stats ) stats.update();
