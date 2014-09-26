@@ -39,9 +39,10 @@
 			delta = clock.getDelta();
 			refreshLogic();
 			loop = window.requestAnimationFrame( runLoop );
-			if( gameRpgData.run && gameRpgData.character.loaded && ambientItemsLoaded && gameDataImages.loaded ) 
+//console.log(ambientItemsLoaded);
+			if( gameRpgData.run && gameRpgData.character.loaded && ambientItemsLoaded && gameDataImages.loaded )
 			{
-		    	spawn();
+		    	//spawn();
 		    	render.refresh( delta );
 			}
 			if(stopRequest)
@@ -173,88 +174,90 @@
 			    utils.log( 'spawn' , e );
 			}
 	    };
+
+    	this.addItemToStorage = function( storage, item ) 
+	    {
+			try 
+			{
+			    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";
+			    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
+			    storage.attributes.items.push( item );
+			} 
+			catch( e ) 
+			{
+			    utils.log( 'addItemToStorage' , e );
+			    return false;
+			}
+			return true;
+	    };
+
+	    this.addSpawnItem = function( coords )
+	    {
+			spawnItems.push( coords );
+	    };
+
+	    this.getStorageExperience = function() 
+	    {
+			return storageExperience;
+	    };
+
+	    this.addAmbientItem = function()
+	    {
+	    	++ambientItemsCount;
+	    };
+
+	    this.removeAmbientItem = function()
+	    {
+	    	--ambientItemsCount;
+	    };
+
+	    this.getAmbientItems = function()
+	    {
+	    	return Math.ceil( ambientItemsCount );
+	    };
+
+	    this.setAmbient = function()
+	    {
+
+	    };
+
+	    this.run = function()
+	    {
+			render.initialize();
+			events.initialize();
+			GameRpgMaps.setActiveToCurrent();
+	     	runLoop();
+	    };
+
+	    this.pause = function()
+	    {
+	    	stopRequest = true;
+	    }
+
+	    this.uninitialize = function()
+	    {
+	    	uninitializeMap();
+	    	character.uninitialize();
+	    };
+
+	    this.switchMap = function( map ) 
+	    {
+		    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
+		    gameRpgData.run = false;
+	    	uninitializeMap();
+	    	character.uninitialize();
+		    GameRpgMaps.setActive( map );
+		    GameRpgMaps.setActiveToCurrent();
+		    render.imagesLoader();
+	    	initializeMap();
+	    	render.initializeMap( GameRpgMaps.current );
+	    	character.initialize();
+		    gameRpgData.run = true;
+	    };
+
+	    this.setAmbientItemsLoaded = function(state)
+	    {
+	    	ambientItemsLoaded = state;
+	    }
 	};
-
-	RpgWorld.prototype = Object.create(IRpgWorld);
-
-
-    RpgWorld.prototype.addItemToStorage = function( storage, item ) 
-    {
-		try 
-		{
-		    if( storage.attributes.itemsMax <= storage.attributes.items.length ) throw "storage is full";
-		    if( GameRpgAmbient.storageAccept( item ) === false ) throw "storage dont get this item";
-		    storage.attributes.items.push( item );
-		} 
-		catch( e ) 
-		{
-		    utils.log( 'addItemToStorage' , e );
-		    return false;
-		}
-		return true;
-    };
-
-    RpgWorld.prototype.addSpawnItem = function( coords )
-    {
-		spawnItems.push( coords );
-    };
-
-    RpgWorld.prototype.getStorageExperience = function() 
-    {
-		return storageExperience;
-    };
-
-    RpgWorld.prototype.addAmbientItem = function()
-    {
-    	++ambientItemsCount;
-    };
-
-    RpgWorld.prototype.removeAmbientItem = function()
-    {
-    	--ambientItemsCount;
-    };
-
-    RpgWorld.prototype.getAmbientItems = function()
-    {
-    	return Math.ceil( ambientItemsCount );
-    };
-
-    RpgWorld.prototype.setAmbient = function()
-    {
-
-    };
-
-    RpgWorld.prototype.run = function()
-    {
-		render.initialize();
-		events.initialize();
-		GameRpgMaps.setActiveToCurrent();
-     	runLoop();
-    };
-
-    RpgWorld.prototype.pause = function()
-    {
-    	stopRequest = true;
-    }
-
-    RpgWorld.prototype.uninitialize = function()
-    {
-    	uninitializeMap();
-    	character.uninitialize();
-    };
-
-    RpgWorld.prototype.switchMap = function( map ) 
-    {
-	    if( !GameRpgMaps.mapExists( map ) ) throw "map dont exists";
-	    gameRpgData.run = false;
-    	uninitializeMap();
-    	character.uninitialize();
-	    GameRpgMaps.setActive( map );
-	    GameRpgMaps.setActiveToCurrent();
-	    render.imagesLoader();
-    	initializeMap();
-    	render.initializeMap( GameRpgMaps.current );
-    	character.initialize();
-	    gameRpgData.run = true;
-    };
 })();

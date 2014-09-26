@@ -142,22 +142,20 @@
 			    }
 			}
 	    };
+
+	    this.initialize = function() 
+	    {
+			//touch screen controls
+			document.addEventListener( 'touchstart', touches, false);
+			document.addEventListener( 'touchmove',  touches, false);
+			document.addEventListener( 'touchend',   touches, false);
+			document.addEventListener( 'touchleave', touches, false);
+			//mouse buttons controls
+			document.addEventListener( 'mousemove', mouse, false);
+			document.addEventListener( 'mousedown', mouse, false);
+			//keyboard controls
+			document.addEventListener( 'keydown', keyDown, false);
+			document.addEventListener( 'keyup',   keyUp, false);
+	    };
 	};
-
-	RpgEvents.prototype = Object.create(IRpgEvents);
-
-    RpgEvents.initialize = function() 
-    {
-		//touch screen controls
-		document.addEventListener( 'touchstart', touches, false);
-		document.addEventListener( 'touchmove',  touches, false);
-		document.addEventListener( 'touchend',   touches, false);
-		document.addEventListener( 'touchleave', touches, false);
-		//mouse buttons controls
-		document.addEventListener( 'mousemove', mouse, false);
-		document.addEventListener( 'mousedown', mouse, false);
-		//keyboard controls
-		document.addEventListener( 'keydown', keyDown, false);
-		document.addEventListener( 'keyup',   keyUp, false);
-    };
 })();

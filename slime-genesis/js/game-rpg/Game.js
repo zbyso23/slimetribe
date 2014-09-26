@@ -25,18 +25,16 @@
 			var gridY = Math.round( y / stepY );
 			return { x: gridX, y: gridY };
 	    };
+
+		this.run = function() 
+	    {
+	    	world.run();
+		//	Game.Rpg.AI.birthWizzard(); //New
+	    };
+
+	    this.switchMap = function( map ) 
+	    {
+	    	world.switchMap( map );
+	    };
 	};
-
-	Game.prototype = Object.create(IGame);
-
-	Game.prototype.run = function() 
-    {
-    	world.run();
-	//	Game.Rpg.AI.birthWizzard(); //New
-    };
-
-    Game.prototype.switchMap = function( map ) 
-    {
-    	world.switchMap( map );
-    };
 })();

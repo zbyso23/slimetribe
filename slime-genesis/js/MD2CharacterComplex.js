@@ -357,7 +357,7 @@ THREE.MD2CharacterComplex = function () {
 			var reversedGrid = Game.Rpg.reverseGrid( grid );
 			if( GameRpgMaps.current.world.collisionMap[ reversedGrid.x ][ reversedGrid.y ] === 255 ) {
 			*/
-				Game.Rpg.Character.isCollisionDetect = false;
+				//Game.Rpg.Character.isCollisionDetect = false;
 				this.root.position.x += Math.sin( this.bodyOrientation ) * forwardDelta;
 				this.root.position.z += Math.cos( this.bodyOrientation ) * forwardDelta;
 			/*

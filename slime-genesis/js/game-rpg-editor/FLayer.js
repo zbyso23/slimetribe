@@ -15,7 +15,7 @@
 			ctx = canvas.getContext('2d');
 			initializeAvailableBlends();
 			initializeBrush();
-			ctx.globalCompositeOperation = 'hard-light';
+			ctx.globalCompositeOperation = 'multiply';
 		};
 
 		var initializeAvailableBlends = function()
@@ -33,7 +33,7 @@
 		{
 			temp = document.getElementById('editor-temp');
 			image = document.getElementById('editor-image');
-			svg = document.getElementsByTagName('svg')[1];
+			svg = document.getElementById('brush_01');
 			rotate = 125;
 			rotateCenterX = 150;
 			rotateCenterY = 145;
@@ -46,17 +46,24 @@
 			image.src = b64;
 		};
 
-		this.updateBrush = function( rotate )
+		this.updateBrush = function( config )
 		{
-			rotate += 125;
-			//if( rotate > 360 ) rotate -= 360;
+			var rotate = config.rotate;
+			rotate -= 10;
+			if( rotate > 360 ) rotate -= 360;
 			rotateCenterX = 150;
-			rotateCenterY = 145;
+			rotateCenterY = 150;
+			// translateX = config.size;
+			// translateY = config.size;
 			svg = document.getElementsByTagName('svg')[1];
-			svg.setAttribute('transform','rotate('+rotate+' ' + rotateCenterX + ' ' + rotateCenterY + ')');
+			//svg.setAttribute('transform','rotate('+rotate+' ' + rotateCenterX + ' ' + rotateCenterY + ')');
 			temp.innerHTML = '';
 			temp.appendChild(svg.cloneNode(true));
 			temp.innerHTML = temp.innerHTML.replace('fill:#000000;fill-opacity:1;', 'fill:'+layerFillColor+''+';fill-opacity:'+layerAlpha+';');
+			document.getElementById('path1').setAttribute('transform', 'rotate('+rotate+', ' + rotateCenterX + ', ' + rotateCenterY + ')');
+			path1 = document.getElementById('path1');
+			
+//console.log(document.getElementById('path1'));
 			b64 = 'data:image/svg+xml;base64,'+window.btoa( temp.innerHTML );
 			image.onload = function () 
 			{
@@ -68,12 +75,16 @@
 		this.brush = function( x, y, config )
 		{
 			rotate = config.rotate || 0;
+
 			w = 3;
 			h = 3;
 			w = config.size * w;
 			h = config.size * h;
 			x -= w / 2;
 			y -= h / 2;
+ 			offsetX = ((Math.sin(rotate) / 10) * (config.size));
+ 			offsetY = ((Math.cos(rotate) / 10) * (config.size));
+ console.log(offsetX);
 			ctx.drawImage(image, x, y, w, h);
 		};
 

@@ -98,7 +98,7 @@
 						layers[layer].setColor( activeTool.color );
 						controls.modal = false;
 						fg.hideBrushModal();
-						layers[layer].updateBrush( activeTool.rotate );
+						layers[layer].updateBrush( activeTool );
 						break;
 
 					default:
