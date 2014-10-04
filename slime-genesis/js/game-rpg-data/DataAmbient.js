@@ -2,11 +2,12 @@
 
 	IDataAmbient =
 	{
-		this.initialize = function() {},
-	    this.storageAccept = function( id ) {},
-	    this.getAmbient = function( id ) {}
+		initialize: function() {},
+	    storageAccept: function( id ) {},
+	    getAmbient: function( id ) {}
 	};
 
+	var baseUrl = "slime-genesis/md2/ambient/";
 	var RpgAmbientList = [];
 	var RpgAmbient     = 
 	{
@@ -14,14 +15,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "rock-1.json",
 			    skins: [ "rock-1.gif" ],
-			    weapons:  [ [ "rock-1.json", "rock-1.gif" ] ],
-			    animations: { idle: "stand" },
-			    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 0.7, z: -1, y: 0, x: 0, rot: 0, opacity: 0.9 },
+			params: { scale: 1.1, z: -1, y: 0, x: 0, rot: 0, opacity: 0.95 },
 			attributes: 
 			{
 			    type: 'item',
@@ -35,14 +34,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "rock-1.json",
 			    skins: [ "rock-2.gif" ],
-			    weapons:  [ [ "rock-1.json", "rock-2.gif" ] ],
-			    animations: { idle: "stand" },
-			    runSpeed: 70,walkSpeed: 70,crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 0.7, z: -1, y: 0, x: 0, rot: 0, opacity: 0.9 },
+			params: { scale: 1.1, z: -1, y: 0, x: 0, rot: 0, opacity: 0.95 },
 			attributes: 
 			{
 			    type: 'item',
@@ -56,14 +53,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "mushrom-1.json",
 			    skins: [ "mushrom-1.gif" ],
-			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
-			    animations: { idle: "stand" },
-			    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 0.55, z: 0, y: 0, x: 0, rot: 0, opacity: 0.9 },
+			params: { scale: 1.15, z: 0, y: 0, x: 0, rot: 0, opacity: 0.95 },
 			attributes: 
 			{
 			    type: 'item',
@@ -77,16 +72,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "mushrom-1.json",
 			    skins: [ "mushrom-2.gif" ],
-			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
-			    animations: {
-				    idle: "stand"
-			    },
-			    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 0.55, z: 0, y: 0, x: 0, rot: 0, opacity: 0.9 },
+			params: { scale: 1.15, z: 0, y: 0, x: 0, rot: 0, opacity: 0.95 },
 			attributes: 
 			{
 			    type: 'item',
@@ -100,14 +91,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "three-1.json",
 			    skins: [ "three-1.gif" ],
-			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
-			    animations: { idle: "stand" },
-			    runSpeed: 70, walkSpeed: 70, crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 1.23, z: 0, y: 0, x: 0, rot: 0, opacity: 0.75 },
+			params: { scale: 5.23, z: 0, y: 0, x: 0, rot: 0, opacity: 0.95 },
 			attributes: 
 			{
 			    type: 'static',
@@ -121,16 +110,12 @@
 	    {
 			config: 
 			{
-			    baseUrl: "slime-genesis/md2/ambient/",
+			    baseUrl: baseUrl,
 			    body: "storage-1.json",
 			    skins: [ "storage-1.gif" ],
-			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
-			    animations: { idle: "stand" },
-			    runSpeed: 70,
-			    walkSpeed: 70,
-			    crouchSpeed: 25
+			    animations: { idle: "stand" }
 			},
-			params: { scale: 2.05, z: 7, y: 0, x: 0, rot: -1.57, opacity: 0.45 },
+			params: { scale: 5.05, z: 7, y: 0, x: 0, rot: -1.57, opacity: 0.45 },
 			attributes: 
 			{
 			    type: 'storage',

@@ -97,7 +97,9 @@
 	    	if( true !== statsDisabled ) addStats();
 			var SCREEN_WIDTH = window.innerWidth;
 			var SCREEN_HEIGHT = window.innerHeight;
-			renderer = new THREE.WebGLRenderer( { antialias: gameRpgData.settings.graphics.antialiasing } );
+			var graphicsSettings = data.getSettings('graphics');
+			if( false === graphicsSettings ) throw new GameException('Graphics Settings not found!');
+			renderer = new THREE.WebGLRenderer( { antialias: graphicsSettings.antialiasing } );
 			renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 			renderer.setClearColor( 0x000000, 1 );
 			container.appendChild( renderer.domElement );

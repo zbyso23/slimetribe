@@ -7,7 +7,12 @@
 	IGame = 
 	{
 		run: function() {},
-		switchMap: function(map) {}
+		switchMap: function( map ) {}
+	};
+
+	GameException = function( message ) 
+	{
+   		this.message = message;
 	};
 
 	Game = function()

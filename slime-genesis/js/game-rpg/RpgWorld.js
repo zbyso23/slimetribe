@@ -52,7 +52,7 @@
 			    run = true;
 			    return;
 	    	}
-		    if( gameRpgData.world.ready ) return;
+		    if( data.getWorldReady() ) return;
 		    if( false === data.getImagesLoaded() ) return;
 			generateWorld();
 	    };
@@ -71,7 +71,7 @@
 			// 		output: ['search', 'rest', 'collect']
 			// 	});
 			// wizzard.birth();
-		    gameRpgData.world.ready = true;
+		    data.setWorldReady( true );
 	    };
 
 	    var stop = function()
@@ -109,13 +109,10 @@
 					var collisionRow = [];
 					var ambientObjectsRow = [];
 			    }
-			    
 			    var ambient = i
 			    var heightMapIndex = i + 1;
 			    var collisionIndex = i + 2;
 			    ambientRow.push( groundHeightMap.data[ambient] );
-			    
-			    //if( groundHeightMap.data[ambient] !== 255 ) console.log( 'ambient ' + ambientRow.length - 1 + ' x ' + gameRpgData.world.ambientMap.length - 1 );
 			    heightRow.push( groundHeightMap.data[ heightMapIndex ] / 3.3333333 );
 			    heightMap.push( parseInt( groundHeightMap.data[ heightMapIndex ] ) / 3.3333333 );
 			    collisionRow.push( groundHeightMap.data[ collisionIndex ] );
@@ -192,17 +189,17 @@
 			return storageExperience;
 	    };
 
-	    this.addAmbientItem = function()
+	    this.addAmbientLoaderItem = function()
 	    {
 	    	++ambientItemsCount;
 	    };
 
-	    this.removeAmbientItem = function()
+	    this.removeAmbientLoaderItem = function()
 	    {
 	    	--ambientItemsCount;
 	    };
 
-	    this.getAmbientItems = function()
+	    this.getAmbientLoaderItems = function()
 	    {
 	    	return Math.ceil( ambientItemsCount );
 	    };

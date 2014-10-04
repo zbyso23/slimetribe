@@ -2,10 +2,6 @@
 	RpgCharacter = function( world, render, data, ambient, maps )
 	{
 		//REFACTOR MOVE FROM Data.js: 
-		var object   = {};
-		var model    = {};
-		var gyro     = {};
-		var md2base  = {};
 		var position = { x: 0, y: 87.6, z: 0 };
 
 	    var config   = {

@@ -1,6 +1,6 @@
 var GameRpgMaps = {
-    mapList: [ 'map01', 'map02' ],
-    active: 'map01',
+    mapList: [ 'map01', 'map02', 'map03' ],
+    active: 'map03',
     current: {},
     map01: {
 		config: {
@@ -42,6 +42,27 @@ var GameRpgMaps = {
 		    id: 0, object: {}
 		}
     },
+    map03: {
+		config: {
+		    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+		    groundImage: "slime-genesis/textures/ground/map03light.png",
+		    groundMap: "map",
+		    gridX: 127,
+		    gridY: 127
+		},
+		world: {
+		    ambientMap: [],
+		    ambientObjects: [],
+		    collisionMap: [],
+		    heightMap: []
+		},
+		ground: {
+		    width: 4096, 
+		    height: 4096, 
+		    id: 0, object: {}
+		}
+    },
+
     setActive: function( map ) 
     {
 		try 

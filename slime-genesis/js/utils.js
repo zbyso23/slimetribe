@@ -6,7 +6,8 @@ var utils =
 	},
 	has: function(input, property)
 	{
-		return (this.isObject(input) === true && input.hasOwnProperty(property) === true);
+
+		return (typeof input === "object" && Object.prototype.toString.call(input) !== '[object Array]' && input.hasOwnProperty(property) === true);
 	},
 	isArray: function(input)
 	{

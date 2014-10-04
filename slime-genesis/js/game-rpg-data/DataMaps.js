@@ -1,6 +1,6 @@
 (function(){
 
-    var mapList = [ 'map01', 'map02' ];
+    var mapList = [ 'map01', 'map02', 'map03' ];
     var active  = 'map01';
     var current = {};
     var maps    = 
@@ -10,6 +10,7 @@
 			config: 
 			{
 			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    skyboxPath: "slime-genesis/images/skybox/space/",
 			    groundImage: "slime-genesis/textures/ground/map01light.png",
 			    groundMap: "map",
 			    gridX: 127,
@@ -27,6 +28,11 @@
 			    width: 4096, 
 			    height: 4096, 
 			    id: 0, object: {}
+			},
+			skybox:
+			{
+			    size: 32000, 
+			    id: 1, object: {}
 			}
 	    },
 	    map02: 
@@ -34,6 +40,7 @@
 			config: 
 			{
 			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    skyboxPath: "slime-genesis/images/skybox/space/",
 			    groundImage: "slime-genesis/textures/ground/map02light.png",
 			    groundMap: "map",
 			    gridX: 127,
@@ -51,6 +58,41 @@
 			    width: 4096, 
 			    height: 4096, 
 			    id: 0, object: {}
+			},
+			skybox:
+			{
+			    size: 32000, 
+			    id: 1, object: {}
+			}
+	    },
+	    map03:
+	    {
+			config: 
+			{
+			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    skyboxPath: "slime-genesis/images/skybox/space/",
+			    groundImage: "slime-genesis/textures/ground/map03light.png",
+			    groundMap: "map",
+			    gridX: 127,
+			    gridY: 127
+			},
+			world: 
+			{
+			    ambientMap: [],
+			    ambientObjects: [],
+			    collisionMap: [],
+			    heightMap: []
+			},
+			ground: 
+			{
+			    width: 4096, 
+			    height: 4096, 
+			    id: 0, object: {}
+			},
+			skybox:
+			{
+			    size: 32000, 
+			    id: 1, object: {}
 			}
 	    }
     };

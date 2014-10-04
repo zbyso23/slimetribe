@@ -15,6 +15,28 @@
 	    }
 	};
 
+	var settings =
+    {
+		graphics: 
+		{
+		    shadows: 'low',
+		    antialiasing: true,
+		    models: { name: 'Low', id: 'low', groundGridX: 127, groundGridY: 127, divider: 3 }
+		}
+    };
+
+    var world =
+    {
+		ready: false,
+		ground: { width: 4096, height: 4096 },
+		skybox: { size: 4096, imagesPath: "slime-genesis/images/skybox/space/", loaded: false },
+		ambientObjects: [],
+		ambientMap: [],
+		collisionMap: [],
+		heightMap: []
+	
+    };
+
 	var gameData = 
 	{
 	    character: 
@@ -41,26 +63,7 @@
 			},
 			torch: {}
 	    },
-	    world: 
-	    {
-			ready: false,
-			ground: { width: 4096, height: 4096, id: 0, object: {}/*refactor, map: [], collision: [], ambient: [] */},
-			skybox: { size: 5000, imagesPath: "slime-genesis/images/skybox/space/", object: {}, loaded: false },
-			ambientObjects: [],
-			ambientMap: [],
-			collisionMap: [],
-			heightMap: []
-		
-	    },
-	    settings:
-	    {
-			graphics: 
-			{
-			    shadows: 'low',
-			    antialiasing: true,
-			    models: { name: 'Low', id: 'low', groundGridX: 127, groundGridY: 127, divider: 3 }
-			}
-	    },
+
 	    player: 
 	    {
 			config: 
@@ -168,9 +171,41 @@
 			images.loaded = state;
 		};
 
+		this.getSkyboxLoaded = function()
+		{
+			return world.skybox.loaded;
+		};
+
+		this.setSkyboxLoaded = function( state )
+		{
+			world.skybox.loaded = state;
+		};
+
 		this.getResourcesImage = function( id )
 		{
 			return resources.images[ id ];
+		};
+
+		this.getSettings = function( section )
+		{
+			if( false === utils.has( settings, section ) ) return false;
+			return settings[section];
+		};
+
+		this.getWorld = function( section )
+		{
+			if( false === utils.has( world, section ) ) return false;
+			return world[section];
+		};
+
+		this.getWorldReady = function()
+		{
+			return world.ready;
+		};
+
+		this.setWorldReady = function( state )
+		{
+			world.ready = state;
 		};
 	}
 })();
