@@ -8,6 +8,7 @@
 		var stats;
 		var ambient3D   = [];
 		var character3D = { model: {}, object: {}, gyro: {} };
+		var map3D = { uniforms: {} };
 
 		var htmlRender = new HtmlRender( this, data, ambient, maps );
 
@@ -49,7 +50,7 @@
 			// SCENE
 			scene = new THREE.Scene();
 			utils.log(scene);
-			//setFog({color: 0xdddddd, near: 1, far: 1250});
+			//setFog({color: 0xdddddd, near: 1, far: 10250});
 	    };
 
 	    var addCamera = function() 
@@ -259,20 +260,45 @@
 	    	world.setAmbientItemsLoaded( false );
 			//  GROUND
 			var gt = THREE.ImageUtils.loadTexture( map.config.groundTexture );
+			gt.wrapS = gt.wrapT = THREE.RepeatWrapping; 
+			var repeatS = repeatT = 16.0;
+			gt.repeat.set( 16, 16 );
+			var gtn = THREE.ImageUtils.loadTexture( map.config.groundNoiseTexture );
+			gtn.wrapS = gtn.wrapT = THREE.RepeatWrapping; 
 			var quality = 16, step = 1024 / quality;
 			var ggGridX = map.config.gridX;
 			var ggGridY = map.config.gridY;
 			var gg = new THREE.PlaneGeometry( map.ground.width, map.ground.height, ggGridX, ggGridY );
 			var shininess = 50; //ANDROID
-			var gm = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //Faster ANDROID
+
+			map3D.uniforms = {
+				baseTexture: 	{ type: "t", value: gt },
+				baseSpeed: 		{ type: "f", value: 0.0015 },
+				repeatS:		{ type: "f", value: repeatS },
+				repeatT:		{ type: "f", value: repeatT },				
+				noiseTexture: 	{ type: "t", value: gtn },
+				noiseScale:		{ type: "f", value: 0.02337 },
+				alpha: 			{ type: "f", value: 1.0 },
+				time: 			{ type: "f", value: 1.0 }
+			};
+			var gm = new THREE.ShaderMaterial( 
+			{
+			    uniforms: map3D.uniforms,
+				vertexShader:   document.getElementById( 'vertexShader'   ).textContent,
+				fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+			}   );
+			gm.side = THREE.DoubleSide;
+
+
+			//var gm = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //Faster ANDROID
 			//var gm = new THREE.MeshLambertMaterial( { color: 0xff0000, wireframe: false, map: gt, gtside: THREE.DoubleSide } ); //No ANDROID 
 			//var gm = new THREE.MeshPhongMaterial( { color: 0xff0000, map: gt, bumpMap: gt, bumpScale: 2 } )
 			var ground = new THREE.Mesh( gg, gm );
 			ground.rotation.x = -1.57; //No ANDROID 
-			var anisotropyMax = this.getMaxAnisotropy(); 
-			ground.material.map.anisotropy = this.getMaxAnisotropy();
-			ground.material.map.repeat.set( 16, 16 );
-			ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
+			// var anisotropyMax = this.getMaxAnisotropy(); 
+			//ground.material.map.anisotropy = this.getMaxAnisotropy();
+			//ground.material.map.repeat.set( 16, 16 );
+			//ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
 			ground.receiveShadow = true; //No ANDROID
 			this.addToScene( ground );
 			map.ground.object = ground;
@@ -327,6 +353,7 @@
 			// gameRpgData.character.torch.position.y = gameRpgData.character.object.position.y + 10;
 			// gameRpgData.character.torch.position.z = gameRpgData.character.object.position.z;
 			character3D.model.update( delta, true );
+			map3D.uniforms.time.value += delta;
 			var map     = maps.getCurrent();
 			//for( var y = 0; y < map.world.ambientObjects.length; y++ ) for( var x = 0; x < map.world.ambientObjects[y].length; x++ ) if( map.world.ambientObjects[y][x] !== 0 ) map.world.ambientObjects[y][x].update( delta, false );
 			htmlRender.render( scene, camera );

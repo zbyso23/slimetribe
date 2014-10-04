@@ -10,6 +10,7 @@
 			config: 
 			{
 			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    groundNoiseTexture: "slime-genesis/textures/terrain/grass-noise-1024.png",
 			    skyboxPath: "slime-genesis/images/skybox/space/",
 			    groundImage: "slime-genesis/textures/ground/map01light.png",
 			    groundMap: "map",
