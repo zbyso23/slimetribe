@@ -11,7 +11,7 @@
 
 	<body>
 		<!-- ---------------- Custom Shader Code ------------------------ -->
-		<script id="vertexShader" type="x-shader/x-vertex">
+		<script id="groundVertexShader" type="x-shader/x-vertex">
 		varying vec2 vUv;
 		void main() 
 		{ 
@@ -19,9 +19,8 @@
 		    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 		}
 		</script>
-
 		<!-- fragment shader a.k.a. pixel shader -->
-		<script id="fragmentShader" type="x-shader/x-vertex"> 
+		<script id="groundFragmentShader" type="x-shader/x-vertex"> 
 		uniform sampler2D baseTexture;
 		uniform float baseSpeed;
 		uniform float repeatS;
@@ -34,9 +33,9 @@
 		varying vec2 vUv;
 		void main() 
 		{
-			vec2 uvTimeShift = vUv + vec2( -0.7, 1.5 ) * time * baseSpeed;	
-			vec4 noiseGeneratorTimeShift = texture2D( noiseTexture, uvTimeShift );
-			vec2 uvNoiseTimeShift = vUv + noiseScale * vec2( noiseGeneratorTimeShift.r, noiseGeneratorTimeShift.b );
+			vec2 uvTimeShift = vUv + vec2( 0.35, 0.5 ) * time * baseSpeed;	
+			vec4 noiseGeneratorTimeShift = texture2D( noiseTexture, uvTimeShift * vec2(repeatS, repeatT) );
+			vec2 uvNoiseTimeShift = vUv + noiseScale * vec2( noiseGeneratorTimeShift.r, noiseGeneratorTimeShift.g );
 			vec4 baseColor = texture2D( baseTexture, uvNoiseTimeShift * vec2(repeatS, repeatT) );
 
 			baseColor.a = alpha;
@@ -59,14 +58,16 @@
 		</script>
 		<script src="slime-genesis/js/ai/jquery-1.4.2.min.js"></script>
 		<script src="slime-genesis/js/ai/brain-0.6.3.js"></script>
-		<script src="slime-genesis/js/three.js"></script>
+		<script src="slime-genesis/js/three.68.min.js"></script>
 		<script src="slime-genesis/js/SubdivisionModifier.js"></script>
 		<script src="slime-genesis/js/TrackballControls.js"></script>
 		<script src='slime-genesis/js/MD2CharacterComplex.js'></script>
 		<script src='slime-genesis/js/MD2Simple.js'></script>
 
 		<script src='slime-genesis/js/libs/stats.min.js'></script>
-		
+		<script src='slime-genesis/js/Particles/RpgParticleEngine.js'></script>
+		<script src='slime-genesis/js/Particles/RpgParticlesSets.js'></script>
+
 		<script src="slime-genesis/js/game-rpg/Game.js"></script>
 		<script src="slime-genesis/js/game-rpg/HtmlRender.js"></script>
 		<script src="slime-genesis/js/game-rpg/RpgRender.js"></script>

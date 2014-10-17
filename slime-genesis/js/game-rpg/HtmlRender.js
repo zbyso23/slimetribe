@@ -99,14 +99,14 @@
 			var SCREEN_HEIGHT = window.innerHeight;
 			var graphicsSettings = data.getSettings('graphics');
 			if( false === graphicsSettings ) throw new GameException('Graphics Settings not found!');
-			renderer = new THREE.WebGLRenderer( { antialias: graphicsSettings.antialiasing } );
+			renderer = new THREE.WebGLRenderer( { antialias: graphicsSettings.antialiasing, clearAlpha: 1 } );
 			renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 			renderer.setClearColor( 0x000000, 1 );
 			container.appendChild( renderer.domElement );
 			renderer.gammaInput = true;
 			renderer.gammaOutput = true;
 			//NO ANDROID 
-			//renderer.shadowMapEnabled = true;
+			renderer.shadowMapEnabled = true;
 	    	//Screen resize / device rotate
 			window.addEventListener( 'resize', function() {
 				SCREEN_WIDTH = window.innerWidth;

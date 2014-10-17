@@ -71,7 +71,7 @@
 				baseUrl: "slime-genesis/md2/slizak/",
 				
 			    body: "slizak.json",
-			    skins: [ "slizak-necro2.gif" ],
+			    skins: [ "slizak-red.gif" ],
 			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 			    animations: {
 				    move: "run",
