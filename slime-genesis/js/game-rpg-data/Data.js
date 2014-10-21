@@ -85,7 +85,7 @@
 			},
 			params: 
 			{
-			    scale: 1.430
+			    scale: 3.430
 			},
 			items: 
 			{
@@ -207,6 +207,17 @@
 		{
 			world.ready = state;
 		};
+
+		this.getPlayer = function()
+		{
+			return gameData.player;
+		};
+
+		this.getCharacter = function()
+		{
+			return gameData.character;
+		};
+
 	}
 })();
 

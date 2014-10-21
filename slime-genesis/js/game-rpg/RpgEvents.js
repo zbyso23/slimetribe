@@ -56,13 +56,7 @@
 				case KEYS.CTRL: controls.attack = true; break;
 			}
 
-			if( controls.grow || controls.attack ) 
-			{
-				controls.moveForward = false;
-				controls.moveBackward = false;
-				controls.moveLeft = false;
-				controls.moveRight = false;
-			}
+			if( controls.grow || controls.attack ) resetControlsMove();
 	    };
 
 	    var keyUp = function( event ) 
@@ -81,13 +75,15 @@
 				case KEYS.CTRL: controls.attack = false; break;
 			}
 
-			if( controls.grow || controls.attack ) 
-			{
-				controls.moveForward = false;
-				controls.moveBackward = false;
-				controls.moveLeft = false;
-				controls.moveRight = false;
-			}
+			if( controls.grow || controls.attack ) resetControlsMove();
+	    };
+
+	    var resetControlsMove = function()
+	    {
+			controls.moveForward = false;
+			controls.moveBackward = false;
+			controls.moveLeft = false;
+			controls.moveRight = false;
 	    };
 
 	    var resetControls = function() 
@@ -95,10 +91,7 @@
 			controls.attack       = false;
 			controls.jump         = false;
 			controls.grow         = false;
-			controls.moveForward  = false;
-			controls.moveBackward = false;
-			controls.moveLeft     = false;
-			controls.moveRight    = false;
+			resetControlsMove();
 	    };
 
 	    var buttons = function( params ) 

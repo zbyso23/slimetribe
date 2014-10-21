@@ -32,7 +32,7 @@
 //console.log(ambientItemsLoaded);
 			if( true === run && true === characterLoaded && ambientItemsLoaded && true === data.getImagesLoaded() )
 			{
-		    	//spawn();
+		    	spawn();
 		    	render.refresh( delta, character );
 			}
 			if(stopRequest)
@@ -113,8 +113,8 @@
 			    var heightMapIndex = i + 1;
 			    var collisionIndex = i + 2;
 			    ambientRow.push( groundHeightMap.data[ambient] );
-			    heightRow.push( groundHeightMap.data[ heightMapIndex ] / 3.3333333 );
-			    heightMap.push( parseInt( groundHeightMap.data[ heightMapIndex ] ) / 3.3333333 );
+			    heightRow.push( groundHeightMap.data[ heightMapIndex ]  );
+			    heightMap.push( parseInt( groundHeightMap.data[ heightMapIndex ] )  );
 			    collisionRow.push( groundHeightMap.data[ collisionIndex ] );
 			    ambientObjectsRow.push( 0 );
 			}
@@ -134,8 +134,10 @@
 	    {
 			try 
 			{
-			    var map = maps.getCurrent();
-			    //REFACTOR: if( gameRpgData.character.md2.controls.grow === true ) throw "growing lock";
+			    var map       = maps.getCurrent();
+			    var character = data.getCharacter();
+
+			    if(controls.grow === true) throw "growing lock";
 			    var newSpawnItems = [];
 			    var change = false;
 			    for( var i in spawnItems )
@@ -154,11 +156,11 @@
 					}
 			    }
 			    if( !change ) throw "no item fully spawned";
-			    Game.Rpg.World.spawnItems = newSpawnItems;
+			    spawnItems = newSpawnItems;
 			} 
 			catch( e ) 
 			{
-			    utils.log( 'spawn' , e );
+			    //utils.log( 'spawn' , e );
 			}
 	    };
 

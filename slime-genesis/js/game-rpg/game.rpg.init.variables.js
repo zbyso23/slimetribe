@@ -1,18 +1,4 @@
 var tick = 0;
-var gameDataImages = {
-    loadedRemain: 0,
-    loaded: false,
-    items: [],
-    list: [
-	{ id: 'map', url: 'slime-genesis/textures/ground/map02light.png', w: 128, h: 128 }
-	
-    ]
-};
-var gameResources = {
-    images: {
-	map: { image: {}, canvas: {}, w: 128, h: 128 }
-    }
-}
 var gameRpgData = {
     run: false,
     character: {
@@ -70,7 +56,7 @@ var gameRpgData = {
 	    crouchSpeed: 25
 	},
 	params: {
-	    scale: 1.430
+	    scale: 3.430
 	},
 	items: {
 	    'rock1': 0,

@@ -9,6 +9,7 @@ THREE.MD2CharacterComplex = function () {
 	// animation parameters
 	this.animationFPS = 9;
 	this.transitionFrames = 15;
+	this.light = false;
 	//this.orientations = { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 };
 	//this.orientations = { b: 1.57, bl: 0.75, l: 6.2, fl: 5.57, f: 4.79, fr: 3.9, r: 3.14, br: 2.35 };
 	
@@ -209,6 +210,10 @@ THREE.MD2CharacterComplex = function () {
 	    }
 	};
 
+	this.setLight = function ( light ) {
+		this.light = light;
+	};
+
 	this.updateAnimations = function ( delta ) {
 	    var mix = 1;
 	    if ( this.blendCounter > 0 ) {
@@ -301,7 +306,7 @@ THREE.MD2CharacterComplex = function () {
 	    this.maxReverseSpeed = -this.maxSpeed;
 
 	    if ( controls.moveForward )  {
-		this.bodyOrientation = 0;
+		this.bodyOrientation = 3.14;
 		if( !controls.lockForward ) {
 		    this.speed = THREE.Math.clamp( this.speed + delta * this.frontAcceleration, this.maxReverseSpeed, this.maxSpeed );
 		} else {
@@ -309,7 +314,7 @@ THREE.MD2CharacterComplex = function () {
 		}
 	    }
 	    if ( controls.moveBackward ) {
-		this.bodyOrientation = 3.14;
+		this.bodyOrientation = 0;
 		if( !controls.lockBackward ) {
 		    this.speed = THREE.Math.clamp( this.speed + delta * this.frontAcceleration, this.maxReverseSpeed, this.maxSpeed );
 		} else {
@@ -323,13 +328,13 @@ THREE.MD2CharacterComplex = function () {
 
 	    if ( controls.moveLeft ) {
 		this.bodyOrientation += delta * this.angularSpeed;
-		this.bodyOrientation = 1.57;
+		this.bodyOrientation = -1.57;
 		this.speed = THREE.Math.clamp( this.speed + dir * ( delta * 2 ) * this.frontAcceleration, this.maxReverseSpeed, this.maxSpeed );
 	    }
 
 	    if ( controls.moveRight ) {
 		this.bodyOrientation -= delta * this.angularSpeed;
-		this.bodyOrientation = -1.57;
+		this.bodyOrientation = 1.57;
 		this.speed = THREE.Math.clamp( this.speed + dir * ( delta * 2 ) * this.frontAcceleration, this.maxReverseSpeed, this.maxSpeed );
 	    }
 	    // speed decay
@@ -371,7 +376,10 @@ THREE.MD2CharacterComplex = function () {
 	    //}
 
 	    // steering
+	    this.root.position.y = 55;
 	    this.root.rotation.y = this.bodyOrientation;
+	    if(false === this.light) return;
+	    this.light.position = {x: this.root.position.x, y: this.root.position.y, z: this.root.position.z};
 	};
 
 	// internal helpers

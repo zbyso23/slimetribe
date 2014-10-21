@@ -9,7 +9,8 @@
 	    {
 			config: 
 			{
-			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    //groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    groundTexture: "slime-genesis/textures/terrain/water-512.jpg",
 			    groundNoiseTexture: "slime-genesis/textures/terrain/grass-noise-1024.png",
 			    skyboxPath: "slime-genesis/images/skybox/space/",
 			    groundImage: "slime-genesis/textures/ground/map01light.png",
@@ -40,7 +41,8 @@
 	    {
 			config: 
 			{
-			    groundTexture: "slime-genesis/textures/terrain/grass-1024.jpg",
+			    groundTexture: "slime-genesis/textures/terrain/snow-1600.jpg",
+			    groundNoiseTexture: "slime-genesis/textures/terrain/grass-noise-1024.png",
 			    skyboxPath: "slime-genesis/images/skybox/space/",
 			    groundImage: "slime-genesis/textures/ground/map02light.png",
 			    groundMap: "map",

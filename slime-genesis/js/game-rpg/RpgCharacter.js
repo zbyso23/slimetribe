@@ -132,7 +132,9 @@
 			try 
 			{
 				if( map.world.ambientMap[grid.x][grid.y] === 255 ) throw "no ambient here";
+console.log('ACTION',  map.world.ambientMap[grid.x][grid.y]);
 				this.actionGrowAmbient( grid );
+
 				this.actionStorage( grid );
 			} 
 			catch( e ) 

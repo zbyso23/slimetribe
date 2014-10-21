@@ -102,6 +102,7 @@
 			renderer = new THREE.WebGLRenderer( { antialias: graphicsSettings.antialiasing, clearAlpha: 1 } );
 			renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 			renderer.setClearColor( 0x000000, 1 );
+			renderer.shadowMapEnabled = true;
 			container.appendChild( renderer.domElement );
 			renderer.gammaInput = true;
 			renderer.gammaOutput = true;
