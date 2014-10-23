@@ -2,6 +2,7 @@
 	RpgRender = function( world, data, ambient, maps )
 	{
 		var that = this;
+		var tick;
 		var scene;
 		var camera;
 		var light;
@@ -374,6 +375,7 @@
 	    this.refresh = function( delta, character ) 
 	    {
 			if ( t > 1 ) t = 0;
+			++tick;
 			//cameraControls.update( delta );
 			//refactor; if( true === characterLoaded ) 
 			//REFACTOR remove link to character: 
@@ -382,13 +384,13 @@
 			particles.update(delta * 0.5);
 			var map     = maps.getCurrent();
 			//for( var y = 0; y < map.world.ambientObjects.length; y++ ) for( var x = 0; x < map.world.ambientObjects[y].length; x++ ) if( map.world.ambientObjects[y][x] !== 0 ) map.world.ambientObjects[y][x].update( delta, false );
+			map.skybox.object.rotation.y += 0.00003;
+			map.skybox.object.rotation.z += 0.00003;
+			map.skybox.object.rotation.x += 0.000005;
 			htmlRender.render( scene, camera );
 			if( stats ) stats.update();
 
 
-			map.skybox.object.rotation.y += 0.0001;
-			map.skybox.object.rotation.z += 0.00001;
-			map.skybox.object.rotation.x -= 0.000001;
 	    };
 
 	    this.getMaxAnisotropy = function()

@@ -4,17 +4,6 @@
 		this.message = message;
 	};
 
-	IGame = 
-	{
-		run: function() {},
-		switchMap: function( map ) {}
-	};
-
-	GameException = function( message ) 
-	{
-   		this.message = message;
-	};
-
 	Game = function()
 	{
 		var data        = new Data();

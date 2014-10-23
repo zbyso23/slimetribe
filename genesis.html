@@ -14,7 +14,7 @@
 		<script id="groundVertexShader" type="x-shader/x-vertex">
 		varying vec2 vUv;
 		void main() 
-		{ 
+		{
 		    vUv = uv;
 		    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 		}
@@ -29,7 +29,6 @@
 		uniform float noiseScale;
 		uniform float alpha;
 		uniform float time;
-
 		varying vec2 vUv;
 		void main() 
 		{
@@ -37,7 +36,6 @@
 			vec4 noiseGeneratorTimeShift = texture2D( noiseTexture, uvTimeShift * vec2(repeatS, repeatT) );
 			vec2 uvNoiseTimeShift = vUv + noiseScale * vec2( noiseGeneratorTimeShift.r, noiseGeneratorTimeShift.g );
 			vec4 baseColor = texture2D( baseTexture, uvNoiseTimeShift * vec2(repeatS, repeatT) );
-
 			baseColor.a = alpha;
 			gl_FragColor = baseColor;
 		}  

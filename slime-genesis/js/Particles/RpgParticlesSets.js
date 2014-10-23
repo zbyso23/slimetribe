@@ -16,10 +16,10 @@ RpgParticlesSet =
 			{
 				var layers = engine.particles.length;
 				var maxY   = ((that.snow.box[1] * 2) * -1);
-				for(layer = 0; layer < layers; layer++)
+				while(--layers)
 				{
-					var position = engine.particles[layer].position;
-					position.y -= engine.particlesSpeeds[layer] + delta;
+					var position = engine.particles[layers].position;
+					position.y -= engine.particlesSpeeds[layers] + delta;
 					if(position.y < maxY) position.y = maxY * -1;
 				}			
 

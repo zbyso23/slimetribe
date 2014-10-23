@@ -9,20 +9,26 @@
 
 		this.initialize = function( name )
 		{
-			var set    = RpgParticlesSet[name];
-			this.set   = set;
-			var sprite = THREE.ImageUtils.loadTexture( set.texture );
-			for(layer = 0; layer < set.layers; layer++)
+			var set           = RpgParticlesSet[name];
+			this.set          = set;
+			var layer;
+			var layers        = set.layers;
+			var thridSpeed    = set.speedDivider / 3;
+			var twoThridSpeed = thridSpeed * 2;
+			var sprite        = THREE.ImageUtils.loadTexture( set.texture );
+			var geometry      = new THREE.Geometry();
+			var count         = set.count;
+			while(--count)
 			{
-				var geometry = new THREE.Geometry();
-				for(i = 0; i < set.count; i++)
-				{
-					var vertex = new THREE.Vector3();
-					vertex.x = (Math.random() * (set.box[0] * 2)) - set.box[0];
-					vertex.y = (Math.random() * (set.box[1] * 2)) - set.box[1];
-					vertex.z = (Math.random() * (set.box[2] * 2)) - set.box[2];
-					geometry.vertices.push( vertex );
-				};
+				var vertex = new THREE.Vector3();
+				vertex.x = (Math.random() * (set.box[0] * 2)) - set.box[0];
+				vertex.y = (Math.random() * (set.box[1] * 2)) - set.box[1];
+				vertex.z = (Math.random() * (set.box[2] * 2)) - set.box[2];
+				geometry.vertices.push( vertex );
+			};
+
+			for(layer = 0; layer < layers; layer += 1)
+			{
 				var size = set.size * Math.random();
 				var material = new THREE.PointCloudMaterial( { size: size, map: sprite, blending: THREE.AdditiveBlending, depthTest: false, transparent : true } );
 				material.color.setHSL( set.color[0], set.color[1], set.color[2] );
@@ -32,11 +38,9 @@
 				// particlesLayer.rotation.z = Math.random() * 6;
 				this.render.addToScene( particlesLayer );
 				this.particles.push( particlesLayer );
-				var thridSpeed = set.speedDivider / 3;
-				var particlesSpeed = thridSpeed + ((thridSpeed * 2) * Math.random());
+				var particlesSpeed = thridSpeed + (twoThridSpeed * Math.random());
 				this.particlesSpeeds.push( particlesSpeed );
 			}
-
 			this.updateFunction = set.update( this );
 		};
 

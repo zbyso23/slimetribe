@@ -1,7 +1,7 @@
 (function(){
 
     var mapList = [ 'map01', 'map02', 'map03' ];
-    var active  = 'map01';
+    var active  = 'map02';
     var current = {};
     var maps    = 
     {
@@ -41,10 +41,10 @@
 	    {
 			config: 
 			{
-			    groundTexture: "slime-genesis/textures/terrain/snow-1600.jpg",
+			    groundTexture: "slime-genesis/textures/terrain/water-512.jpg",
 			    groundNoiseTexture: "slime-genesis/textures/terrain/grass-noise-1024.png",
 			    skyboxPath: "slime-genesis/images/skybox/space/",
-			    groundImage: "slime-genesis/textures/ground/map02light.png",
+			    groundImage: "slime-genesis/textures/ground/map01dungeon.png",
 			    groundMap: "map",
 			    gridX: 127,
 			    gridY: 127

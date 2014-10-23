@@ -96,7 +96,8 @@
 			var heightRow            = [];
 			var collisionRow         = [];
 			var ambientObjectsRow    = [];
-			for( var i = 0, l = groundHeightMap.data.length; i < l; i = i + 4 ) 
+			var i, l;
+			for( i = 0, l = groundHeightMap.data.length; i < l; i += 4 ) 
 			{
 			    if( i > 0 && i % ( ( ggGridX + 1 ) * 4 ) === 0 ) 
 			    {
@@ -104,10 +105,10 @@
 					map.world.collisionMap.push( collisionRow );
 					map.world.heightMap.push( heightRow );
 					map.world.ambientObjects.push( ambientObjectsRow );
-					var ambientRow = [];
-					var heightRow = [];
-					var collisionRow = [];
-					var ambientObjectsRow = [];
+					ambientRow = [];
+					heightRow = [];
+					collisionRow = [];
+					ambientObjectsRow = [];
 			    }
 			    var ambient = i
 			    var heightMapIndex = i + 1;
