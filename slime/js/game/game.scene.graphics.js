@@ -93,11 +93,17 @@ Game.Scene.Graphics = {
         } else {
             var gam = new THREE.MeshPhongMaterial( { color: BATTLE.ambient.color, map: gat, specular: BATTLE.ambient.specular, shininess: BATTLE.ambient.shininess, shading: BATTLE.ambient.shading } );
         }
-	
-	gameData.battle.world.ambient.object = new THREE.Mesh( new THREE.BoxGeometry( 1600, 900, 40 ), gam );
+	var battleWorldBox = new THREE.BoxGeometry( 1600, 900, 40 );
+	gameData.battle.world.ambient.object = new THREE.Mesh( battleWorldBox, gam );
 	scene.add( gameData.battle.world.ambient.object );
-	gameData.battle.world.ambient.object.rotation = { x: 1.57, y: 3.14, z: -1.57 }; //BATTLE.ambient.rotation;
-	gameData.battle.world.ambient.object.scale = {x: -2.1, y: 2.2, z: 1}; //BATTLE.ambient.scale;
+	//BATTLE.ambient.rotation
+	gameData.battle.world.ambient.object.rotation.x = 1.57;
+	gameData.battle.world.ambient.object.rotation.y = 3.14;
+	gameData.battle.world.ambient.object.rotation.z = -1.57; 
+	//BATTLE.ambient.scale
+	gameData.battle.world.ambient.object.scale.x = -2.1;
+	gameData.battle.world.ambient.object.scale.y = 2.2;
+	gameData.battle.world.ambient.object.scale.z = 1;
 	gameData.battle.world.ambient.object.position = {x: 500, y: 20, z: 555};
 	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Graphics.setEffects( gameData.battle.world.ambient.object );
     },

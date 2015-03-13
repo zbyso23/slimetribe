@@ -1,8 +1,8 @@
 Game.Scene.Render = {};
 Game.Scene.Render = {
     add: function() {
-	//renderer = new THREE.WebGLRenderer( { antialias: gameData.settings.antialiasing } );
-	renderer = new THREE.WebGLRenderer3( { antialias: gameData.settings.antialiasing } );
+	renderer = new THREE.WebGLRenderer( { antialias: gameData.settings.antialiasing } );
+	//renderer = new THREE.WebGLRenderer3( { antialias: gameData.settings.antialiasing } );
 	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	renderer.setClearColor( 0xffeeff, 1 );
 	if( gameData.settings.graphics.mobile === "off" ) Game.Scene.Render.shadows();
