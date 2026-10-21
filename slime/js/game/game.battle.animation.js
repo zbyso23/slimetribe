@@ -91,50 +91,43 @@ Game.Battle.Animation = {
 	try {
 	    if( gameData.animation.attack === false && gameData.animation.death === false && gameData.animation.healing === false && gameData.animation.spell === false ) {
 		var monster = gameData.animation.object;
-		var moveStep = gameData.battle.selection.movePath[gameData.animation.step];
-		var moving = false;
-		if( gameData.animation.dirs.x !== -1 || gameData.animation.dirs.y === 0 ) {
-		    monster.speed = THREE.Math.clamp( monster.speed + delta * monster.frontAcceleration, ( monster.maxSpeed * -1 ), monster.maxSpeed );
-		} else {
-		    monster.speed = THREE.Math.clamp( monster.speed + Math.abs( moveStep[2] ) * ( delta ) * monster.frontAcceleration, ( monster.maxSpeed * -1 ), monster.maxSpeed );
-		}
-		var forwardSpeed = ( monster.speed <= monster.maxSpeed ) ? monster.speed * delta : monster.maxSpeed * delta;
-		if( gameData.animation.dirs.x === 0 || gameData.animation.dirs.y === 0 ) {
-		    forwardSpeed = ( gameData.animation.dirs.x === -1 || gameData.animation.dirs.y === 1 ) ? ( monster.speed * 10 ) * ( delta * 2 ) : monster.speed * 20;
-		} else {
-		    forwardSpeed = monster.speed * delta;
-		}
-		forwardSpeed *= ( animSpeed / 4 );
-		if( ( gameData.animation.dirs.x === 1 && gameData.animation.nextCX < monster.root.position.z ) ||
-		    ( gameData.animation.dirs.x === -1 && gameData.animation.nextCX > monster.root.position.z ) ) {
-		    if( ( gameData.animation.dirs.x === 1 && gameData.animation.dirs.y === 1 ) ||
-			( gameData.animation.dirs.x === -1 && gameData.animation.dirs.y === -1 ) ) {
-			monster.root.position.z += ( Math.sin( monster.bodyOrientation ) * ( forwardSpeed ) );
-		    } else {
-			monster.root.position.z -= ( Math.sin( monster.bodyOrientation ) * ( forwardSpeed ) );
-		    }
-		    monster.controls.move = true;
-		    moving = true;
-		}
+		var targetX = gameData.animation.nextCX;
+		var targetY = gameData.animation.nextCY;
+		var dx = targetX - monster.root.position.z;
+		var dy = targetY - monster.root.position.x;
+		var distance = Math.sqrt( dx * dx + dy * dy );
+		var moving = distance > 0.001;
+		monster.controls.move = moving;
 
-		if( ( gameData.animation.dirs.y === -1 && gameData.animation.nextCY > monster.root.position.x ) ||
-		    ( gameData.animation.dirs.y === 1 && gameData.animation.nextCY < monster.root.position.x ) ) {
-		    if( ( gameData.animation.dirs.x === 1 && gameData.animation.dirs.y === 1 ) ||
-			( gameData.animation.dirs.x === -1 && gameData.animation.dirs.y === -1 ) ||
-			( gameData.animation.dirs.y === -1 && gameData.animation.dirs.x === 0 ) ) {
-    			monster.root.position.x += Math.cos( monster.bodyOrientation ) * ( forwardSpeed );
+		if( moving ) {
+		    // Use one frame-rate-independent speed for every direction.
+		    // Do not accumulate acceleration across path nodes.
+		    var baseSpeed = Math.abs( monster.maxSpeed || monster.speed || 1 );
+		    var speedScale = ( typeof animSpeed === "number" && animSpeed > 0 ) ? ( animSpeed / 4 ) : 1;
+		    var travel = baseSpeed * speedScale * Math.max( 0, delta );
+		    monster.speed = baseSpeed;
+		    if( travel >= distance ) {
+			monster.root.position.z = targetX;
+			monster.root.position.x = targetY;
+			monster.controls.move = false;
+			gameData.animation.progress = false;
+			if( gameData.animation.step === ( gameData.animation.path.length - 1 ) ) {
+			    Game.Battle.Sounds.stop();
+			    if( gameData.animation.withAttack === true ) {
+				Game.Battle.Sounds.prepare( { sounds: gameData.battle.selection.hero.monsters[ gameData.battle.selection.x ][ gameData.battle.selection.y ].sounds, active: 'attack' } );
+				Game.Battle.Sounds.play();
+			    }
+			}
 		    } else {
-			monster.root.position.x -= Math.cos( monster.bodyOrientation ) * ( forwardSpeed );
+			monster.root.position.z += ( dx / distance ) * travel;
+			monster.root.position.x += ( dy / distance ) * travel;
 		    }
-		    monster.controls.move = true;
-		    moving = true;
-		}
-		if( moving === false ) {
-		    if( monster.root.position.z !== gameData.animation.nextCX ) monster.root.position.z = gameData.animation.nextCX;
-		    if( monster.root.position.x !== gameData.animation.nextCY ) monster.root.position.x = gameData.animation.nextCY;
+		} else {
+		    monster.root.position.z = targetX;
+		    monster.root.position.x = targetY;
+		    monster.controls.move = false;
 		    gameData.animation.progress = false;
 		    if( gameData.animation.step === ( gameData.animation.path.length - 1 ) ) {
-			monster.controls.move = false;
 			Game.Battle.Sounds.stop();
 			if( gameData.animation.withAttack === true ) {
 			    Game.Battle.Sounds.prepare( { sounds: gameData.battle.selection.hero.monsters[ gameData.battle.selection.x ][ gameData.battle.selection.y ].sounds, active: 'attack' } );

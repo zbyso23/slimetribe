@@ -257,8 +257,8 @@ var HTML = {
     }
 };
 
-var animSpeedFpsStep = 0.2;
-var animSpeed = 120;
+var animSpeedFpsStep = 0.03;
+var animSpeed = 0.5;
 var animSpeedCalibrationCycles = 0;
 var animSpeedCalibrated = false;
 
