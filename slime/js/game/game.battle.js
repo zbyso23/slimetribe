@@ -1,198 +1,301 @@
-Game.Battle = {};
 Game.Battle = {
-    generateWorld: function() {
-	try {
-	    if( gameData.battle.world.first === true ) {
-		//Game.Scene.Graphics.addBattleGround();
-		Game.Scene.Graphics.addBattleAmbient();
-		Game.Battle.Sounds.preloader();
-	    }
-	    Game.Battle.Grid.generateCharacters( tribe.left, true, 3.14 );
-	    Game.Battle.Grid.generateCharacters( tribe.right, false, 0, gameData.battle.plane.gridWidth - 1 );
-	    if( gameData.battle.world.first === true ) Game.Battle.Grid.generateMap();
-	    gameData.battle.world.first = false;
-	    gameData.battle.world.ready = true;
-	} catch( e ) {
+    generateWorld() {
+        try {
+            if (gameData.battle.world.first === true) {
+                // Game.Scene.Graphics.addBattleGround();
+                Game.Scene.Graphics.addBattleAmbient();
+                Game.Battle.Sounds.preloader();
+            }
 
-	}
-    },
-    healing: function( attacker, defender ) {
-	var healing = Game.Battle.calcHealing( gameData.battle.selection.hero.monsters[attacker.x][attacker.y], gameData.battle.selection.hero.monsters[defender.x][defender.y] );
-	gameData.battle.selection.hero.monsters[defender.x][defender.y].healthRemain += healing.health;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain -= gameData.battle.selection.hero.monsters[attacker.x][attacker.y].stats.magic;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain = ( gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain < 0 ) ? 0 : gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].speedRemain = 0;
-	var settings = { x: attacker.x, y: attacker.y, xT: parseInt( defender.x ), yT: parseInt( defender.y ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: false, withHealing: true, withDeath: false, damage: 0, heal: healing.health, nearAttack: false, withSpell: false };
-	Game.Battle.Animation.animate( settings );
-    },
-    spell: function( attacker, defender ) {
-	var spell = Game.Battle.calcSpell( gameData.battle.selection.hero.monsters[attacker.x][attacker.y], gameData.battle.selection.enemyHero.monsters[defender.x][defender.y] );
-	var settings = { x: attacker.x, y: attacker.y, xT: parseInt( defender.x ), yT: parseInt( defender.y ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: false,  withSpell: true, withHealing: false, withDeath: spell.death, damage: spell.damage, spell: spellsList[ gameData.battle.selection.hero.monsters[attacker.x][attacker.y].stats.activeSpell ], nearAttack: true, withSpell: true };
-	gameData.battle.selection.enemyHero.monsters[defender.x][defender.y].healthRemain -= spell.damage;
-	gameData.battle.selection.enemyHero.monsters[defender.x][defender.y].healthRemain = ( gameData.battle.selection.enemyHero.monsters[defender.x][defender.y].healthRemain < 0 ) ? 0 : gameData.battle.selection.enemyHero.monsters[defender.x][defender.y].healthRemain;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain -= spellsList[ gameData.battle.selection.hero.monsters[attacker.x][attacker.y].stats.activeSpell ].manaCost;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain = ( gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain < 0 ) ? 0 : gameData.battle.selection.hero.monsters[attacker.x][attacker.y].manaRemain;
-	gameData.battle.selection.hero.monsters[attacker.x][attacker.y].speedRemain = 0;
-	Game.Battle.Animation.animate( settings );
-    },
-    calcAttack: function( attacker, defender ) {
-	var calc;
-	try {
-	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
-	    var attackerStats = attacker.stats;
-	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( attackerStats.attack + Math.random() * 0.5 ) * 7 ) );
-	    var d = Math.round( ( ( defenderStats.defense ) + Math.random() * 0.5 ) * 3 );
-	    if( a > d ) {
-		var damage = Math.round( ( a - d )  );
-	    } else {
-		var damage = 0;
-	    }
-	    if( ( defender.healthRemain - damage ) <= 0 ) {
-		var death = true;
-		defender.healthRemain = 0;
-	    } else {
-		var death = false;
-	    }
-	    calc = { 'damage': damage, 'death': death };
-	    return calc;
-	} catch( e ) {
-	    
-	}
-	return false;
-    },
-    calcSpell: function( attacker, defender ) {
-	var calc;
-	try {
-	    if( typeof attacker === "undefined" || typeof defender === "undefined" ) return false;
-	    var attackerStats = attacker.stats;
-	    var defenderStats = defender.stats;
-	    console.log( 'attacker.stats.activeSpell', attacker.stats.activeSpell );
-	    var a = ( attacker.stats.magic + ( Math.random() * 0.5 ) );
-	    var d = ( ( ( defenderStats.magicDefense * .5 ) + ( Math.random() * 0.5 ) ) );
-	    var attack = a - d;
-	    if( attack > 0 ) {
-		var damage = Math.round( spellsList[ attacker.stats.activeSpell ].damage + ( Math.random() * attack ) );
-	    } else {
-		var damage = 0;
-	    }
-	    var manaCost = spellsList[ attacker.stats.activeSpell ].manaCost;
-	    if( ( defender.healthRemain - damage ) <= 0 ) {
-		var death = true;
-		defender.healthRemain = 0;
-	    } else {
-		var death = false;
-	    }
-	    calc = { 'damage': damage, 'manaCost': manaCost, 'death': death };
-	    return calc;
-	} catch( e ) {
-	}
-	return false;
-    },
-    calcHealing: function( healer, defender ) {
-	var calc;
-	try {
-	    var healerStats = healer.stats;
-	    var defenderStats = defender.stats;
-	    var a = Math.round( ( ( healerStats.magic + ( Math.random() * 2 ) ) * 2 ) );
-	    if( ( defender.healthRemain + a ) > defenderStats.health ) {
-		var health = defenderStats.health - defender.healthRemain;
-	    } else {
-		var health = a;
-	    }
-	    calc = { 'health': health };
-	    return calc;
-	} catch( e ) {
-	}
-	return false;
-    },
-    calcGameover: function( hero ) {
-	var calc = { 'gameOver': true };
-	try {
-	    console.log('Look for gameover');
-	    for( x in hero.grid ) {
-		for( y in hero.grid[x] ) {
-		    if( hero.grid[x][y] != 0 ) {
-			calc.gameOver = false;
-			break;
-		    }
-		}
-	    }
-	} catch( e ) {
-	}
-	return calc;
-    },
-    calcEndTurn: function( hero ) {
-	var calc = { 'endTurn': true };
-	try {
-	    console.log('Look for end turn',hero);
-	    for( x in hero.monsters ) {
-		for( y in hero.monsters[x] ) {
-		    if( hero.monsters[x][y] != 0 && hero.monsters[x][y].speedRemain > 0 ) {
-			calc.endTurn = false;
-			break;
-		    }
-		}
-	    }
-	} catch( e ) {
+            Game.Battle.Grid.generateCharacters(tribe.left, true, 3.14);
+            Game.Battle.Grid.generateCharacters(
+                tribe.right,
+                false,
+                0,
+                gameData.battle.plane.gridWidth - 1
+            );
 
-	}
-	return calc;
-    },
-    changeTurn: function() {
-	try {
-	    if( gameData.battle.selection.selected === true ) Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
-	    if( gameData.battle.selection.player == "right" ) gameData.battle.selection.turn++; 
-	    gameData.battle.selection.player = ( gameData.battle.selection.player == "left" ) ? "right" : "left";
-	    gameData.battle.selection.hero = ( gameData.battle.selection.player == "left" ) ? tribe.left : tribe.right;
-	    gameData.battle.selection.enemyHero = ( gameData.battle.selection.player == "left" ) ? tribe.right : tribe.left;
-	    var manaRegeneration;
-	    for( x in tribe.left.monsters ) {
-		for( y in tribe.left.monsters[x] ) {
-		    if( typeof tribe.left.monsters[x][y] === "object" ) {
-			tribe.left.monsters[x][y].speedRemain = tribe.left.monsters[x][y].stats.speed;
-			if( tribe.left.monsters[x][y].manaRemain < tribe.left.monsters[x][y].stats.magic ) {
-			    manaRegeneration = Math.round( tribe.left.monsters[x][y].stats.magic / 3 );
-			    tribe.left.monsters[x][y].manaRemain += manaRegeneration;
-			}
-		    }
-		    if( typeof tribe.right.monsters[x][y] === "object" ) {
-			tribe.right.monsters[x][y].speedRemain = tribe.right.monsters[x][y].stats.speed;
-			if( tribe.right.monsters[x][y].manaRemain < tribe.right.monsters[x][y].stats.magic ) {
-			    manaRegeneration = Math.round( tribe.right.monsters[x][y].stats.magic / 3 );
-			    tribe.right.monsters[x][y].manaRemain += manaRegeneration;
-			}
-		    }
-		}
-	    }
-	    //Restart AI Iteration after change turn
-	    Game.Battle.Ai.iteration = 0;
-	    Game.Html.activePlayerGUI();
-	} catch( e ) {
+            if (gameData.battle.world.first === true) {
+                Game.Battle.Grid.generateMap();
+            }
 
-	}
+            gameData.battle.world.first = false;
+            gameData.battle.world.ready = true;
+        } catch (error) {
+            // Existing behavior: errors are swallowed.
+        }
     },
-    findNearAttackPath: function( from, cords ) {
-	try {
-	    from[0] = parseInt( from[0] );
-	    from[1] = parseInt( from[1] );
-	    cords[0] = parseInt( cords[0] );
-	    cords[1] = parseInt( cords[1] );
-	    if( Game.Battle.findInGrid( { x: cords[0], y: cords[1], x2: from[0], y2: from[1] } ) === false ) throw "is so far";
-	} catch( e ) {
-	    return false;
-	}
-	return true;
+
+    healing(attacker, defender) {
+        const hero = gameData.battle.selection.hero;
+        const healer = hero.monsters[attacker.x][attacker.y];
+        const target = hero.monsters[defender.x][defender.y];
+        const healing = Game.Battle.calcHealing(healer, target);
+
+        target.healthRemain += healing.health;
+        healer.manaRemain = Math.max(0, healer.manaRemain - healer.stats.magic);
+        healer.speedRemain = 0;
+
+        const settings = {
+            x: attacker.x,
+            y: attacker.y,
+            xT: parseInt(defender.x, 10),
+            yT: parseInt(defender.y, 10),
+            grid: hero.grid,
+            enemyGrid: gameData.battle.selection.enemyHero.grid,
+            withAttack: false,
+            withHealing: true,
+            withDeath: false,
+            damage: 0,
+            heal: healing.health,
+            nearAttack: false,
+            withSpell: false
+        };
+
+        Game.Battle.Animation.animate(settings);
     },
-    findInGrid: function( params ) {
-	try {
-	    if( params.y < 0 || params.x < 0 || params.x >= gameData.battle.plane.gridWidth || params.y >= gameData.battle.plane.gridHeight || params.y2 < 0 || params.x2 < 0 || params.x2 >= gameData.battle.plane.gridWidth || params.y2 >= gameData.battle.plane.gridHeight ) throw "out of grid";
-	    var diffX = ( params.x > params.x2 ) ? Math.abs( params.x - params.x2 ) : Math.abs( params.x2 - params.x );
-	    var diffY = ( params.y > params.y2 ) ? Math.abs( params.y - params.y2 ) : Math.abs( params.y2 - params.y );
-	    if( diffY > 1 || diffX > 1 ) throw "is so far";
-	} catch( e ) {
-	    return false;
-	}
-	return true;
+
+    spell(attacker, defender) {
+        const selection = gameData.battle.selection;
+        const caster = selection.hero.monsters[attacker.x][attacker.y];
+        const target = selection.enemyHero.monsters[defender.x][defender.y];
+        const spell = Game.Battle.calcSpell(caster, target);
+        const activeSpell = spellsList[caster.stats.activeSpell];
+
+        const settings = {
+            x: attacker.x,
+            y: attacker.y,
+            xT: parseInt(defender.x, 10),
+            yT: parseInt(defender.y, 10),
+            grid: selection.hero.grid,
+            enemyGrid: selection.enemyHero.grid,
+            withAttack: false,
+            withSpell: true,
+            withHealing: false,
+            withDeath: spell.death,
+            damage: spell.damage,
+            spell: activeSpell,
+            nearAttack: true
+        };
+
+        target.healthRemain = Math.max(0, target.healthRemain - spell.damage);
+        caster.manaRemain = Math.max(0, caster.manaRemain - activeSpell.manaCost);
+        caster.speedRemain = 0;
+
+        Game.Battle.Animation.animate(settings);
+    },
+
+    calcAttack(attacker, defender) {
+        try {
+            if (typeof attacker === "undefined" || typeof defender === "undefined") {
+                return false;
+            }
+
+            const attackerStats = attacker.stats;
+            const defenderStats = defender.stats;
+            const attack = Math.round((attackerStats.attack + Math.random() * 0.5) * 7);
+            const defense = Math.round((defenderStats.defense + Math.random() * 0.5) * 3);
+            const damage = attack > defense ? Math.round(attack - defense) : 0;
+            const death = defender.healthRemain - damage <= 0;
+
+            if (death) {
+                defender.healthRemain = 0;
+            }
+
+            return { damage, death };
+        } catch (error) {
+            // Existing behavior: errors are swallowed and reported as failure.
+        }
+
+        return false;
+    },
+
+    calcSpell(attacker, defender) {
+        try {
+            if (typeof attacker === "undefined" || typeof defender === "undefined") {
+                return false;
+            }
+
+            const defenderStats = defender.stats;
+            const activeSpell = spellsList[attacker.stats.activeSpell];
+
+            console.log("attacker.stats.activeSpell", attacker.stats.activeSpell);
+
+            const attackPower = attacker.stats.magic + Math.random() * 0.5;
+            const defensePower = defenderStats.magicDefense * 0.5 + Math.random() * 0.5;
+            const attack = attackPower - defensePower;
+            const damage = attack > 0
+                ? Math.round(activeSpell.damage + Math.random() * attack)
+                : 0;
+            const manaCost = activeSpell.manaCost;
+            const death = defender.healthRemain - damage <= 0;
+
+            if (death) {
+                defender.healthRemain = 0;
+            }
+
+            return { damage, manaCost, death };
+        } catch (error) {
+            // Existing behavior: errors are swallowed and reported as failure.
+        }
+
+        return false;
+    },
+
+    calcHealing(healer, defender) {
+        try {
+            const healerStats = healer.stats;
+            const defenderStats = defender.stats;
+            const amount = Math.round((healerStats.magic + Math.random() * 2) * 2);
+            const health = defender.healthRemain + amount > defenderStats.health
+                ? defenderStats.health - defender.healthRemain
+                : amount;
+
+            return { health };
+        } catch (error) {
+            // Existing behavior: errors are swallowed and reported as failure.
+        }
+
+        return false;
+    },
+
+    calcGameover(hero) {
+        const result = { gameOver: true };
+
+        try {
+            console.log("Look for gameover");
+
+            for (const x in hero.grid) {
+                for (const y in hero.grid[x]) {
+                    if (hero.grid[x][y] != 0) {
+                        result.gameOver = false;
+                        break;
+                    }
+                }
+            }
+        } catch (error) {
+            // Existing behavior: errors are swallowed.
+        }
+
+        return result;
+    },
+
+    calcEndTurn(hero) {
+        const result = { endTurn: true };
+
+        try {
+            console.log("Look for end turn", hero);
+
+            for (const x in hero.monsters) {
+                for (const y in hero.monsters[x]) {
+                    const monster = hero.monsters[x][y];
+
+                    if (monster != 0 && monster.speedRemain > 0) {
+                        result.endTurn = false;
+                        break;
+                    }
+                }
+            }
+        } catch (error) {
+            // Existing behavior: errors are swallowed.
+        }
+
+        return result;
+    },
+
+    changeTurn() {
+        try {
+            const selection = gameData.battle.selection;
+
+            if (selection.selected === true) {
+                Game.Battle.Grid.unselect({ x: selection.x, y: selection.y });
+            }
+
+            if (selection.player == "right") {
+                selection.turn++;
+            }
+
+            selection.player = selection.player == "left" ? "right" : "left";
+            selection.hero = selection.player == "left" ? tribe.left : tribe.right;
+            selection.enemyHero = selection.player == "left" ? tribe.right : tribe.left;
+
+            for (const x in tribe.left.monsters) {
+                for (const y in tribe.left.monsters[x]) {
+                    const leftMonster = tribe.left.monsters[x][y];
+                    const rightMonster = tribe.right.monsters[x][y];
+
+                    if (typeof leftMonster === "object" && leftMonster !== null) {
+                        leftMonster.speedRemain = leftMonster.stats.speed;
+
+                        if (leftMonster.manaRemain < leftMonster.stats.magic) {
+                            const manaRegeneration = Math.round(leftMonster.stats.magic / 3);
+                            leftMonster.manaRemain += manaRegeneration;
+                        }
+                    }
+
+                    if (typeof rightMonster === "object" && rightMonster !== null) {
+                        rightMonster.speedRemain = rightMonster.stats.speed;
+
+                        if (rightMonster.manaRemain < rightMonster.stats.magic) {
+                            const manaRegeneration = Math.round(rightMonster.stats.magic / 3);
+                            rightMonster.manaRemain += manaRegeneration;
+                        }
+                    }
+                }
+            }
+
+            // Restart AI iteration after changing the turn.
+            Game.Battle.Ai.iteration = 0;
+            Game.Html.activePlayerGUI();
+        } catch (error) {
+            // Existing behavior: errors are swallowed.
+        }
+    },
+
+    findNearAttackPath(from, cords) {
+        try {
+            from[0] = parseInt(from[0], 10);
+            from[1] = parseInt(from[1], 10);
+            cords[0] = parseInt(cords[0], 10);
+            cords[1] = parseInt(cords[1], 10);
+
+            if (Game.Battle.findInGrid({
+                x: cords[0],
+                y: cords[1],
+                x2: from[0],
+                y2: from[1]
+            }) === false) {
+                throw new Error("is so far");
+            }
+        } catch (error) {
+            return false;
+        }
+
+        return true;
+    },
+
+    findInGrid(params) {
+        try {
+            const { x, y, x2, y2 } = params;
+            const { gridWidth, gridHeight } = gameData.battle.plane;
+
+            if (
+                y < 0 || x < 0 || x >= gridWidth || y >= gridHeight ||
+                y2 < 0 || x2 < 0 || x2 >= gridWidth || y2 >= gridHeight
+            ) {
+                throw new Error("out of grid");
+            }
+
+            const diffX = Math.abs(x - x2);
+            const diffY = Math.abs(y - y2);
+
+            if (diffY > 1 || diffX > 1) {
+                throw new Error("is so far");
+            }
+        } catch (error) {
+            return false;
+        }
+
+        return true;
     }
 };

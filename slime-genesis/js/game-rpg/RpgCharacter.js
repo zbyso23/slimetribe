@@ -2,7 +2,7 @@
 	RpgCharacter = function( world, render, data, ambient, maps )
 	{
 		//REFACTOR MOVE FROM Data.js: 
-		var position = { x: 0, y: 87.6, z: 0 };
+		var position = { x: 0, y: 27.6, z: 0 };
 
 	    var config   = {
 			stats: {},

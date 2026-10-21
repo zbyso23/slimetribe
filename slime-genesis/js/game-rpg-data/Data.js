@@ -69,9 +69,14 @@
 			config: 
 			{
 				baseUrl: "slime-genesis/md2/slizak/",
-				
 			    body: "slizak.json",
-			    skins: [ "slizak-red.gif" ],
+			    skins: [ "slizak-necro2.gif" ],
+				// baseUrl: "slime-genesis/md2/healer/",
+				// 	body: "healer.json",					
+			  //   skins: [ "healer-necro2.gif" ],
+				// baseUrl: "slime-genesis/md2/octopus/",
+				// 	body: "octopus.json",					
+			  //   skins: [ "octopus-necro.jpg" ],
 			    weapons:  [ [ "weapon-blender2.json", "test-sword2.gif" ] ],
 			    animations: {
 				    move: "run",
@@ -85,7 +90,8 @@
 			},
 			params: 
 			{
-			    scale: 3.430
+					scale: 3.430,
+			    // scale: 1.430
 			},
 			items: 
 			{

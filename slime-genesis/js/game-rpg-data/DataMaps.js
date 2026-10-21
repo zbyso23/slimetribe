@@ -1,7 +1,7 @@
 (function(){
 
     var mapList = [ 'map01', 'map02', 'map03' ];
-    var active  = 'map02';
+    var active  = 'map01';
     var current = {};
     var maps    = 
     {
