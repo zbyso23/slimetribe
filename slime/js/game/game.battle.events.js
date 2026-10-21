@@ -2,7 +2,7 @@ Game.Battle.Events = {
     mouseDown: false,
     mouseMove: false,
     
-    onDocumentMouseMove: function( event ) {
+    onDocumentMouseMove( event ) {
 	if( tick % 5 === 0 ) Game.Html.showGUI();
 	if( tribe[ gameData.battle.selection.player ].ai === true ) return false;
 	if( Game.Battle.Events.mouseMove === true ) {
@@ -13,12 +13,13 @@ Game.Battle.Events = {
         Game.Battle.Events.onMouseMoveEvent( event );
 	Game.Battle.Events.mouseMove = false;
     },
-    onMouseMoveEvent: function( event ) {
+    onMouseMoveEvent( event ) {
+	let cords;
 	try {
 	    mouse2D.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	    mouse2D.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	    document.body.style.cursor = 'default';
-	    var cords = Game.Battle.Grid.casting();
+	    cords = Game.Battle.Grid.casting();
 	    if( !cords ) throw "nogrid";
 	    gameData.battle.gui.cords = cords;
 	    if( gameData.animation.run === true ) throw "animation";
@@ -37,12 +38,12 @@ Game.Battle.Events = {
 	    }
 	    
 	    if( gameData.battle.selection.selected === true ) {
-		var params = ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) ? BATTLE_GRID.noMove : BATTLE_GRID.free;
+		const params = ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) ? BATTLE_GRID.noMove : BATTLE_GRID.free;
 		Game.Battle.Grid.showGrid( params, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 		if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) throw "nospeed";
 
-		var from = [ gameData.battle.selection.x, gameData.battle.selection.y ];
-		var to = [ cords[0], cords[1] ];
+		const from = [ gameData.battle.selection.x, gameData.battle.selection.y ];
+		const to = [ cords[0], cords[1] ];
 		
 		//Neutral - move over map
 		if( gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] === 0 && gameData.battle.selection.hero.monsters[cords[0]][cords[1]] === 0 ) {
@@ -72,14 +73,14 @@ Game.Battle.Events = {
 		    }
 		    //Attack
 		    if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].stats.magicAttack === false ) {
-			var from = [ parseInt( gameData.battle.selection.x ), parseInt( gameData.battle.selection.y ) ];
-			var params = BATTLE_GRID.neutral;
+			const from = [ Number.parseInt( gameData.battle.selection.x, 10 ), Number.parseInt( gameData.battle.selection.y, 10 ) ];
+			let params = BATTLE_GRID.neutral;
 			
-			var nearAttack = ( Game.Battle.findNearAttackPath( from, cords ) === true ) ? true : false;
-			var path = gameData.battle.selection.path;
+			const nearAttack = Game.Battle.findNearAttackPath( from, cords ) === true;
+			const path = gameData.battle.selection.path;
 			
-			var isPathAttack = Game.Battle.findNearAttackPath( cords, [ path[path.length - 1].x, path[path.length - 1].y ] );
-			var pathAttack = ( nearAttack === false && path.length > 1 && isPathAttack === true ) ? true : false;
+			const isPathAttack = Game.Battle.findNearAttackPath( cords, [ path[path.length - 1].x, path[path.length - 1].y ] );
+			const pathAttack = nearAttack === false && path.length > 1 && isPathAttack === true;
 
 			if( pathAttack || nearAttack ) {
 			    gameData.battle.selection.attackCords = cords;
@@ -105,7 +106,7 @@ Game.Battle.Events = {
 			    params = BATTLE_GRID.enemy;
 			} else {
 			    gameData.battle.selection.path = [];
-			    var params = BATTLE_GRID.enemyFar;
+			    params = BATTLE_GRID.enemyFar;
 			}
 		    }
 		    throw "show enemy";
@@ -118,15 +119,15 @@ Game.Battle.Events = {
 	    }
 	}
     },
-    onDocumentMouseDown: function( event ) {
+    onDocumentMouseDown( event ) {
 	//event.preventDefault();
 	if( Game.Battle.Events.mouseDown === true || gameData.animation.run === true ) return;
 	Game.Battle.Events.mouseDown = true;
-	if( event.type == "mousedown" && event.button === 0 ) Game.Battle.Events.onDocumentMouseLeftEvent( event );
-	if( event.type == "mousedown" && event.button === 2 ) Game.Battle.Events.onDocumentMouseRightEvent( event );
+	if( event.type === "mousedown" && event.button === 0 ) Game.Battle.Events.onDocumentMouseLeftEvent( event );
+	if( event.type === "mousedown" && event.button === 2 ) Game.Battle.Events.onDocumentMouseRightEvent( event );
 	Game.Battle.Events.mouseDown = false;
     },
-    onDocumentMouseRightEvent: function( event ) {
+    onDocumentMouseRightEvent( event ) {
 	try {
 	    if( gameData.battle.selection.selected === false ) throw "nobody to unselect";
 	    Game.Battle.Grid.unselect( { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
@@ -134,10 +135,10 @@ Game.Battle.Events = {
 
 	}
     },
-    onDocumentMouseLeftEvent: function( event ) {
+    onDocumentMouseLeftEvent( event ) {
 	try {
 	    if( gameData.battle.world.ready === false ) return;
-	    var cords = Game.Battle.Grid.casting();
+	    const cords = Game.Battle.Grid.casting();
 	    if( !cords ) throw "nocasting";
 	    //Check try to select
 	    if( gameData.battle.selection.selected === false ) {
@@ -147,16 +148,16 @@ Game.Battle.Events = {
 		throw "action";
 	    }
 
-	    var xFrom = parseInt( gameData.battle.selection.x );
-	    var yFrom = parseInt( gameData.battle.selection.y );
-	    var from = [ xFrom, yFrom ];
-	    var to = cords;
+	    const xFrom = Number.parseInt( gameData.battle.selection.x, 10 );
+	    const yFrom = Number.parseInt( gameData.battle.selection.y, 10 );
+	    const from = [ xFrom, yFrom ];
+	    const to = cords;
 	    
 	    //Click on empty - move / unselect
 	    if( gameData.battle.selection.hero.grid[cords[0]][cords[1]] === 0 && gameData.battle.selection.enemyHero.grid[cords[0]][cords[1]] === 0 ) {
 		if( gameData.battle.selection.path.length !== 0 && gameData.battle.selection.path.length <= ( gameData.battle.selection.hero.monsters[xFrom][yFrom].speedRemain + 1 ) ) {
 		    gameData.battle.selection.hero.monsters[xFrom][yFrom].speedRemain = 0;
-		    var settings = { x: xFrom, y: yFrom, xT: parseInt( cords[0] ), yT: parseInt( cords[1] ), move: true, moveX: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].x ), moveY: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].y ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: false, nearAttack: false, withDeath: false, withHealing: false, damage: 0, withSpell: false };
+		    const settings = { x: xFrom, y: yFrom, xT: Number.parseInt( cords[0], 10 ), yT: Number.parseInt( cords[1], 10 ), move: true, moveX: Number.parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].x, 10 ), moveY: Number.parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].y, 10 ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: false, nearAttack: false, withDeath: false, withHealing: false, damage: 0, withSpell: false };
 		    Game.Battle.Animation.animate( settings );
 		    throw "action";
 		}
@@ -192,16 +193,17 @@ Game.Battle.Events = {
 		}
 		if( gameData.battle.selection.attack === false ) throw "unselectfarattack";
 		//Attack
-		var monsterTarget = gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ];
-		var xFrom = parseInt( gameData.battle.selection.x );
-		var yFrom = parseInt( gameData.battle.selection.y );
-		var attack = Game.Battle.calcAttack( gameData.battle.selection.hero.monsters[xFrom][yFrom], gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] );
+		const monsterTarget = gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ];
+		const xFrom = Number.parseInt( gameData.battle.selection.x, 10 );
+		const yFrom = Number.parseInt( gameData.battle.selection.y, 10 );
+		const attack = Game.Battle.calcAttack( gameData.battle.selection.hero.monsters[xFrom][yFrom], gameData.battle.selection.enemyHero.monsters[cords[0]][cords[1]] );
 		
+		let settings;
 		if( typeof monsterTarget !== "undefined" && gameData.battle.selection.path.length !== 0 && gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain > ( gameData.battle.selection.path.length - 2 ) ) {
-		    var settings = { x: gameData.battle.selection.x, y: gameData.battle.selection.y, xT: parseInt( cords[0] ), yT: parseInt( cords[1] ), move: true, moveX: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].x ), moveY: parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].y ),  grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: true, withHealing: false, withDeath: attack.death, damage: attack.damage, nearAttack: false, withSpell: false };
+		    settings = { x: gameData.battle.selection.x, y: gameData.battle.selection.y, xT: Number.parseInt( cords[0], 10 ), yT: Number.parseInt( cords[1], 10 ), move: true, moveX: Number.parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].x, 10 ), moveY: Number.parseInt( gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ].y, 10 ),  grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: true, withHealing: false, withDeath: attack.death, damage: attack.damage, nearAttack: false, withSpell: false };
 		} else {
 		    if( Game.Battle.findInGrid( { x: cords[0], y: cords[1], x2: gameData.battle.selection.x, y2: gameData.battle.selection.y } ) === false ) throw "is so far";
-		    var settings = { x: gameData.battle.selection.x, y: gameData.battle.selection.y, xT: parseInt( cords[0] ), yT: parseInt( cords[1] ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: true, withHealing: false, withDeath: attack.death, damage: attack.damage, nearAttack: true, withSpell: false };
+		    settings = { x: gameData.battle.selection.x, y: gameData.battle.selection.y, xT: Number.parseInt( cords[0], 10 ), yT: Number.parseInt( cords[1], 10 ), grid: gameData.battle.selection.hero.grid, enemyGrid: gameData.battle.selection.enemyHero.grid, withAttack: true, withHealing: false, withDeath: attack.death, damage: attack.damage, nearAttack: true, withSpell: false };
 		}
 		Game.Battle.Animation.animate( settings );
 		//throw "action";
@@ -214,12 +216,12 @@ Game.Battle.Events = {
 	return;
     },
     
-    initialize: function() {
+    initialize() {
 	    document.addEventListener( 'mousedown', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.addEventListener( 'contextmenu', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.addEventListener( 'mousemove', Game.Battle.Events.onDocumentMouseMove, false );
     },
-    uninitialize: function() {
+    uninitialize() {
 	    document.removeEventListener( 'mousedown', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.removeEventListener( 'contextmenu', Game.Battle.Events.onDocumentMouseDown, false );
 	    document.removeEventListener( 'mousemove', Game.Battle.Events.onDocumentMouseMove, false );

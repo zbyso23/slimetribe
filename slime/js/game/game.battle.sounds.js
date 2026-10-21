@@ -1,117 +1,150 @@
-Game.Battle.Sounds = {};
 Game.Battle.Sounds = {
     ready: false,
     playing: false,
-    play: function() {
-	try {
-	    if( gameData.settings.graphics.mobile === "on" ) return;
-	    if( Game.Battle.Sounds.ready === false ) throw "noready";
-	    var el = document.getElementById( 'battle-sound' );
-	    el.addEventListener('canplaythrough', function() {
-				if( Game.Battle.Sounds.playing === true ) this.play();
-			    }, false);
-	} catch( e ) {
-	    
-	}
-	Game.Battle.Sounds.playing = true;
+
+    play() {
+        try {
+            if (gameData.settings.graphics.mobile === "on") return;
+            if (Game.Battle.Sounds.ready === false) throw "noready";
+
+            const audio = document.getElementById("battle-sound");
+            audio.addEventListener("canplaythrough", function () {
+                if (Game.Battle.Sounds.playing === true) this.play();
+            }, false);
+        } catch (error) {
+            // Preserve the original error-swallowing behavior.
+        }
+
+        Game.Battle.Sounds.playing = true;
     },
-    isPlay: function() {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	var el = document.getElementById( 'battle-sound' );
-	return el.played;
+
+    isPlay() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        const audio = document.getElementById("battle-sound");
+        return audio.played;
     },
-    isPause: function() {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	var el = document.getElementById( 'battle-sound' );
-	return el.paused;
+
+    isPause() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        const audio = document.getElementById("battle-sound");
+        return audio.paused;
     },
-    isEnd: function() {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	var el = document.getElementById( 'battle-sound' );
-	return el.ended;
+
+    isEnd() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        const audio = document.getElementById("battle-sound");
+        return audio.ended;
     },
-    stop: function() {
-	try {
-	    if( gameData.settings.graphics.mobile === "on" ) return;
-	    Game.Battle.Sounds.pause();
-	    Game.Battle.Sounds.playing = false;
-	    if( Game.Battle.Sounds.ready === false ) throw "noready";
-	    if( Game.Battle.Sounds.isEnd() === true ) return;
-	} catch( e ) {
-	    
-	}
+
+    stop() {
+        try {
+            if (gameData.settings.graphics.mobile === "on") return;
+
+            Game.Battle.Sounds.pause();
+            Game.Battle.Sounds.playing = false;
+
+            if (Game.Battle.Sounds.ready === false) throw "noready";
+            if (Game.Battle.Sounds.isEnd() === true) return;
+        } catch (error) {
+            // Preserve the original error-swallowing behavior.
+        }
     },
-    pause: function() {
-	try {
-	    if( gameData.settings.graphics.mobile === "on" ) return;
-	    if( Game.Battle.Sounds.ready === false ) throw "noready";
-	    if( Game.Battle.Sounds.isPaused() === true ) return;
-	    var el = document.getElementById( 'battle-sound' );
-	    el.removeEventListener('ended', function(){
-				this.currentTime = 0;
-				if( Game.Battle.Sounds.playing === true ) this.play();
-			    }, false);
-	    el.pause();
-	} catch( e ) {
-	    
-	}
+
+    pause() {
+        try {
+            if (gameData.settings.graphics.mobile === "on") return;
+            if (Game.Battle.Sounds.ready === false) throw "noready";
+            if (Game.Battle.Sounds.isPaused() === true) return;
+
+            const audio = document.getElementById("battle-sound");
+            audio.removeEventListener("ended", function () {
+                this.currentTime = 0;
+                if (Game.Battle.Sounds.playing === true) this.play();
+            }, false);
+            audio.pause();
+        } catch (error) {
+            // Preserve the original error-swallowing behavior.
+        }
     },
-    load: function( url ) {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	Game.Battle.Sounds.stop();
-	//var elMp3 = document.getElementById( 'battle-sound-mp3' );
-	var elOgg = document.getElementById( 'battle-sound-ogg' );
-	//elMp3.setAttribute( 'src', url + '.mp3');
-	elOgg.setAttribute( 'src', url + '.ogg');
-	var el = document.getElementById( 'battle-sound' );
-	el.load();
-	el.addEventListener('ended', function(){
-			    this.currentTime = 0;
-			    if( Game.Battle.Sounds.playing === true ) this.play();
-			}, false);
-	Game.Battle.Sounds.ready = true
+
+    load(url) {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        Game.Battle.Sounds.stop();
+
+        // const mp3Audio = document.getElementById("battle-sound-mp3");
+        const oggAudio = document.getElementById("battle-sound-ogg");
+        // mp3Audio.setAttribute("src", `${url}.mp3`);
+        oggAudio.setAttribute("src", `${url}.ogg`);
+
+        const audio = document.getElementById("battle-sound");
+        audio.load();
+        audio.addEventListener("ended", function () {
+            this.currentTime = 0;
+            if (Game.Battle.Sounds.playing === true) this.play();
+        }, false);
+
+        Game.Battle.Sounds.ready = true;
     },
-    _repeat: function() {
-	
+
+    _repeat() {},
+
+    prepare(params) {
+        try {
+            if (gameData.settings.graphics.mobile === "on") return;
+            if (typeof params.sounds.parts[params.active] === "undefined") throw "nosound";
+
+            Game.Battle.Sounds.load(
+                params.sounds.baseUrl + params.sounds.parts[params.active]
+            );
+            Game.Battle.Sounds.ready = true;
+        } catch (error) {
+            Game.Battle.Sounds.ready = false;
+        }
     },
-    prepare: function( params ) {
-	try {
-	    if( gameData.settings.graphics.mobile === "on" ) return;
-	    if( typeof params.sounds.parts[ params.active ] === "undefined" ) throw "nosound";
-	    Game.Battle.Sounds.load( params.sounds.baseUrl + params.sounds.parts[ params.active ] );
-	    Game.Battle.Sounds.ready = true;
-	} catch( e ) {
-	    Game.Battle.Sounds.ready = false;
-	}
+
+    preloader() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        const sounds = Game.Battle.Sounds.__findMonsterSounds();
+        for (const sound of sounds) {
+            ++gameData.loader.soundsCount;
+
+            const audio = new Audio();
+            audio.addEventListener(
+                "canplaythrough",
+                Game.Battle.Sounds.preloaderLoaded,
+                false
+            );
+            audio.src = `${sound}.ogg`;
+        }
     },
-    preloader: function() {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	var sounds = Game.Battle.Sounds.__findMonsterSounds();
-	for( i in sounds ) {
-	    ++gameData.loader.soundsCount;
-	    var audio = new Audio();
-	    audio.addEventListener( 'canplaythrough', Game.Battle.Sounds.preloaderLoaded, false );
-	    audio.src = sounds[i] + '.ogg';
-	}
+
+    __findMonsterSounds() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        const sounds = [];
+        for (const monsterKey in monstersList) {
+            const monster = monstersList[monsterKey];
+            const baseUrl = monster.sounds.baseUrl;
+
+            for (const partKey in monster.sounds.parts) {
+                const url = baseUrl + monster.sounds.parts[partKey];
+                const alreadySeen = sounds.includes(url);
+                if (alreadySeen === false) sounds.push(url);
+            }
+        }
+
+        return sounds;
     },
-    __findMonsterSounds: function() {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	sounds = [];
-	for( m in monstersList ) {
-	    var baseUrl = monstersList[m].sounds.baseUrl;
-	    for( s in monstersList[m].sounds.parts ) {
-		var url = baseUrl + monstersList[m].sounds.parts[s];
-		var is = false;
-		for( i in sounds ) if( sounds[i] == url ) is = true;
-		if( is === false ) sounds.push( url );
-	    }
-	}
-	return sounds;
-    },
-    preloaderLoaded: function( e ) {
-	if( gameData.settings.graphics.mobile === "on" ) return;
-	--gameData.loader.soundsCount;
-	if( gameData.loader.soundsCount === 0 ) gameData.loader.soundsLoaded = true;
+
+    preloaderLoaded() {
+        if (gameData.settings.graphics.mobile === "on") return;
+
+        --gameData.loader.soundsCount;
+        if (gameData.loader.soundsCount === 0) gameData.loader.soundsLoaded = true;
     }
-    
 };
