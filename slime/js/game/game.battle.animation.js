@@ -1,13 +1,11 @@
 Game.Battle.Animation = {};
 Game.Battle.Animation = {
-    animate: function( settings, delta ) {
+    animate( settings, delta ) {
 	try {
 	    if( typeof delta !== "undefined" && gameData.animation.run === true ) throw "action";
 	    if( typeof settings !== "object" ) throw "settings not object";
-	    var xFrom = parseInt( settings.x );
-	    var yFrom = parseInt( settings.y );
-	    var from = [ xFrom, yFrom ];
-	    var to = [ settings.xT, settings.yT ];
+	    const xFrom = parseInt( settings.x );
+	    const yFrom = parseInt( settings.y );
 
 	    if( gameData.battle.selection.path.length > 0 || settings.withAttack === true || settings.withHealing === true || settings.withSpell === true ) {
 		gameData.animation.currX = monstersModels[ xFrom ][ yFrom ].root.position.z;
@@ -59,23 +57,23 @@ Game.Battle.Animation = {
 	    if( e === "action" && gameData.animation.run === true ) Game.Battle.Animation.monster( delta );
 	}
     },
-    monster: function( delta ) {
+    monster( delta ) {
 	try {
 	    if( gameData.animation.run === false ) throw "noanimation"
 	    if( gameData.animation.progress === false ) Game.Battle.Animation.monsterStepPrepare();
 	    if( gameData.animation.progress === true ) Game.Battle.Animation.monsterProgress( delta );
 	} catch ( e ) {
-	    
+
 	}
     },
-    monsterStepPrepare: function() {
+    monsterStepPrepare() {
 	try {
 	    if( ( gameData.animation.path.length )  < ( gameData.animation.step + 2 ) || gameData.animation.withSpell === true || gameData.animation.withHealing === true ) {
 		Game.Battle.Animation.monsterLastStep();
 		gameData.animation.object.controls.move = false;
 		//End turn if human player and not more characters with move
 		if( tribe[ gameData.battle.selection.player ].ai === false ) {
-		    var result = Game.Battle.calcEndTurn( gameData.battle.selection.hero );
+		    const result = Game.Battle.calcEndTurn( gameData.battle.selection.hero );
 		    gameData.battle.selection.endTurn = result.endTurn;
 		    console.log( 'check for end turn', result.endTurn );
 		}
@@ -84,27 +82,27 @@ Game.Battle.Animation = {
 	    Game.Battle.Animation.monsterNextStep();
 	    ++gameData.animation.step;
 	} catch( e ) {
-	    
+
 	}
     },
-    monsterProgress: function( delta ) {
+    monsterProgress( delta ) {
 	try {
 	    if( gameData.animation.attack === false && gameData.animation.death === false && gameData.animation.healing === false && gameData.animation.spell === false ) {
-		var monster = gameData.animation.object;
-		var targetX = gameData.animation.nextCX;
-		var targetY = gameData.animation.nextCY;
-		var dx = targetX - monster.root.position.z;
-		var dy = targetY - monster.root.position.x;
-		var distance = Math.sqrt( dx * dx + dy * dy );
-		var moving = distance > 0.001;
+		const monster = gameData.animation.object;
+		const targetX = gameData.animation.nextCX;
+		const targetY = gameData.animation.nextCY;
+		const dx = targetX - monster.root.position.z;
+		const dy = targetY - monster.root.position.x;
+		const distance = Math.sqrt( dx * dx + dy * dy );
+		const moving = distance > 0.001;
 		monster.controls.move = moving;
 
 		if( moving ) {
 		    // Use one frame-rate-independent speed for every direction.
 		    // Do not accumulate acceleration across path nodes.
-		    var baseSpeed = Math.abs( monster.maxSpeed || monster.speed || 1 );
-		    var speedScale = ( typeof animSpeed === "number" && animSpeed > 0 ) ? ( animSpeed / 4 ) : 1;
-		    var travel = baseSpeed * speedScale * Math.max( 0, delta );
+		    const baseSpeed = Math.abs( monster.maxSpeed || monster.speed || 1 );
+		    const speedScale = ( typeof animSpeed === "number" && animSpeed > 0 ) ? ( animSpeed / 16 ) : 1;
+		    const travel = baseSpeed * speedScale * Math.max( 0, delta );
 		    monster.speed = baseSpeed;
 		    if( travel >= distance ) {
 			monster.root.position.z = targetX;
@@ -204,12 +202,11 @@ Game.Battle.Animation = {
 		}
 	    }
 	} catch( e ) {
-	    
+
 	}
     },
-    monsterLastStep: function() {
+    monsterLastStep() {
 	try {
-	    var rot = gameData.rotation[gameData.battle.selection.player];
 	    if( gameData.animation.withAttack === false && gameData.animation.withHealing === false && gameData.animation.withSpell === false ) {
 		gameData.animation.run = false;
 		if( gameData.rotation[gameData.battle.selection.player] === DIR.RIGHT ) {
@@ -230,12 +227,10 @@ Game.Battle.Animation = {
 		    magic.position = { x: gameData.animation.targetObject.root.position.x, y: gameData.animation.targetObject.root.position.y + 170, z: gameData.animation.targetObject.root.position.z };
 		}
 		if( gameData.animation.nearAttack === false ) {
-		    var monsterBase = { 'x': gameData.battle.selection.x, 'y': gameData.battle.selection.y };
-		    var monsterBaseRot = gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ]
-		    var monsterTarget = gameData.battle.selection.path[ gameData.battle.selection.path.length - 2 ];
+		    const monsterBaseRot = gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ]
 
-		    var rotAttacker = Game.Battle.Animation.getRotation( monsterBaseRot.x, monsterBaseRot.y, gameData.animation.targetX, gameData.animation.targetY, gameData.animation.object.orientations );
-		    var rotDefender = Game.Battle.Animation.getRotation( gameData.animation.targetX, gameData.animation.targetY, monsterBaseRot.x, monsterBaseRot.y, gameData.animation.targetObject.orientations );
+		    const rotAttacker = Game.Battle.Animation.getRotation( monsterBaseRot.x, monsterBaseRot.y, gameData.animation.targetX, gameData.animation.targetY, gameData.animation.object.orientations );
+		    const rotDefender = Game.Battle.Animation.getRotation( gameData.animation.targetX, gameData.animation.targetY, monsterBaseRot.x, monsterBaseRot.y, gameData.animation.targetObject.orientations );
 		    gameData.animation.object.bodyOrientation = rotAttacker;
 		    gameData.animation.targetObject.bodyOrientation = rotDefender;
 		}
@@ -256,7 +251,7 @@ Game.Battle.Animation = {
 		    scene.remove( gridHealthModels[gameData.animation.targetX][gameData.animation.targetY] );
 		    gridHealthModels[gameData.animation.targetX][gameData.animation.targetY] = 0;
 
-		    var game = Game.Battle.calcGameover( gameData.battle.selection.enemyHero );
+		    const game = Game.Battle.calcGameover( gameData.battle.selection.enemyHero );
 		    Game.Battle.Sounds.stop();
 		    if( game.gameOver === true ) {
 			Game.Html.showGameOver();
@@ -271,11 +266,6 @@ Game.Battle.Animation = {
 		gameData.animation.healing = true;
 		gameData.animation.progress = true;
 		tick = 0;
-		if( gameData.battle.selection.player === "left" ) {
-		    var zOffset = -50;
-		} else {
-		    var zOffset = 50;
-		}
 		healing.position = { x: gameData.animation.object.root.position.x, y: gameData.animation.object.root.position.y + 170, z: gameData.animation.object.root.position.z };
 		healing.position = { x: gameData.animation.targetObject.root.position.x, y: gameData.animation.targetObject.root.position.y + 170, z: gameData.animation.targetObject.root.position.z };
 	    } else if( ( gameData.animation.withHealing === true && gameData.animation.healing === true ) || ( gameData.animation.withSpell === true && gameData.animation.spell === true ) ) {
@@ -296,11 +286,11 @@ Game.Battle.Animation = {
 
 	}
     },
-    monsterNextStep: function() {
+    monsterNextStep() {
 	try {
-	    var nextStep = gameData.animation.path[gameData.animation.step + 1];
-	    var nextStep2 = gameData.battle.selection.movePath[gameData.animation.step + 1];
-	    
+	    const nextStep = gameData.animation.path[gameData.animation.step + 1];
+	    const nextStep2 = gameData.battle.selection.movePath[gameData.animation.step + 1];
+
 	    if( gameData.animation.step === 0 ) {
 		gameData.animation.currX = gameData.battle.selection.x;
 		gameData.animation.currY = gameData.battle.selection.y;
@@ -311,44 +301,42 @@ Game.Battle.Animation = {
 	    gameData.animation.nextX = nextStep.x;
 	    gameData.animation.nextY = nextStep.y;
 	    gameData.animation.dirs = nextStep2[4];
-	    
-	    var nextCords = Game.Battle.Grid.gridToCords( nextStep.x, nextStep.y );
+
+	    const nextCords = Game.Battle.Grid.gridToCords( nextStep.x, nextStep.y );
 	    gameData.animation.nextCX = nextCords[0];
 	    gameData.animation.nextCY = nextCords[1];
 	    gameData.animation.progress = true;
-	    var rot = Game.Battle.Animation.getRotation( gameData.animation.currX, gameData.animation.currY, gameData.animation.nextX, gameData.animation.nextY, gameData.animation.object.orientations );
+	    const rot = Game.Battle.Animation.getRotation( gameData.animation.currX, gameData.animation.currY, gameData.animation.nextX, gameData.animation.nextY, gameData.animation.object.orientations );
 	    gameData.animation.object.bodyOrientation = rot;
 	} catch( e ) {
-	    
+
 	}
     },
-    monsterCordsPath: function() {
+    monsterCordsPath() {
 	try {
-	    var lastX, lastY, cords, path, cordsPath, rot;
-	    lastX = lastY = -1;
-	    cordsPath = [];
-	    var first = true;
-	    var last = false;
-	    var node = false;
+	    let lastX = -1;
+	    let lastY = -1;
+	    let cords;
+	    let rot;
+	    const cordsPath = [];
 	    if( monstersModels[gameData.battle.selection.x][gameData.battle.selection.y] === 0 ) throw "no selected";
 	    //rot = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].bodyOrientation;
-	    path = gameData.battle.selection.path;
-	    var orient = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].orientations
+	    const path = gameData.battle.selection.path;
+	    const orient = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].orientations;
 	    if( path.length < 2 ) throw "no path";
 	    cords = Game.Battle.Grid.gridToCords( gameData.battle.selection.x, gameData.battle.selection.y );
 	    lastX = -1;
 	    lastY = -1;
 	    rot = Game.Battle.Animation.getRotation( lastX, lastY, path[0].x, path[0].y, monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].orientations );
-	    var dirs = Game.Battle.Animation.getDirs( rot, orient );
+	    let dirs = Game.Battle.Animation.getDirs( rot, orient );
 	    cords.push( rot );
 	    cords.push( false );
 	    cords.push( dirs );
-	    for( i = 0; i < path.length; i++ ) {
-		last = ( i === ( path.length - 1 ) ) ? true : false;
-		node = ( lastX != path[i].x && lastY != path[i].y ) ? true : false;
-		    
+	    for (let i = 0; i < path.length; i++) {
+		const last = i === path.length - 1;
+
 		    rot = Game.Battle.Animation.getRotation( lastX, lastY, path[i].x, path[i].y, orient );
-		    var dirs = Game.Battle.Animation.getDirs( rot, orient );
+		    let dirs = Game.Battle.Animation.getDirs( rot, orient );
 		    cords = Game.Battle.Grid.gridToCords( path[i].x, path[i].y );
 		    cords.push( rot );
 		    cords.push( last );
@@ -363,7 +351,7 @@ Game.Battle.Animation = {
 	    return [];
 	}
     },
-    lights: function( light, secondLight, up ) {
+    lights( light, secondLight, up ) {
 	try {
 	    up = ( typeof up === "undefined" ) ? true : up;
 	    if( up === false ) {
@@ -379,16 +367,16 @@ Game.Battle.Animation = {
 
 	}
     },
-    lightsHide: function( light, secondLight ) {
+    lightsHide( light, secondLight ) {
 	try {
 	    light.position.x = secondLight.position.x = -10000;
 	} catch( e ) {
 
 	}
     },
-    getDirs: function( rot, orient ) {
-	
-	var dirs = { x: 0, y: 0 };
+    getDirs( rot, orient ) {
+
+	const dirs = { x: 0, y: 0 };
 	if( rot === orient.fr || rot === orient.r || rot === orient.br ) {
 	    dirs.x = 1;
 	} else if( rot === orient.fl || rot === orient.l || rot === orient.bl ) {
@@ -405,7 +393,7 @@ Game.Battle.Animation = {
 	}
 	return dirs;
     },
-    getRotation: function( x, y, x2, y2, orientations ) {
+    getRotation( x, y, x2, y2, orientations ) {
 	x = parseInt( x );
 	x2 = parseInt( x2 );
 	y = parseInt( y );
