@@ -2,11 +2,11 @@ Game.Battle.Ai = {
     iteration: 0,
     fullStats: { attack: 0, healers: 0, spells: 0 },
     
-    turnStep: function() {
+    turnStep() {
 	Game.Battle.Grid.clearGrid( BATTLE_GRID[ gameData.battle.selection.player ] );
 	gameData.battle.gui.cords = [];
-	var monsters = Game.Battle.Ai.anybodyHere();
-	var success = false;
+	let monsters = Game.Battle.Ai.anybodyHere();
+	let success = false;
 	success = Game.Battle.Ai.healers( monsters );
 	success = ( success !== true ) ? Game.Battle.Ai.spells( monsters ) : success;
 	success = ( success !== true ) ? Game.Battle.Ai.attack( monsters ) : success;
@@ -19,21 +19,21 @@ Game.Battle.Ai = {
 	}
 
     },
-    anybodyHere: function() {
-	var spellName;
-	var lowCostSpell = 0;
-	var currentCost = 0;
-	var character;
-	var monsters = { 'healers': [], 'spells': [], 'attack': [], 'healing': [], 'enemy-spells': [], 'enemy-healers': [], 'enemy-attack': [], 'enemy-intruders': [] };
-	var limit = [];
+    anybodyHere() {
+	let spellName;
+	let lowCostSpell = 0;
+	let currentCost = 0;
+	let character;
+	let monsters = { 'healers': [], 'spells': [], 'attack': [], 'healing': [], 'enemy-spells': [], 'enemy-healers': [], 'enemy-attack': [], 'enemy-intruders': [] };
+	let limit = [];
 	if( gameData.battle.selection.player === "left" ) {
 	    limit = [ 0, Math.round( gameData.battle.plane.gridWidth / 3 ) ];
 	} else {
 	    limit = [ Math.round( gameData.battle.plane.gridWidth - ( gameData.battle.plane.gridWidth / 3 ) ), gameData.battle.plane.gridWidth ];
 	}
 	//Trace battle grid
-	for( x in gameData.battle.selection.hero.monsters ) {
-	    for( y in gameData.battle.selection.hero.monsters[x] ) {
+	for (const x in gameData.battle.selection.hero.monsters ) {
+	    for (const y in gameData.battle.selection.hero.monsters[x] ) {
 		//Enemy monsters
 		if( gameData.battle.selection.enemyHero.monsters[x][y] !== 0 ) {
 		    character = gameData.battle.selection.enemyHero.monsters[x][y];
@@ -43,7 +43,7 @@ Game.Battle.Ai = {
 		    if( x >= limit[0] && x <= limit[1] ) monsters['enemy-intruders'].push( character );
 		    //Enemy Healer
 		    if( gameData.battle.selection.enemyHero.monsters[x][y].stats.healing === true && gameData.battle.selection.enemyHero.monsters[x][y].manaRemain >= gameData.battle.selection.enemyHero.monsters[x][y].stats.magic ) monsters['enemy-healers'].push( character );
-		    for( spell in gameData.battle.selection.enemyHero.monsters[x][y].stats.spellsList ) {
+		    for (const spell in gameData.battle.selection.enemyHero.monsters[x][y].stats.spellsList ) {
 			spellName = gameData.battle.selection.enemyHero.monsters[x][y].stats.spellsList[ spell ];
 			currentCost = spellsList[spellName].manaCost * gameData.battle.selection.enemyHero.monsters[x][y].stats.magic;
 			lowCostSpell = ( currentCost < lowCostSpell ) ? currentCost : lowCostSpell;
@@ -66,7 +66,7 @@ Game.Battle.Ai = {
 		//Friendly magican with mana
 		lowCostSpell = 0;
 		currentCost = 0;
-		for( spell in character.stats.spellsList ) {
+		for (const spell in character.stats.spellsList ) {
 		    spellName = character.stats.spellsList[ spell ];
 		    currentCost = spellsList[spellName].manaCost * character.stats.magic;
 		    lowCostSpell = ( currentCost < lowCostSpell ) ? currentCost : lowCostSpell;
@@ -85,15 +85,15 @@ Game.Battle.Ai = {
 	//Remove healers from attack, if is anybody other to attack + 1
 	/*
 	if( Game.Battle.Ai.fullStats.attack > Game.Battle.Ai.fullStats.healers + 1 ) {
-	    var newAttack = [];
-	    for( i in monsters.attack ) if( monsters.stats.healing === false ) newAttack.push( monsters.attack[ i ] );
+	    let newAttack = [];
+	    for (const i in monsters.attack ) if( monsters.stats.healing === false ) newAttack.push( monsters.attack[ i ] );
 	    monsters.attack = newAttack;
 	}*/
 	Game.Battle.Ai.iteration++;
 	return monsters;
     },
     
-    healers: function( monsters ) {
+    healers( monsters ) {
 	try {
 	    //No healers or nobody to heal
 	    if( monsters['healing'].length < 1 || monsters['healers'].length < 1 ) throw "nobody to heal";
@@ -102,11 +102,11 @@ Game.Battle.Ai = {
 	    if( monsters['healers'][0].manaRemain < monsters['healers'][0].stats.magic ) throw "no mana";
 	    //Find best friend for him:)
 	    monsters['healing'].sort( function( a, b ){ return a['healthRemain'] - b['healthRemain'] } );
-	    var healing = Game.Battle.calcHealing( monsters['healers'][0], monsters['healing'][0] );
+	    let healing = Game.Battle.calcHealing( monsters['healers'][0], monsters['healing'][0] );
 	    if( healing.health === 0 ) throw "nobody to heal";
-	    var cords1 = monsters['healers'][0]['cords'];
-	    var cords2 = monsters['healing'][0]['cords'];
-	    var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.hero.grid, 'withAttack': false, 'withHealing': true, 'withDeath': false, 'damage': 0, 'heal': healing.health, 'nearAttack': false, 'withSpell': false };
+	    let cords1 = monsters['healers'][0]['cords'];
+	    let cords2 = monsters['healing'][0]['cords'];
+	    let settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.hero.grid, 'withAttack': false, 'withHealing': true, 'withDeath': false, 'damage': 0, 'heal': healing.health, 'nearAttack': false, 'withSpell': false };
 	    gameData.battle.selection.path = [];
 	    gameData.battle.selection.selected = true;
 	    gameData.battle.selection.x = cords1[0];
@@ -125,22 +125,22 @@ Game.Battle.Ai = {
 	return true;
     },
     
-    spells: function( monsters ) {
+    spells( monsters ) {
         try {
-            var enemy = false;
+            let enemy = false;
             //If no magican:( go away
             if( monsters['spells'].length < 1 ) throw "no more magican";
             //Find magican with many mana!
-            var attacker = Game.Battle.Ai.findBest( monsters['spells'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestManaFormula );
+            let attacker = Game.Battle.Ai.findBest( monsters['spells'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestManaFormula );
 
-            var lowCostSpell = 0;
-            var lowCostSpellName = '';
-            var highCostSpell = 0;
-            var highCostSpellName = '';
-            var currentCost = 0;
-            var spellName;
-            var init = true;
-            for( spell in attacker.stats.spellsList ) {
+            let lowCostSpell = 0;
+            let lowCostSpellName = '';
+            let highCostSpell = 0;
+            let highCostSpellName = '';
+            let currentCost = 0;
+            let spellName;
+            let init = true;
+            for (const spell in attacker.stats.spellsList ) {
                 spellName = attacker.stats.spellsList[ spell ];
                 currentCost = spellsList[spellName].manaCost;
                 if( attacker.manaRemain < currentCost ) continue;
@@ -160,8 +160,8 @@ Game.Battle.Ai = {
             }
 
             if( lowCostSpell === 0 ) throw "no spell";
-            var isCaster = ( attacker.stats.attack < attacker.stats.magic ) ? true : false;
-            var homelandDefend = ( isCaster === false && monsters['enemy-intruders'].length > 0 ) ? true : false;
+            let isCaster = ( attacker.stats.attack < attacker.stats.magic ) ? true : false;
+            let homelandDefend = ( isCaster === false && monsters['enemy-intruders'].length > 0 ) ? true : false;
             if( monsters['enemy-intruders'].length > 0 && isCaster === true ) {
                 enemy = Game.Battle.Ai.findBest( monsters['enemy-intruders'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestEnemyIntruder );
             }
@@ -180,10 +180,10 @@ Game.Battle.Ai = {
             } else if( highCostSpell > 0 ) {
                 attacker.stats.activeSpell = highCostSpellName;
             }
-            var spell = Game.Battle.calcSpell( attacker, enemy );
-            var cords1 = attacker['cords'];
-            var cords2 = enemy['cords'];
-            var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false,  'withSpell': true, 'withHealing': false, 'withDeath': spell.death, 'damage': spell.damage, 'spell': spellsList[ monsters['spells'][0].stats.activeSpell ], 'nearAttack': true };
+            let spell = Game.Battle.calcSpell( attacker, enemy );
+            let cords1 = attacker['cords'];
+            let cords2 = enemy['cords'];
+            let settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false,  'withSpell': true, 'withHealing': false, 'withDeath': spell.death, 'damage': spell.damage, 'spell': spellsList[ monsters['spells'][0].stats.activeSpell ], 'nearAttack': true };
             Game.Battle.Grid.select( { x: cords1[0], y: cords1[1] } );
 	    gameData.battle.selection.selected = true;
 	    gameData.battle.selection.x = cords1[0];
@@ -200,13 +200,13 @@ Game.Battle.Ai = {
         return true;
     },
     
-    attack: function( monsters ) {
+    attack( monsters ) {
 	try {
 	    if( monsters['attack'].length < 1 ) throw "no attacker here";
-	    var paths;
-	    var enemy = false;
-	    var move = [];
-	    var attacker = Game.Battle.Ai.findBest( monsters['attack'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestAttack );
+	    let paths;
+	    let enemy = false;
+	    let move = [];
+	    let attacker = Game.Battle.Ai.findBest( monsters['attack'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestAttack );
 	    enemy = false;
     	    if( monsters['enemy-intruders'].length > 0 && ( attacker.stats.healing === false || ( attacker.stats.healing === true && attacker.manaRemain < 5 ) ) ) {
 		enemy = Game.Battle.Ai.findBest( monsters['enemy-intruders'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestEnemyIntruder, attacker );
@@ -221,16 +221,16 @@ Game.Battle.Ai = {
 		enemy = Game.Battle.Ai.findBest( monsters['enemy-attack'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestEnemyAttack, attacker );
 	    }
 	    if( enemy === false ) throw "nobody to attack";
-	    var cords1 = attacker['cords'];
-	    var cords2 = enemy.monster['cords'];
+	    let cords1 = attacker['cords'];
+	    let cords2 = enemy.monster['cords'];
             Game.Battle.Grid.select( { x: cords1[0], y: cords1[1] } );
 	    Game.Battle.Grid.showGrid( BATTLE_GRID.enemy, { x: cords2[0], y: cords2[1] } );
 	    gameData.battle.selection.path = ( enemy.path === true ) ? [] : enemy.path;
-	    var xFrom = parseInt( gameData.battle.selection.x );
-	    var yFrom = parseInt( gameData.battle.selection.y );
-	    var monsterTarget = ( gameData.battle.selection.path.length > 0 ) ? gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ] : monsterTarget;
-	    var attack = Game.Battle.calcAttack( attacker, enemy.monster );
-	    var nearAttack = false;
+	    let xFrom = Number.parseInt( gameData.battle.selection.x );
+	    let yFrom = Number.parseInt( gameData.battle.selection.y );
+	    let monsterTarget = ( gameData.battle.selection.path.length > 0 ) ? gameData.battle.selection.path[ gameData.battle.selection.path.length - 1 ] : monsterTarget;
+	    let attack = Game.Battle.calcAttack( attacker, enemy.monster );
+	    let nearAttack = false;
 	    if( Game.Battle.findInGrid( { x: cords2[0], y: cords2[1], x2: xFrom, y2: yFrom } ) === true ) {
 		nearAttack = true;
 		enemy.path = [];
@@ -244,8 +244,8 @@ Game.Battle.Ai = {
 		//if( enemy.path === true ) nearAttack = true;
 	    }
 	    if( nearAttack === true || enemy.path.length > 0 ) {
-		var move = ( nearAttack === true ) ? false : true;
-		var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'move': move, 'moveX': monsterTarget.x, 'moveY': monsterTarget.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': true, 'withHealing': false, 'withDeath': attack.death, 'damage': attack.damage, 'nearAttack': nearAttack, 'withSpell': false };
+		let move = ( nearAttack === true ) ? false : true;
+		let settings = { 'x': cords1[0], 'y': cords1[1], 'xT': cords2[0], 'yT': cords2[1], 'move': move, 'moveX': monsterTarget.x, 'moveY': monsterTarget.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': true, 'withHealing': false, 'withDeath': attack.death, 'damage': attack.damage, 'nearAttack': nearAttack, 'withSpell': false };
 		gameData.battle.gui.cords = cords2;
 		attacker.speedRemain = 0;
 		if( nearAttack === false ) gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
@@ -257,12 +257,11 @@ Game.Battle.Ai = {
 	}
 	return false;
     },
-    move: function( monsters ) {
+    move( monsters ) {
 	try {
 	    if( monsters['attack'].length < 1 ) throw "no attack";
-	    var enemy = false;
-	    var attacker;
-	    var attacker = monsters['attack'][0];
+	    let enemy = false;
+		    const attacker = monsters['attack'][0];
 	    if( monsters['enemy-healers'].length > 0 ) {
 		enemy = Game.Battle.Ai.findBest( monsters['enemy-healers'], BATTLE_AI[ gameData.battle.selection.hero.level ].findBestEnemyHealer, attacker, true );
 	    }
@@ -274,8 +273,8 @@ Game.Battle.Ai = {
 	    }
 
 	    if( enemy === false ) throw "nobody to attack";
-	    var cords1 = attacker['cords'];
-	    var whereMove = enemy.path[ enemy.path.length - 1 ];
+	    let cords1 = attacker['cords'];
+	    let whereMove = enemy.path[ enemy.path.length - 1 ];
 	    gameData.battle.selection.selected = true;
 	    gameData.battle.selection.x = cords1[0];
 	    gameData.battle.selection.y = cords1[1];
@@ -284,7 +283,7 @@ Game.Battle.Ai = {
 	    Game.Battle.Grid.showGridPath( BATTLE_GRID.free, gameData.battle.selection.path );
 	    torch.position.x = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.x;
 	    torch.position.z = monstersModels[gameData.battle.selection.x][gameData.battle.selection.y].root.position.z;
-	    var settings = { 'x': cords1[0], 'y': cords1[1], 'xT': whereMove.x, 'yT': whereMove.y, 'move': true, 'moveX': whereMove.x, 'moveY': whereMove.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false, 'withHealing': false, 'withDeath': false, 'damage': 0, 'nearAttack': false, 'withSpell': false };
+	    let settings = { 'x': cords1[0], 'y': cords1[1], 'xT': whereMove.x, 'yT': whereMove.y, 'move': true, 'moveX': whereMove.x, 'moveY': whereMove.y, 'grid': gameData.battle.selection.hero.grid, 'enemyGrid': gameData.battle.selection.enemyHero.grid, 'withAttack': false, 'withHealing': false, 'withDeath': false, 'damage': 0, 'nearAttack': false, 'withSpell': false };
 	    attacker.speedRemain = 0;
 	    gameData.battle.selection.movePath = Game.Battle.Animation.monsterCordsPath();
 	    Game.Battle.Animation.animate( settings );
@@ -294,14 +293,14 @@ Game.Battle.Ai = {
 	}
 	return false;
     },
-    findBest: function( monsters, formula, attacker, divided ) {
+    findBest( monsters, formula, attacker, divided ) {
 	monsters.sort( formula );
 	return ( typeof attacker === "undefined" ) ? monsters[0] : Game.Battle.Ai.findBestAttackPath( monsters, attacker, divided );
     },
-    findBestAttackPath: function( monsters, attacker, divided ) {
-	var enemy = false;
-	for( j in monsters ) {
-	    var path = Game.Battle.Ai.findNearEmpty( attacker['cords'], monsters[j]['cords'], divided );
+    findBestAttackPath( monsters, attacker, divided ) {
+	let enemy = false;
+	for (const j in monsters ) {
+	    let path = Game.Battle.Ai.findNearEmpty( attacker['cords'], monsters[j]['cords'], divided );
 	    if( path.length > 0 && path.length < ( attacker.speedRemain + 1 ) ) {
 		enemy = monsters[j];
 		break;
@@ -309,31 +308,31 @@ Game.Battle.Ai = {
 	}
 	return ( enemy === false ) ? false : { monster: enemy, path: path };
     },
-    findNearEmpty: function( from, to, divided ) {
+    findNearEmpty( from, to, divided ) {
 	divided = ( typeof divided === "undefined" ) ? false : true;
-	from[0] = parseInt( from[0] );
-	from[1] = parseInt( from[1] );
-	to[0] = parseInt( to[0] );
-	to[1] = parseInt( to[1] );
+	from[0] = Number.parseInt( from[0] );
+	from[1] = Number.parseInt( from[1] );
+	to[0] = Number.parseInt( to[0] );
+	to[1] = Number.parseInt( to[1] );
 
-	var x, y;
-	var tempTo;
-	var paths = [];
-	var x1 = ( ( to[0] - 1 ) >= 0 ) ? to[0] - 1 : 0;
-	var x2 = ( ( to[0] + 1 ) < ( gameData.battle.plane.gridWidth - 1 ) ) ? ( to[0] + 1 ) : ( gameData.battle.plane.gridWidth - 1 );
-	var y1 = ( ( to[1] - 1 ) >= 0 ) ? to[1] - 1 : 0;
-	var y2 = ( ( to[1] + 1 ) < ( gameData.battle.plane.gridHeight - 1 ) ) ? ( to[1] + 1 ) : ( gameData.battle.plane.gridHeight - 1 );
-	for( x = x1; x <= x2; x++ ) {
-	    for( y = y1; y <= y2; y++ ) {
+	let x, y;
+	let tempTo;
+	let paths = [];
+	let x1 = ( ( to[0] - 1 ) >= 0 ) ? to[0] - 1 : 0;
+	let x2 = ( ( to[0] + 1 ) < ( gameData.battle.plane.gridWidth - 1 ) ) ? ( to[0] + 1 ) : ( gameData.battle.plane.gridWidth - 1 );
+	let y1 = ( ( to[1] - 1 ) >= 0 ) ? to[1] - 1 : 0;
+	let y2 = ( ( to[1] + 1 ) < ( gameData.battle.plane.gridHeight - 1 ) ) ? ( to[1] + 1 ) : ( gameData.battle.plane.gridHeight - 1 );
+	for( let x = x1; x <= x2; x++ ) {
+	    for( let y = y1; y <= y2; y++ ) {
 		if( gameData.battle.plane.grid[x][y] !== 0 ) continue;
-		if( x == from[0] && y == from[1] ) return true;
+		if( x === from[0] && y === from[1] ) return true;
 		tempTo = [ x, y ];
-		var path = aStar( from, tempTo, gameData.battle.plane.grid, gameData.battle.plane.gridWidth, gameData.battle.plane.gridHeight, true );
+		let path = aStar( from, tempTo, gameData.battle.plane.grid, gameData.battle.plane.gridWidth, gameData.battle.plane.gridHeight, true );
 		if( path.length > 0 && ( gameData.battle.selection.hero.monsters[from[0]][from[1]].speedRemain >= path.length || divided === true ) ) {
 		    if( divided === true && gameData.battle.selection.hero.monsters[from[0]][from[1]].speedRemain < path.length ) {
-			var dividedCount = gameData.battle.selection.hero.monsters[from[0]][from[1]].speedRemain;
-			var newPath = [];
-			for( i in path ) {
+			let dividedCount = gameData.battle.selection.hero.monsters[from[0]][from[1]].speedRemain;
+			let newPath = [];
+			for (const i in path ) {
 			    newPath.push( path[i] );
 			    --dividedCount;
 			    if( dividedCount === 0 ) {

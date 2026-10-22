@@ -38,7 +38,7 @@ Game.Battle.Events = {
 	    }
 	    
 	    if( gameData.battle.selection.selected === true ) {
-		const params = ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) ? BATTLE_GRID.noMove : BATTLE_GRID.free;
+		let params = ( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) ? BATTLE_GRID.noMove : BATTLE_GRID.free;
 		Game.Battle.Grid.showGrid( params, { x: gameData.battle.selection.x, y: gameData.battle.selection.y } );
 		if( gameData.battle.selection.hero.monsters[gameData.battle.selection.x][gameData.battle.selection.y].speedRemain === 0 ) throw "nospeed";
 
