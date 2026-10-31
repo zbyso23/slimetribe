@@ -1,5 +1,5 @@
 PASS default product opens a focused game menu, hides authoring tools and mounts player layout CSS
-PASS New Game → intro → centered blocking dialogue → Enter → battle, without buried controls or hidden movement lock
+PASS New Game → intro → immediately controlled Adventure → real keyboard exploration and two E conversations → walk to patrol without auto combat → explicit E begins battle
 PASS real canvas picking, 1–4 selection and explicit healing prompt ignore obsolete modes
 PASS adjacent ground clicks are not swallowed by unit hit circles and busy feedback clears after walking
 PASS first real battle is won through contextual move/attack/spell/heal intents and normal enemy AI

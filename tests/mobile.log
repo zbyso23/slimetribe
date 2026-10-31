@@ -1,0 +1,6 @@
+PASS 320×360 battle bounds fit the unobstructed play area, camera is read-only and real unit picking works
+PASS 375×440 battle bounds fit the unobstructed play area, camera is read-only and real unit picking works
+PASS 390×600 battle bounds fit the unobstructed play area, camera is read-only and real unit picking works
+PASS 430×740 battle bounds fit the unobstructed play area, camera is read-only and real unit picking works
+PASS 720×900 battle bounds fit the unobstructed play area, camera is read-only and real unit picking works
+PASS desktop and cinematic cameras stay unchanged; compact cards, health-only world markers and quiet hints are embedded without losing touch selection protection

@@ -163,8 +163,8 @@
   "encounters": [
     {
       "id": "q01_scout",
-      "x": 3,
-      "y": 4,
+      "x": 5,
+      "y": 2,
       "seed": 1625,
       "faction": "swamp",
       "battleMap": {
@@ -344,6 +344,13 @@
       "x": 2,
       "y": 8,
       "text": "Úniková cesta do mokřadů. Odchod ukončí záchranné okno."
+    },
+    {
+      "id": "seren",
+      "type": "sign",
+      "x": 2,
+      "y": 2,
+      "text": "Seren drží stráž u vnitřního nádvoří. Nejdřív chce porozumět situaci před branou."
     }
   ],
   "cuts": {
@@ -847,16 +854,8 @@
             "ref": "q01_intro"
           },
           {
-            "type": "message",
-            "text": "Seren: Přichází bažinný průzkum. Odrazíme ho a ochráníme průchod. Kliknutím na spojence jej vybereš, kliknutím na zem ho přesuneš a kliknutím na nepřítele zaútočíš. Léčitel může léčit, mág útočí kouzlem. Začneme obranou."
-          },
-          {
             "type": "objective",
-            "text": "Odraz bažinný průzkum a ochraň zásobovací průchod."
-          },
-          {
-            "type": "battle",
-            "ref": "q01_scout"
+            "text": "Prozkoumej okolí Zelené hráze. Promluv s uprchlíky a se Seren. K obraně průchodu se vydej, až budeš připravený."
           }
         ]
       },
@@ -952,6 +951,48 @@
           {
             "type": "cutscene",
             "ref": "q02_teaser"
+          }
+        ]
+      },
+      {
+        "id": "q01_meet_refugees",
+        "name": "Příchod: refugees",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q01_meet_refugees"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Uprchlík: Naše jádra slábnou. Za branou je voda, kterou potřebujeme. Nechceme bojovat — potřebujeme projít. Zeptej se Seren, proč nás drží venku."
+          },
+          {
+            "type": "flag",
+            "flag": "q01_met_refugees",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "q01_meet_seren",
+        "name": "Příchod: seren",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q01_meet_seren"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Seren: Nechci hrdiny. Chci, aby ti za námi přežili. Projdi se po hrázi a vyslechni uprchlíky. Pokud nám potom pomůžeš chránit zásobovací průchod, dojdi k označené hlídce a stiskni E. Do té doby nikam nespěcháme."
+          },
+          {
+            "type": "flag",
+            "flag": "q01_met_seren",
+            "value": true
           }
         ]
       }
@@ -1062,6 +1103,10 @@
         "intactOnly": true,
         "closesWithFlow": true
       }
-    ]
+    ],
+    "arrival": {
+      "seren": "seren",
+      "refugees": "refugees"
+    }
   }
 }

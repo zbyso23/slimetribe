@@ -1,0 +1,10 @@
+PASS game text selection and long-press context menu are blocked, while native editor fields stay editable
+PASS focused menu, built-in typography/icons, cached portraits from all four original meshes and embedded responsive/accessibility styles
+PASS settings change the real synth volume and accessibility attributes, preserve game state, and Esc works from a focused input
+PASS UI preferences round-trip through real project loading; malformed preferences reject without replacing the game
+PASS restart protects the existing expedition; battle cards expose health/mana/selection and contextual actions without legacy modes
+PASS journal shortcut and party sheet pause actual battle rules and resume without spending an action
+PASS adventure HUD and optional tips stay focused, overlays block movement/camera, and menu-owned pause survives settings
+PASS single-finger adventure camera turns through actual pointer listeners, cancellation releases it, and modal switching preserves pause ownership
+PASS Q03 comparison uses readable source cards; settings/journal correctly layer above it and return to the same unresolved puzzle
+PASS story choices require explicit selection; Enter on a focused choice preserves the native button instead of silently choosing option one

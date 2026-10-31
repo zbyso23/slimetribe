@@ -1,0 +1,5 @@
+PASS intro skip → immediate free adventure → refugees then seren → save/load → unlimited idle → explicit E combat
+PASS intro skip → immediate free adventure → seren then refugees → save/load → unlimited idle → explicit E combat
+PASS intro finish → immediate free adventure → refugees then seren → save/load → unlimited idle → explicit E combat
+PASS intro finish → immediate free adventure → seren then refugees → save/load → unlimited idle → explicit E combat
+PASS first adventure cannot forge meetings or skip to combat; original editor updates arrival references and rejects missing NPC

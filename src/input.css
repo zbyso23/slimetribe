@@ -1,0 +1,3 @@
+/* Safari needs both prefixes, including descendants of held arrow buttons. */
+*{ -webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important }
+input:not([type]),input[type="text"],input[type="search"],input[type="url"],input[type="email"],input[type="password"],input[type="tel"],input[type="number"],textarea,[contenteditable="true"],[contenteditable="true"] *,[contenteditable=""] ,[contenteditable=""] *{ -webkit-user-select:text!important;user-select:text!important;-webkit-touch-callout:default!important }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "created_utc": "2026-10-30T11:10:58.039841+00:00",
+  "created_utc": "2026-10-30T12:25:15.489598+00:00",
   "native_canvas": true,
   "native_shader_gpu": true,
   "browser_verified": false,
@@ -9,121 +9,145 @@
       "suite": "models",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.638
+      "seconds": 0.741
     },
     {
       "suite": "calibration",
       "exit_code": 0,
       "assertion_groups_passed": 4,
-      "seconds": 0.075
+      "seconds": 0.059
     },
     {
       "suite": "materials",
       "exit_code": 0,
       "assertion_groups_passed": 5,
-      "seconds": 0.066
+      "seconds": 0.069
     },
     {
       "suite": "dsp",
       "exit_code": 0,
       "assertion_groups_passed": 18,
-      "seconds": 0.229
+      "seconds": 0.19
     },
     {
       "suite": "game",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.12
+      "seconds": 0.152
     },
     {
       "suite": "adventure-editor",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.106
+      "seconds": 0.102
     },
     {
       "suite": "scenario",
       "exit_code": 0,
       "assertion_groups_passed": 9,
-      "seconds": 0.077
+      "seconds": 0.087
     },
     {
       "suite": "cutscene",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.17
+      "seconds": 0.095
     },
     {
       "suite": "quest",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 0.159
+      "seconds": 0.183
+    },
+    {
+      "suite": "arrival",
+      "exit_code": 0,
+      "assertion_groups_passed": 5,
+      "seconds": 0.31
     },
     {
       "suite": "q02",
       "exit_code": 0,
       "assertion_groups_passed": 15,
-      "seconds": 3.126
+      "seconds": 3.173
     },
     {
       "suite": "q03",
       "exit_code": 0,
       "assertion_groups_passed": 22,
-      "seconds": 2.473
+      "seconds": 2.221
     },
     {
       "suite": "campaign",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 3.763
+      "seconds": 3.324
     },
     {
       "suite": "rpg",
       "exit_code": 0,
       "assertion_groups_passed": 13,
-      "seconds": 0.28
+      "seconds": 0.275
     },
     {
       "suite": "rpg-orientation",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.219
+      "seconds": 0.203
     },
     {
       "suite": "battle-intent",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.098
+      "seconds": 0.104
     },
     {
       "suite": "player",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 3.612
+      "seconds": 3.447
+    },
+    {
+      "suite": "ui",
+      "exit_code": 0,
+      "assertion_groups_passed": 10,
+      "seconds": 0.8
     },
     {
       "suite": "runtime",
       "exit_code": 0,
       "assertion_groups_passed": 44,
-      "seconds": 4.98
+      "seconds": 4.678
     },
     {
       "suite": "runtime-gl",
       "exit_code": 0,
       "assertion_groups_passed": 39,
-      "seconds": 2.491
+      "seconds": 2.722
     },
     {
       "suite": "player-gl",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 1.896
+      "seconds": 2.138
+    },
+    {
+      "suite": "ui-gl",
+      "exit_code": 0,
+      "assertion_groups_passed": 10,
+      "seconds": 0.818
+    },
+    {
+      "suite": "mobile",
+      "exit_code": 0,
+      "assertion_groups_passed": 6,
+      "seconds": 0.815
     },
     {
       "suite": "shader-gpu",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.656
+      "seconds": 0.618
     }
   ],
   "all_passed": true,
