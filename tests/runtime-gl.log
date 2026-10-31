@@ -20,4 +20,10 @@ PASS cinematic undo/redo, invalid audio edit and map import rollback
 PASS cutscene HTML/JSON save, music offset restore, no SFX replay, local/global pause and skip continuation
 PASS Eldor music transport resumes at the expected tracker step
 PASS Q01 animated adventure steps and outcome are identical at 30/60/120 FPS
-PASS Q01 UI: intact intro, defense, three-way choice, animated pressure warning/valve, save/load, procedural props, timeout/collapse/debrief, Q02 teaser and checkpoint
+PASS Q01 UI: intact intro, defense, three-way choice, animated pressure warning/valve, save/load, procedural props, timeout/collapse/debrief, automatic Q02 handoff
+PASS Q02 root pulses, movement and saved campaign state match at 30/60/120 FPS
+PASS continuous Q01 → Q02 UI: party carry, camp revival, generated defense, save during victory/choice/cutscene, three nodes, CARE, Q03 teaser, standalone HTML and node checkpoint
+PASS RPG keyboard events move the actual actor and ignore focused text inputs
+PASS independent key release, blur and editor switching prevent stuck movement
+PASS RPG pointer camera, seamless terrain mesh, saved pose and renderer switching
+PASS registered E action, repeat suppression and paused movement lock

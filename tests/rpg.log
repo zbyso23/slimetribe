@@ -1,0 +1,12 @@
+PASS fixed-step locomotion and full saved state identical at 30/60/120 FPS
+PASS normalized diagonal speed has no acceleration or diagonal boost
+PASS circle collision, sustained wall pressure, map boundaries and no tunnelling
+PASS touching diagonal obstacles cannot be cut through at a corner
+PASS E interaction is explicit and spring healing remains one-shot
+PASS continuous pose/camera save roundtrip, atomic corrupt rejection and legacy saves
+PASS camera boom collision, clamps and read-only sampling
+PASS automatic battle entry, battle input lock, real victory and exact RPG return pose
+PASS Q01 RPG valve/pressure/checkpoint and automatic Q02 handoff retain a valid archived pose
+PASS Q02 camp, root pulse, checkpoint reset and RPG pose survive save/load
+PASS complete Q02 via continuous movement/E, generated defense, three nodes, CARE and node checkpoint
+RPG rules complete

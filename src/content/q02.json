@@ -1,0 +1,968 @@
+{
+  "format": "slimetribe.adventure-map",
+  "version": 1,
+  "id": "q02_whisper_marsh",
+  "name": "Q02 · Hlasy bažin",
+  "plane": {
+    "width": 12,
+    "height": 10,
+    "gridWidth": 12,
+    "gridHeight": 10,
+    "terrain": [
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "grass",
+      "grass",
+      "grass",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp",
+      "swamp"
+    ],
+    "blocked": [
+      4,
+      5,
+      6,
+      16,
+      17,
+      18,
+      29,
+      33,
+      41,
+      52,
+      53,
+      64,
+      88,
+      89,
+      90,
+      103
+    ]
+  },
+  "start": {
+    "x": 1,
+    "y": 8
+  },
+  "encounters": [
+    {
+      "id": "q02_sanctuary",
+      "x": 3,
+      "y": 6,
+      "seed": 2742,
+      "faction": "necro"
+    },
+    {
+      "id": "q02_radicals",
+      "x": 10,
+      "y": 2,
+      "seed": 2842,
+      "faction": "swamp"
+    }
+  ],
+  "objects": [
+    {
+      "id": "camp",
+      "x": 1,
+      "y": 7,
+      "type": "sign",
+      "text": "Léčitelé tábora jednou obnoví i padlá jádra družiny. Před další bitvou se můžeš zotavit."
+    },
+    {
+      "id": "locals",
+      "x": 2,
+      "y": 6,
+      "type": "sign",
+      "text": "Léčitel: Podoba není nemoc. Bolest ano. Pomoz nám odrazit obranné pečetě svatyně."
+    },
+    {
+      "id": "node_a",
+      "x": 4,
+      "y": 3,
+      "type": "sign",
+      "text": "První kořenový uzel čeká na stabilizaci."
+    },
+    {
+      "id": "node_b",
+      "x": 8,
+      "y": 4,
+      "type": "sign",
+      "text": "Druhý kořenový uzel čeká na stabilizaci."
+    },
+    {
+      "id": "node_c",
+      "x": 7,
+      "y": 7,
+      "type": "sign",
+      "text": "Třetí kořenový uzel čeká na stabilizaci."
+    },
+    {
+      "id": "envoy",
+      "x": 9,
+      "y": 7,
+      "type": "sign",
+      "text": "Místní svědek nabídne pomoc při vyjednávání. Svatyně nemusí být zbraní."
+    },
+    {
+      "id": "sanctuary_spring",
+      "x": 6,
+      "y": 8,
+      "type": "spring",
+      "text": "Pramen svatyně jednou obnovil zdraví a manu živých spojenců."
+    }
+  ],
+  "cuts": {
+    "q02_intro": {
+      "version": 1,
+      "id": "q02_intro",
+      "name": "Hlasy bažin · šepot mokřadů",
+      "duration": 10,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -8,
+            9,
+            10
+          ],
+          "l": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "t": 10,
+          "p": [
+            6,
+            5,
+            8
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.5,
+          "opacity": 0
+        },
+        {
+          "t": 9.5,
+          "opacity": 0
+        },
+        {
+          "t": 10,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Nara: Tady nevládne žádná hráz. Každá cesta může zítra vyrůst jinde.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 3.3333333333333335,
+          "text": "Slizák: Voda tady nešumí. Mluví.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 6.666666666666667,
+          "text": "Léčitelé čekají v táboře. Za kořeny jsou ranění a neklidná svatyně.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    },
+    "q02_sarym": {
+      "version": 1,
+      "id": "q02_sarym",
+      "name": "Sarymina komora",
+      "duration": 10,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -8,
+            9,
+            10
+          ],
+          "l": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "t": 10,
+          "p": [
+            6,
+            5,
+            8
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.5,
+          "opacity": 0
+        },
+        {
+          "t": 9.5,
+          "opacity": 0
+        },
+        {
+          "t": 10,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Sarym: Tvar není posvátný. Posvátné je to, co v něm žije.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 3.3333333333333335,
+          "text": "Irik: Paměť není totéž co život. Ale tady jsou propojené.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 6.666666666666667,
+          "text": "Nara: O svatyni se přou i naši vlastní. Nesmíme z ní udělat další zbraň.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    },
+    "q02_guardian": {
+      "version": 1,
+      "id": "q02_guardian",
+      "name": "Strážce živé paměti",
+      "duration": 10,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -8,
+            9,
+            10
+          ],
+          "l": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "t": 10,
+          "p": [
+            6,
+            5,
+            8
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.5,
+          "opacity": 0
+        },
+        {
+          "t": 9.5,
+          "opacity": 0
+        },
+        {
+          "t": 10,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Nara: Tohle není nepřítel. To jsme probudili vlastní dějiny.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 3.3333333333333335,
+          "text": "Hlas strážce: Co bylo přežito, není vždy pravdivě zapamatováno.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 6.666666666666667,
+          "text": "Živá paměť vydává fragment s obrazem Tichých archivů.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    },
+    "q03_teaser": {
+      "version": 1,
+      "id": "q03_teaser",
+      "name": "Q03 · Tiché archivy",
+      "duration": 10,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -8,
+            9,
+            10
+          ],
+          "l": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "t": 10,
+          "p": [
+            6,
+            5,
+            8
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.5,
+          "opacity": 0
+        },
+        {
+          "t": 9.5,
+          "opacity": 0
+        },
+        {
+          "t": 10,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Nara: V Tichých archivech hledejte to, co naši předkové nedokázali uchovat.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 3.3333333333333335,
+          "text": "Irik: Tam má každá vzpomínka svého strážce.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 6.666666666666667,
+          "text": "TICHÉ ARCHIVY · třetí mise zatím není součástí této verze.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    }
+  },
+  "scenario": {
+    "version": 1,
+    "rules": [
+      {
+        "id": "q02_intro",
+        "name": "q02 intro",
+        "once": true,
+        "trigger": {
+          "type": "start"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q02_intro"
+          },
+          {
+            "type": "message",
+            "text": "Nara: Nejprve pomoz místním [2,6]. Léčitelé v táboře [1,7] dovedou jednou obnovit celou družinu. Kořeny mění zkratky každých šest kroků; bezpečná trasa zůstane otevřená."
+          },
+          {
+            "type": "objective",
+            "text": "Navštiv tábor a ochraň místní před obrannými pečetěmi svatyně."
+          }
+        ]
+      },
+      {
+        "id": "q02_rescue",
+        "name": "q02 rescue",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q02_rescue"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Irik: Mechanismus nerozeznává, koho chrání. Odraz jeho stráže, než zraní další místní."
+          },
+          {
+            "type": "battle",
+            "ref": "q02_sanctuary"
+          }
+        ]
+      },
+      {
+        "id": "q02_rescue_win",
+        "name": "q02 rescue win",
+        "once": true,
+        "trigger": {
+          "type": "victory",
+          "ref": "q02_sanctuary"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Léčitel: Místní jsou v bezpečí. Zbývá uklidnit tři uzly živé paměti."
+          },
+          {
+            "type": "objective",
+            "text": "Stabilizuj všechny tři uzly [4,3], [8,4], [7,7]. Svědek [9,7] může pomoci s vyjednáváním."
+          }
+        ]
+      },
+      {
+        "id": "q02_nodes",
+        "name": "q02 nodes",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q02_nodes"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q02_sarym"
+          },
+          {
+            "type": "choice",
+            "text": "Tři uzly jsou stabilní. Jak uklidníme strážce a zabráníme ovládnutí svatyně? Každá cesta zachová nezbytný fragment.",
+            "flag": "q02_approach",
+            "options": [
+              {
+                "label": "CARE · péče: 4 tahy práce, léčení živých spojenců; více důvěry",
+                "value": "CARE"
+              },
+              {
+                "label": "FORCE · síla: střet s radikály, riziko ztrát a menší důvěra",
+                "value": "FORCE"
+              },
+              {
+                "label": "NEGOTIATE · dohoda: pomůže důvěra nebo svědek; jinak 6 tahů práce",
+                "value": "NEGOTIATE"
+              }
+            ]
+          },
+          {
+            "type": "objective",
+            "text": "Dokonči zvolený způsob uklidnění svatyně."
+          }
+        ]
+      },
+      {
+        "id": "q02_force",
+        "name": "q02 force",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q02_force"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Nara: Už dost. Nevyženeme další rodiny ve jménu vlastní svobody! Radikálové odmítají ustoupit."
+          },
+          {
+            "type": "battle",
+            "ref": "q02_radicals"
+          }
+        ]
+      },
+      {
+        "id": "q02_force_win",
+        "name": "q02 force win",
+        "once": true,
+        "trigger": {
+          "type": "victory",
+          "ref": "q02_radicals"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Nara: Svatyně nám nepatří. Odvolávám zbytek přední řady."
+          }
+        ]
+      },
+      {
+        "id": "q02_resolved",
+        "name": "q02 resolved",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q02_resolved"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q02_guardian"
+          },
+          {
+            "type": "objective",
+            "text": "Fragment živé paměti je zajištěný. Připrav výpravu do Tichých archivů."
+          }
+        ]
+      },
+      {
+        "id": "q03_teaser",
+        "name": "q03 teaser",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q03_teaser"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q03_teaser"
+          }
+        ]
+      }
+    ]
+  },
+  "quest": {
+    "id": "q02",
+    "version": 1,
+    "encounter": "q02_sanctuary",
+    "confrontation": "q02_radicals",
+    "roles": {
+      "camp": "camp",
+      "locals": "locals",
+      "nodeA": "node_a",
+      "nodeB": "node_b",
+      "nodeC": "node_c",
+      "envoy": "envoy",
+      "spring": "sanctuary_spring"
+    },
+    "rootGroups": [
+      [
+        41,
+        53
+      ],
+      [
+        66,
+        78
+      ]
+    ],
+    "rootPeriod": 6,
+    "props": [
+      {
+        "kind": "root",
+        "x": 5,
+        "z": 3,
+        "w": 0.7,
+        "h": 0.95,
+        "d": 0.7,
+        "rootCell": 41
+      },
+      {
+        "kind": "root",
+        "x": 5,
+        "z": 4,
+        "w": 0.7,
+        "h": 0.95,
+        "d": 0.7,
+        "rootCell": 53
+      },
+      {
+        "kind": "root",
+        "x": 6,
+        "z": 5,
+        "w": 0.7,
+        "h": 0.95,
+        "d": 0.7,
+        "rootCell": 66
+      },
+      {
+        "kind": "root",
+        "x": 6,
+        "z": 6,
+        "w": 0.7,
+        "h": 0.95,
+        "d": 0.7,
+        "rootCell": 78
+      },
+      {
+        "kind": "rune",
+        "x": 4,
+        "z": 3,
+        "w": 0.65,
+        "h": 1,
+        "d": 0.65
+      },
+      {
+        "kind": "rune",
+        "x": 8,
+        "z": 4,
+        "w": 0.65,
+        "h": 1,
+        "d": 0.65
+      },
+      {
+        "kind": "rune",
+        "x": 7,
+        "z": 7,
+        "w": 0.65,
+        "h": 1,
+        "d": 0.65
+      },
+      {
+        "kind": "crystal",
+        "x": 9,
+        "z": 2,
+        "w": 0.85,
+        "h": 1.8,
+        "d": 0.85
+      }
+    ],
+    "start": {
+      "x": 1,
+      "y": 8
+    }
+  }
+}

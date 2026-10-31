@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "created_utc": "2026-10-29T19:25:03.012380+00:00",
+  "native_canvas": true,
+  "browser_verified": false,
+  "suites": [
+    {
+      "suite": "models",
+      "exit_code": 0,
+      "assertion_groups_passed": 7,
+      "seconds": 0.809
+    },
+    {
+      "suite": "dsp",
+      "exit_code": 0,
+      "assertion_groups_passed": 18,
+      "seconds": 0.227
+    },
+    {
+      "suite": "game",
+      "exit_code": 0,
+      "assertion_groups_passed": 11,
+      "seconds": 0.154
+    },
+    {
+      "suite": "adventure-editor",
+      "exit_code": 0,
+      "assertion_groups_passed": 6,
+      "seconds": 0.092
+    },
+    {
+      "suite": "scenario",
+      "exit_code": 0,
+      "assertion_groups_passed": 9,
+      "seconds": 0.093
+    },
+    {
+      "suite": "cutscene",
+      "exit_code": 0,
+      "assertion_groups_passed": 7,
+      "seconds": 0.096
+    },
+    {
+      "suite": "quest",
+      "exit_code": 0,
+      "assertion_groups_passed": 8,
+      "seconds": 0.189
+    },
+    {
+      "suite": "q02",
+      "exit_code": 0,
+      "assertion_groups_passed": 15,
+      "seconds": 3.408
+    },
+    {
+      "suite": "campaign",
+      "exit_code": 0,
+      "assertion_groups_passed": 3,
+      "seconds": 3.469
+    },
+    {
+      "suite": "rpg",
+      "exit_code": 0,
+      "assertion_groups_passed": 11,
+      "seconds": 0.294
+    },
+    {
+      "suite": "runtime",
+      "exit_code": 0,
+      "assertion_groups_passed": 35,
+      "seconds": 4.097
+    },
+    {
+      "suite": "runtime-gl",
+      "exit_code": 0,
+      "assertion_groups_passed": 29,
+      "seconds": 2.62
+    }
+  ],
+  "all_passed": true,
+  "note": "Assertion groups are not line/branch coverage. Mock WebGL and DOM harness are not browser tests."
+}

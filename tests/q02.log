@@ -1,0 +1,15 @@
+PASS Q02 standalone intro, camp, actual generated rescue battle, victory dialog save and node checkpoint { result: 'victory', steps: 63, rounds: 6 }
+PASS CARE → memory fragment → debrief/Q03 → checkpoint
+PASS FORCE → memory fragment → debrief/Q03 → checkpoint
+PASS NEGOTIATE → memory fragment → debrief/Q03 → checkpoint
+PASS ending cutscene keeps the mission in resolve until completion/skip, including reload
+PASS 18 node-order/policy combinations with reloads and real FORCE battles
+PASS root-cycle guard, hero occupancy deferral and recovery after leaving an alcove
+PASS 500-step seeded navigation/root reachability property
+PASS malformed Q02 states, roots and checkpoints rejected atomically
+PASS FORCE defeat/retry uses the same generated map; node checkpoint allows another decision
+PASS first-battle defeat can return to camp, recover the party and complete the same mission
+PASS CARE consumes four map steps, heals living units and does not revive dead ones
+PASS root growth is telegraphed one step ahead and warning sampling is read-only
+PASS Q02 start/reference edits and required-object deletion validation
+PASS future-event skipping, tampered entry party/collisions and broken quest contracts cannot softlock a loaded game

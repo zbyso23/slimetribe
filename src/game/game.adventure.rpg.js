@@ -1,0 +1,22 @@
+/* Continuous Genesis-style locomotion over the existing Adventure event grid.
+   World positions are in tile units; logical cells and Battle API remain integers. */
+Game.Adventure.RPG={version:1,speed:2.4,radius:.16};
+(function(R){
+let owner=null,pose=null,acc=0,internal=false;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+R.ensure=function(){const a=gameData.adventure,h=a.hero;if(owner!==a||!pose||Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){owner=a;pose=a.rpg||{version:1,x:h.x,z:h.y,yaw:Math.PI,pitch:.28,distance:3.8};if(Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){pose.x=h.x;pose.z=h.y}acc=0}return pose};
+R.getPose=()=>({...R.ensure()});
+R.resetClock=()=>{acc=0};
+R.blocked=function(x,z){const p=gameData.adventure.plane;return x<0||z<0||x>=12||z>=10||p.blocked.includes(z*12+x)};
+R.fits=function(x,z){const r=R.radius;if(x-r<-.5||x+r>11.5||z-r<-.5||z+r>9.5)return false;for(let j=Math.floor(z-r+.5);j<=Math.floor(z+r+.5);j++)for(let i=Math.floor(x-r+.5);i<=Math.floor(x+r+.5);i++){if(!R.blocked(i,j))continue;const dx=x-clamp(x,i-.5,i+.5),dz=z-clamp(z,j-.5,j+.5);if(dx*dx+dz*dz<r*r-1e-10)return false}return true};
+R.canMove=()=>gameData.mode==='adventure'&&!Game.Scenario.isBlocking()&&!Game.Cutscene.active()&&!['collapse','debrief','q02','q03'].includes(Game.Quest.current()?.stage);
+R.persist=function(){gameData.adventure.rpg=pose};
+R.turn=function(yaw,pitch=0,zoom=0){if(![yaw,pitch,zoom].every(Number.isFinite))return R.getPose();const p=R.ensure();p.yaw=((p.yaw+yaw)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);p.pitch=clamp(p.pitch+pitch,.12,1);p.distance=clamp(p.distance+zoom,1.8,6);R.persist();return R.getPose()};
+function axis(name,value){if(!R.canMove())return false;const p=pose,x=name==='x'?value:p.x,z=name==='z'?value:p.z;if(!R.fits(x,z))return false;const cx=Math.round(x),cy=Math.round(z),h=gameData.adventure.hero;if(cx!==h.x||cy!==h.y){internal=true;let ok;try{ok=Game.Adventure.arrive(cx,cy)}finally{internal=false}if(!ok)return false}p[name]=value;R.persist();if(R.canMove()&&Game.Adventure.Events.encounterAtHero())Game.Adventure.interact();return true}
+R.update=function(dt,input={}){R.ensure();if(!Number.isFinite(dt)||dt<0||!R.canMove()){acc=0;return false}const f=clamp(Number(input.forward)||0,-1,1),s=clamp(Number(input.strafe)||0,-1,1),n=Math.hypot(f,s)||1;acc+=Math.min(dt,.25);let moved=false;while(acc+1e-10>=1/120){acc-=1/120;if(!R.canMove()){acc=0;break}const yaw=pose.yaw,dx=(-Math.sin(yaw)*f+Math.cos(yaw)*s)/n*R.speed/120,dz=(-Math.cos(yaw)*f-Math.sin(yaw)*s)/n*R.speed/120;if(dx)moved=axis('x',pose.x+dx)||moved;if(dz)moved=axis('z',pose.z+dz)||moved}return moved};
+R.interact=function(){R.ensure();if(!R.canMove())return{ok:false,error:'Nejdřív dokonči probíhající událost.'};return Game.Adventure.interact()};
+R.camera=function(){const p=R.ensure(),target=[p.x-5.5,1.05,p.z-4.5],d=p.distance,horizontal=Math.cos(p.pitch)*d,vertical=Math.sin(p.pitch)*d;let distance=1;/* Shorten the camera boom before it enters a blocked cell or leaves the map. */for(let t=.05;t<=1.001;t+=.025){const x=p.x+Math.sin(p.yaw)*horizontal*t,z=p.z+Math.cos(p.yaw)*horizontal*t;if(R.blocked(Math.round(x),Math.round(z))){distance=Math.max(.025,t-.05);break}}return{eye:[target[0]+Math.sin(p.yaw)*horizontal*distance,target[1]+vertical*distance+.7*(1-distance),target[2]+Math.cos(p.yaw)*horizontal*distance],target}};
+const validate=Game.Save.validate;Game.Save.validate=function(state){validate(state);const p=state.adventure.rpg;if(p!==undefined){if(!p||p.version!==1||![p.x,p.z,p.yaw,p.pitch,p.distance].every(Number.isFinite)||p.x<-.34||p.x>11.34||p.z<-.34||p.z>9.34||Math.round(p.x)!==state.adventure.hero.x||Math.round(p.z)!==state.adventure.hero.y||p.pitch<.12||p.pitch>1||p.distance<1.8||p.distance>6||p.yaw<0||p.yaw>Math.PI*2)throw Error('Neplatná RPG pozice nebo kamera')}return state};
+/* Snap retained poses when legacy grid APIs, checkpoints or scripts move the hero. */
+const arrive=Game.Adventure.arrive;Game.Adventure.arrive=function(x,y){const ok=arrive(x,y);if(ok&&!internal&&gameData.adventure.rpg){const p=gameData.adventure.rpg;if(Math.round(p.x)!==x||Math.round(p.z)!==y){p.x=x;p.z=y}}return ok};
+})(Game.Adventure.RPG);
