@@ -1,0 +1,2 @@
+PASS Q01–Q04 recipe batches use at most four actual mockGL draws, scoped material reset, cached CPU geometry and read-only game state
+PASS surface splitting happens after occlusion; stone rims/bases remain matte and only water/inlays use their shader

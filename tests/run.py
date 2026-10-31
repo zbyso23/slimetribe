@@ -5,7 +5,7 @@ root=Path(__file__).resolve().parent.parent
 parser=argparse.ArgumentParser();parser.add_argument('--gpu',action='store_true',help='Compile/rasterize GLSL with local Mesa EGL');parser.add_argument('--native',action='store_true',help='Use optional @napi-rs/canvas from CODEX_PRIMARY_RUNTIME_NODE_MODULES');args=parser.parse_args()
 node=os.environ.get('CODEX_PRIMARY_RUNTIME_NODE') or shutil.which('node')
 if not node:raise SystemExit('Node.js is required for the source test suite.')
-jobs=[(n,n,{}) for n in ['models','calibration','materials','dsp','game','adventure-editor','scenario','cutscene','quest','arrival','q02','q03','q04','toxic','campaign','rpg','rpg-orientation','battle-intent','player','ui','runtime']]+[('runtime-gl','runtime',{'MOCK_GL':'1'}),('player-gl','player',{'MOCK_GL':'1'}),('ui-gl','ui',{'MOCK_GL':'1'}),('mobile','mobile',{'MOCK_GL':'1'}),('toxic-ui','toxic-ui',{}),('toxic-ui-gl','toxic-ui',{'MOCK_GL':'1'})]
+jobs=[(n,n,{}) for n in ['models','calibration','materials','dsp','game','adventure-editor','scenario','cutscene','quest','arrival','q02','q03','q04','recipes','toxic','campaign','rpg','rpg-orientation','battle-intent','player','ui','runtime']]+[('runtime-gl','runtime',{'MOCK_GL':'1'}),('player-gl','player',{'MOCK_GL':'1'}),('ui-gl','ui',{'MOCK_GL':'1'}),('mobile','mobile',{'MOCK_GL':'1'}),('toxic-ui','toxic-ui',{}),('toxic-ui-gl','toxic-ui',{'MOCK_GL':'1'}),('recipes-ui','recipes-ui',{'MOCK_GL':'1'})]
 results=[]
 for label,name,extra in jobs:
  env=os.environ.copy();env.pop('MOCK_GL',None);env.pop('AUTO_FALLBACK',None);env.pop('NATIVE_CANVAS',None);env.update(extra)

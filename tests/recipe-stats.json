@@ -1,0 +1,126 @@
+{
+  "wall": {
+    "objects": 1,
+    "primitives": 13,
+    "rawTriangles": 156,
+    "triangles": 256,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": -100
+  },
+  "tower": {
+    "objects": 1,
+    "primitives": 15,
+    "rawTriangles": 400,
+    "triangles": 336,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": 64
+  },
+  "dam": {
+    "objects": 1,
+    "primitives": 8,
+    "rawTriangles": 96,
+    "triangles": 64,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": 32
+  },
+  "bridge": {
+    "objects": 1,
+    "primitives": 15,
+    "rawTriangles": 228,
+    "triangles": 404,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": -176
+  },
+  "valve": {
+    "objects": 1,
+    "primitives": 12,
+    "rawTriangles": 584,
+    "triangles": 512,
+    "surfaces": [
+      "matte",
+      "rune"
+    ],
+    "savedTriangles": 72
+  },
+  "rune": {
+    "objects": 1,
+    "primitives": 11,
+    "rawTriangles": 160,
+    "triangles": 172,
+    "surfaces": [
+      "matte",
+      "rune"
+    ],
+    "savedTriangles": -12
+  },
+  "root": {
+    "objects": 1,
+    "primitives": 10,
+    "rawTriangles": 320,
+    "triangles": 264,
+    "surfaces": [
+      "swamp"
+    ],
+    "savedTriangles": 56
+  },
+  "crystal": {
+    "objects": 1,
+    "primitives": 7,
+    "rawTriangles": 118,
+    "triangles": 88,
+    "surfaces": [
+      "matte",
+      "rune"
+    ],
+    "savedTriangles": 30
+  },
+  "pool": {
+    "objects": 1,
+    "primitives": 5,
+    "rawTriangles": 408,
+    "triangles": 341,
+    "surfaces": [
+      "matte",
+      "water"
+    ],
+    "savedTriangles": 67
+  },
+  "cistern": {
+    "objects": 1,
+    "primitives": 5,
+    "rawTriangles": 424,
+    "triangles": 384,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": 40
+  },
+  "apparatus": {
+    "objects": 1,
+    "primitives": 10,
+    "rawTriangles": 228,
+    "triangles": 208,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": 20
+  },
+  "marker": {
+    "objects": 1,
+    "primitives": 10,
+    "rawTriangles": 120,
+    "triangles": 156,
+    "surfaces": [
+      "matte"
+    ],
+    "savedTriangles": -36
+  }
+}

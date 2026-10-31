@@ -1,0 +1,6 @@
+PASS adjacent, overlapping, contained and duplicate boxes fuse into one 12-triangle cuboid with correct exterior area
+PASS partial-face overlap cuts only covered rectangles; T junction keeps correct area and no inward triangles
+PASS material/color borders preserve exterior appearance while shared internal wall is removed
+PASS all 12 detailed recipes, bounded footprints, normals, split stone/water/rune materials and walkable bridge elevation
+PASS Q01–Q04 use new recipes without map edits, collisions, semantic IDs or save-schema changes; activation affects only rune inlays
+PASS conservative curved culling uses actual faceted hull rather than a larger analytic cylinder; exposed corner triangles survive

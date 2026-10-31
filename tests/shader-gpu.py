@@ -40,10 +40,10 @@ def cross(a,b):return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0
 def dot(a,b):return sum(x*y for x,y in zip(a,b))
 eye=[2.8,2.5,4];target=[0,1,0];z=norm([a-b for a,b in zip(eye,target)]);x=norm(cross([0,1,0],z));y=cross(z,x);view=[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1];t=1/math.tan(.85/2);near=.05;far=80;proj=[t/(W/H),0,0,0,0,t,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0];vp=[sum(proj[k*4+j]*view[i*4+k] for k in range(4)) for i in range(4) for j in range(4)];rot=-math.pi/2;model=[math.cos(rot),0,-math.sin(rot),0,0,1,0,0,math.sin(rot),0,math.cos(rot),0,0,0,0,1]
 viewport(0,0,W,H);enable(0x0B71);bg=(10,20,30)
-def render(kind,time=0,params=(.2,.85,.6,1),p=p3,mist=0):
+def render(kind,time=0,params=(.2,.85,.6,1),p=p3,mist=0,mode=2):
  use(p)
  def L(n):return loc(p,n.encode())
- for name,v in [('t0',0),('t1',1),('mode',2),('fx',0),('matKind',kind)]:u1i(L(name),v)
+ for name,v in [('t0',0),('t1',1),('mode',mode),('fx',0),('matKind',kind)]:u1i(L(name),v)
  u1f(L('ft'),time);u1f(L('fi'),0);u1f(L('localMist'),mist)
  for name,v in [('cam',eye),('fl',[0,0,0]),('fcol',[.3,.8,1]),('fogc',[.04,.08,.12])]:u3(L(name),1,(F*3)(*v))
  u4(L('matParams'),1,(F*4)(*params));um(L('vp'),1,0,(F*16)(*vp));um(L('m'),1,0,(F*16)(*model));clearcolor(*(c/255 for c in bg),1);clear(0x4000|0x0100);draw(4,0,len(vertices)//11);out=(C.c_ubyte*(W*H*4))();read(0,0,W,H,0x1908,0x1401,out);assert error()==0;return bytes(out)
@@ -65,3 +65,13 @@ print('PASS explicit uniform reset restores baseline; translated WebGL1 material
 from PIL import Image
 for name,raw in [('before',base),('after',render(1,.4)),('water',render(2,.4)),('rune',render(4,.4)),('dissolve',b)]:Image.frombytes('RGBA',(W,H),raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM).save(root/'tests'/('shader-'+name+'.png'))
 (root/'tests/shader-gpu-results.json').write_text(json.dumps({'renderer':string(0x1F01).decode(),'version':string(0x1F02).decode(),'gles300_compiled':True,'gles100_compiled':True,'browser_verified':False,'all_passed':True},indent=2))
+
+# Draw the actual compiled recipe geometry through the native GL pipeline,
+# including back-face culling: this detects inverted torus/cap/beam winding.
+enable(0x0B44)
+model=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+for kind in ['wall','tower','dam','bridge','valve','rune','root','crystal','pool','cistern','apparatus','marker']:
+ script="const {G}=require('./tests/support.cjs').load(process.cwd());const t=G.Scene.Props.mesh({kind:"+json.dumps(kind)+",x:5.5,z:4.5,w:1.5,h:1.7,d:1.5});process.stdout.write(JSON.stringify(t.flatMap(t=>t.p.flatMap(p=>[...p,...t.n,...t.color,p[0],p[2]]))));"
+ vertices=json.loads(subprocess.check_output([node,'-e',script],cwd=root,text=True));arr=(F*len(vertices))(*vertices);data(0x8892,C.sizeof(arr),arr,0x88E4);raw=render(0,mode=1);assert coverage(raw)>400,(kind,coverage(raw))
+ Image.frombytes('RGBA',(W,H),raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM).save(root/'tests'/('recipe-gpu-'+kind+'.png'))
+print('PASS all 12 compiled recipe meshes actually rasterize with back-face culling and vertex materials')
