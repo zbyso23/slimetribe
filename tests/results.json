@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "created_utc": "2026-10-29T19:25:03.012380+00:00",
+  "created_utc": "2026-10-29T20:26:52.173094+00:00",
   "native_canvas": true,
   "browser_verified": false,
   "suites": [
@@ -8,73 +8,79 @@
       "suite": "models",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.809
+      "seconds": 0.643
     },
     {
       "suite": "dsp",
       "exit_code": 0,
       "assertion_groups_passed": 18,
-      "seconds": 0.227
+      "seconds": 0.191
     },
     {
       "suite": "game",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.154
+      "seconds": 0.131
     },
     {
       "suite": "adventure-editor",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.092
+      "seconds": 0.093
     },
     {
       "suite": "scenario",
       "exit_code": 0,
       "assertion_groups_passed": 9,
-      "seconds": 0.093
+      "seconds": 0.076
     },
     {
       "suite": "cutscene",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.096
+      "seconds": 0.091
     },
     {
       "suite": "quest",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 0.189
+      "seconds": 0.149
     },
     {
       "suite": "q02",
       "exit_code": 0,
       "assertion_groups_passed": 15,
-      "seconds": 3.408
+      "seconds": 2.994
     },
     {
       "suite": "campaign",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 3.469
+      "seconds": 2.912
     },
     {
       "suite": "rpg",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.294
+      "seconds": 0.219
+    },
+    {
+      "suite": "rpg-orientation",
+      "exit_code": 0,
+      "assertion_groups_passed": 6,
+      "seconds": 0.179
     },
     {
       "suite": "runtime",
       "exit_code": 0,
-      "assertion_groups_passed": 35,
-      "seconds": 4.097
+      "assertion_groups_passed": 36,
+      "seconds": 3.134
     },
     {
       "suite": "runtime-gl",
       "exit_code": 0,
-      "assertion_groups_passed": 29,
-      "seconds": 2.62
+      "assertion_groups_passed": 30,
+      "seconds": 2.125
     }
   ],
   "all_passed": true,

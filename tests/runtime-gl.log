@@ -27,3 +27,4 @@ PASS RPG keyboard events move the actual actor and ignore focused text inputs
 PASS independent key release, blur and editor switching prevent stuck movement
 PASS RPG pointer camera, seamless terrain mesh, saved pose and renderer switching
 PASS registered E action, repeat suppression and paused movement lock
+PASS natural cinematic end restores the exact RPG camera/facing and clears held movement

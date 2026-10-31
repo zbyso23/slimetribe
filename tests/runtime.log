@@ -33,3 +33,4 @@ PASS independent key release, blur and editor switching prevent stuck movement
 PASS RPG pointer camera, seamless terrain mesh, saved pose and renderer switching
 PASS registered E action, repeat suppression and paused movement lock
 PASS software raster inspection of third-person camera/terrain/MD2 geometry (not a WebGL/browser test)
+PASS natural cinematic end restores the exact RPG camera/facing and clears held movement

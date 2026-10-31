@@ -1,0 +1,6 @@
+PASS geometric MD2 +X nose alignment for 32 camera/direction combinations and save roundtrip
+PASS initial camera sees the character back instead of the raw mesh side
+PASS free orbit retains facing and recenter returns behind without moving the hero
+PASS wall sliding faces the actual displacement rather than blocked input
+PASS Phase9 saves without facing stay readable; corrupt headings reject atomically and orbit migrates without rotating the body
+PASS tiny trigonometric residue cannot report movement while pressed against a wall
