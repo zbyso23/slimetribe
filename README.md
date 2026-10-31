@@ -18,7 +18,7 @@ SlimeTribe combines **real-time 3D exploration**, **turn-based grid combat**, st
 
 ## The world
 
-![The three traditions](docs/images/slimetribe-factions.png)
+![The three traditions](docs/images/slimetribe-factions-updated.png)
 
 - **The Crown of the Spring** (*Koruna Pramene*) — birth, order and tradition. Disciplined defenders, healing and control of the remaining springs.
 - **The Marsh Confederation** (*Bažinná konfederace*) — adaptation, freedom and transformation. Mobile forces, poison, terrain control and survival in hostile landscapes.
