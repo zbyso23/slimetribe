@@ -5,3 +5,14 @@ PASS SFX deterministic finite non-silent: hurt
 PASS SFX deterministic finite non-silent: hit
 PASS SFX deterministic finite non-silent: talk
 PASS SFX deterministic finite non-silent: win
+PASS song sanitization/events: theme
+PASS song sanitization/events: combat
+PASS song sanitization/events: ambient
+PASS song sanitization/events: chip
+PASS song sanitization/events: hybrid
+PASS song sanitization/events: racer
+PASS song sanitization/events: depth
+PASS song sanitization/events: rtype
+PASS song sanitization/events: dyna
+PASS song sanitization/events: axe
+PASS stereo mixdown + WAV

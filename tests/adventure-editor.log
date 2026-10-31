@@ -1,0 +1,6 @@
+PASS authoring draft isolation, terrain painting and occupied cell protection
+PASS start placement, map object authoring, inspector text and ID validation
+PASS authored scenario launches, text interaction, seeded battle and draft edits during battle
+PASS unreachable objective diagnostics, atomic play rejection and repair
+PASS spring replenishes living party once and remains spent after save/load
+PASS migration of an active battle into an authored map finds a safe start

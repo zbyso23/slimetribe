@@ -9,3 +9,5 @@ PASS stage selection, command locking, occupied collision and completed move sav
 PASS all 120 projected grid centers map back to correct cell
 PASS animated adventure entry, automatic battle transition and native render API path
 PASS battle state in HTML export and JSON reload rebuilds visual state
+PASS editor UI draft isolation, undo/redo, inspector and live render API
+PASS map file import/export, failed import rollback, draft play and standalone export
