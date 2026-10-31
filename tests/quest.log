@@ -1,0 +1,8 @@
+PASS cold start → intact intro → playable authored defense → defeat/retry → victory → three-way gate choice, 62 actions
+PASS OPEN: warning +1 turn, two valves, rescue, collapse, debrief, Q02 teaser and persistent checkpoint
+PASS HOLD: warning +1 turn, two valves, rescue, collapse, debrief, Q02 teaser and persistent checkpoint
+PASS PARTIAL: warning +1 turn, two valves, rescue, collapse, debrief, Q02 teaser and persistent checkpoint
+PASS optional evidence, timeout and partial rescue continue without softlock
+PASS gate policies have distinct consequences and PARTIAL needs escort for the best result
+PASS corrupt mission state/checkpoint and invalid references rejected atomically
+PASS editable map references and legacy non-quest campaigns remain supported

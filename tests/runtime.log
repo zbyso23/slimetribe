@@ -24,3 +24,5 @@ PASS top/side/front orthographic axes and orientation
 PASS all 120 CPU pick positions and rejection of other panels/header
 PASS true animated mesh geometry in CPU views
 PASS real Canvas raster outputs: model, editor, adventure, battle
+PASS Q01 animated adventure steps and outcome are identical at 30/60/120 FPS
+PASS Q01 UI: intact intro, defense, three-way choice, animated pressure warning/valve, save/load, procedural props, timeout/collapse/debrief, Q02 teaser and checkpoint

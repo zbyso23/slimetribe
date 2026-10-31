@@ -19,3 +19,5 @@ PASS full-width cinematic editor, pure scrubbing, moving actors and native/2D ca
 PASS cinematic undo/redo, invalid audio edit and map import rollback
 PASS cutscene HTML/JSON save, music offset restore, no SFX replay, local/global pause and skip continuation
 PASS Eldor music transport resumes at the expected tracker step
+PASS Q01 animated adventure steps and outcome are identical at 30/60/120 FPS
+PASS Q01 UI: intact intro, defense, three-way choice, animated pressure warning/valve, save/load, procedural props, timeout/collapse/debrief, Q02 teaser and checkpoint
