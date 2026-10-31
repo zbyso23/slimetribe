@@ -848,7 +848,7 @@
           },
           {
             "type": "message",
-            "text": "Seren: Odraz průzkum. Vyber spojence, pohyb a cíl. Útok stojí akci; healer léčí do 3 polí, mág kouzlí do 4. Když nikdo nemůže jednat, ukonči tah. Hrdinův pád umožní opakovat bitvu."
+            "text": "Seren: Přichází bažinný průzkum. Odrazíme ho a ochráníme průchod. Kliknutím na spojence jej vybereš, kliknutím na zem ho přesuneš a kliknutím na nepřítele zaútočíš. Léčitel může léčit, mág útočí kouzlem. Začneme obranou."
           },
           {
             "type": "objective",

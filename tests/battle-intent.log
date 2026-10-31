@@ -1,0 +1,7 @@
+PASS friendly selection is independent of movement/attack/spell intent and planning never mutates state
+PASS clicking an adjacent enemy chooses a validated attack without an action-mode switch
+PASS a mage uses its spell automatically; empty mana produces an explicit blocked intent
+PASS one target intent plans move-then-attack while leaving damage until the validated action
+PASS targets beyond this turn produce a clearly labelled approach without an impossible queued attack
+PASS healing is an explicit optional ability, not a prerequisite mode for selecting allies
+PASS acted/dead/outside/enemy-turn cases do not consume or mutate a command

@@ -11,3 +11,4 @@ PASS Q02 camp, root pulse, checkpoint reset and RPG pose survive save/load
 PASS complete Q02 via continuous movement/E, generated defense, three nodes, CARE and node checkpoint
 RPG rules complete
 PASS new Q02 spawn faces into the map and can walk toward camp without a camera turn
+PASS a root closing behind a crossing body permits escape from overlap without entering the closed cell

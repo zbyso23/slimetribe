@@ -1,0 +1,8 @@
+/* Screen-space picking of the same morph mesh rendered by the scene. Ground clicks
+   beside a unit must not be swallowed by a fixed-radius hit circle. */
+Game.Scene.Pick={};
+(function(P){
+P.projected=function(v){const model=modelRegistry[v.model];SlimeModels.sample(model,v.clip,v.elapsed);const points=[],r=v.rotation||0,c=Math.cos(r),s=Math.sin(r);for(let i=0;i<model.positions.length;i+=3){const p=ModelCalibration.point(v.model,Array.from(model.positions.subarray(i,i+3))).map(n=>n*.65);points.push(projectPoint(c*p[0]+s*p[2]+v.x-5.5,p[1],-s*p[0]+c*p[2]+v.z-4.5))}return{v,points,tri:model.tri}};
+function inside(px,py,a,b,c){const area=(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);if(Math.abs(area)<.01)return false;const sign=Math.sign(area);for(const [p,q] of [[a,b],[b,c],[c,a]]){const cross=((q.x-p.x)*(py-p.y)-(q.y-p.y)*(px-p.x))*sign;if(cross<-.8*Math.hypot(q.x-p.x,q.y-p.y))return false}return true}
+P.unitAt=function(px,py){let best=null;for(const v of Object.values(gameView.actors)){if(gameData.mode==='battle'&&!Game.Utils.alive(Game.Utils.unit(v.id)))continue;const mesh=P.projected(v),valid=mesh.points.filter(p=>p.depth>.01);if(!valid.length)continue;const xs=valid.map(p=>p.x),ys=valid.map(p=>p.y);if(px<Math.min(...xs)-1||px>Math.max(...xs)+1||py<Math.min(...ys)-1||py>Math.max(...ys)+1)continue;for(let i=0;i<mesh.tri.length;i+=3){const tri=[mesh.points[mesh.tri[i]],mesh.points[mesh.tri[i+1]],mesh.points[mesh.tri[i+2]]];if(tri.some(p=>p.depth<=.01)||!inside(px,py,...tri))continue;const depth=tri.reduce((n,p)=>n+p.depth,0)/3;if(!best||depth<best.p.depth)best={v,p:{x:px,y:py,depth}}}}return best};
+})(Game.Scene.Pick);

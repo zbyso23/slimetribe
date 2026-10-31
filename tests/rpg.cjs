@@ -22,3 +22,5 @@ flush(G,0);assert.equal(G.Quest.current().stage,'debrief');assert.equal(G.Quest.
 console.log('RPG rules complete');
 
 {const {G}=load(root);G.Quest.Q02.enter();flush(G);const R=G.Adventure.RPG;assert.equal(R.getPose().yaw,0);run(G,.5,{forward:1});assert.equal(G.data.adventure.hero.y,7);assert(!G.Scenario.isBlocking());console.log('PASS new Q02 spawn faces into the map and can walk toward camp without a camera turn')}
+
+{const G=fresh(),R=G.Adventure.RPG;G.data.adventure.hero={x:4,y:5};G.data.adventure.rpg={version:1,x:3.52,z:5,yaw:Math.PI*1.5,facing:Math.PI/2,pitch:.3,distance:3.8};G.data.adventure.plane.blocked=[5*12+3];G.Save.load(G.getState());assert(!R.fits(R.getPose().x,R.getPose().z));assert(R.update(.2,{forward:1}));assert(R.getPose().x>3.9);assert(R.fits(R.getPose().x,R.getPose().z));for(let i=0;i<30;i++)R.update(1/60,{forward:-1});assert(R.getPose().x>=3.66-1e-8);assert.equal(G.data.adventure.hero.x,4);console.log('PASS a root closing behind a crossing body permits escape from overlap without entering the closed cell')}
