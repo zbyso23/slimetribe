@@ -1,0 +1,2 @@
+/* Quest models use the same cached meshes and four material batches as scenery. */
+(function(O,V){const context=V.context;V.context=function(){const c=context(),editor=tab==='Adventure',playing=tab==='Hra'&&gameData.mode==='adventure'&&!Game.Cutscene.active();if(!editor&&!playing)return c;const a=editor?adventureDraft:gameData.adventure,q=editor?null:Game.Quest.current(),props=O.decorate(a,q,c?.props||[]),objects=O.props(a,q,props);return objects.length?{...(c||{}),props:[...props,...objects]}:c};})(Game.QuestObjects,Game.Quest.Visual);

@@ -70,8 +70,8 @@ for name,raw in [('before',base),('after',render(1,.4)),('water',render(2,.4)),(
 # including back-face culling: this detects inverted torus/cap/beam winding.
 enable(0x0B44)
 model=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
-for kind in ['wall','tower','dam','bridge','valve','rune','root','crystal','pool','cistern','apparatus','marker']:
+for kind in ['wall','tower','dam','bridge','valve','rune','root','crystal','pool','cistern','apparatus','marker','objective_camp','objective_spring','objective_record','objective_copy','objective_commentary','objective_fragment','objective_meeting','objective_exit','objective_control','objective_battle','objective_core','objective_marker']:
  script="const {G}=require('./tests/support.cjs').load(process.cwd());const t=G.Scene.Props.mesh({kind:"+json.dumps(kind)+",x:5.5,z:4.5,w:1.5,h:1.7,d:1.5});process.stdout.write(JSON.stringify(t.flatMap(t=>t.p.flatMap(p=>[...p,...t.n,...t.color,p[0],p[2]]))));"
- vertices=json.loads(subprocess.check_output([node,'-e',script],cwd=root,text=True));arr=(F*len(vertices))(*vertices);data(0x8892,C.sizeof(arr),arr,0x88E4);raw=render(0,mode=1);assert coverage(raw)>400,(kind,coverage(raw))
+ vertices=json.loads(subprocess.check_output([node,'-e',script],cwd=root,text=True));arr=(F*len(vertices))(*vertices);data(0x8892,C.sizeof(arr),arr,0x88E4);raw=render(0,mode=1);assert coverage(raw)>(20 if kind.startswith('objective_') else 400),(kind,coverage(raw))
  Image.frombytes('RGBA',(W,H),raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM).save(root/'tests'/('recipe-gpu-'+kind+'.png'))
-print('PASS all 12 compiled recipe meshes actually rasterize with back-face culling and vertex materials')
+print('PASS all 24 compiled scenery/quest recipe meshes actually rasterize with back-face culling and vertex materials')

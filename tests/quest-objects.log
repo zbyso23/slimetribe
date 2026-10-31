@@ -1,0 +1,4 @@
+PASS all authored objects receive semantic recipes, archive records/core are distinct, existing detailed props avoid duplicates and maps remain unchanged
+PASS spent springs/camps/runes/read states dim without changing game state; resolved encounters disappear and seed zero is handled
+PASS all semantic recipes fit their original walkable cell and leave its interaction center clear
+PASS all character model data, calibration and RPG heading code are untouched

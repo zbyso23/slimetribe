@@ -17,5 +17,5 @@ I.onChange=function(){if(!P.player){document.documentElement.setAttribute('lang'
 P.hud.addEventListener('change',e=>{if(e.target.dataset?.language!==undefined)I.setLanguage(e.target.value)});
 const validate=validateProject;validateProject=function(p){I.validateLocale(p?.locale);return validate(p)};
 const showBefore=show;show=function(){showBefore();if(P.player){P.nav();P.refresh(true)}};
-SlimeTribe.i18n=I;SlimeTribe.version='0.12.4';show();
+SlimeTribe.i18n=I;SlimeTribe.version='0.12.5';show();
 })(Game.I18n,Game.Player);

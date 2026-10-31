@@ -1,0 +1,2 @@
+PASS Q01–Q04 objectives share scenery material batches (at most four draws), fallback geometry and read-only rendering
+PASS old terrain cones are removed, resolved battle markers disappear, editor uses semantic models and battle has no Adventure marker leakage

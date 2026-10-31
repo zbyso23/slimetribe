@@ -1,3 +1,3 @@
-PASS three composite objects and all component primitives use a single static draw, cached redraw and material reset
+PASS scenery and semantic quest objects share material batches, cached redraw and material reset
 PASS Toxic skin matte shader and death dissolve retain scoped GL state
 PASS workshop launch → controllable Adventure → saved E dialogue → battle; phone-visible poison badges and deterministic procedural skin

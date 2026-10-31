@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "created_utc": "2026-10-30T18:42:35.779904+00:00",
+  "created_utc": "2026-10-30T19:30:15.760070+00:00",
   "native_canvas": true,
   "native_shader_gpu": true,
   "browser_verified": false,
@@ -9,206 +9,213 @@
       "suite": "models",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.691
+      "seconds": 0.733
     },
     {
       "suite": "calibration",
       "exit_code": 0,
       "assertion_groups_passed": 4,
-      "seconds": 0.065
+      "seconds": 0.064
     },
     {
       "suite": "materials",
       "exit_code": 0,
       "assertion_groups_passed": 5,
-      "seconds": 0.079
+      "seconds": 0.063
     },
     {
       "suite": "dsp",
       "exit_code": 0,
       "assertion_groups_passed": 18,
-      "seconds": 0.181
+      "seconds": 0.208
     },
     {
       "suite": "game",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.145
+      "seconds": 0.127
     },
     {
       "suite": "adventure-editor",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.084
+      "seconds": 0.091
     },
     {
       "suite": "scenario",
       "exit_code": 0,
       "assertion_groups_passed": 9,
-      "seconds": 0.082
+      "seconds": 0.081
     },
     {
       "suite": "cutscene",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.091
+      "seconds": 0.094
     },
     {
       "suite": "quest",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 0.196
+      "seconds": 0.18
     },
     {
       "suite": "arrival",
       "exit_code": 0,
       "assertion_groups_passed": 5,
-      "seconds": 0.39
+      "seconds": 0.361
     },
     {
       "suite": "q02",
       "exit_code": 0,
       "assertion_groups_passed": 15,
-      "seconds": 3.974
+      "seconds": 3.864
     },
     {
       "suite": "q03",
       "exit_code": 0,
       "assertion_groups_passed": 22,
-      "seconds": 3.051
+      "seconds": 3.072
     },
     {
       "suite": "q04",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 1.35
+      "seconds": 1.416
     },
     {
       "suite": "recipes",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.261
+      "seconds": 0.285
+    },
+    {
+      "suite": "quest-objects",
+      "exit_code": 0,
+      "assertion_groups_passed": 4,
+      "seconds": 0.187
     },
     {
       "suite": "i18n",
       "exit_code": 0,
       "assertion_groups_passed": 4,
-      "seconds": 0.107
+      "seconds": 0.101
     },
     {
       "suite": "toxic",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.158
+      "seconds": 0.179
     },
     {
       "suite": "campaign",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 4.182
+      "seconds": 4.292
     },
     {
       "suite": "rpg",
       "exit_code": 0,
       "assertion_groups_passed": 13,
-      "seconds": 0.324
+      "seconds": 0.351
     },
     {
       "suite": "rpg-orientation",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.252
+      "seconds": 0.321
     },
     {
       "suite": "battle-intent",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.112
+      "seconds": 0.105
     },
     {
       "suite": "player",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 4.856
+      "seconds": 5.184
     },
     {
       "suite": "ui",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 0.871
+      "seconds": 0.814
     },
     {
       "suite": "runtime",
       "exit_code": 0,
       "assertion_groups_passed": 44,
-      "seconds": 4.702
+      "seconds": 7.483
     },
     {
       "suite": "runtime-gl",
       "exit_code": 0,
       "assertion_groups_passed": 39,
-      "seconds": 3.166
+      "seconds": 3.815
     },
     {
       "suite": "player-gl",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 3.435
+      "seconds": 4.282
     },
     {
       "suite": "ui-gl",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 0.812
+      "seconds": 0.871
     },
     {
       "suite": "mobile",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.882
+      "seconds": 0.861
     },
     {
       "suite": "toxic-ui",
       "exit_code": 0,
       "assertion_groups_passed": 2,
-      "seconds": 0.839
+      "seconds": 0.938
     },
     {
       "suite": "toxic-ui-gl",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 0.826
+      "seconds": 0.847
     },
     {
       "suite": "recipes-ui",
       "exit_code": 0,
       "assertion_groups_passed": 2,
-      "seconds": 1.124
+      "seconds": 1.156
     },
     {
       "suite": "i18n-ui",
       "exit_code": 0,
       "assertion_groups_passed": 2,
-      "seconds": 0.774
+      "seconds": 0.73
     },
     {
       "suite": "i18n-ui-gl",
       "exit_code": 0,
       "assertion_groups_passed": 2,
-      "seconds": 0.767
+      "seconds": 0.717
+    },
+    {
+      "suite": "quest-objects-ui",
+      "exit_code": 0,
+      "assertion_groups_passed": 2,
+      "seconds": 2.599
     },
     {
       "suite": "shader-gpu",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 2.264
+      "seconds": 3.936
     }
   ],
   "all_passed": true,
-  "note": "Assertion groups are not line/branch coverage. Mock WebGL and DOM harness are not browser tests.",
-  "final_presentation_rechecks": {
-    "i18n-ui": true,
-    "i18n-ui-gl": true,
-    "note": "Both targeted integration gates passed again after removing synchronous world redraw from language change."
-  }
+  "note": "Assertion groups are not line/branch coverage. Mock WebGL and DOM harness are not browser tests."
 }
