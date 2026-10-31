@@ -1,0 +1,14 @@
+{
+  "source": "Eldor Studio XV user supplied HTML",
+  "sha256": "81199f27bafdc11ce8abdf724463163d3479edfacf66120e86ad990aedb57540",
+  "modules": [
+    "snd/snd-engine.js",
+    "snd/snd-adpcm.js",
+    "snd/snd-sample.js",
+    "snd/snd-song.js",
+    "snd/snd-library.js",
+    "snd/snd-audio.js",
+    "game/game-music.js",
+    "game/game-sfx.js"
+  ]
+}
