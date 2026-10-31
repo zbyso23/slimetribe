@@ -1,0 +1,7 @@
+PASS camera, shortest rotation, actor position/morph time, subtitles, fade and music sampling
+PASS scenario waits, gameplay freezes, save resumes without cue replay, pause/skip and once completion
+PASS identical 30/60/120 FPS completion and each cue exactly once
+PASS chained cutscenes → generated battle and standalone battle cutscene freezes turns
+PASS damaged player/cue state, missing scenes and invalid animation rejected atomically
+PASS bounded timeline, camera geometry, actor references and audio reference validation
+PASS deterministic scrubbing and preview leaves campaign/map data unchanged

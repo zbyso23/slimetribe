@@ -15,6 +15,10 @@ PASS single HTML renderer switch preserves running state and authored map
 PASS scenario authoring, undo/redo, play, dialog and project reload
 PASS animated entry stops at dialog and UI response releases game controls
 PASS a scenario closing the next path cell stops movement at the last legal cell
+PASS full-width cinematic editor, pure scrubbing, moving actors and native/2D camera preview
+PASS cinematic undo/redo, invalid audio edit and map import rollback
+PASS cutscene HTML/JSON save, music offset restore, no SFX replay, local/global pause and skip continuation
+PASS Eldor music transport resumes at the expected tracker step
 PASS four exactly equal quadrants including odd dimensions
 PASS top/side/front orthographic axes and orientation
 PASS all 120 CPU pick positions and rejection of other panels/header
