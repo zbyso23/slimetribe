@@ -1,0 +1,11 @@
+EXPECTED FAILURE: former Phase9.1 input adapter clears a held keyboard key on canvas lostpointercapture.
+AssertionError [ERR_ASSERTION]: Mouse capture must not clear keyboard movement
+    at /workspace/scratch/cd2a80be12fb/work/slimetribe-rpg-polish/tests/repro-pointer-temp.cjs:60:128
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: -1,
+  operator: '==',
+  diff: 'simple'
+}

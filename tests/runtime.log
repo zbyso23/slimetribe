@@ -34,3 +34,8 @@ PASS RPG pointer camera, seamless terrain mesh, saved pose and renderer switchin
 PASS registered E action, repeat suppression and paused movement lock
 PASS software raster inspection of third-person camera/terrain/MD2 geometry (not a WebGL/browser test)
 PASS natural cinematic end restores the exact RPG camera/facing and clears held movement
+PASS real RAF chain keeps a held key moving across four cells and panel/minimap rebuilds
+PASS releasing mouse capture does not cancel a held movement key (Phase9.1 regression)
+PASS persistent on-screen movement buttons survive cell entry, redraws and release correctly
+PASS XYZ calibration UI, persistence, corrupt import rejection, HTML export and reset
+PASS visible runtime error diagnostics and clean sandbox restart

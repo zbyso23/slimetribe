@@ -1,0 +1,4 @@
+PASS zero calibration preserves the exact legacy matrix for every family and heading
+PASS local X/Y/Z axes and combined XYZ order match independent geometric expectations
+PASS calibrated basis remains orthogonal with preserved scale and translation
+PASS invalid calibration rejects atomically without history changes; old projects remain valid

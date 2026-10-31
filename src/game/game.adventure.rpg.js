@@ -4,8 +4,11 @@ Game.Adventure.RPG={version:1,speed:2.4,radius:.16};
 (function(R){
 let owner=null,pose=null,acc=0,internal=false;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-R.ensure=function(){const a=gameData.adventure,h=a.hero;if(owner!==a||!pose||Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){owner=a;pose=a.rpg||{version:1,x:h.x,z:h.y,yaw:Math.PI,facing:0,pitch:.28,distance:3.8};if(Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){pose.x=h.x;pose.z=h.y}acc=0}return pose};
+R.spawn=function(h){const options=[Math.PI,0,Math.PI/2,Math.PI*1.5],room=yaw=>{let n=0;for(let i=1;i<=4;i++){if(R.blocked(Math.round(h.x-Math.sin(yaw)*i),Math.round(h.y-Math.cos(yaw)*i)))break;n++}return n};let yaw=options[0];if(room(yaw)<2)for(const candidate of options)if(room(candidate)>room(yaw))yaw=candidate;return{version:1,x:h.x,z:h.y,yaw,facing:(yaw+Math.PI)%(Math.PI*2),pitch:.28,distance:3.8}};
+R.ensure=function(){const a=gameData.adventure,h=a.hero;if(owner!==a||!pose||Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){owner=a;pose=a.rpg||R.spawn(h);if(Math.round(pose.x)!==h.x||Math.round(pose.z)!==h.y){pose.x=h.x;pose.z=h.y}acc=0}return pose};
 R.getPose=()=>({...R.ensure()});
+R.movementStatus=function(){if(gameData.mode!=='adventure')return 'battle';if(Game.Cutscene.active())return 'cutscene';if(Game.Scenario.isBlocking())return 'dialog';if(['collapse','debrief','q02','q03'].includes(Game.Quest.current()?.stage))return 'chapter-end';return 'ready'};
+R.mock=function(){const s=Game.createState();s.adventure.world.mapId='rpg_sandbox';s.adventure.world.mapName='RPG test bez scénáře';s.adventure.hero={x:5,y:7};s.adventure.plane.blocked=[27,28,39,40,67,79];s.adventure.objects=[{id:'mock_sign',type:'sign',x:5,y:5,text:'Test interakce: drž WASD nebo šipky. E používá objekt.'},{id:'mock_spring',type:'spring',x:3,y:6,text:'Testovací pramen doplnil družinu.'}];s.adventure.encounters=[{id:'mock_battle',x:9,y:2,seed:1625,faction:'swamp',resolved:false}];s.adventure.rpg={version:1,x:5,z:7,yaw:0,facing:Math.PI,pitch:.32,distance:3.8};return Game.bind(s)};
 const angle=v=>((v%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
 R.heading=()=>R.ensure().facing??angle(R.ensure().yaw+Math.PI);
 /* Legacy MD2CharacterComplex rotated the body mesh by -PI/2: raw Slizak faces +X. */

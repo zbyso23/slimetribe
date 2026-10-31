@@ -20,3 +20,5 @@ assert(walkRPG(G,role('camp')));R.interact();assert(walkRPG(G,role('locals')));R
 for(const k of ['nodeA','nodeB','nodeC']){assert(walkRPG(G,role(k)),k);assert(R.interact().ok);G.Save.load(G.getState())}
 flush(G,0);assert.equal(G.Quest.current().stage,'debrief');assert.equal(G.Quest.current().policy,'CARE');assert.equal(G.Quest.current().nodes.length,3);assert(G.Quest.Q02.restore('nodes'));G.Save.load(G.getState());assert.equal(R.getPose().z,G.data.adventure.hero.y);console.log('PASS complete Q02 via continuous movement/E, generated defense, three nodes, CARE and node checkpoint')}
 console.log('RPG rules complete');
+
+{const {G}=load(root);G.Quest.Q02.enter();flush(G);const R=G.Adventure.RPG;assert.equal(R.getPose().yaw,0);run(G,.5,{forward:1});assert.equal(G.data.adventure.hero.y,7);assert(!G.Scenario.isBlocking());console.log('PASS new Q02 spawn faces into the map and can walk toward camp without a camera turn')}
