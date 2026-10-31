@@ -11,3 +11,7 @@ PASS animated adventure entry, automatic battle transition and native render API
 PASS battle state in HTML export and JSON reload rebuilds visual state
 PASS editor UI draft isolation, undo/redo, inspector and live render API
 PASS map file import/export, failed import rollback, draft play and standalone export
+PASS single HTML renderer switch preserves running state and authored map
+PASS scenario authoring, undo/redo, play, dialog and project reload
+PASS animated entry stops at dialog and UI response releases game controls
+PASS a scenario closing the next path cell stops movement at the last legal cell
