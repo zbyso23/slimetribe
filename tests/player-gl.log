@@ -7,4 +7,5 @@ PASS battle → visible decision → adventure objective → first-step warning 
 PASS pause/help/menu and saved-game continuation cannot leave the player invisibly frozen
 PASS authoring tools remain available in a separate workshop and returning restores the focused player shell
 PASS complete player path: Q01 rescue/escape → Q02 intro/camp/real defense/three nodes/choice → playable Q03 handoff
-PASS full Q03 player route: keyboard exploration/E → real seals battle → three readings → visible retryable provenance puzzle/save/resume → real core battle → ethical choice → explicit Q04 end
+PASS full Q03 player route: keyboard exploration/E → real seals battle → retryable provenance/save → real core battle → ethical choice → playable Q04
+PASS full Q01–Q04 player campaign: real keyboard/E Adventure trials in mixed order, retry/save, carried histories, sole Q04 battle, delayed revelation and explicit Q05 end

@@ -1,0 +1,8 @@
+PASS talren → sarym → moren independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS talren → moren → sarym independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS sarym → talren → moren independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS sarym → moren → talren independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS moren → talren → sarym independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS moren → sarym → talren independent Adventure trials, save/load after each input, real final AI battle and reveal only after cutscene
+PASS incomplete gate/unsafe intake/wrong bridge refuse safely, memory can retry, malformed saves reject atomically, finite camp and defeat retry preserve all three trials
+PASS bridge cannot close on hero, each phase preserves routes, and original map editor validates and renames Q04 roles

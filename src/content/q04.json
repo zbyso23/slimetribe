@@ -1,0 +1,914 @@
+{
+  "format": "slimetribe.adventure-map",
+  "version": 1,
+  "id": "three_witnesses",
+  "name": "Hory tří svědků · jižní Vareth",
+  "start": {
+    "x": 5,
+    "y": 8
+  },
+  "plane": {
+    "width": 12,
+    "height": 10,
+    "terrain": [
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "swamp",
+      "swamp",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins",
+      "ruins"
+    ],
+    "blocked": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      23,
+      24,
+      35,
+      36,
+      47,
+      48,
+      59,
+      60,
+      71,
+      72,
+      83,
+      96,
+      107,
+      108,
+      109,
+      118,
+      119,
+      67,
+      68
+    ]
+  },
+  "objects": [
+    {
+      "id": "camp",
+      "x": 5,
+      "y": 7,
+      "type": "sign",
+      "text": "Tábor výpravy. Před závěrečnou zkouškou lze jednou zotavit celou družinu."
+    },
+    {
+      "id": "bypass",
+      "x": 1,
+      "y": 3,
+      "type": "sign",
+      "text": "Odlehčovací kanál. Nejdřív otevři obtok; teprve potom bezpečně uzavři přívod."
+    },
+    {
+      "id": "intake",
+      "x": 3,
+      "y": 2,
+      "type": "sign",
+      "text": "Přívod do Talrenovy síně. Uzavření bez otevřeného odlehčení by přesunulo nebezpečí k druhým."
+    },
+    {
+      "id": "talren",
+      "x": 2,
+      "y": 4,
+      "type": "sign",
+      "text": "Talrenova runa se rozsvítí, když ochrana udrží průchod i bezpečný odtok."
+    },
+    {
+      "id": "bridge_switch",
+      "x": 10,
+      "y": 7,
+      "type": "sign",
+      "text": "Živý most má klidovou podobu a dvě proměny. V první naslouchej východnímu břehu, v druhé západnímu."
+    },
+    {
+      "id": "bank_a",
+      "x": 9,
+      "y": 5,
+      "type": "sign",
+      "text": "První břeh potřebuje první proměnu mostu."
+    },
+    {
+      "id": "bank_b",
+      "x": 8,
+      "y": 3,
+      "type": "sign",
+      "text": "Druhý břeh potřebuje druhou proměnu mostu."
+    },
+    {
+      "id": "sarym",
+      "x": 9,
+      "y": 2,
+      "type": "sign",
+      "text": "Sarymina runa vyžaduje bezpečný návrat z obou proměn."
+    },
+    {
+      "id": "memory_a",
+      "x": 2,
+      "y": 7,
+      "type": "sign",
+      "text": "První svědectví: zadržení vody chránilo tehdejší věk. Tím začíná posloupnost."
+    },
+    {
+      "id": "memory_b",
+      "x": 3,
+      "y": 8,
+      "type": "sign",
+      "text": "Druhé svědectví: živá paměť přežila změnu. Navazuje na ochranu starého věku."
+    },
+    {
+      "id": "memory_c",
+      "x": 7,
+      "y": 8,
+      "type": "sign",
+      "text": "Třetí svědectví: opis změnil kroniku. Porovnej jej až po ochraně a živé paměti."
+    },
+    {
+      "id": "gate",
+      "x": 6,
+      "y": 2,
+      "type": "sign",
+      "text": "Společná brána. Tři samostatné runy vytvoří jediný klíč."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "unity_guardian",
+      "x": 10,
+      "y": 1,
+      "seed": 4842,
+      "faction": "necro"
+    }
+  ],
+  "cuts": {
+    "q04_intro": {
+      "version": 1,
+      "id": "q04_intro",
+      "name": "Tři cesty, jeden klíč",
+      "duration": 16,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -5,
+            7,
+            9
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "t": 16,
+          "p": [
+            4,
+            4,
+            7
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.6,
+          "opacity": 0
+        },
+        {
+          "t": 15.4,
+          "opacity": 0
+        },
+        {
+          "t": 16,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Seren: Tři cesty. Předkové je rozdělili záměrně.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 5.333333333333333,
+          "text": "Nara: Každou můžeme prozkoumat vlastním tempem. Nespěchá na nás žádná vlna.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 10.666666666666666,
+          "text": "Irik: Pravdu neurčuje, kdo ji pamatuje nejdéle. Prozkoumejme všechny tři síně.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    },
+    "q04_revelation": {
+      "version": 1,
+      "id": "q04_revelation",
+      "name": "Sál nezapsané přísahy",
+      "duration": 16,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "aela",
+          "model": "slizak",
+          "faction": "crown",
+          "x": 6,
+          "z": 4,
+          "rotation": 0
+        },
+        {
+          "id": "ruen",
+          "model": "slizak",
+          "faction": "necro",
+          "x": 7,
+          "z": 4,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -5,
+            7,
+            9
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "t": 16,
+          "p": [
+            4,
+            4,
+            7
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.6,
+          "opacity": 0
+        },
+        {
+          "t": 15.4,
+          "opacity": 0
+        },
+        {
+          "t": 16,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Irik: Čtvrté svědectví nebylo ztraceno. Někdo je skryl.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 2.6666666666666665,
+          "text": "Ruenova ozvěna: Viděl jsem přicházející konec. Zvolil jsem špatný okamžik.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 5.333333333333333,
+          "text": "Talren, Sarym a Móren zachránili svůj věk. Ochrana však neměla trvat navždy.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 8.0,
+          "text": "Aela: My jsme zachránili svůj věk. Vy musíte zachránit svůj.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 10.666666666666666,
+          "text": "Čtvrtá přísaha: stará ochrana musí skončit, pokud působí více utrpení než nebezpečí.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 13.333333333333334,
+          "text": "Nara: Auralis pije z vody, kterou nazývá jen svou. Jeho prameny patří do společného koloběhu.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    },
+    "q05_teaser": {
+      "version": 1,
+      "id": "q05_teaser",
+      "name": "Cesta k Auralisu",
+      "duration": 16,
+      "interp": "ease",
+      "actors": [
+        {
+          "id": "hero",
+          "model": "slizak",
+          "faction": "red",
+          "x": 4,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "nara",
+          "model": "slizak",
+          "faction": "swamp",
+          "x": 6,
+          "z": 5,
+          "rotation": 0
+        },
+        {
+          "id": "irik",
+          "model": "magican",
+          "faction": "necro",
+          "x": 4,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "healer",
+          "model": "healer",
+          "faction": "swamp",
+          "x": 5,
+          "z": 6,
+          "rotation": 0
+        },
+        {
+          "id": "seren",
+          "model": "octopus",
+          "faction": "crown",
+          "x": 3,
+          "z": 5,
+          "rotation": 0
+        }
+      ],
+      "actorKeys": [],
+      "k": [
+        {
+          "t": 0,
+          "p": [
+            -5,
+            7,
+            9
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "t": 16,
+          "p": [
+            4,
+            4,
+            7
+          ],
+          "l": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "fadeKeys": [
+        {
+          "t": 0,
+          "opacity": 1
+        },
+        {
+          "t": 0.6,
+          "opacity": 0
+        },
+        {
+          "t": 15.4,
+          "opacity": 0
+        },
+        {
+          "t": 16,
+          "opacity": 1
+        }
+      ],
+      "cues": [
+        {
+          "t": 0.0,
+          "text": "Slizák: Nepřineseme jim rozkaz. Přineseme jim možnost volby.",
+          "music": "ambient",
+          "sfx": ""
+        },
+        {
+          "t": 5.333333333333333,
+          "text": "Výprava míří zpět k Auralisu s důkazy o společném koloběhu.",
+          "music": "",
+          "sfx": ""
+        },
+        {
+          "t": 10.666666666666666,
+          "text": "FINÁLE AURALIS · další kapitola zatím není hratelná.",
+          "music": "",
+          "sfx": ""
+        }
+      ]
+    }
+  },
+  "scenario": {
+    "version": 1,
+    "rules": [
+      {
+        "id": "q04_intro",
+        "name": "q04_intro",
+        "once": true,
+        "trigger": {
+          "type": "start"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q04_intro"
+          },
+          {
+            "type": "objective",
+            "text": "Prozkoumej Talrenovu síň, Sarymin most a Mórenova svědectví v libovolném pořadí. Tři runy otevřou společnou bránu."
+          }
+        ]
+      },
+      {
+        "id": "q04_talren",
+        "name": "q04_talren",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q04_talren"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "flag",
+            "flag": "q04_talren",
+            "value": true
+          },
+          {
+            "type": "message",
+            "text": "Seren: Řád má smysl jen, pokud někoho chrání."
+          }
+        ]
+      },
+      {
+        "id": "q04_sarym",
+        "name": "q04_sarym",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q04_sarym"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "flag",
+            "flag": "q04_sarym",
+            "value": true
+          },
+          {
+            "type": "message",
+            "text": "Nara: Proměna nesmí pohltit toho, koho měla zachránit."
+          }
+        ]
+      },
+      {
+        "id": "q04_moren",
+        "name": "q04_moren",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q04_moren"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "flag",
+            "flag": "q04_moren",
+            "value": true
+          },
+          {
+            "type": "message",
+            "text": "Irik: Máme ochranu, proměnu i ověřenou paměť. Teprve společně dávají smysl."
+          }
+        ]
+      },
+      {
+        "id": "q04_guardian",
+        "name": "q04_guardian",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q04_guardian"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "message",
+            "text": "Hlas systému: Nestačí otevřít. Musíte porozumět. Tři runy jsou spojené; odraz stráže závěrečné zkoušky a uchovej Slizákovo jádro."
+          },
+          {
+            "type": "battle",
+            "ref": "unity_guardian"
+          }
+        ]
+      },
+      {
+        "id": "q04_unveil",
+        "name": "q04_unveil",
+        "once": true,
+        "trigger": {
+          "type": "victory",
+          "ref": "unity_guardian"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q04_revelation"
+          },
+          {
+            "type": "flag",
+            "flag": "q04_revealed",
+            "value": true
+          },
+          {
+            "type": "objective",
+            "text": "Čtvrtá přísaha a společný koloběh jsou odhalené. Připrav výpravu k Auralisu."
+          }
+        ]
+      },
+      {
+        "id": "q05_teaser",
+        "name": "q05_teaser",
+        "once": true,
+        "trigger": {
+          "type": "signal",
+          "ref": "q05_teaser"
+        },
+        "condition": null,
+        "actions": [
+          {
+            "type": "cutscene",
+            "ref": "q05_teaser"
+          }
+        ]
+      }
+    ]
+  },
+  "quest": {
+    "id": "q04",
+    "version": 1,
+    "encounter": "unity_guardian",
+    "roles": {
+      "camp": "camp",
+      "bypass": "bypass",
+      "intake": "intake",
+      "talren": "talren",
+      "bridge_switch": "bridge_switch",
+      "bank_a": "bank_a",
+      "bank_b": "bank_b",
+      "sarym": "sarym",
+      "memory_a": "memory_a",
+      "memory_b": "memory_b",
+      "memory_c": "memory_c",
+      "gate": "gate"
+    },
+    "bridgeCells": [
+      67,
+      68
+    ],
+    "props": [
+      {
+        "kind": "tower",
+        "x": 0,
+        "z": 2,
+        "w": 0.9,
+        "h": 3,
+        "d": 0.9
+      },
+      {
+        "kind": "tower",
+        "x": 11,
+        "z": 3,
+        "w": 0.9,
+        "h": 3,
+        "d": 0.9
+      },
+      {
+        "kind": "rune",
+        "x": 2,
+        "z": 4,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "rune",
+        "x": 9,
+        "z": 2,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "rune",
+        "x": 2,
+        "z": 7,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "rune",
+        "x": 3,
+        "z": 8,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "rune",
+        "x": 7,
+        "z": 8,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "rune",
+        "x": 6,
+        "z": 2,
+        "w": 0.5,
+        "h": 0.8,
+        "d": 0.5
+      },
+      {
+        "kind": "bridge",
+        "x": 7,
+        "z": 5,
+        "w": 0.9,
+        "h": 0.16,
+        "d": 0.9,
+        "openCell": 67
+      },
+      {
+        "kind": "bridge",
+        "x": 8,
+        "z": 5,
+        "w": 0.9,
+        "h": 0.16,
+        "d": 0.9,
+        "openCell": 68
+      },
+      {
+        "kind": "root",
+        "x": 7,
+        "z": 5,
+        "w": 0.7,
+        "h": 0.9,
+        "d": 0.7,
+        "rootCell": 67
+      },
+      {
+        "kind": "root",
+        "x": 8,
+        "z": 5,
+        "w": 0.7,
+        "h": 0.9,
+        "d": 0.7,
+        "rootCell": 68
+      }
+    ]
+  }
+}
