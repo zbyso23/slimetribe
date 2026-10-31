@@ -1,0 +1,11 @@
+PASS save/load during battle and independent adventure state
+PASS 100 deterministic seeds and connected battle spawn lanes
+PASS manual battle-map override and blocked spawn rejection
+PASS movement budget, team/turn rules, one action and adventure isolation
+PASS healer health clamp/mana, real mage spell cost and octopus cannot cast
+PASS bounded enemy AI and next-round resource reset
+PASS victory return, HP/mana persistence and completed encounters do not repeat
+PASS defeat checkpoint retry restores original party and same generated map
+PASS invalid save rejected without state mutation
+PASS legal adventure traversal into generated battle
+PASS complete public-rule combat simulation: victory 6 rounds 59 steps

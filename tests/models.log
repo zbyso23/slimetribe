@@ -1,3 +1,7 @@
 PASS full legacy face decode, UV, normalization and all morph frames: slizak 386 triangles
 PASS full legacy face decode, UV, normalization and all morph frames: healer 194 triangles
 PASS full legacy face decode, UV, normalization and all morph frames: magican 820 triangles
+PASS full legacy face decode, UV, normalization and all morph frames: octopus 536 triangles
+PASS deterministic paths, adjacency, blocked/occupied/outside cells
+PASS equal movement at 30/60/120 FPS, exact endpoint and path completion
+PASS corrupt geometry and fifth model rejected

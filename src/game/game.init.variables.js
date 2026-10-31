@@ -1,0 +1,11 @@
+/* SlimeTribe game state. State is serializable; renderer has no authority over rules. */
+const Game={Utils:{cloneObj:o=>structuredClone(o)},Adventure:{Grid:{},Controls:{},Events:{}},Battle:{Grid:{},Animation:{},Ai:{},Controls:{},Events:{}},Scene:{Graphics:{},Camera:{},Lights:{},Render:{}},Save:{}};
+let gameData;
+(function(){const clone=o=>structuredClone(o);Game.createUnit=function(id,model,faction,team,x=0,y=0){const key=model+(faction==='swamp'?'-swamp':faction==='necro'?'-necro':''),stats=clone(monstersList[key].stats);return{id,model,faction,team,x,y,stats,healthRemain:stats.health,manaRemain:stats.mana,speedRemain:stats.speed,acted:false}};
+Game.createState=function(){const party=[Game.createUnit('hero','slizak','red','allies'),Game.createUnit('healer','healer','crown','allies'),Game.createUnit('mage','magican','crown','allies'),Game.createUnit('guard','octopus','crown','allies')];return {version:1,mode:'adventure',campaign:{party,completed:[],log:['Výcviková oblast. Vydej se k označenému střetu.']},adventure:{world:{ready:true,mapId:'training'},plane:{width:12,height:10,gridWidth:12,gridHeight:10,blocked:[28,29,40,41,52,53,77,78,89,90],terrain:Array.from({length:120},(_,i)=>i%12>7?'swamp':Math.floor(i/12)>6?'ruins':'grass')},hero:{x:2,y:2},selection:{selected:'hero'},encounters:[{id:'marsh_patrol',x:8,y:4,seed:1625,faction:'swamp',resolved:false},{id:'archive_guard',x:3,y:8,seed:2425,faction:'necro',resolved:false}]},battle:null,revision:0}};
+Game.bind=function(state){Game.Battle.Grid._range=null;gameData=state;Game.data=state;return state};Game.bind(Game.createState());Game.log=function(message){gameData.campaign.log.push(message);if(gameData.campaign.log.length>80)gameData.campaign.log.shift();gameData.revision++};
+Game.Utils.distance=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);Game.Utils.unit=id=>gameData.battle?.units.find(a=>a.id===id);Game.Utils.alive=a=>a.healthRemain>0;
+Game.Utils.path=function(plane,from,to,occupied=[]){return SlimeModels.findPath(plane,{x:from.x,z:from.y},{x:to.x,z:to.y},occupied.map(a=>({x:a.x,z:a.y})))?.map(p=>({x:p.x,y:p.z}))??null};
+Game.Utils.rng=function(seed){let a=seed>>>0;return()=>{a=(a+0x6d2b79f5)|0;let t=Math.imul(a^a>>>15,1|a);t^=t+Math.imul(t^t>>>7,61|t);return((t^t>>>14)>>>0)/4294967296}};
+Game.getState=()=>clone(gameData);
+})();
