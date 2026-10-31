@@ -44,7 +44,7 @@ if(matKind>0){
   vec3 W=normalize(N+vec3(cos(wp.x*4.+ft*speed*1.3),0.,-sin(wp.z*5.-ft*speed))*.19);
   float reflection=pow(max(dot(W,H),0.),mix(100.,8.,rough));
   if(matKind==2)col=mix(col,vec3(.035,.31,.39)+wave*.025,.48)+vec3(.65,.86,1.)*reflection*(.3+wet*1.4)+vec3(.05,.19,.22)*rim;
-  else col=col*(.88+wave*.025)+vec3(.42,.63,.45)*reflection*wet*.85;
+  else {col=col*(.88+wave*.025)+vec3(.42,.63,.45)*reflection*wet*.85;if(wet<.2){float vein=pow(1.-abs(sin(wp.y*17.+sin(wp.x*21.)+sin(wp.z*19.))),10.);col=mix(col,vec3(.65,.82,.13),vein*.65);}}
  }
  if(matKind==4){float pulse=.6+.4*sin(ft*speed*2.4+wp.y*3.);float rune=.4+.6*pow(abs(sin(wp.y*12.+sin(wp.x*7.))),8.);col+=fcol*glow*pulse*rune+fcol*rim*.25+vec3(.8,.9,1.)*shine*wet*.35;}
  if(matKind==5)col=mix(col,vec3(1.,.12,.055),clamp(glow,0.,1.)*.8);

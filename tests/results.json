@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "created_utc": "2026-10-30T14:41:34.942792+00:00",
+  "created_utc": "2026-10-30T15:38:20.896052+00:00",
   "native_canvas": true,
   "native_shader_gpu": true,
   "browser_verified": false,
@@ -9,151 +9,169 @@
       "suite": "models",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 1.255
+      "seconds": 1.425
     },
     {
       "suite": "calibration",
       "exit_code": 0,
       "assertion_groups_passed": 4,
-      "seconds": 0.092
+      "seconds": 0.133
     },
     {
       "suite": "materials",
       "exit_code": 0,
       "assertion_groups_passed": 5,
-      "seconds": 0.123
+      "seconds": 0.116
     },
     {
       "suite": "dsp",
       "exit_code": 0,
       "assertion_groups_passed": 18,
-      "seconds": 0.36
+      "seconds": 0.362
     },
     {
       "suite": "game",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.185
+      "seconds": 0.25
     },
     {
       "suite": "adventure-editor",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.141
+      "seconds": 0.205
     },
     {
       "suite": "scenario",
       "exit_code": 0,
       "assertion_groups_passed": 9,
-      "seconds": 0.125
+      "seconds": 0.177
     },
     {
       "suite": "cutscene",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.13
+      "seconds": 0.176
     },
     {
       "suite": "quest",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 0.26
+      "seconds": 0.262
     },
     {
       "suite": "arrival",
       "exit_code": 0,
       "assertion_groups_passed": 5,
-      "seconds": 0.466
+      "seconds": 0.632
     },
     {
       "suite": "q02",
       "exit_code": 0,
       "assertion_groups_passed": 15,
-      "seconds": 6.066
+      "seconds": 9.736
     },
     {
       "suite": "q03",
       "exit_code": 0,
       "assertion_groups_passed": 22,
-      "seconds": 3.889
+      "seconds": 6.637
     },
     {
       "suite": "q04",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 1.993
+      "seconds": 2.37
+    },
+    {
+      "suite": "toxic",
+      "exit_code": 0,
+      "assertion_groups_passed": 6,
+      "seconds": 0.316
     },
     {
       "suite": "campaign",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 6.661
+      "seconds": 7.106
     },
     {
       "suite": "rpg",
       "exit_code": 0,
       "assertion_groups_passed": 13,
-      "seconds": 0.405
+      "seconds": 0.473
     },
     {
       "suite": "rpg-orientation",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.29
+      "seconds": 0.334
     },
     {
       "suite": "battle-intent",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.159
+      "seconds": 0.134
     },
     {
       "suite": "player",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 8.72
+      "seconds": 8.09
     },
     {
       "suite": "ui",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 1.25
+      "seconds": 1.546
     },
     {
       "suite": "runtime",
       "exit_code": 0,
       "assertion_groups_passed": 44,
-      "seconds": 6.29
+      "seconds": 8.38
     },
     {
       "suite": "runtime-gl",
       "exit_code": 0,
       "assertion_groups_passed": 39,
-      "seconds": 4.736
+      "seconds": 3.743
     },
     {
       "suite": "player-gl",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 7.694
+      "seconds": 4.043
     },
     {
       "suite": "ui-gl",
       "exit_code": 0,
       "assertion_groups_passed": 10,
-      "seconds": 1.521
+      "seconds": 1.496
     },
     {
       "suite": "mobile",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 1.526
+      "seconds": 1.744
+    },
+    {
+      "suite": "toxic-ui",
+      "exit_code": 0,
+      "assertion_groups_passed": 2,
+      "seconds": 1.249
+    },
+    {
+      "suite": "toxic-ui-gl",
+      "exit_code": 0,
+      "assertion_groups_passed": 3,
+      "seconds": 1.09
     },
     {
       "suite": "shader-gpu",
       "exit_code": 0,
-      "assertion_groups_passed": 6,
-      "seconds": 3.725
+      "assertion_groups_passed": 7,
+      "seconds": 0.863
     }
   ],
   "all_passed": true,

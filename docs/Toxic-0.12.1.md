@@ -1,0 +1,13 @@
+# SlimeTribe — Phase 12.5 · Neznámí u cisterny (0.12.1)
+
+Nové setkání spustíš přes **Dílna → Adventure editor → Neznámí u cisterny → Hrát setkání**. Začínáš volným průzkumem. Na místě neznámých použij **E**; nejdříve proběhne rozhovor, potom generovaný souboj. Po vítězství zůstane neznámé znamení a otázka „Kdo to byl?“. Jde o samostatný test obsahu: do přechodu Q04 → Q05 se zatím automaticky nevkládá. Spuštění testu zahájí novou výpravu, rozpracovanou kampaň si nejdřív ulož.
+
+- Toxic je procedurální skin původních čtyř modelových rodin: matný povrch, žlutozelené žilkování a společné znamení. Stejný generátor textury používá WebGL i 2D diagnostika.
+- Úspěšný útok nebo útočné kouzlo Toxic má 40% šanci otrávit přeživší cíl. Jed ubere **5 HP na začátku příštích tří vlastních tahů**. Další otrava obnoví tři tahy, nesčítá poškození. Smrt útočníka stav nezruší. Léčení odstraní jed i při plném zdraví a spotřebuje běžnou akci/manu. Po skončení souboje se jed ošetří, ztracené HP se neobnoví.
+- Stav ukazuje `Jed · 3×5 HP` na kartě i u postavy, včetně kompaktního mobilního HUD. Ukládá se trvání i stav generátoru náhody; načtení neumožní přehodit výsledek. Smrt jedem vyhodnotí porážku před další akcí.
+- **Cisterna, sběrný aparát a kamenné znamení** jsou recepty složené z kvádrů a válců. Geometrie, normály a barvy se sloučí před nahráním na GPU. Tři objekty i jejich primitiva sdílejí jediný statický draw call s ostatní matnou architekturou; mesh se vytváří znovu až při změně obsahu. Pohybující se postavy a terén mají vlastní volání.
+- V Adventure editoru jsou tři nové nástroje pro jejich umístění. Každá rekvizita zabírá jedno blokované pole; nástroj Smazat objekt odstraní celý složený objekt i jeho kolizi. Draft, undo/redo, JSON a uložená hra zachovávají `adventure.props`. Uživatelská textura v editoru se generováním skinu nepřepíše.
+
+Veřejné API: `Game.Battle.Status`, `Game.Scene.Props`, `Game.Toxic.map()`, `SlimeTribe.toxic.playTest()` a `.edit()`. Původní `Game.Adventure`, `Game.Battle`, editor i čtyři modelové rodiny zůstávají zachované. HTML funguje přes `file://`, bez serveru a síťových požadavků.
+
+**Ověření:** všech 28 sad prošlo přes `python3 tests/run.py --native --gpu`. Obsahují pravidla otravy, determinismus/import/retry, léčení při plném HP, skutečný souboj s běžnou AI, celé Q01–Q04, E/klávesnici v novém průzkumu, viditelnost stavů v mobilním markup/CSS, geometrii a kolize, jeden draw call v mockGL a skutečnou kompilaci/rasterizaci GLSL na Mesa EGL. DOM/Canvas/mockGL nejsou prohlížeč. Skutečné Chromium ani vizuální test na iPhonu prostředí nadále neumožňuje; tohle vydání je neoznačuje jako ověřené.

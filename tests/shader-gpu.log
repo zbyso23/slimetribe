@@ -4,5 +4,6 @@ PASS actual GLSL ES 3.00 and translated ES 1.00 compile/link
 PASS actual low world-space mist changes the raster independently of surface material
 PASS original MD2 mesh raster: slime/water/swamp/rune/hit/heal/aura change pixels; roughness changes highlight
 PASS animated water/swamp/runes/healing and exact paused-time repeat
+PASS Toxic matte vein shader changes actual MD2 raster in GLES
 PASS dissolve coverage decreases and final progress discards the entire mesh
 PASS explicit uniform reset restores baseline; translated WebGL1 material path actually rasterizes

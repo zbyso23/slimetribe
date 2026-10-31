@@ -56,6 +56,8 @@ print('PASS original MD2 mesh raster: slime/water/swamp/rune/hit/heal/aura chang
 for kind in [2,3,4,6]:assert changed(render(kind,0),render(kind,1))>50,kind
 assert render(2,.7)==render(2,.7)
 print('PASS animated water/swamp/runes/healing and exact paused-time repeat')
+assert changed(render(3,params=(.85,.08,.3,.6)),render(3,params=(.85,.8,.3,.6)))>100
+print('PASS Toxic matte vein shader changes actual MD2 raster in GLES')
 a=render(7,params=(.2,.5,0,1));b=render(7,params=(.2,.5,.5,1));c=render(7,params=(.2,.5,1,1));assert coverage(a)>coverage(b)>500;assert coverage(c)==0
 print('PASS dissolve coverage decreases and final progress discards the entire mesh')
 render(1);assert render(0)==base;assert changed(render(0,p=p1),render(1,p=p1))>100

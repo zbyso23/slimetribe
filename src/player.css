@@ -39,3 +39,6 @@ html[data-player="1"] #cv{touch-action:none}@media(pointer:coarse){html[data-pla
 @media(max-width:360px){.ux-command>strong{max-width:72px;font-size:11px}}
 /* Override Eldor's legacy button.on dark foreground on the selected card. */
 #player-hud .ux-card.on,#player-hud .ux-card:hover{color:var(--ui-text)}
+
+.ux-poison{display:block;color:#d8ee81;font-size:11px;font-weight:800;line-height:1.2}.ux-tag .ux-poison{background:#172b1b;padding:2px 4px;border-radius:4px;white-space:nowrap}
+@media(max-width:720px){.ux-card .ux-poison{display:block!important;position:absolute;left:4px;right:4px;top:0;bottom:auto;font-size:9px;background:#172b1b;border-radius:3px;z-index:2}.ux-tag .ux-poison{display:block!important;font-size:9px}}

@@ -1,0 +1,6 @@
+PASS real Toxic hit, invalid action consumes no roll, dead source persists, own-turn ticks once and expires
+PASS reapplication refreshes without stacking; contextual healer cures a full-health ally and pays mana
+PASS poison death ends battle before actions and retry restores the clean pre-battle checkpoint
+PASS deterministic RNG and status save/load, corrupt imports atomic, sampled 40% proc rate
+PASS compound recipes, finite normalized geometry, placement collisions, erase and map/state persistence
+PASS full Adventure vignette: E contact and saved dialogue → real generated Toxic fight → unknown emblem → free Adventure
