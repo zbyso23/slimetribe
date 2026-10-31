@@ -1,0 +1,5 @@
+PASS optional settings and pure defaults preserve legacy project reads
+PASS per-family updates, independent copies and global enable control
+PASS corrupt parameters/presets/families reject atomically without history changes
+PASS preset reset and serialized settings conformance
+PASS environment mist defaults, serialization and invalid values

@@ -1,0 +1,8 @@
+GL renderer: llvmpipe (LLVM 19.1.7, 256 bits)
+GL version: OpenGL ES 3.2 Mesa 25.0.7-2+deb13u1
+PASS actual GLSL ES 3.00 and translated ES 1.00 compile/link
+PASS actual low world-space mist changes the raster independently of surface material
+PASS original MD2 mesh raster: slime/water/swamp/rune/hit/heal/aura change pixels; roughness changes highlight
+PASS animated water/swamp/runes/healing and exact paused-time repeat
+PASS dissolve coverage decreases and final progress discards the entire mesh
+PASS explicit uniform reset restores baseline; translated WebGL1 material path actually rasterizes

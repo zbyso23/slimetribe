@@ -19,7 +19,7 @@ gl.attachShader(pg,sh(35633,`#version 300 es
 layout(location=0)in vec3 p;layout(location=1)in vec3 n;layout(location=2)in vec3 c;layout(location=3)in vec2 u;uniform mat4 vp,m;out vec3 vc,vn,wp;out vec2 vu;
 void main(){vec4 w=m*vec4(p,1);wp=w.xyz;vn=mat3(m)*n;vc=c;vu=u;gl_Position=vp*w;}`));
 gl.attachShader(pg,sh(35632,`#version 300 es
-precision mediump float;in vec3 vc,vn,wp;in vec2 vu;uniform sampler2D t0,t1;uniform int mode;uniform vec3 cam,fl;uniform int fx;uniform float ft,fi;uniform vec3 fcol;uniform vec3 fogc;out vec4 o;
+precision mediump float;in vec3 vc,vn,wp;in vec2 vu;uniform sampler2D t0,t1;uniform int mode;uniform vec3 cam,fl;uniform int fx;uniform float ft,fi;uniform vec3 fcol;uniform vec3 fogc;uniform int matKind;uniform vec4 matParams;uniform float localMist;out vec4 o;
 void main(){vec3 N=normalize(vn);if(mode!=0){float b=texture(t1,vu).g;N=normalize(N+vec3(dFdx(b),0.,dFdy(b))*.75);}float d=max(dot(N,normalize(vec3(.5,1.,.3))),0.);vec3 a=mode==0?texture(t0,vu).rgb:mode==2?texture(t1,vu).rgb:vc*(.55+.9*texture(t1,vu).g);
 vec3 col=a*(.4+.75*d)+fl;if(fx==1)col=a+fl;if(fx==2)col=a*1.9+fl;if(fx==4)col*=.75+.25*sin(ft*5.)*fi+fi*.5;if(fx==5)col+=vec3(.03,.12,.25)*sin(wp.x*3.+ft*2.)*fi;if(fx==6&&fract(sin(dot(floor(wp*15.),vec3(12.9898,78.233,32.17)))*43758.5453)<fi*.7)discard;if(fx==2)col=mix(col,fcol,fi*.55);if(fx==4)col+=fcol*(.2+.18*sin(ft*5.))*fi;
  if(fx==7){col=mix(col,fcol,.72)+vec3(.2)*sin(wp.y*28.-ft*9.);}
@@ -31,10 +31,34 @@ vec3 col=a*(.4+.75*d)+fl;if(fx==1)col=a+fl;if(fx==2)col=a*1.9+fl;if(fx==4)col*=.
  if(fx==14){float rim=pow(1.-abs(dot(normalize(vn),normalize(cam-wp))),2.);col=mix(col,vec3(1.,.76,.24),.72)+vec3(1.,.73,.25)*rim;}
  if(fx==15){col+=vec3(.12*sin(wp.y*30.+ft*18.),-.03,.15)*fi;if(fract(sin(dot(floor(wp*13.+ft*2.),vec3(2.9,47.3,31.7)))*3674.54)>.94)col=col.bgr;}
  if(fx==16){col+=vec3(1.,.24,.03)*(.28+.23*sin(ft*6.))*fi;}
+ // SlimeTribe procedural surface materials. Params: roughness, wetness, glow/progress, motion.
+if(matKind>0){
+ vec3 V=normalize(cam-wp),L=normalize(vec3(.5,1.,.3));
+ float rough=clamp(matParams.x,.04,1.),wet=clamp(matParams.y,0.,1.);
+ float glow=clamp(matParams.z,0.,2.),speed=matParams.w;
+ vec3 H=normalize(L+V);float rim=pow(1.-clamp(dot(N,V),0.,1.),3.);
+ float shine=pow(max(dot(N,H),0.),mix(110.,6.,rough));
+ if(matKind==1){col+=vec3(.78,.9,1.)*shine*(.2+wet*1.5)+fcol*rim*(.13+wet*.32+glow*.35)*(.94+.06*sin(ft*speed*2.+wp.y*3.));}
+ if(matKind==2||matKind==3){
+  float wave=sin(wp.x*4.+ft*speed*1.3)+cos(wp.z*5.-ft*speed);
+  vec3 W=normalize(N+vec3(cos(wp.x*4.+ft*speed*1.3),0.,-sin(wp.z*5.-ft*speed))*.19);
+  float reflection=pow(max(dot(W,H),0.),mix(100.,8.,rough));
+  if(matKind==2)col=mix(col,vec3(.035,.31,.39)+wave*.025,.48)+vec3(.65,.86,1.)*reflection*(.3+wet*1.4)+vec3(.05,.19,.22)*rim;
+  else col=col*(.88+wave*.025)+vec3(.42,.63,.45)*reflection*wet*.85;
+ }
+ if(matKind==4){float pulse=.6+.4*sin(ft*speed*2.4+wp.y*3.);float rune=.4+.6*pow(abs(sin(wp.y*12.+sin(wp.x*7.))),8.);col+=fcol*glow*pulse*rune+fcol*rim*.25+vec3(.8,.9,1.)*shine*wet*.35;}
+ if(matKind==5)col=mix(col,vec3(1.,.12,.055),clamp(glow,0.,1.)*.8);
+ if(matKind==6)col+=vec3(.08,.85,.33)*glow*(.6+.4*sin(ft*speed*8.+wp.y*5.));
+ if(matKind==7){float noise=fract(sin(dot(floor(wp*19.),vec3(.73,1.17,2.31)))*17.13);if(noise<clamp(glow,0.,1.))discard;col+=fcol*(1.-smoothstep(0.,.09,noise-clamp(glow,0.,1.)))*1.6;}
+ if(matKind==8){float arim=pow(1.-clamp(dot(N,V),0.,1.),mix(2.,5.,rough));col=mix(col,col*.4+fcol*arim*(.8+glow)*(.9+.1*sin(ft*speed*2.)),.8)+fcol*.08+vec3(.7,.8,1.)*shine*wet*.3;}
+}
+// Low, gently moving world-space mist; disabled for tactical battles and previews.
+if(localMist>0.){float low=1.-smoothstep(.12,1.45,wp.y);float drift=.82+.18*sin(wp.x*.8+wp.z*.6+ft*.23);float depth=1.-exp(-max(0.,length(wp-cam)-1.2)*.22);col=mix(col,fogc,clamp(localMist*low*drift*depth,0.,.65));}
+
  float alpha=fx==8?.37+.22*sin(ft*3.):fx==7?.72:1.;float f=clamp((length(wp-cam)-25.)/45.,0.,1.);o=vec4(mix(col,fogc,f*(fx==3?1.:65e-2)),alpha); }`));
 if(!isGL2){['p','n','c','u'].forEach((n,i)=>gl.bindAttribLocation(pg,i,n))}
 gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))console.error('Shader link:',gl.getProgramInfoLog(pg));gl.useProgram(pg);gl.enable(2929);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
-const U={};['vp','m','t0','t1','mode','cam','fl','fx','ft','fi','fcol','fogc'].forEach(n=>U[n]=gl.getUniformLocation(pg,n));gl.uniform1i(U.t0,0);gl.uniform1i(U.t1,1);gl.uniform3fv(U.fogc,[.56,.77,.91]);
+const U={};['vp','m','t0','t1','mode','cam','fl','fx','ft','fi','fcol','fogc','matKind','matParams','localMist'].forEach(n=>U[n]=gl.getUniformLocation(pg,n));gl.uniform1i(U.t0,0);gl.uniform1i(U.t1,1);gl.uniform3fv(U.fogc,[.56,.77,.91]);
 function meshLayout(){[[3,0],[3,3],[3,6],[2,9]].forEach(([sz,o],i)=>{gl.enableVertexAttribArray(i);gl.vertexAttribPointer(i,sz,gl.FLOAT,false,44,o*4)})}
 function mk(V){const buffer=gl.createBuffer(),vao=isGL2?gl.createVertexArray():null;if(vao)gl.bindVertexArray(vao);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(V),gl.STATIC_DRAW);if(vao)meshLayout();return{v:vao,buffer,n:V.length/11}}
 function bindMesh(mesh){if(isGL2)gl.bindVertexArray(mesh.v);else{gl.bindBuffer(gl.ARRAY_BUFFER,mesh.buffer);meshLayout()}}

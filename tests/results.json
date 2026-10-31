@@ -1,92 +1,105 @@
 {
   "version": 1,
-  "created_utc": "2026-10-29T20:51:26.810494+00:00",
+  "created_utc": "2026-10-30T05:58:48.788791+00:00",
   "native_canvas": true,
+  "native_shader_gpu": true,
   "browser_verified": false,
   "suites": [
     {
       "suite": "models",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.676
+      "seconds": 0.627
     },
     {
       "suite": "calibration",
       "exit_code": 0,
       "assertion_groups_passed": 4,
-      "seconds": 0.075
+      "seconds": 0.06
+    },
+    {
+      "suite": "materials",
+      "exit_code": 0,
+      "assertion_groups_passed": 5,
+      "seconds": 0.06
     },
     {
       "suite": "dsp",
       "exit_code": 0,
       "assertion_groups_passed": 18,
-      "seconds": 0.185
+      "seconds": 0.239
     },
     {
       "suite": "game",
       "exit_code": 0,
       "assertion_groups_passed": 11,
-      "seconds": 0.128
+      "seconds": 0.12
     },
     {
       "suite": "adventure-editor",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.097
+      "seconds": 0.083
     },
     {
       "suite": "scenario",
       "exit_code": 0,
       "assertion_groups_passed": 9,
-      "seconds": 0.082
+      "seconds": 0.074
     },
     {
       "suite": "cutscene",
       "exit_code": 0,
       "assertion_groups_passed": 7,
-      "seconds": 0.085
+      "seconds": 0.07
     },
     {
       "suite": "quest",
       "exit_code": 0,
       "assertion_groups_passed": 8,
-      "seconds": 0.164
+      "seconds": 0.136
     },
     {
       "suite": "q02",
       "exit_code": 0,
       "assertion_groups_passed": 15,
-      "seconds": 3.393
+      "seconds": 2.847
     },
     {
       "suite": "campaign",
       "exit_code": 0,
       "assertion_groups_passed": 3,
-      "seconds": 3.054
+      "seconds": 2.888
     },
     {
       "suite": "rpg",
       "exit_code": 0,
       "assertion_groups_passed": 12,
-      "seconds": 0.261
+      "seconds": 0.226
     },
     {
       "suite": "rpg-orientation",
       "exit_code": 0,
       "assertion_groups_passed": 6,
-      "seconds": 0.201
+      "seconds": 0.172
     },
     {
       "suite": "runtime",
       "exit_code": 0,
-      "assertion_groups_passed": 41,
-      "seconds": 5.439
+      "assertion_groups_passed": 44,
+      "seconds": 4.791
     },
     {
       "suite": "runtime-gl",
       "exit_code": 0,
-      "assertion_groups_passed": 35,
-      "seconds": 2.21
+      "assertion_groups_passed": 39,
+      "seconds": 2.584
+    },
+    {
+      "suite": "shader-gpu",
+      "exit_code": 0,
+      "assertion_groups_passed": 6,
+      "seconds": 0.733
     }
   ],
   "all_passed": true,

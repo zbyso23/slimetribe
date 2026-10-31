@@ -39,3 +39,6 @@ PASS releasing mouse capture does not cancel a held movement key (Phase9.1 regre
 PASS persistent on-screen movement buttons survive cell entry, redraws and release correctly
 PASS XYZ calibration UI, persistence, corrupt import rejection, HTML export and reset
 PASS visible runtime error diagnostics and clean sandbox restart
+PASS material settings persistence, invalid import rollback, HTML export and preset reset
+PASS model editor material controls, dissolve preview, paused time and transient effects cleared on load
+PASS battle animation adapter triggers healing material, pause freezes it and expiry leaves combat rules unchanged
