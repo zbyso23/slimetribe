@@ -4,7 +4,7 @@ const z=nm(s(e,c)),x=nm(cr([0,1,0],z)),y=cr(z,x);return[x[0],y[0],z[0],0,x[1],y[
 mul(a,b){const o=[];for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o},
 trs(p,r,s){const c=Math.cos(r),n=Math.sin(r);return[c*s,0,-n*s,0,0,s,0,0,n*s,0,c*s,0,p[0],p[1],p[2],1]}};
 const cv=$('#cv'),cw=$('#cw'),pn=$('#pn');
-const e12Force2D=new URLSearchParams(location.search).get('force2d')==='1';
+const e12Force2D=new URLSearchParams(location.search).get('force2d')==='1'||document.documentElement.getAttribute?.('data-force2d')==='1';
 let gl=e12Force2D?null:(cv.getContext('webgl2')||cv.getContext('webgl')||cv.getContext('experimental-webgl'));
 const isCanvas2D=!gl;
 const ctx2=isCanvas2D?cv.getContext('2d'):null;
