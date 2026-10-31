@@ -10,6 +10,8 @@ for n,s in modules:
 project=json.JSONDecoder().raw_decode(source.split('let PRJ=',1)[1])[0]
 project={k:project[k] for k in ['tex','songs','synthPatches','effects','samples'] if k in project}
 project.update(format='slimetribe.foundation',version=1)
+project['stage']={'width':12,'height':10,'blocked':[28,29,40,41,52,53,77,78,89,90],'actors':[{'id':'red','model':'slizak','faction':'red','x':2,'z':2},{'id':'healer','model':'healer','faction':'crown','x':3,'z':4},{'id':'mage','model':'magican','faction':'necro','x':8,'z':2},{'id':'guard','model':'octopus','faction':'swamp','x':8,'z':7}]}
+assets={n:json.loads((ROOT/'vendor/models'/f'{n}.json').read_text()) for n in ['slizak','healer','magican','octopus']}
 project['samples']={}
 (ROOT/'src/default-project.json').write_text(json.dumps(project))
 css='\n'.join(re.findall(r'<style[^>]*>(.*?)</style>',source,re.S))
@@ -29,10 +31,11 @@ base=cut('const $=s=>','const P=')
 (ROOT/'src/eldor-base.js').write_text(base)
 (ROOT/'src/origin.json').write_text(json.dumps({'source':'Eldor Studio XV user supplied HTML','sha256':hashlib.sha256(source.encode()).hexdigest(),'modules':[n for n,s in modules]},indent=2))
 style='''body{margin:0;background:#09131d;color:#dbe9e9;font:14px system-ui}#nv{position:relative;display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#101f2d;border-bottom:1px solid #355268}main{display:flex;height:calc(100vh - 76px)}#pn{overflow:auto;padding:20px;width:370px;background:#0c1926}#cw{position:relative;flex:1;min-width:0}#cv{width:100%;height:100%;display:block}.brand{color:#63e6b2;font-weight:800;font-size:19px;margin-right:20px}button,input,select{font:inherit}button{cursor:pointer}.status{position:absolute;bottom:18px;left:20px;padding:12px;background:#09131ddd;border:1px solid #355268;border-radius:8px;pointer-events:none}.th{width:128px;height:128px;image-rendering:pixelated;margin:6px}#notice{color:#ebcf94}h2{color:#72dfbd}@media(max-width:760px){main{flex-direction:column;height:auto}#pn{width:auto;max-height:60vh}#cw{height:46vh;flex:none}}'''
-header='''<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; connect-src 'none';"><title>SlimeTribe · Foundation 0.1</title><style>'''+css+style+'''</style></head><body><nav id="nv"></nav><main><section id="pn"></section><section id="cw"><canvas id="cv"></canvas><div class="status" id="status"></div></section></main>'''
-script=base+'\nlet PRJ='+json.dumps(project)+';\nlet tab="Základ",G={paused:false},songBar=0,cs=0,hist=[],hi=-1;\n'+mathgl+generator+audio+unlock+daw+'\n'+(ROOT/'src/foundation.js').read_text()
+header='''<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; connect-src 'none';"><title>SlimeTribe · Models 0.2</title><style>'''+css+style+'''</style></head><body><nav id="nv"></nav><main><section id="pn"></section><section id="cw"><canvas id="cv"></canvas><div class="status" id="status"></div></section></main>'''
+script=base+'\nlet PRJ='+json.dumps(project)+';\nlet tab="Základ",G={paused:false},songBar=0,cs=0,hist=[],hi=-1;\n'+mathgl+generator+audio+unlock+daw+'\n'+(ROOT/'src/foundation.js').read_text()+'\n'+(ROOT/'src/model-stage.js').read_text()
+header+= '<script data-source="slimetribe/model-core.js">'+(ROOT/'src/model-core.js').read_text()+'</script><script id="model-assets" type="application/json">'+json.dumps(assets,separators=(',',':'))+'</script>'
 html=header+''.join('<script data-source="'+n+'">'+s+'</script>' for n,s in modules)+'<script id="foundation-runtime">'+script+'</script></body></html>'
 stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d%H%M%S')
 (ROOT/'dist').mkdir(exist_ok=True)
-out=ROOT/'dist'/('SlimeTribe-Foundation-0.1_'+stamp+'.html');out.write_text(html)
+out=ROOT/'dist'/('SlimeTribe-Models-0.2_'+stamp+'.html');out.write_text(html)
 (ROOT/'build-path.txt').write_text(str(out));print(out)

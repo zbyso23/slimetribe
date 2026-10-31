@@ -5,3 +5,5 @@ PASS tracker note edit and undo
 PASS valid JSON roundtrip and invalid import preserves state
 PASS HTML export embeds current state and valid JavaScript
 PASS self-contained resources and network-denying CSP
+PASS stage selection, command locking, occupied collision and completed move save
+PASS all 120 projected grid centers map back to correct cell
