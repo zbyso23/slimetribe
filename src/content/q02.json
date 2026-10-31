@@ -744,7 +744,7 @@
         "actions": [
           {
             "type": "message",
-            "text": "Léčitel: Místní jsou v bezpečí. Zbývá uklidnit tři uzly živé paměti."
+            "text": "Léčitel: Místní jsou v bezpečí. Zbývá uklidnit tři uzly živé paměti. Seren: „V těch kořenech se nevyznám.“ Nara: „Tak se drž poblíž.“ Seren: „To zvládnu.“"
           },
           {
             "type": "objective",

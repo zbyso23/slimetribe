@@ -1,0 +1,21 @@
+{
+  "text_only": true,
+  "changes": [
+    {
+      "chapter": "q01",
+      "path": ".scenario.rules[1].actions[1].text"
+    },
+    {
+      "chapter": "q02",
+      "path": ".scenario.rules[2].actions[0].text"
+    },
+    {
+      "chapter": "q03",
+      "path": ".scenario.rules[7].actions[1].text"
+    },
+    {
+      "chapter": "q04",
+      "path": ".scenario.rules[1].actions[1].text"
+    }
+  ]
+}
