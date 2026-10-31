@@ -855,7 +855,7 @@
           },
           {
             "type": "objective",
-            "text": "Prozkoumej okolí Zelené hráze. Promluv s uprchlíky a se Seren. K obraně průchodu se vydej, až budeš připravený."
+            "text": "Prozkoumej okolí Zelené hráze. Promluv s uprchlíky a se Serenem. K obraně průchodu se vydej, až budeš připravený."
           }
         ]
       },
@@ -966,7 +966,7 @@
         "actions": [
           {
             "type": "message",
-            "text": "Uprchlík: Naše jádra slábnou. Za branou je voda, kterou potřebujeme. Nechceme bojovat — potřebujeme projít. Zeptej se Seren, proč nás drží venku."
+            "text": "Uprchlík: Naše jádra slábnou. Za branou je voda, kterou potřebujeme. Nechceme bojovat — potřebujeme projít. Zeptej se Serena, proč nás drží venku."
           },
           {
             "type": "flag",

@@ -1,0 +1,1030 @@
+{
+  "ui.0001": {
+    "cs": "Slizák",
+    "en": "Slime"
+  },
+  "ui.0002": {
+    "cs": "Léčitel",
+    "en": "Healer"
+  },
+  "ui.0003": {
+    "cs": "Mág",
+    "en": "Mage"
+  },
+  "ui.0004": {
+    "cs": "Strážce",
+    "en": "Guardian"
+  },
+  "ui.0005": {
+    "cs": "Sliz",
+    "en": "Slime"
+  },
+  "ui.0006": {
+    "cs": "Hrdina",
+    "en": "Hero"
+  },
+  "ui.0007": {
+    "cs": "Léčení",
+    "en": "Healing"
+  },
+  "ui.0008": {
+    "cs": "Kouzla",
+    "en": "Spells"
+  },
+  "ui.0009": {
+    "cs": "Bojovník",
+    "en": "Fighter"
+  },
+  "ui.0010": {
+    "cs": "Spojenec",
+    "en": "Ally"
+  },
+  "ui.0011": {
+    "cs": "Družina",
+    "en": "Party"
+  },
+  "ui.0012": {
+    "cs": "Deník",
+    "en": "Journal"
+  },
+  "ui.0013": {
+    "cs": "Deník výpravy",
+    "en": "Expedition Journal"
+  },
+  "ui.0014": {
+    "cs": "Nastavení",
+    "en": "Settings"
+  },
+  "ui.0015": {
+    "cs": "Ovládání",
+    "en": "Controls"
+  },
+  "ui.0016": {
+    "cs": "Nabídka",
+    "en": "Menu"
+  },
+  "ui.0017": {
+    "cs": "Hlavní nabídka",
+    "en": "Main Menu"
+  },
+  "ui.0018": {
+    "cs": "Kroniky Varethu",
+    "en": "Chronicles of Vareth"
+  },
+  "ui.0019": {
+    "cs": "Průzkum · taktika · příběh",
+    "en": "Exploration · tactics · story"
+  },
+  "ui.0020": {
+    "cs": "„Ještě nevím, komu věřit. Ale vidím, kdo se bojí.“",
+    "en": "“I do not yet know whom to trust. But I can see who is afraid.”"
+  },
+  "ui.0021": {
+    "cs": "Čtyři spojenci. Tři pohledy na minulost.",
+    "en": "Four allies. Three views of the past."
+  },
+  "ui.0022": {
+    "cs": "Jedna společná výprava.",
+    "en": "One shared journey."
+  },
+  "ui.0023": {
+    "cs": "Nová hra",
+    "en": "New Game"
+  },
+  "ui.0024": {
+    "cs": "Pokračovat",
+    "en": "Continue"
+  },
+  "ui.0025": {
+    "cs": "Pokračovat ve výpravě",
+    "en": "Continue Expedition"
+  },
+  "ui.0026": {
+    "cs": "Načíst výpravu",
+    "en": "Load Expedition"
+  },
+  "ui.0027": {
+    "cs": "Uložit výpravu",
+    "en": "Save Expedition"
+  },
+  "ui.0028": {
+    "cs": "Uložit hru",
+    "en": "Save Game"
+  },
+  "ui.0029": {
+    "cs": "Načíst hru",
+    "en": "Load Game"
+  },
+  "ui.0030": {
+    "cs": "Začít novou výpravu",
+    "en": "Start a New Expedition"
+  },
+  "ui.0031": {
+    "cs": "Dílna · editory",
+    "en": "Workshop · Editors"
+  },
+  "ui.0032": {
+    "cs": "Dílna",
+    "en": "Workshop"
+  },
+  "ui.0033": {
+    "cs": "Zpět do hry",
+    "en": "Back to Game"
+  },
+  "ui.0034": {
+    "cs": "Všechno po ruce",
+    "en": "Everything at Hand"
+  },
+  "ui.0035": {
+    "cs": "Vstup do výpravy",
+    "en": "Entering the Expedition"
+  },
+  "ui.0036": {
+    "cs": "Průzkum",
+    "en": "Exploration"
+  },
+  "ui.0037": {
+    "cs": "Souboj",
+    "en": "Battle"
+  },
+  "ui.0038": {
+    "cs": "WASD nebo šipky pro pohyb. E přečte objekt nebo promluví. Pravé tlačítko s tažením otáčí kameru, C ji vrátí za záda. Na dotykovém zařízení používej šipky a tlačítko Použít.",
+    "en": "Move with WASD or the arrow keys. E reads an object or starts a conversation. Right-drag rotates the camera; C returns it behind you. On touch screens, use the arrows and the Use button."
+  },
+  "ui.0039": {
+    "cs": "Klikni na spojence pro výběr, na zem pro přesun a na nepřítele pro útok. Postava podle potřeby dojde na dosah. Žádné přepínání Pohyb/Útok.",
+    "en": "Click an ally to select, the ground to move, or an enemy to attack. The character approaches if needed. No switching between Move and Attack modes."
+  },
+  "ui.0040": {
+    "cs": "1–4 vybere postavu · Tab další · H léčení · K kouzlo",
+    "en": "1–4 selects a character · Tab next · H heal · K spell"
+  },
+  "ui.0041": {
+    "cs": "Mezerník vyčká · Enter ukončí tah · J deník",
+    "en": "Space waits · Enter ends the turn · J journal"
+  },
+  "ui.0042": {
+    "cs": "Esc zruší cílení, zavře okno nebo otevře nabídku.",
+    "en": "Esc cancels targeting, closes a panel or opens the menu."
+  },
+  "ui.0043": {
+    "cs": "Přeskočit scénu",
+    "en": "Skip Scene"
+  },
+  "ui.0044": {
+    "cs": "Rozhodnutí",
+    "en": "Decision"
+  },
+  "ui.0045": {
+    "cs": "Příběh",
+    "en": "Story"
+  },
+  "ui.0046": {
+    "cs": "Tvoje rozhodnutí",
+    "en": "Your Decision"
+  },
+  "ui.0047": {
+    "cs": "Jak se rozhodneš?",
+    "en": "What Will You Choose?"
+  },
+  "ui.0048": {
+    "cs": "Vyber jednu možnost. Klávesy 1–3 fungují také.",
+    "en": "Choose an option. You can also use keys 1–3."
+  },
+  "ui.0049": {
+    "cs": "Enter nebo kliknutí pokračuje v příběhu.",
+    "en": "Press Enter or click to continue the story."
+  },
+  "ui.0050": {
+    "cs": "Výsledek souboje",
+    "en": "Battle Result"
+  },
+  "ui.0051": {
+    "cs": "Průchod je zajištěný",
+    "en": "The Passage Is Secured"
+  },
+  "ui.0052": {
+    "cs": "Výprava má další šanci",
+    "en": "The Expedition Has Another Chance"
+  },
+  "ui.0053": {
+    "cs": "Vítězství",
+    "en": "Victory"
+  },
+  "ui.0054": {
+    "cs": "Družina padla",
+    "en": "The Party Has Fallen"
+  },
+  "ui.0055": {
+    "cs": "Zkus jinou taktiku. Opakování obnoví výchozí družinu tohoto souboje.",
+    "en": "Try another tactic. Retrying restores the party to its state before this battle."
+  },
+  "ui.0056": {
+    "cs": "Pokračovat v příběhu",
+    "en": "Continue the Story"
+  },
+  "ui.0057": {
+    "cs": "Zopakovat souboj",
+    "en": "Retry Battle"
+  },
+  "ui.0058": {
+    "cs": "Vyhodnocení kapitoly",
+    "en": "Chapter Summary"
+  },
+  "ui.0059": {
+    "cs": "Zelená hráz padla",
+    "en": "The Green Dam Has Fallen"
+  },
+  "ui.0060": {
+    "cs": "Živá paměť je zajištěná",
+    "en": "Living Memory Is Secured"
+  },
+  "ui.0061": {
+    "cs": "Výprava vstupuje do Tichých archivů…",
+    "en": "The expedition enters the Silent Archives…"
+  },
+  "ui.0062": {
+    "cs": "Pokračovat · Hlasy bažin",
+    "en": "Continue · Voices of the Marsh"
+  },
+  "ui.0063": {
+    "cs": "Pokračovat · Tiché archivy",
+    "en": "Continue · The Silent Archives"
+  },
+  "ui.0064": {
+    "cs": "Uložit nebo otevřít nabídku",
+    "en": "Save or Open Menu"
+  },
+  "ui.0065": {
+    "cs": "Tvůj tah",
+    "en": "Your Turn"
+  },
+  "ui.0066": {
+    "cs": "Tah protivníka",
+    "en": "Enemy Turn"
+  },
+  "ui.0067": {
+    "cs": "Udrž Slizáka naživu a odraz nepřátelskou družinu.",
+    "en": "Keep Slime alive and defeat the enemy party."
+  },
+  "ui.0068": {
+    "cs": "Protivník hraje…",
+    "en": "The enemy is taking their turn…"
+  },
+  "ui.0069": {
+    "cs": "Postava dojde a zaútočí.",
+    "en": "The character will approach and attack."
+  },
+  "ui.0070": {
+    "cs": "Probíhá akce… Další postavu můžeš vybrat.",
+    "en": "An action is in progress… You can select another character."
+  },
+  "ui.0071": {
+    "cs": "Vyber zraněného spojence nebo odstraň otravu · Esc zruší",
+    "en": "Choose a wounded ally or remove poison · Esc cancels"
+  },
+  "ui.0072": {
+    "cs": "Vyber nepřítele · Esc zruší",
+    "en": "Choose an enemy · Esc cancels"
+  },
+  "ui.0073": {
+    "cs": "Vyber postavu. Klikni na zem nebo nepřítele.",
+    "en": "Select a character. Click the ground or an enemy."
+  },
+  "ui.0074": {
+    "cs": "Vyber spojence",
+    "en": "Select an Ally"
+  },
+  "ui.0075": {
+    "cs": "Protivník rozhoduje",
+    "en": "The Enemy Is Acting"
+  },
+  "ui.0076": {
+    "cs": "Léčit",
+    "en": "Heal"
+  },
+  "ui.0077": {
+    "cs": "Vyléčí a odstraní jed; je potřeba mana a dosah.",
+    "en": "Heals and removes poison; requires mana and range."
+  },
+  "ui.0078": {
+    "cs": "Vyčkat",
+    "en": "Wait"
+  },
+  "ui.0079": {
+    "cs": "Ukončit tah",
+    "en": "End Turn"
+  },
+  "ui.0080": {
+    "cs": "Spotřebuje akci vybrané postavy · mezerník",
+    "en": "Uses the selected character's action · Space"
+  },
+  "ui.0081": {
+    "cs": "Předá tah protivníkovi · Enter",
+    "en": "Hands the turn to the enemy · Enter"
+  },
+  "ui.0082": {
+    "cs": "Tvoje družina brzy pokračuje.",
+    "en": "Your party will act soon."
+  },
+  "ui.0083": {
+    "cs": "OKOLÍ",
+    "en": "AREA"
+  },
+  "ui.0084": {
+    "cs": "SEVER ↑",
+    "en": "NORTH ↑"
+  },
+  "ui.0085": {
+    "cs": "WASD · pohyb   E · použít   C · kamera",
+    "en": "WASD · move   E · use   C · camera"
+  },
+  "ui.0086": {
+    "cs": "Hotovo",
+    "en": "Done"
+  },
+  "ui.0087": {
+    "cs": "Padlé jádro",
+    "en": "Fallen Core"
+  },
+  "ui.0088": {
+    "cs": "Bez many",
+    "en": "No Mana"
+  },
+  "ui.0089": {
+    "cs": "Výprava",
+    "en": "Expedition"
+  },
+  "ui.0090": {
+    "cs": "Zavřít okno",
+    "en": "Close Panel"
+  },
+  "ui.0091": {
+    "cs": "Zavřít · Esc",
+    "en": "Close · Esc"
+  },
+  "ui.0092": {
+    "cs": "Tvoje družina",
+    "en": "Your Party"
+  },
+  "ui.0093": {
+    "cs": "Začít novou výpravu?",
+    "en": "Start a New Expedition?"
+  },
+  "ui.0094": {
+    "cs": "Přizpůsob si hru. Volby se přenesou spolu s uloženou výpravou.",
+    "en": "Customise your game. These settings travel with your saved expedition."
+  },
+  "ui.0095": {
+    "cs": "Hlasitost",
+    "en": "Volume"
+  },
+  "ui.0096": {
+    "cs": "Větší text",
+    "en": "Larger Text"
+  },
+  "ui.0097": {
+    "cs": "Zvětší text příběhu, úkolů a důležitých údajů.",
+    "en": "Enlarges story text, objectives and important information."
+  },
+  "ui.0098": {
+    "cs": "Vyšší kontrast",
+    "en": "Higher Contrast"
+  },
+  "ui.0099": {
+    "cs": "Neprůhledné panely a výraznější obrysy.",
+    "en": "Opaque panels and clearer outlines."
+  },
+  "ui.0100": {
+    "cs": "Omezit animace rozhraní",
+    "en": "Reduce Interface Motion"
+  },
+  "ui.0101": {
+    "cs": "Bez nástupních animací panelů. Nastavení systému se respektuje vždy.",
+    "en": "Disables panel entrance animations. System preferences are always respected."
+  },
+  "ui.0102": {
+    "cs": "Rychlé tipy ovládání",
+    "en": "Quick Control Tips"
+  },
+  "ui.0103": {
+    "cs": "Drobné připomenutí kláves při průzkumu. Důležité cíle zůstávají viditelné.",
+    "en": "Small control reminders while exploring. Important objectives remain visible."
+  },
+  "ui.0104": {
+    "cs": "Poslední události",
+    "en": "Recent Events"
+  },
+  "ui.0105": {
+    "cs": "Vydej se na cestu. Důležité události se objeví tady.",
+    "en": "Begin your journey. Important events will appear here."
+  },
+  "ui.0106": {
+    "cs": "Zdraví a mana přecházejí mezi průzkumem a souboji.",
+    "en": "Health and mana carry over between exploration and battles."
+  },
+  "ui.0107": {
+    "cs": "Padlé jádro · potřebuje zotavení v táboře",
+    "en": "Fallen core · needs recovery at camp"
+  },
+  "ui.0108": {
+    "cs": "Bojovník bez many",
+    "en": "Fighter without mana"
+  },
+  "ui.0109": {
+    "cs": "Léčí zraněné spojence na dosah.",
+    "en": "Heals wounded allies within range."
+  },
+  "ui.0110": {
+    "cs": "Používá kouzla na nepřátele.",
+    "en": "Casts spells against enemies."
+  },
+  "ui.0111": {
+    "cs": "Udrž ho naživu, aby výprava pokračovala.",
+    "en": "Keep him alive for the expedition to continue."
+  },
+  "ui.0112": {
+    "cs": "Bojuje zblízka a chrání družinu.",
+    "en": "Fights at close range and protects the party."
+  },
+  "ui.0113": {
+    "cs": "Rozehraná výprava se nahradí novou. Pokud ji chceš zachovat, nejprve ji ulož z nabídky.",
+    "en": "A new expedition will replace the current one. To keep your progress, save it from the menu first."
+  },
+  "ui.0114": {
+    "cs": "Začít od Zelené hráze",
+    "en": "Start at the Green Dam"
+  },
+  "ui.0115": {
+    "cs": "Zůstat u rozehrané výpravy",
+    "en": "Keep the Current Expedition"
+  },
+  "ui.0116": {
+    "cs": "Výprava byla připravena ke stažení.",
+    "en": "Your expedition is ready to download."
+  },
+  "ui.0117": {
+    "cs": "Prozkoumej hráz vlastním tempem",
+    "en": "Explore the Dam at Your Own Pace"
+  },
+  "ui.0118": {
+    "cs": "Poznej Zelenou hráz",
+    "en": "Discover the Green Dam"
+  },
+  "ui.0119": {
+    "cs": "Až budeš připravený, dojdi k hlídce. E tě připojí k obraně průchodu.",
+    "en": "When ready, go to the patrol. Press E to join the defence of the passage."
+  },
+  "ui.0120": {
+    "cs": "Promluv s uprchlíky a se Serenem. Projdi si okolí; časový limit zatím neběží.",
+    "en": "Speak to the refugees and Seren. Explore the area; there is no time limit yet."
+  },
+  "ui.0121": {
+    "cs": "Zachraň uprchlíky",
+    "en": "Rescue the Refugees"
+  },
+  "ui.0122": {
+    "cs": "Použij ventily, pomoz skupině a včas ustup.",
+    "en": "Use the valves, help the group and retreat in time."
+  },
+  "ui.0123": {
+    "cs": "Pomoz místním",
+    "en": "Help the Locals"
+  },
+  "ui.0124": {
+    "cs": "Dojdi k raněným a promluv s nimi. Tábor cestou obnoví družinu.",
+    "en": "Find the wounded and speak to them. Recover the party at the camp on the way."
+  },
+  "ui.0125": {
+    "cs": "Uklidni tři kořenové uzly",
+    "en": "Calm the Three Root Nodes"
+  },
+  "ui.0126": {
+    "cs": "Dojdi ke svítícím uzlům a použij je.",
+    "en": "Reach the glowing nodes and use them."
+  },
+  "ui.0127": {
+    "cs": "Prozkoumej okolí. U označeného objektu stiskni E.",
+    "en": "Explore the area. Press E at a marked object."
+  },
+  "ui.0128": {
+    "cs": "Bránit zásobovací průchod",
+    "en": "Defend the Supply Passage"
+  },
+  "ui.0129": {
+    "cs": "Tábor léčitelů",
+    "en": "Healers' Camp"
+  },
+  "ui.0130": {
+    "cs": "Ranění místní",
+    "en": "Wounded Locals"
+  },
+  "ui.0131": {
+    "cs": "Svědek",
+    "en": "Witness"
+  },
+  "ui.0132": {
+    "cs": "Uprchlíci",
+    "en": "Refugees"
+  },
+  "ui.0133": {
+    "cs": "Fragment paměti",
+    "en": "Memory Fragment"
+  },
+  "ui.0134": {
+    "cs": "Ústup",
+    "en": "Retreat"
+  },
+  "ui.0135": {
+    "cs": "Ventil",
+    "en": "Valve"
+  },
+  "ui.0136": {
+    "cs": "Kořenový uzel",
+    "en": "Root Node"
+  },
+  "ui.0137": {
+    "cs": "Léčivý pramen",
+    "en": "Healing Spring"
+  },
+  "ui.0138": {
+    "cs": "Pamětní kámen",
+    "en": "Memory Stone"
+  },
+  "ui.0139": {
+    "cs": "Otevřít bránu — zachránit více lidí hned, ale zkrátit čas uvnitř.",
+    "en": "Open the gate — rescue more immediately, but leave less time inside."
+  },
+  "ui.0140": {
+    "cs": "Držet bránu — získat více času, za cenu ztrát před zdí.",
+    "en": "Hold the gate — gain more time, at the cost of lives outside."
+  },
+  "ui.0141": {
+    "cs": "Otevřít část průchodu — poslední skupinu bude třeba doprovodit.",
+    "en": "Open part of the passage — the last group will need an escort."
+  },
+  "ui.0142": {
+    "cs": "Péče — ošetřit svatyni, obnovit síly živých spojenců.",
+    "en": "Care — tend the sanctuary and restore living allies."
+  },
+  "ui.0143": {
+    "cs": "Síla — vybojovat další střet a riskovat ztráty.",
+    "en": "Force — fight another battle and risk losses."
+  },
+  "ui.0144": {
+    "cs": "Dohoda — vyjednávat s pomocí důvěry nebo svědka.",
+    "en": "Agreement — negotiate through trust or a witness."
+  },
+  "ui.0145": {
+    "cs": "01 · Zelená hráz",
+    "en": "01 · The Green Dam"
+  },
+  "ui.0146": {
+    "cs": "02 · Hlasy bažin",
+    "en": "02 · Voices of the Marsh"
+  },
+  "ui.0147": {
+    "cs": "03 · Tiché archivy",
+    "en": "03 · The Silent Archives"
+  },
+  "ui.0148": {
+    "cs": "04 · Hory tří svědků",
+    "en": "04 · The Mountains of Three Witnesses"
+  },
+  "ui.0149": {
+    "cs": "· průzkum",
+    "en": "· exploration"
+  },
+  "ui.0150": {
+    "cs": "· dokončeno",
+    "en": "· complete"
+  },
+  "ui.0151": {
+    "cs": "Deník · J",
+    "en": "Journal · J"
+  },
+  "ui.0152": {
+    "cs": "Nabídka · Esc",
+    "en": "Menu · Esc"
+  },
+  "ui.0153": {
+    "cs": "Léčení vyžaduje léčitele s dostatkem many.",
+    "en": "Healing requires a healer with enough mana."
+  },
+  "ui.0154": {
+    "cs": "Kouzlo vyžaduje mága s dostatkem many.",
+    "en": "Casting requires a mage with enough mana."
+  },
+  "ui.0155": {
+    "cs": "Postava se přiblížila. Na tento cíl dosáhne až v dalším tahu.",
+    "en": "The character moved closer. This target will be in range next turn."
+  },
+  "ui.0156": {
+    "cs": "Akce není dostupná.",
+    "en": "This action is unavailable."
+  },
+  "ui.0157": {
+    "cs": "Cíl už není dostupný.",
+    "en": "The target is no longer available."
+  },
+  "ui.0158": {
+    "cs": "Probíhá akce…",
+    "en": "An action is in progress…"
+  },
+  "ui.0159": {
+    "cs": "Odpočívadlo archivářů",
+    "en": "Archivists' Resting Place"
+  },
+  "ui.0160": {
+    "cs": "Strážce pečetí",
+    "en": "Keeper of the Seals"
+  },
+  "ui.0161": {
+    "cs": "Původní krystal · 132",
+    "en": "Original Crystal · 132"
+  },
+  "ui.0162": {
+    "cs": "Pozdější opis · 170",
+    "en": "Later Copy · 170"
+  },
+  "ui.0163": {
+    "cs": "Komentář · 191",
+    "en": "Commentary · 191"
+  },
+  "ui.0164": {
+    "cs": "Jádro archivu",
+    "en": "Archive Core"
+  },
+  "ui.0165": {
+    "cs": "Promluv se strážcem pečetí.",
+    "en": "Speak to the keeper of the seals."
+  },
+  "ui.0166": {
+    "cs": "Na odpočívadle můžeš obnovit družinu před obranou.",
+    "en": "You can restore the party at the resting place before the defence."
+  },
+  "ui.0167": {
+    "cs": "Ověř původ svědectví",
+    "en": "Verify the Testimonies' Origins"
+  },
+  "ui.0168": {
+    "cs": "Přečti původní krystal, pozdější opis i komentář. Sleduj otisky a zdroje.",
+    "en": "Read the original crystal, the later copy and the commentary. Compare imprints and sources."
+  },
+  "ui.0169": {
+    "cs": "Otevři jádro archivu",
+    "en": "Open the Archive Core"
+  },
+  "ui.0170": {
+    "cs": "Dojdi k jádru a použij E. Čeká obrana pečetí.",
+    "en": "Reach the core and press E. The seals will need defending."
+  },
+  "ui.0171": {
+    "cs": "Před obranou jádra je dostupné druhé a poslední zotavení.",
+    "en": "A second and final recovery is available before defending the core."
+  },
+  "ui.0172": {
+    "cs": "Uchovat originály — archiváři je ochrání; paměť zůstane na místě.",
+    "en": "Preserve the originals — archivists will protect them; memory stays here."
+  },
+  "ui.0173": {
+    "cs": "Bezpečná kopie — odnést svědectví bez přenášení vědomí.",
+    "en": "Safe copy — carry testimony without transferring consciousness."
+  },
+  "ui.0174": {
+    "cs": "Omezit přístup — fragment uchovat, zveřejnění zatím odložit.",
+    "en": "Restrict access — preserve the fragment and postpone publication."
+  },
+  "ui.0175": {
+    "cs": "Porovnání svědectví",
+    "en": "Comparing Testimonies"
+  },
+  "ui.0176": {
+    "cs": "Tiché archivy · ověření zdrojů",
+    "en": "The Silent Archives · Source Verification"
+  },
+  "ui.0177": {
+    "cs": "Který zdroj je nezávislý?",
+    "en": "Which Source Is Independent?"
+  },
+  "ui.0178": {
+    "cs": "Porovnej původ a stáří. Pozdější text může opakovat jiný text; dvě shodné verze pak nejsou dva nezávislé důkazy.",
+    "en": "Compare origins and dates. A later text may repeat another; two matching versions are not necessarily two independent pieces of evidence."
+  },
+  "ui.0179": {
+    "cs": "Irik: Opis 170 je mladší a komentář 191 z něj vychází. Najdi původní nezávislý otisk. Můžeš volbu zopakovat.",
+    "en": "Irik: Copy 170 is later, and commentary 191 relies on it. Find the original independent imprint. You can try again."
+  },
+  "ui.0180": {
+    "cs": "1–3 zvolí zdroj. Chybná odpověď nezničí záznam ani nezavře cestu.",
+    "en": "1–3 selects a source. A wrong answer will not destroy the record or block your path."
+  },
+  "ui.0181": {
+    "cs": "Vyhodnocení Tichých archivů",
+    "en": "The Silent Archives · Summary"
+  },
+  "ui.0182": {
+    "cs": "Paměť je zajištěná",
+    "en": "Memory Is Secured"
+  },
+  "ui.0183": {
+    "cs": "Originály zůstávají pod ochranou archivářů.",
+    "en": "The originals remain under the archivists' protection."
+  },
+  "ui.0184": {
+    "cs": "Výprava nese kopii svědectví bez vědomí.",
+    "en": "The expedition carries a copy of the testimony without consciousness."
+  },
+  "ui.0185": {
+    "cs": "Přístup je omezený; zveřejnění počká na ověření dalších souvislostí.",
+    "en": "Access is restricted; publication awaits further verification."
+  },
+  "ui.0186": {
+    "cs": "Doklady o zásazích do kronik i nezbytný fragment jsou uchované. Další stopa vede do jižních hor Varethu.",
+    "en": "The evidence of tampered chronicles and the essential fragment are preserved. The next trail leads into southern Vareth's mountains."
+  },
+  "ui.0187": {
+    "cs": "Irik porovnal nalezený vzorec i s fragmentem ze Zelené hráze.",
+    "en": "Irik also compared the pattern with the fragment from the Green Dam."
+  },
+  "ui.0188": {
+    "cs": "Výprava vstupuje do jižních hor Varethu…",
+    "en": "The expedition enters the mountains of southern Vareth…"
+  },
+  "ui.0189": {
+    "cs": "Pokračovat · Hory tří svědků",
+    "en": "Continue · The Mountains of Three Witnesses"
+  },
+  "ui.0190": {
+    "cs": "Tábor výpravy",
+    "en": "Expedition Camp"
+  },
+  "ui.0191": {
+    "cs": "Odlehčovací kanál",
+    "en": "Relief Channel"
+  },
+  "ui.0192": {
+    "cs": "Přívod · otevřený",
+    "en": "Intake · Open"
+  },
+  "ui.0193": {
+    "cs": "Přívod · uzavřený",
+    "en": "Intake · Closed"
+  },
+  "ui.0194": {
+    "cs": "Talrenova runa",
+    "en": "Talren's Rune"
+  },
+  "ui.0195": {
+    "cs": "První břeh · proměna 1",
+    "en": "First Bank · Transformation 1"
+  },
+  "ui.0196": {
+    "cs": "Druhý břeh · proměna 2",
+    "en": "Second Bank · Transformation 2"
+  },
+  "ui.0197": {
+    "cs": "Sarymina runa",
+    "en": "Sarym's Rune"
+  },
+  "ui.0198": {
+    "cs": "Svědectví · ochrana",
+    "en": "Testimony · Protection"
+  },
+  "ui.0199": {
+    "cs": "Svědectví · živá paměť",
+    "en": "Testimony · Living Memory"
+  },
+  "ui.0200": {
+    "cs": "Svědectví · pozdější opis",
+    "en": "Testimony · Later Copy"
+  },
+  "ui.0201": {
+    "cs": "Společná brána",
+    "en": "Shared Gate"
+  },
+  "ui.0202": {
+    "cs": "Stráže zkoušky",
+    "en": "Trial Guards"
+  },
+  "ui.0203": {
+    "cs": "Runy jsou spojené. Můžeš zotavit družinu v táboře. Až budeš připravený, použij společnou bránu přes E.",
+    "en": "The runes are joined. You can recover at camp. When ready, use the shared gate with E."
+  },
+  "ui.0204": {
+    "cs": "Prozkoumej tři síně v libovolném pořadí. Talren: nejdřív otevři odlehčení, potom uzavři přívod a přijmi runu.",
+    "en": "Explore the three halls in any order. Talren: open the relief channel, close the intake, then claim the rune."
+  },
+  "ui.0205": {
+    "cs": "Ověř první břeh v první proměně a druhý ve druhé. Most můžeš bezpečně přepínat u ovladače.",
+    "en": "Verify the first bank in the first transformation and the second in the second. Change the bridge safely at the control."
+  },
+  "ui.0206": {
+    "cs": "Mórenova svědectví",
+    "en": "Móren's Testimonies"
+  },
+  "ui.0207": {
+    "cs": "Slož posloupnost: ochrana starého věku → živá paměť → pozdější opis. U každého záznamu použij E.",
+    "en": "Build the sequence: protection of the old age → living memory → later copy. Use E at each record."
+  },
+  "ui.0208": {
+    "cs": "Vyhodnocení Hor tří svědků",
+    "en": "The Mountains of Three Witnesses · Summary"
+  },
+  "ui.0209": {
+    "cs": "Jižní Vareth · čtvrtá kapitola",
+    "en": "Southern Vareth · Chapter Four"
+  },
+  "ui.0210": {
+    "cs": "Čtvrtá přísaha",
+    "en": "The Fourth Oath"
+  },
+  "ui.0211": {
+    "cs": "Ochrana měla jednou skončit, pokud působí více utrpení než nebezpečí. Auralis je součástí společného vodního koloběhu. Ruen byl tragický svědek chybně zvoleného okamžiku.",
+    "en": "The protection was meant to end if it caused more suffering than the danger. Auralis belongs to the shared water cycle. Ruen was a tragic witness who chose the wrong moment."
+  },
+  "ui.0212": {
+    "cs": "Výprava nese svědectví všech tří cest a Aelin záznam.",
+    "en": "The expedition carries testimony from all three paths and Aela's record."
+  },
+  "ui.0213": {
+    "cs": "Finále Auralis zatím není hratelné. Tady končí současné čtyři kapitoly.",
+    "en": "The Auralis finale is not playable yet. The current four chapters end here."
+  },
+  "ui.0214": {
+    "cs": "Pokračovat · Auralis",
+    "en": "Continue · Auralis"
+  },
+  "ui.0215": {
+    "cs": "Neznámí u cisterny",
+    "en": "Strangers at the Cistern"
+  },
+  "ui.0216": {
+    "cs": "Prozkoumej cisternu. K neznámým dojdi, až budeš připravený; oslov je přes E.",
+    "en": "Explore the cistern. Approach the strangers when ready; speak to them with E."
+  },
+  "ui.0217": {
+    "cs": "V kameni zůstaly žlutozelené usazeniny. Někdo je tu opatrně sbírá.",
+    "en": "Yellow-green deposits remain in the stone. Someone is carefully collecting them."
+  },
+  "ui.0218": {
+    "cs": "Čistá voda obnovila družinu.",
+    "en": "Clean water restored the party."
+  },
+  "ui.0219": {
+    "cs": "Seren: „Průchod je volný. Nechceme vám nic vzít.“",
+    "en": "Seren: “The passage is clear. We do not want to take anything from you.”"
+  },
+  "ui.0220": {
+    "cs": "Neznámý: „Už jste vzali dost.“",
+    "en": "Stranger: “You have already taken enough.”"
+  },
+  "ui.0221": {
+    "cs": "Jejich zásahy mohou otrávit: 5 HP na začátku tří vlastních tahů. Léčitel jed odstraní. Opakovaná otrava obnoví trvání.",
+    "en": "Their hits can poison: 5 HP at the start of three own turns. The healer removes poison. Reapplying it refreshes the duration."
+  },
+  "ui.0222": {
+    "cs": "Nara: „Tohle nebyla obyčejná bažinná proměna.“ U rozbité nádoby leží usazeniny a kámen s neznámým znamením.",
+    "en": "Nara: “This was no ordinary marsh transformation.” Beside the broken vessel lie deposits and a stone bearing an unfamiliar emblem."
+  },
+  "ui.0223": {
+    "cs": "Irik: „Ten znak jsem v archivech neviděl.“ Slizák: „Tak kdo to byl?“",
+    "en": "Irik: “I never saw that mark in the archives.” Slime: “Then who were they?”"
+  },
+  "ui.0224": {
+    "cs": "Znamení je zaznamenané. Neznámí padli; cesta k Auralisu pokračuje. Test setkání je dokončený.",
+    "en": "The emblem has been recorded. The strangers have fallen; the road to Auralis continues. The encounter test is complete."
+  },
+  "ui.0225": {
+    "cs": "Oslovit neznámé",
+    "en": "Speak to the Strangers"
+  },
+  "ui.0226": {
+    "cs": "Prohlédnout usazeniny",
+    "en": "Inspect the Deposits"
+  },
+  "ui.0227": {
+    "cs": "Čistý pramen",
+    "en": "Clean Spring"
+  },
+  "ui.0228": {
+    "cs": "Tato jednotka teď nemůže jednat.",
+    "en": "This unit cannot act now."
+  },
+  "ui.0229": {
+    "cs": "Cíl je blokovaný nebo mimo dosah pohybu.",
+    "en": "The destination is blocked or beyond movement range."
+  },
+  "ui.0230": {
+    "cs": "Tato jednotka už jednala nebo není na tahu.",
+    "en": "This unit has already acted or it is not its turn."
+  },
+  "ui.0231": {
+    "cs": "Neplatný cíl.",
+    "en": "Invalid target."
+  },
+  "ui.0232": {
+    "cs": "Léčení vyžaduje zraněného nebo otráveného spojence do 3 polí a dostatek many.",
+    "en": "Healing requires a wounded or poisoned ally within 3 cells and enough mana."
+  },
+  "ui.0233": {
+    "cs": "Kouzlo vyžaduje nepřítele do 4 polí a dostatek many.",
+    "en": "Casting requires an enemy within 4 cells and enough mana."
+  },
+  "ui.0234": {
+    "cs": "Útok vyžaduje sousedního nepřítele. Mág používá kouzlo.",
+    "en": "Attacking requires an adjacent enemy. The mage uses spells."
+  },
+  "ui.0235": {
+    "cs": "Nejprve dokonči střet.",
+    "en": "Finish the battle first."
+  },
+  "ui.0236": {
+    "cs": "Nejdřív dokonči dialog.",
+    "en": "Finish the dialogue first."
+  },
+  "ui.0237": {
+    "cs": "Tato postava už jednala. Vyber jinou nebo ukonči tah.",
+    "en": "This character has already acted. Choose another or end the turn."
+  },
+  "ui.0238": {
+    "cs": "Tudy cesta nevede.",
+    "en": "There is no path that way."
+  },
+  "ui.0239": {
+    "cs": "Sem v tomto tahu nedojdeš.",
+    "en": "You cannot reach that place this turn."
+  },
+  "ui.0240": {
+    "cs": "Vyber cíl schopnosti. Esc ji zruší.",
+    "en": "Select an ability target. Esc cancels."
+  },
+  "ui.0241": {
+    "cs": "Tato postava neléčí.",
+    "en": "This character cannot heal."
+  },
+  "ui.0242": {
+    "cs": "Vyber zraněného nebo otráveného spojence.",
+    "en": "Select a wounded or poisoned ally."
+  },
+  "ui.0243": {
+    "cs": "Na léčení chybí mana.",
+    "en": "Not enough mana to heal."
+  },
+  "ui.0244": {
+    "cs": "Na kouzlo chybí mana.",
+    "en": "Not enough mana to cast."
+  },
+  "ui.0245": {
+    "cs": "Tato postava nemůže seslat kouzlo.",
+    "en": "This character cannot cast a spell."
+  },
+  "ui.0246": {
+    "cs": "K cíli nevede volná cesta.",
+    "en": "There is no clear path to the target."
+  },
+  "ui.0247": {
+    "cs": "Cíl je mimo dosah a nezbývá pohyb.",
+    "en": "The target is out of range and no movement remains."
+  },
+  "ui.0248": {
+    "cs": "Přiblížit se · útok až v dalším tahu",
+    "en": "Move closer · attack next turn"
+  },
+  "ui.0249": {
+    "cs": "Načíst uloženou hru",
+    "en": "Load a Saved Game"
+  },
+  "ui.0250": {
+    "cs": "4 hratelné kapitoly · bez připojení",
+    "en": "4 Playable Chapters · Offline"
+  },
+  "ui.0251": {
+    "cs": "Zelená hráz",
+    "en": "The Green Dam"
+  },
+  "ui.0252": {
+    "cs": "Hlasy bažin",
+    "en": "Voices of the Marsh"
+  },
+  "ui.0253": {
+    "cs": "průzkum",
+    "en": "exploration"
+  },
+  "ui.0254": {
+    "cs": "dokončeno",
+    "en": "complete"
+  },
+  "ui.0255": {
+    "cs": "péče",
+    "en": "care"
+  },
+  "ui.0256": {
+    "cs": "síla",
+    "en": "force"
+  },
+  "ui.0257": {
+    "cs": "dohoda",
+    "en": "agreement"
+  }
+}

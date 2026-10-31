@@ -1,0 +1,310 @@
+{
+  "runtime.0001": {
+    "cs": "Dojdi nejdřív na místo střetu.",
+    "en": "Reach the encounter site first."
+  },
+  "runtime.0002": {
+    "cs": "Checkpoint před tlakem obnoven. Volba u brány zůstala zachovaná.",
+    "en": "The checkpoint before the pressure phase was restored. The gate decision is preserved."
+  },
+  "runtime.0003": {
+    "cs": "Checkpoint před uzly obnoven.",
+    "en": "The checkpoint before the nodes was restored."
+  },
+  "runtime.0004": {
+    "cs": "Dokonči odhalení kapitoly.",
+    "en": "Finish the chapter's revelation."
+  },
+  "runtime.0005": {
+    "cs": "Dokonči vyhodnocení Q02.",
+    "en": "Finish the Q02 summary."
+  },
+  "runtime.0006": {
+    "cs": "Dokonči vyhodnocení archivu.",
+    "en": "Finish the archive summary."
+  },
+  "runtime.0007": {
+    "cs": "Dokonči vyhodnocení mise.",
+    "en": "Finish the mission summary."
+  },
+  "runtime.0008": {
+    "cs": "Družina je zotavená: zdraví, mana i padlá jádra.",
+    "en": "The party has recovered: health, mana and fallen cores."
+  },
+  "runtime.0009": {
+    "cs": "Důvěra nebo místní svědek umožnili dohodu bez dalšího střetu.",
+    "en": "Trust or a local witness made an agreement possible without another battle."
+  },
+  "runtime.0010": {
+    "cs": "Důvěra nestačila na plnou dohodu. Šest tahů společné práce přesto uklidnilo svatyni.",
+    "en": "There was not enough trust for a full agreement. Six turns of shared work still calmed the sanctuary."
+  },
+  "runtime.0011": {
+    "cs": "Fragment živé paměti je zajištěný. Cesta míří do Tichých archivů.",
+    "en": "The fragment of living memory is secured. The road leads to the Silent Archives."
+  },
+  "runtime.0012": {
+    "cs": "Hraje protivník.",
+    "en": "It is the enemy's turn."
+  },
+  "runtime.0013": {
+    "cs": "K obraně se připojíš přes E u označené hlídky.",
+    "en": "Join the defence by pressing E at the marked patrol."
+  },
+  "runtime.0014": {
+    "cs": "K otevření jádra nejprve ověř všechna tři svědectví.",
+    "en": "Verify all three testimonies before opening the core."
+  },
+  "runtime.0015": {
+    "cs": "Kořeny změnily zkratky; cesta k hlavním cílům zůstává otevřená.",
+    "en": "The roots changed the shortcuts; the route to the main objectives remains open."
+  },
+  "runtime.0016": {
+    "cs": "Léčitelé tábora obnovili zdraví, manu i padlá jádra. Zotavení lze využít jednou.",
+    "en": "The camp healers restored health, mana and fallen cores. Recovery is available once."
+  },
+  "runtime.0017": {
+    "cs": "Most je v klidové podobě. Oba břehy mají bezpečnou obchůzku.",
+    "en": "The bridge is in its resting form. Both banks have a safe alternative route."
+  },
+  "runtime.0018": {
+    "cs": "Místní svědek přislíbil pomoc s vyjednáváním.",
+    "en": "A local witness promised to help negotiate."
+  },
+  "runtime.0019": {
+    "cs": "Mórenova runa je zajištěná.",
+    "en": "Móren's rune is secured."
+  },
+  "runtime.0020": {
+    "cs": "Nejdřív dokonči aktuální rozhodnutí.",
+    "en": "Finish the current decision first."
+  },
+  "runtime.0021": {
+    "cs": "Nejdřív dokonči probíhající událost.",
+    "en": "Finish the current event first."
+  },
+  "runtime.0022": {
+    "cs": "Nejdřív dokonči rozhovor.",
+    "en": "Finish the conversation first."
+  },
+  "runtime.0023": {
+    "cs": "Nejdřív dokonči všechny tři cesty a použij společnou bránu přes E.",
+    "en": "Complete all three paths first, then use the shared gate with E."
+  },
+  "runtime.0024": {
+    "cs": "Nejdřív ochraň raněné před pečetěmi svatyně.",
+    "en": "Protect the wounded from the sanctuary's seals first."
+  },
+  "runtime.0025": {
+    "cs": "Nejdřív otevři odlehčovací kanál. Ochrana nesmí přesunout nebezpečí k druhým.",
+    "en": "Open the relief channel first. Protection must not shift danger onto others."
+  },
+  "runtime.0026": {
+    "cs": "Nejdřív ověř oba břehy, každý v jeho odpovídající proměně.",
+    "en": "Verify both banks first, each in its matching transformation."
+  },
+  "runtime.0027": {
+    "cs": "Nejdřív promluv s uprchlíky a se Serenem. K obraně průchodu vstoupíš klávesou E u označené hlídky.",
+    "en": "Speak to the refugees and Seren first. Join the passage's defence with E at the marked patrol."
+  },
+  "runtime.0028": {
+    "cs": "Nejdřív vystup z měnícího se mostu na pevný břeh.",
+    "en": "Step off the changing bridge onto solid ground first."
+  },
+  "runtime.0029": {
+    "cs": "Nejprve oslov strážce pečetí a ověř záznamy.",
+    "en": "Speak to the keeper of the seals and verify the records first."
+  },
+  "runtime.0030": {
+    "cs": "Nejdřív přečti všechna tři svědectví.",
+    "en": "Read all three testimonies first."
+  },
+  "runtime.0031": {
+    "cs": "Neprobíhá souboj.",
+    "en": "There is no battle in progress."
+  },
+  "runtime.0032": {
+    "cs": "Neznámá akce.",
+    "en": "Unknown action."
+  },
+  "runtime.0033": {
+    "cs": "Návrat z bitvy. Zdraví a mana družiny jsou zachované.",
+    "en": "Returned from battle. The party's health and mana are preserved."
+  },
+  "runtime.0034": {
+    "cs": "Odlehčovací kanál je otevřený. Teď lze bezpečně uzavřít přívod.",
+    "en": "The relief channel is open. You can now close the intake safely."
+  },
+  "runtime.0035": {
+    "cs": "Opis 170 i komentář 191 vycházejí z mladší vrstvy. Hledej nezávislý otisk 132; stáří samo nestačí, důležitý je také původ.",
+    "en": "Copy 170 and commentary 191 come from a later layer. Find independent imprint 132; age alone is not enough, origin matters too."
+  },
+  "runtime.0036": {
+    "cs": "Otevři jádro archivu klávesou E.",
+    "en": "Open the archive core with E."
+  },
+  "runtime.0037": {
+    "cs": "Po střetu družina ošetřila otravu. Ztracené zdraví zůstává.",
+    "en": "After the battle, the party treated the poison. Lost health is not restored."
+  },
+  "runtime.0038": {
+    "cs": "Porážka. Můžeš zopakovat střet z checkpointu.",
+    "en": "Defeat. You can retry the encounter from its checkpoint."
+  },
+  "runtime.0039": {
+    "cs": "Posloupnost začíná ochranou starého věku, pokračuje živou pamětí a končí pozdějším opisem. Svědectví zůstala zachovaná.",
+    "en": "The sequence begins with protection of the old age, continues with living memory and ends with the later copy. The testimonies remain intact."
+  },
+  "runtime.0040": {
+    "cs": "Proud změnil terén a průchodnost; spodní most zůstává otevřený.",
+    "en": "The current changed the terrain and access; the lower bridge remains open."
+  },
+  "runtime.0041": {
+    "cs": "Péče zabrala 4 tahy; živí spojenci získali až 20 HP a 10 many.",
+    "en": "Care took 4 turns; living allies recovered up to 20 HP and 10 mana."
+  },
+  "runtime.0042": {
+    "cs": "Přístup k záznamům otevře strážce pečetí.",
+    "en": "The keeper of the seals grants access to the records."
+  },
+  "runtime.0043": {
+    "cs": "Přívod je uzavřený a odtok volný. Dojdi k Talrenově runě.",
+    "en": "The intake is closed and the outlet is clear. Reach Talren's rune."
+  },
+  "runtime.0044": {
+    "cs": "RPG test bez scénáře",
+    "en": "RPG Test without a Scenario"
+  },
+  "runtime.0045": {
+    "cs": "Radikálové zatím nejsou cílem střetu.",
+    "en": "The radicals are not the current battle objective."
+  },
+  "runtime.0046": {
+    "cs": "Runa čeká na otevřený odlehčovací kanál a uzavřený přívod.",
+    "en": "The rune requires an open relief channel and a closed intake."
+  },
+  "runtime.0047": {
+    "cs": "Ruční mapa blokuje výchozí rozmístění armád.",
+    "en": "The authored map blocks the armies' starting positions."
+  },
+  "runtime.0048": {
+    "cs": "Sarymina runa je zajištěná.",
+    "en": "Sarym's rune is secured."
+  },
+  "runtime.0049": {
+    "cs": "Seren: Až budeš připravený, dojdi k hlídce a stiskni E.",
+    "en": "Seren: When ready, go to the patrol and press E."
+  },
+  "runtime.0050": {
+    "cs": "Souboj je dokončen.",
+    "en": "The battle is complete."
+  },
+  "runtime.0051": {
+    "cs": "Střet není součástí aktuálního cíle.",
+    "en": "This encounter is not part of the current objective."
+  },
+  "runtime.0052": {
+    "cs": "Střet už probíhá.",
+    "en": "An encounter is already in progress."
+  },
+  "runtime.0053": {
+    "cs": "Talrenova runa je zajištěná.",
+    "en": "Talren's rune is secured."
+  },
+  "runtime.0054": {
+    "cs": "Talrenova runa je zajištěná; odtok ponecháváme bezpečně otevřený.",
+    "en": "Talren's rune is secured; the outlet will remain safely open."
+  },
+  "runtime.0055": {
+    "cs": "Tato proměna by uzavřela návrat; most zůstává v bezpečné podobě.",
+    "en": "This transformation would block the return route; the bridge stays in its safe form."
+  },
+  "runtime.0056": {
+    "cs": "Tento střet už není aktuální.",
+    "en": "This encounter is no longer current."
+  },
+  "runtime.0057": {
+    "cs": "Test interakce: drž WASD nebo šipky. E používá objekt.",
+    "en": "Interaction test: hold WASD or the arrows. E uses an object."
+  },
+  "runtime.0058": {
+    "cs": "Testovací pramen doplnil družinu.",
+    "en": "The test spring restored the party."
+  },
+  "runtime.0059": {
+    "cs": "Tábor · výprava obnovena před prvním střetem.",
+    "en": "Camp · the expedition was restored before the first battle."
+  },
+  "runtime.0060": {
+    "cs": "Tři runy otevírají závěrečnou zkoušku.",
+    "en": "Three runes open the final trial."
+  },
+  "runtime.0061": {
+    "cs": "Uprchlíci čekají na rozhodnutí u brány.",
+    "en": "The refugees await the gate decision."
+  },
+  "runtime.0062": {
+    "cs": "Uprchlíci čekají před branou.",
+    "en": "The refugees wait outside the gate."
+  },
+  "runtime.0063": {
+    "cs": "Ventil přesměroval tlak: +2 tahy výpravy a lepší záchrana.",
+    "en": "The valve diverted pressure: +2 expedition turns and an improved rescue."
+  },
+  "runtime.0064": {
+    "cs": "Vyléčit",
+    "en": "Heal"
+  },
+  "runtime.0065": {
+    "cs": "vyléčit",
+    "en": "heal"
+  },
+  "runtime.0066": {
+    "cs": "Zaútočit",
+    "en": "Attack"
+  },
+  "runtime.0067": {
+    "cs": "zaútočit",
+    "en": "attack"
+  },
+  "runtime.0068": {
+    "cs": "Seslat kouzlo",
+    "en": "Cast Spell"
+  },
+  "runtime.0069": {
+    "cs": "seslat kouzlo",
+    "en": "cast a spell"
+  },
+  "runtime.0070": {
+    "cs": "Přejít",
+    "en": "Move"
+  },
+  "runtime.0071": {
+    "cs": "Vítězství! Vrať se na adventure mapu.",
+    "en": "Victory! Return to the Adventure map."
+  },
+  "runtime.0072": {
+    "cs": "Zelená hráz padla. Ztráty jsou skutečné; zachránit všechny nebylo možné.",
+    "en": "The Green Dam has fallen. The losses are real; saving everyone was impossible."
+  },
+  "runtime.0073": {
+    "cs": "Změna kořenů byla odložena, aby nezavřela bezpečnou trasu.",
+    "en": "The root change was delayed to keep a safe route open."
+  },
+  "runtime.0074": {
+    "cs": "Zotavení před tímto střetem už bylo využité.",
+    "en": "Recovery before this battle has already been used."
+  },
+  "runtime.0075": {
+    "cs": "Zotavení v táboře už bylo využité.",
+    "en": "Camp recovery has already been used."
+  },
+  "runtime.0100": {
+    "cs": "Fragmenty z bažin i archivů potvrzují návaznost.",
+    "en": "Fragments from the marshes and archives confirm the sequence."
+  },
+  "runtime.0101": {
+    "cs": "Tři místní svědectví potvrzují návaznost.",
+    "en": "Three local testimonies confirm the sequence."
+  }
+}

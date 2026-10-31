@@ -1,0 +1,4 @@
+PASS authored Czech/English plural forms: 0,1,2,4,5,11,21,101 and decimal quantities
+PASS seven authored name cases, irregular Nara/Naře, authored s/se, animate accusative and male/female/neuter agreement
+PASS complete authored chapter-text coverage, bilingual key/parameter parity and explicit missing-key/parameter handling
+PASS key/parameter journal survives save/load and language switching, bounded history, corrupt rejection and legacy/custom text fallback

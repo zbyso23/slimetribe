@@ -1,0 +1,718 @@
+{
+  "story.q01.name": {
+    "cs": "Q01 · Zelená hráz",
+    "en": "Q01 · The Green Dam"
+  },
+  "story.q01.objects.0.text": {
+    "cs": "Západní ventil: přesměrovat tlak od uprchlíků.",
+    "en": "Western valve: divert pressure away from the refugees."
+  },
+  "story.q01.objects.1.text": {
+    "cs": "Spodní ventil: udržet únikový koridor.",
+    "en": "Lower valve: keep the escape corridor open."
+  },
+  "story.q01.objects.2.text": {
+    "cs": "Irik: Někdo sem uložil paměť. Není to varování před útokem.",
+    "en": "Irik: Someone stored a memory here. It is not a warning of an attack."
+  },
+  "story.q01.objects.3.text": {
+    "cs": "Seren: Poslední skupina čeká na doprovod. Za mnou!",
+    "en": "Seren: The last group is waiting for an escort. Follow me!"
+  },
+  "story.q01.objects.4.text": {
+    "cs": "Úniková cesta do mokřadů. Odchod ukončí záchranné okno.",
+    "en": "The escape route into the wetlands. Leaving ends the rescue window."
+  },
+  "story.q01.objects.5.text": {
+    "cs": "Seren drží stráž u vnitřního nádvoří. Nejdřív chce porozumět situaci před branou.",
+    "en": "Seren stands guard by the inner courtyard. First, he wants to understand the situation outside the gate."
+  },
+  "story.q01.cuts.q01_intro.name": {
+    "cs": "Zelená hráz · před bouří",
+    "en": "The Green Dam · Before the Storm"
+  },
+  "story.q01.cuts.q01_intro.cues.0.text": {
+    "cs": "Vypravěč: Pět jmen uchovalo náš svět. Každé pokolení z nich slyšelo něco jiného.",
+    "en": "Narrator: Five names preserved our world. Each generation heard something different in them."
+  },
+  "story.q01.cuts.q01_intro.cues.1.text": {
+    "cs": "Vareth. Zelená hráz zadržuje vodu, o kterou se přou Koruna a Bažinní.",
+    "en": "Vareth. The Green Dam holds back the water disputed by the Crown and the Marshfolk."
+  },
+  "story.q01.cuts.q01_intro.cues.2.text": {
+    "cs": "Seren: Drž průchod. Nechci hrdiny. Chci, aby ti za námi přežili.",
+    "en": "Seren: Hold the passage. I do not need heroes. I need those behind us to survive."
+  },
+  "story.q01.cuts.q01_intro.cues.3.text": {
+    "cs": "Nara: Nepřicházíme pro slávu. Otevřete tok.",
+    "en": "Nara: We have not come for glory. Open the flow."
+  },
+  "story.q01.cuts.q01_pressure.name": {
+    "cs": "Znaky pod zdivem",
+    "en": "Signs beneath the Masonry"
+  },
+  "story.q01.cuts.q01_pressure.cues.0.text": {
+    "cs": "Irik: Ty znaky nejsou naše. Jsou starší.",
+    "en": "Irik: These signs are not ours. They are older."
+  },
+  "story.q01.cuts.q01_pressure.cues.1.text": {
+    "cs": "Slizák: Tohle nedělají Bažinní. Pod hrází se probouzí mechanismus.",
+    "en": "Slime: The Marshfolk are not doing this. A mechanism is waking beneath the dam."
+  },
+  "story.q01.cuts.q01_pressure.cues.2.text": {
+    "cs": "Nara: Stáhnout přední řadu! Tady umřou naši i vaši.",
+    "en": "Nara: Pull back the front line! Our people and yours will die here."
+  },
+  "story.q01.cuts.q01_fall.name": {
+    "cs": "Když voda soudí",
+    "en": "When Water Judges"
+  },
+  "story.q01.cuts.q01_fall.cues.0.text": {
+    "cs": "Prastarý mechanismus změnil tok. Část Zelené hráze se láme.",
+    "en": "An ancient mechanism has changed the flow. Part of the Green Dam is breaking."
+  },
+  "story.q01.cuts.q01_fall.cues.2.text": {
+    "cs": "Slizák: Voda si vybírá novou cestu!",
+    "en": "Slime: The water is choosing a new path!"
+  },
+  "story.q01.cuts.q01_fall.cues.3.text": {
+    "cs": "Seren: Za mnou! Teď už nebráníme kámen.",
+    "en": "Seren: Follow me! We are no longer defending stone."
+  },
+  "story.q01.cuts.q01_fall.cues.4.text": {
+    "cs": "Nara: Jestli chceš odpověď, musíš do bažin. Tam voda nezapomíná.",
+    "en": "Nara: If you want answers, go into the marshes. There, the water does not forget."
+  },
+  "story.q01.cuts.q02_teaser.name": {
+    "cs": "Q02 · Hlasy bažin",
+    "en": "Q02 · Voices of the Marsh"
+  },
+  "story.q01.cuts.q02_teaser.cues.0.text": {
+    "cs": "Za padající hrází zůstává mlha a slabá světla mokřadů.",
+    "en": "Beyond the falling dam lie mist and the faint lights of the wetlands."
+  },
+  "story.q01.cuts.q02_teaser.cues.1.text": {
+    "cs": "Nara: Tady nevládne žádná hráz. Každá cesta může zítra vyrůst jinde.",
+    "en": "Nara: No dam rules here. Tomorrow, any path may grow somewhere else."
+  },
+  "story.q01.cuts.q02_teaser.cues.2.text": {
+    "cs": "HLASY BAŽIN · výprava pokračuje v mokřadech Varethu.",
+    "en": "VOICES OF THE MARSH · The expedition continues through Vareth's wetlands."
+  },
+  "story.q01.scenario.rules.0.name": {
+    "cs": "q01 intro",
+    "en": "q01 intro"
+  },
+  "story.q01.scenario.rules.0.actions.1.text": {
+    "cs": "Prozkoumej okolí Zelené hráze. Promluv s uprchlíky a se Serenem. K obraně průchodu se vydej, až budeš připravený.",
+    "en": "Explore the Green Dam. Speak to the refugees and Seren. Join the defence of the passage when you are ready."
+  },
+  "story.q01.scenario.rules.1.name": {
+    "cs": "q01 choice",
+    "en": "q01 choice"
+  },
+  "story.q01.scenario.rules.1.actions.0.text": {
+    "cs": "Uprchlíci před branou slábnou. Jak otevřeme průchod? Volba hráz nezachrání; mění záchranu, důvěru a čas na evakuaci.",
+    "en": "The refugees outside the gate are weakening. How should we open the passage? This choice cannot save the dam; it changes rescues, trust and evacuation time."
+  },
+  "story.q01.scenario.rules.1.actions.0.options.0.label": {
+    "cs": "OPEN · otevřít: více zachráněných hned, riziko průniku; 20 tahů",
+    "en": "OPEN · Open: rescue more immediately, risk a breach; 20 turns"
+  },
+  "story.q01.scenario.rules.1.actions.0.options.1.label": {
+    "cs": "HOLD · držet: ztráty před branou, více času uvnitř; 28 tahů",
+    "en": "HOLD · Hold: losses outside the gate, more time inside; 28 turns"
+  },
+  "story.q01.scenario.rules.1.actions.0.options.2.label": {
+    "cs": "PARTIAL · částečně: potřebuje doprovod; 24 tahů",
+    "en": "PARTIAL · Open partway: an escort is needed; 24 turns"
+  },
+  "story.q01.scenario.rules.1.actions.1.text": {
+    "cs": "Seren: Rozkaz je rozkaz. Ale odpovědnost zůstane nám. Irik nachází pod zdivem starší znaky; za růstem tlaku stojí mechanismus, ne jediný národ. Nara: „Počítáš mezi ty, které chráníš, i naše?“ Seren: „Koho jiného bych měl počítat?“ Nara chvíli neodpoví.",
+    "en": "Seren: An order is an order. But the responsibility remains ours. Irik finds older signs beneath the masonry; a mechanism is raising the pressure, not a single nation. Nara: “Do you count our people among those you protect?” Seren: “Who else should I count?” For a moment, Nara says nothing."
+  },
+  "story.q01.scenario.rules.1.actions.3.text": {
+    "cs": "Ovládni dva ventily, doprovoď poslední skupinu a unikni. Fragment na východním břehu je volitelný.",
+    "en": "Operate two valves, escort the last group and escape. The fragment on the eastern bank is optional."
+  },
+  "story.q01.scenario.rules.2.name": {
+    "cs": "q01 warning",
+    "en": "q01 warning"
+  },
+  "story.q01.scenario.rules.2.actions.0.text": {
+    "cs": "VAROVÁNÍ: Za 1 tah proud uzavře horní přechod [7,4]. Spodní most [7,8] zůstane průchozí. Čas běží jen po krocích na mapě nebo po Vyčkat.",
+    "en": "WARNING: In 1 turn, the current will close the upper crossing [7,4]. The lower bridge [7,8] stays open. Time advances only when you move on the map or Wait."
+  },
+  "story.q01.scenario.rules.3.name": {
+    "cs": "q01 collapse",
+    "en": "q01 collapse"
+  },
+  "story.q01.scenario.rules.3.actions.1.text": {
+    "cs": "Zelená hráz padla. Zhodnoť záchranu a vydej se do bažin.",
+    "en": "The Green Dam has fallen. Review the rescue and head into the marshes."
+  },
+  "story.q01.scenario.rules.4.name": {
+    "cs": "q02 teaser",
+    "en": "q02 teaser"
+  },
+  "story.q01.scenario.rules.5.name": {
+    "cs": "Příchod: refugees",
+    "en": "Příchod: refugees"
+  },
+  "story.q01.scenario.rules.5.actions.0.text": {
+    "cs": "Uprchlík: Naše jádra slábnou. Za branou je voda, kterou potřebujeme. Nechceme bojovat — potřebujeme projít. Zeptej se Serena, proč nás drží venku.",
+    "en": "Refugee: Our cores are weakening. The water we need lies beyond that gate. We do not want to fight — we need to pass. Ask Seren why he keeps us outside."
+  },
+  "story.q01.scenario.rules.6.name": {
+    "cs": "Příchod: seren",
+    "en": "Příchod: seren"
+  },
+  "story.q01.scenario.rules.6.actions.0.text": {
+    "cs": "Seren: Nechci hrdiny. Chci, aby ti za námi přežili. Projdi se po hrázi a vyslechni uprchlíky. Pokud nám potom pomůžeš chránit zásobovací průchod, dojdi k označené hlídce a stiskni E. Do té doby nikam nespěcháme.",
+    "en": "Seren: I do not need heroes. I need those behind us to survive. Walk along the dam and hear the refugees out. If you then wish to help defend the supply passage, go to the marked patrol and press E. Until then, there is no rush."
+  },
+  "story.q02.name": {
+    "cs": "Q02 · Hlasy bažin",
+    "en": "Q02 · Voices of the Marsh"
+  },
+  "story.q02.objects.0.text": {
+    "cs": "Léčitelé tábora jednou obnoví i padlá jádra družiny. Před další bitvou se můžeš zotavit.",
+    "en": "The camp healers can restore the entire party, including fallen cores, once. You may recover before the next battle."
+  },
+  "story.q02.objects.1.text": {
+    "cs": "Léčitel: Podoba není nemoc. Bolest ano. Pomoz nám odrazit obranné pečetě svatyně.",
+    "en": "Healer: A different shape is not an illness. Pain is. Help us repel the sanctuary's defensive seals."
+  },
+  "story.q02.objects.2.text": {
+    "cs": "První kořenový uzel čeká na stabilizaci.",
+    "en": "The first root node awaits stabilisation."
+  },
+  "story.q02.objects.3.text": {
+    "cs": "Druhý kořenový uzel čeká na stabilizaci.",
+    "en": "The second root node awaits stabilisation."
+  },
+  "story.q02.objects.4.text": {
+    "cs": "Třetí kořenový uzel čeká na stabilizaci.",
+    "en": "The third root node awaits stabilisation."
+  },
+  "story.q02.objects.5.text": {
+    "cs": "Místní svědek nabídne pomoc při vyjednávání. Svatyně nemusí být zbraní.",
+    "en": "A local witness offers help with negotiations. The sanctuary need not become a weapon."
+  },
+  "story.q02.objects.6.text": {
+    "cs": "Pramen svatyně jednou obnovil zdraví a manu živých spojenců.",
+    "en": "The sanctuary spring has restored the health and mana of living allies once."
+  },
+  "story.q02.cuts.q02_intro.name": {
+    "cs": "Hlasy bažin · šepot mokřadů",
+    "en": "Voices of the Marsh · Whispers in the Wetlands"
+  },
+  "story.q02.cuts.q02_intro.cues.0.text": {
+    "cs": "Nara: Tady nevládne žádná hráz. Každá cesta může zítra vyrůst jinde.",
+    "en": "Nara: No dam rules here. Tomorrow, any path may grow somewhere else."
+  },
+  "story.q02.cuts.q02_intro.cues.1.text": {
+    "cs": "Slizák: Voda tady nešumí. Mluví.",
+    "en": "Slime: The water here does not murmur. It speaks."
+  },
+  "story.q02.cuts.q02_intro.cues.2.text": {
+    "cs": "Léčitelé čekají v táboře. Za kořeny jsou ranění a neklidná svatyně.",
+    "en": "Healers wait at the camp. Beyond the roots lie the wounded and a restless sanctuary."
+  },
+  "story.q02.cuts.q02_sarym.name": {
+    "cs": "Sarymina komora",
+    "en": "Sarym's Chamber"
+  },
+  "story.q02.cuts.q02_sarym.cues.0.text": {
+    "cs": "Sarym: Tvar není posvátný. Posvátné je to, co v něm žije.",
+    "en": "Sarym: Shape is not sacred. What lives within it is sacred."
+  },
+  "story.q02.cuts.q02_sarym.cues.1.text": {
+    "cs": "Irik: Paměť není totéž co život. Ale tady jsou propojené.",
+    "en": "Irik: Memory is not the same as life. But here they are connected."
+  },
+  "story.q02.cuts.q02_sarym.cues.2.text": {
+    "cs": "Nara: O svatyni se přou i naši vlastní. Nesmíme z ní udělat další zbraň.",
+    "en": "Nara: Our own people dispute the sanctuary too. We must not turn it into another weapon."
+  },
+  "story.q02.cuts.q02_guardian.name": {
+    "cs": "Strážce živé paměti",
+    "en": "Guardian of Living Memory"
+  },
+  "story.q02.cuts.q02_guardian.cues.0.text": {
+    "cs": "Nara: Tohle není nepřítel. To jsme probudili vlastní dějiny.",
+    "en": "Nara: This is not an enemy. We have awakened our own history."
+  },
+  "story.q02.cuts.q02_guardian.cues.1.text": {
+    "cs": "Hlas strážce: Co bylo přežito, není vždy pravdivě zapamatováno.",
+    "en": "Guardian's voice: What was survived is not always remembered truthfully."
+  },
+  "story.q02.cuts.q02_guardian.cues.2.text": {
+    "cs": "Živá paměť vydává fragment s obrazem Tichých archivů.",
+    "en": "Living memory yields a fragment showing the Silent Archives."
+  },
+  "story.q02.cuts.q03_teaser.name": {
+    "cs": "Q03 · Tiché archivy",
+    "en": "Q03 · The Silent Archives"
+  },
+  "story.q02.cuts.q03_teaser.cues.0.text": {
+    "cs": "Nara: V Tichých archivech hledejte to, co naši předkové nedokázali uchovat.",
+    "en": "Nara: In the Silent Archives, seek what our ancestors could not preserve."
+  },
+  "story.q02.cuts.q03_teaser.cues.1.text": {
+    "cs": "Irik: Tam má každá vzpomínka svého strážce.",
+    "en": "Irik: There, every memory has its guardian."
+  },
+  "story.q02.cuts.q03_teaser.cues.2.text": {
+    "cs": "TICHÉ ARCHIVY · výprava pokračuje k nejstarším krystalům.",
+    "en": "THE SILENT ARCHIVES · The expedition continues towards the oldest crystals."
+  },
+  "story.q02.scenario.rules.0.name": {
+    "cs": "q02 intro",
+    "en": "q02 intro"
+  },
+  "story.q02.scenario.rules.0.actions.1.text": {
+    "cs": "Nara: Nejprve pomoz místním [2,6]. Léčitelé v táboře [1,7] dovedou jednou obnovit celou družinu. Kořeny mění zkratky každých šest kroků; bezpečná trasa zůstane otevřená.",
+    "en": "Nara: Help the locals first [2,6]. The camp healers [1,7] can restore the entire party once. Roots change the shortcuts every six steps; a safe route remains open."
+  },
+  "story.q02.scenario.rules.0.actions.2.text": {
+    "cs": "Navštiv tábor a ochraň místní před obrannými pečetěmi svatyně.",
+    "en": "Visit the camp and protect the locals from the sanctuary's defensive seals."
+  },
+  "story.q02.scenario.rules.1.name": {
+    "cs": "q02 rescue",
+    "en": "q02 rescue"
+  },
+  "story.q02.scenario.rules.1.actions.0.text": {
+    "cs": "Irik: Mechanismus nerozeznává, koho chrání. Odraz jeho stráže, než zraní další místní.",
+    "en": "Irik: The mechanism cannot distinguish whom it protects. Repel its guards before they wound more locals."
+  },
+  "story.q02.scenario.rules.2.name": {
+    "cs": "q02 rescue win",
+    "en": "q02 rescue win"
+  },
+  "story.q02.scenario.rules.2.actions.0.text": {
+    "cs": "Léčitel: Místní jsou v bezpečí. Zbývá uklidnit tři uzly živé paměti. Seren: „V těch kořenech se nevyznám.“ Nara: „Tak se drž poblíž.“ Seren: „To zvládnu.“",
+    "en": "Healer: The locals are safe. Three nodes of living memory still need calming. Seren: “I cannot find my way through these roots.” Nara: “Then stay close.” Seren: “I can do that.”"
+  },
+  "story.q02.scenario.rules.2.actions.1.text": {
+    "cs": "Stabilizuj všechny tři uzly [4,3], [8,4], [7,7]. Svědek [9,7] může pomoci s vyjednáváním.",
+    "en": "Stabilise all three nodes [4,3], [8,4], [7,7]. The witness [9,7] may help with negotiations."
+  },
+  "story.q02.scenario.rules.3.name": {
+    "cs": "q02 nodes",
+    "en": "q02 nodes"
+  },
+  "story.q02.scenario.rules.3.actions.1.text": {
+    "cs": "Tři uzly jsou stabilní. Jak uklidníme strážce a zabráníme ovládnutí svatyně? Každá cesta zachová nezbytný fragment.",
+    "en": "The three nodes are stable. How shall we calm the guardian and prevent the sanctuary from being seized? Every path preserves the essential fragment."
+  },
+  "story.q02.scenario.rules.3.actions.1.options.0.label": {
+    "cs": "CARE · péče: 4 tahy práce, léčení živých spojenců; více důvěry",
+    "en": "CARE · Care: 4 turns of work, healing living allies; more trust"
+  },
+  "story.q02.scenario.rules.3.actions.1.options.1.label": {
+    "cs": "FORCE · síla: střet s radikály, riziko ztrát a menší důvěra",
+    "en": "FORCE · Force: fight the radicals, risking losses and reduced trust"
+  },
+  "story.q02.scenario.rules.3.actions.1.options.2.label": {
+    "cs": "NEGOTIATE · dohoda: pomůže důvěra nebo svědek; jinak 6 tahů práce",
+    "en": "NEGOTIATE · Agreement: trust or a witness helps; otherwise 6 turns of work"
+  },
+  "story.q02.scenario.rules.3.actions.2.text": {
+    "cs": "Dokonči zvolený způsob uklidnění svatyně.",
+    "en": "Complete your chosen way of calming the sanctuary."
+  },
+  "story.q02.scenario.rules.4.name": {
+    "cs": "q02 force",
+    "en": "q02 force"
+  },
+  "story.q02.scenario.rules.4.actions.0.text": {
+    "cs": "Nara: Už dost. Nevyženeme další rodiny ve jménu vlastní svobody! Radikálové odmítají ustoupit.",
+    "en": "Nara: Enough. We will not drive out more families in the name of our own freedom! The radicals refuse to withdraw."
+  },
+  "story.q02.scenario.rules.5.name": {
+    "cs": "q02 force win",
+    "en": "q02 force win"
+  },
+  "story.q02.scenario.rules.5.actions.0.text": {
+    "cs": "Nara: Svatyně nám nepatří. Odvolávám zbytek přední řady.",
+    "en": "Nara: The sanctuary does not belong to us. I am withdrawing the rest of the front line."
+  },
+  "story.q02.scenario.rules.6.name": {
+    "cs": "q02 resolved",
+    "en": "q02 resolved"
+  },
+  "story.q02.scenario.rules.6.actions.1.text": {
+    "cs": "Fragment živé paměti je zajištěný. Připrav výpravu do Tichých archivů.",
+    "en": "The fragment of living memory is secured. Prepare the expedition for the Silent Archives."
+  },
+  "story.q02.scenario.rules.7.name": {
+    "cs": "q03 teaser",
+    "en": "q03 teaser"
+  },
+  "story.q03.name": {
+    "cs": "Tiché archivy",
+    "en": "The Silent Archives"
+  },
+  "story.q03.objects.0.text": {
+    "cs": "Odpočívadlo archivářů. Před každou ze dvou obran lze jednou obnovit celou družinu.",
+    "en": "The archivists' resting place. Before each of the two defences, the entire party can recover once."
+  },
+  "story.q03.objects.1.text": {
+    "cs": "Echo strážce: Chráníme záznamy, i před těmi, kdo chtějí pravdu.",
+    "en": "Guardian's echo: We protect the records, even from those who want the truth."
+  },
+  "story.q03.objects.2.text": {
+    "cs": "Původní krystal · otisk 132. Ruenův hlas: Průtok byl uzavřen ještě před vydáním rozkazu. Pečeť je součástí původní vrstvy.",
+    "en": "Original crystal · imprint 132. Ruen's voice: The flow was closed before the order was issued. The seal belongs to the original layer."
+  },
+  "story.q03.objects.3.text": {
+    "cs": "Pozdější opis · otisk 170. Kronika tvrdí, že proud uzavřel až rozkaz. Jméno Ruena chybí; tento opis vznikl po původním krystalu.",
+    "en": "Later copy · imprint 170. The chronicle claims that the order closed the flow. Ruen's name is missing; this copy was made after the original crystal."
+  },
+  "story.q03.objects.4.text": {
+    "cs": "Komentář · otisk 191. Písař připouští, že pracoval z opisu 170. Nemá nezávislé svědectví o době uzavření proudu.",
+    "en": "Commentary · imprint 191. The scribe admits working from copy 170. It provides no independent testimony about when the flow was closed."
+  },
+  "story.q03.objects.5.text": {
+    "cs": "Jádro archivu. Dvě krystalové pečeti drží nejstarší záznam; ověř zdroje před otevřením.",
+    "en": "The archive core. Two crystal seals hold the oldest record; verify the sources before opening it."
+  },
+  "story.q03.cuts.q03_intro.name": {
+    "cs": "Tiché archivy · omezený přístup",
+    "en": "The Silent Archives · Restricted Access"
+  },
+  "story.q03.cuts.q03_intro.cues.0.text": {
+    "cs": "Irik: Tady každý krystal obsahuje něčí poslední slova.",
+    "en": "Irik: Every crystal here contains someone's last words."
+  },
+  "story.q03.cuts.q03_intro.cues.1.text": {
+    "cs": "Echo strážce: Vstup je povolen. Každý zásah zůstane zaznamenán.",
+    "en": "Guardian's echo: Entry is permitted. Every intervention will be recorded."
+  },
+  "story.q03.cuts.q03_intro.cues.2.text": {
+    "cs": "Seren: Když dvě kroniky odporují jedna druhé, kdo rozhodne?",
+    "en": "Seren: When two chronicles contradict each other, who decides?"
+  },
+  "story.q03.cuts.q03_memory.name": {
+    "cs": "Cena vzpomínek",
+    "en": "The Price of Memories"
+  },
+  "story.q03.cuts.q03_memory.cues.0.text": {
+    "cs": "Seren: Někdo nepsal historii. Přepisoval ji.",
+    "en": "Seren: Someone was not writing history. They were rewriting it."
+  },
+  "story.q03.cuts.q03_memory.cues.1.text": {
+    "cs": "Irik: Zachránit záznam není totéž jako vlastnit toho, kdo v něm žije.",
+    "en": "Irik: Saving a record is not the same as owning whoever lives within it."
+  },
+  "story.q03.cuts.q03_memory.cues.2.text": {
+    "cs": "Malacharova ozvěna pamatuje dobu, kdy se její nositel ještě nenarodil. Čí je to vzpomínka?",
+    "en": "Malachar's echo remembers an age before its bearer was born. Whose memory is it?"
+  },
+  "story.q03.cuts.q03_outro.name": {
+    "cs": "Poškozené svědectví",
+    "en": "Damaged Testimony"
+  },
+  "story.q03.cuts.q03_outro.cues.0.text": {
+    "cs": "Poškozený záznam: ... nejméně čtyři ... přísahy ...",
+    "en": "Damaged record: ... at least four ... oaths ..."
+  },
+  "story.q03.cuts.q03_outro.cues.1.text": {
+    "cs": "Slizák: Tři známe. Co se stalo s tou poslední?",
+    "en": "Slime: We know three. What happened to the last one?"
+  },
+  "story.q03.cuts.q03_outro.cues.2.text": {
+    "cs": "Irik: Směr záznamu vede do Hor tří svědků na jihu Varethu.",
+    "en": "Irik: The record points to the Mountains of Three Witnesses in southern Vareth."
+  },
+  "story.q03.cuts.q04_teaser.name": {
+    "cs": "Hory tří svědků",
+    "en": "The Mountains of Three Witnesses"
+  },
+  "story.q03.cuts.q04_teaser.cues.0.text": {
+    "cs": "Seren: Tři cesty. Předkové je rozdělili záměrně.",
+    "en": "Seren: Three paths. Our ancestors separated them deliberately."
+  },
+  "story.q03.cuts.q04_teaser.cues.1.text": {
+    "cs": "Irik: Máme fragmenty. Teď potřebujeme místo, kde se nepřepisovala minulost.",
+    "en": "Irik: We have fragments. Now we need a place where the past was not rewritten."
+  },
+  "story.q03.cuts.q04_teaser.cues.2.text": {
+    "cs": "HORY TŘÍ SVĚDKŮ · výprava pokračuje do jižního Varethu.",
+    "en": "THE MOUNTAINS OF THREE WITNESSES · The expedition continues into southern Vareth."
+  },
+  "story.q03.scenario.rules.0.name": {
+    "cs": "q03_intro",
+    "en": "q03_intro"
+  },
+  "story.q03.scenario.rules.0.actions.1.text": {
+    "cs": "Irik: Začni u odpočívadla a promluv se strážcem pečetí. Potom porovnáme tři svědectví. WASD tě vede mapou, E promluví nebo přečte krystal.",
+    "en": "Irik: Start at the resting place and speak to the keeper of the seals. Then we will compare three testimonies. WASD moves you around the map; E speaks or reads a crystal."
+  },
+  "story.q03.scenario.rules.0.actions.2.text": {
+    "cs": "Obnov družinu na odpočívadle a oslov strážce pečetí.",
+    "en": "Restore the party at the resting place and speak to the keeper of the seals."
+  },
+  "story.q03.scenario.rules.1.name": {
+    "cs": "q03_seals",
+    "en": "q03_seals"
+  },
+  "story.q03.scenario.rules.1.actions.0.text": {
+    "cs": "Echo strážce: Záznam nesmí být přepsán bez ověření. Obranné pečetě se aktivují; odraz jejich stráže.",
+    "en": "Guardian's echo: A record must not be rewritten without verification. The defensive seals are activating; repel their guards."
+  },
+  "story.q03.scenario.rules.2.name": {
+    "cs": "q03_seals_win",
+    "en": "q03_seals_win"
+  },
+  "story.q03.scenario.rules.2.actions.0.text": {
+    "cs": "Irik: Přístup je otevřený. Přečti původní krystal, pozdější opis i komentář. U každého si všimni stáří a toho, z čeho vychází.",
+    "en": "Irik: Access is open. Read the original crystal, the later copy and the commentary. Note each one's age and sources."
+  },
+  "story.q03.scenario.rules.2.actions.1.text": {
+    "cs": "Přečti všechna tři svědectví. Potom společně ověř jejich původ.",
+    "en": "Read all three testimonies. Then verify their origins together."
+  },
+  "story.q03.scenario.rules.3.name": {
+    "cs": "read_primary",
+    "en": "read_primary"
+  },
+  "story.q03.scenario.rules.3.actions.0.text": {
+    "cs": "Původní krystal · otisk 132. Ruenův hlas: Průtok byl uzavřen ještě před vydáním rozkazu. Pečeť je součástí původní vrstvy.",
+    "en": "Original crystal · imprint 132. Ruen's voice: The flow was closed before the order was issued. The seal belongs to the original layer."
+  },
+  "story.q03.scenario.rules.4.name": {
+    "cs": "read_copy",
+    "en": "read_copy"
+  },
+  "story.q03.scenario.rules.4.actions.0.text": {
+    "cs": "Pozdější opis · otisk 170. Kronika tvrdí, že proud uzavřel až rozkaz. Jméno Ruena chybí; tento opis vznikl po původním krystalu.",
+    "en": "Later copy · imprint 170. The chronicle claims that the order closed the flow. Ruen's name is missing; this copy was made after the original crystal."
+  },
+  "story.q03.scenario.rules.5.name": {
+    "cs": "read_commentary",
+    "en": "read_commentary"
+  },
+  "story.q03.scenario.rules.5.actions.0.text": {
+    "cs": "Komentář · otisk 191. Písař připouští, že pracoval z opisu 170. Nemá nezávislé svědectví o době uzavření proudu.",
+    "en": "Commentary · imprint 191. The scribe admits working from copy 170. It provides no independent testimony about when the flow was closed."
+  },
+  "story.q03.scenario.rules.6.name": {
+    "cs": "q03_verified",
+    "en": "q03_verified"
+  },
+  "story.q03.scenario.rules.6.actions.0.text": {
+    "cs": "Irik: Původní otisk 132 je nezávislé svědectví. Opis 170 i komentář 191 jsou mladší a závislé. Neshoda ukazuje zásah do kronik, nikoli vinu celého národa.",
+    "en": "Irik: Original imprint 132 is independent testimony. Copy 170 and commentary 191 are later, dependent records. Their disagreement points to tampered chronicles, not the guilt of an entire nation."
+  },
+  "story.q03.scenario.rules.6.actions.1.text": {
+    "cs": "Před obranou jádra se můžeš znovu zotavit na odpočívadle. Potom otevři jádro archivu.",
+    "en": "You may recover at the resting place again before defending the core. Then open the archive core."
+  },
+  "story.q03.scenario.rules.7.name": {
+    "cs": "q03_core",
+    "en": "q03_core"
+  },
+  "story.q03.scenario.rules.7.actions.1.text": {
+    "cs": "Nara: Nejsme tu, abychom vymazali další životy. Odraz aktivované stráže, než se vrátíme ke krystalovým pečetím. Seren: „Počkám, dokud neprojdeš.“ Nara: „Mohl bys už jít.“ Seren: „Vím.“",
+    "en": "Nara: We are not here to erase more lives. Repel the awakened guards before we return to the crystal seals. Seren: “I will wait until you are through.” Nara: “You could go on.” Seren: “I know.”"
+  },
+  "story.q03.scenario.rules.8.name": {
+    "cs": "q03_core_win",
+    "en": "q03_core_win"
+  },
+  "story.q03.scenario.rules.8.actions.0.text": {
+    "cs": "Obrana jádra je odražena. Jak naložíme se záznamy a vůlí těch, jejichž paměť uchovávají? Každá cesta zachová nezbytný fragment.",
+    "en": "The core's guards have been repelled. What shall we do with the records and the wishes of those whose memories they preserve? Every path preserves the essential fragment."
+  },
+  "story.q03.scenario.rules.8.actions.0.options.0.label": {
+    "cs": "Uchovat originály pod ochranou archivářů",
+    "en": "Preserve the originals under the archivists' protection"
+  },
+  "story.q03.scenario.rules.8.actions.0.options.1.label": {
+    "cs": "Odnést bezpečnou kopii bez vědomí",
+    "en": "Take a safe copy without consciousness"
+  },
+  "story.q03.scenario.rules.8.actions.0.options.2.label": {
+    "cs": "Omezit přístup a odložit zveřejnění",
+    "en": "Restrict access and postpone publication"
+  },
+  "story.q03.scenario.rules.9.name": {
+    "cs": "q03_resolved",
+    "en": "q03_resolved"
+  },
+  "story.q03.scenario.rules.9.actions.1.text": {
+    "cs": "Fragment i doklady o zásazích do kronik jsou zajištěné. Cesta vede do jižních hor Varethu.",
+    "en": "The fragment and evidence of tampered chronicles are secured. The trail leads to Vareth's southern mountains."
+  },
+  "story.q03.scenario.rules.10.name": {
+    "cs": "q04_teaser",
+    "en": "q04_teaser"
+  },
+  "story.q04.name": {
+    "cs": "Hory tří svědků · jižní Vareth",
+    "en": "The Mountains of Three Witnesses · Southern Vareth"
+  },
+  "story.q04.objects.0.text": {
+    "cs": "Tábor výpravy. Před závěrečnou zkouškou lze jednou zotavit celou družinu.",
+    "en": "The expedition camp. The entire party may recover once before the final trial."
+  },
+  "story.q04.objects.1.text": {
+    "cs": "Odlehčovací kanál. Nejdřív otevři obtok; teprve potom bezpečně uzavři přívod.",
+    "en": "Relief channel. Open the bypass first; only then is it safe to close the intake."
+  },
+  "story.q04.objects.2.text": {
+    "cs": "Přívod do Talrenovy síně. Uzavření bez otevřeného odlehčení by přesunulo nebezpečí k druhým.",
+    "en": "The intake to Talren's hall. Closing it without opening the relief channel would shift the danger onto others."
+  },
+  "story.q04.objects.3.text": {
+    "cs": "Talrenova runa se rozsvítí, když ochrana udrží průchod i bezpečný odtok.",
+    "en": "Talren's rune lights up when protection keeps both the passage and the outlet safe."
+  },
+  "story.q04.objects.4.text": {
+    "cs": "Živý most má klidovou podobu a dvě proměny. V první naslouchej východnímu břehu, v druhé západnímu.",
+    "en": "The living bridge has a resting form and two transformations. In the first, listen to the eastern bank; in the second, the western bank."
+  },
+  "story.q04.objects.5.text": {
+    "cs": "První břeh potřebuje první proměnu mostu.",
+    "en": "The first bank requires the bridge's first transformation."
+  },
+  "story.q04.objects.6.text": {
+    "cs": "Druhý břeh potřebuje druhou proměnu mostu.",
+    "en": "The second bank requires the bridge's second transformation."
+  },
+  "story.q04.objects.7.text": {
+    "cs": "Sarymina runa vyžaduje bezpečný návrat z obou proměn.",
+    "en": "Sarym's rune requires a safe return from both transformations."
+  },
+  "story.q04.objects.8.text": {
+    "cs": "První svědectví: zadržení vody chránilo tehdejší věk. Tím začíná posloupnost.",
+    "en": "First testimony: holding back the water protected that age. The sequence begins here."
+  },
+  "story.q04.objects.9.text": {
+    "cs": "Druhé svědectví: živá paměť přežila změnu. Navazuje na ochranu starého věku.",
+    "en": "Second testimony: living memory survived transformation. It follows the protection of the old age."
+  },
+  "story.q04.objects.10.text": {
+    "cs": "Třetí svědectví: opis změnil kroniku. Porovnej jej až po ochraně a živé paměti.",
+    "en": "Third testimony: a copy changed the chronicle. Compare it after protection and living memory."
+  },
+  "story.q04.objects.11.text": {
+    "cs": "Společná brána. Tři samostatné runy vytvoří jediný klíč.",
+    "en": "The shared gate. Three separate runes form a single key."
+  },
+  "story.q04.cuts.q04_intro.name": {
+    "cs": "Tři cesty, jeden klíč",
+    "en": "Three Paths, One Key"
+  },
+  "story.q04.cuts.q04_intro.cues.0.text": {
+    "cs": "Seren: Tři cesty. Předkové je rozdělili záměrně.",
+    "en": "Seren: Three paths. Our ancestors separated them deliberately."
+  },
+  "story.q04.cuts.q04_intro.cues.1.text": {
+    "cs": "Nara: Každou můžeme prozkoumat vlastním tempem. Nespěchá na nás žádná vlna.",
+    "en": "Nara: We can explore each one at our own pace. No wave is chasing us."
+  },
+  "story.q04.cuts.q04_intro.cues.2.text": {
+    "cs": "Irik: Pravdu neurčuje, kdo ji pamatuje nejdéle. Prozkoumejme všechny tři síně.",
+    "en": "Irik: Truth is not decided by who remembers it longest. Let us explore all three halls."
+  },
+  "story.q04.cuts.q04_revelation.name": {
+    "cs": "Sál nezapsané přísahy",
+    "en": "The Hall of the Unwritten Oath"
+  },
+  "story.q04.cuts.q04_revelation.cues.0.text": {
+    "cs": "Irik: Čtvrté svědectví nebylo ztraceno. Někdo je skryl.",
+    "en": "Irik: The fourth testimony was not lost. Someone hid it."
+  },
+  "story.q04.cuts.q04_revelation.cues.1.text": {
+    "cs": "Ruenova ozvěna: Viděl jsem přicházející konec. Zvolil jsem špatný okamžik.",
+    "en": "Ruen's echo: I saw the end approaching. I chose the wrong moment."
+  },
+  "story.q04.cuts.q04_revelation.cues.2.text": {
+    "cs": "Talren, Sarym a Móren zachránili svůj věk. Ochrana však neměla trvat navždy.",
+    "en": "Talren, Sarym and Móren saved their age. But the protection was never meant to last forever."
+  },
+  "story.q04.cuts.q04_revelation.cues.3.text": {
+    "cs": "Aela: My jsme zachránili svůj věk. Vy musíte zachránit svůj.",
+    "en": "Aela: We saved our age. You must save yours."
+  },
+  "story.q04.cuts.q04_revelation.cues.4.text": {
+    "cs": "Čtvrtá přísaha: stará ochrana musí skončit, pokud působí více utrpení než nebezpečí.",
+    "en": "The Fourth Oath: old protection must end if it causes more suffering than the danger it prevents."
+  },
+  "story.q04.cuts.q04_revelation.cues.5.text": {
+    "cs": "Nara: Auralis pije z vody, kterou nazývá jen svou. Jeho prameny patří do společného koloběhu.",
+    "en": "Nara: Auralis drinks water it calls its own. Its springs belong to the shared cycle."
+  },
+  "story.q04.cuts.q05_teaser.name": {
+    "cs": "Cesta k Auralisu",
+    "en": "The Road to Auralis"
+  },
+  "story.q04.cuts.q05_teaser.cues.0.text": {
+    "cs": "Slizák: Nepřineseme jim rozkaz. Přineseme jim možnost volby.",
+    "en": "Slime: We will not bring them an order. We will bring them a choice."
+  },
+  "story.q04.cuts.q05_teaser.cues.1.text": {
+    "cs": "Výprava míří zpět k Auralisu s důkazy o společném koloběhu.",
+    "en": "The expedition heads back to Auralis with proof of the shared cycle."
+  },
+  "story.q04.cuts.q05_teaser.cues.2.text": {
+    "cs": "FINÁLE AURALIS · další kapitola zatím není hratelná.",
+    "en": "FINALE: AURALIS · The next chapter is not playable yet."
+  },
+  "story.q04.scenario.rules.0.name": {
+    "cs": "q04_intro",
+    "en": "q04_intro"
+  },
+  "story.q04.scenario.rules.0.actions.1.text": {
+    "cs": "Prozkoumej Talrenovu síň, Sarymin most a Mórenova svědectví v libovolném pořadí. Tři runy otevřou společnou bránu.",
+    "en": "Explore Talren's hall, Sarym's bridge and Móren's testimonies in any order. Three runes open the shared gate."
+  },
+  "story.q04.scenario.rules.1.name": {
+    "cs": "q04_talren",
+    "en": "q04_talren"
+  },
+  "story.q04.scenario.rules.1.actions.1.text": {
+    "cs": "Seren: Řád má smysl jen, pokud někoho chrání. Nara: „Už se nemusíme dohadovat úplně o všem.“ Seren: „Něco bych si nechal na cestu zpátky.“",
+    "en": "Seren: Order matters only if it protects someone. Nara: “We no longer have to argue about everything.” Seren: “I would save something for the way back.”"
+  },
+  "story.q04.scenario.rules.2.name": {
+    "cs": "q04_sarym",
+    "en": "q04_sarym"
+  },
+  "story.q04.scenario.rules.2.actions.1.text": {
+    "cs": "Nara: Proměna nesmí pohltit toho, koho měla zachránit.",
+    "en": "Nara: Transformation must not consume the one it was meant to save."
+  },
+  "story.q04.scenario.rules.3.name": {
+    "cs": "q04_moren",
+    "en": "q04_moren"
+  },
+  "story.q04.scenario.rules.3.actions.1.text": {
+    "cs": "Irik: Máme ochranu, proměnu i ověřenou paměť. Teprve společně dávají smysl.",
+    "en": "Irik: We have protection, transformation and verified memory. Only together do they make sense."
+  },
+  "story.q04.scenario.rules.4.name": {
+    "cs": "q04_guardian",
+    "en": "q04_guardian"
+  },
+  "story.q04.scenario.rules.4.actions.0.text": {
+    "cs": "Hlas systému: Nestačí otevřít. Musíte porozumět. Tři runy jsou spojené; odraz stráže závěrečné zkoušky a uchovej Slizákovo jádro.",
+    "en": "System voice: Opening is not enough. You must understand. The three runes are joined; repel the final trial's guards and preserve Slime's core."
+  },
+  "story.q04.scenario.rules.5.name": {
+    "cs": "q04_unveil",
+    "en": "q04_unveil"
+  },
+  "story.q04.scenario.rules.5.actions.2.text": {
+    "cs": "Čtvrtá přísaha a společný koloběh jsou odhalené. Připrav výpravu k Auralisu.",
+    "en": "The Fourth Oath and the shared cycle are revealed. Prepare the expedition for Auralis."
+  },
+  "story.q04.scenario.rules.6.name": {
+    "cs": "q05_teaser",
+    "en": "q05_teaser"
+  }
+}

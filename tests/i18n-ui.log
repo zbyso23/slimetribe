@@ -1,0 +1,3 @@
+Player text leftovers: 0
+PASS English menu, help, settings, party, journal and all Q01–Q04 stage screens have no Czech text leftovers
+PASS language setting event, pause/state preservation, project import/export, invalid locale rejection, live subtitle/dialogue switch and escaped text-only markup adapter
